@@ -1,1 +1,5 @@
 bower_components/
+node_modules/
+vendor/
+dist/
+package-lock.json
