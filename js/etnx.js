@@ -40,3 +40,8 @@ $(function() {
         }
     }
 });
+
+$(document).on("click", ".coin-selector", function(){
+    if(!$(this).hasClass("btn-selected"))
+        $(".coin-selector").toggleClass("btn-selected");
+});
