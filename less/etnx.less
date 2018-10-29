@@ -176,6 +176,19 @@ body {
     }
 }
 
+.blockquote {
+    color: @blue-label;
+}
+
+blockquote {
+    cursor: pointer;
+    word-break: break-all;
+    border-left-color: @blue-label;
+    &.selected{
+        color: yellow;
+    }
+}
+
 // Buttons
 
 .btn-outline {
