@@ -20,5 +20,8 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/BlackrockDigital/startbootstrap-etnx.git"
+  },
+  "dependencies": {
+    "bower": "^1.8.4"
   }
 }
