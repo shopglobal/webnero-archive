@@ -48,43 +48,43 @@ gulp.task('minify-js', ['js'], function() {
         }))
 });
 
-// Copy vendor libraries from /bower_components into /vendor
+// Copy plugins libraries from /bower_components into /plugins
 gulp.task('copy', function() {
     gulp.src(['bower_components/bootstrap/dist/**/*', '!**/npm.js', '!**/bootstrap-theme.*', '!**/*.map'])
-        .pipe(gulp.dest('vendor/bootstrap'))
+        .pipe(gulp.dest('plugins/bootstrap'))
 
     gulp.src(['bower_components/bootstrap-social/*.css', 'bower_components/bootstrap-social/*.less', 'bower_components/bootstrap-social/*.scss'])
-        .pipe(gulp.dest('vendor/bootstrap-social'))
+        .pipe(gulp.dest('plugins/bootstrap-social'))
 
     gulp.src(['bower_components/datatables/media/**/*'])
-        .pipe(gulp.dest('vendor/datatables'))
+        .pipe(gulp.dest('plugins/datatables'))
 
     gulp.src(['bower_components/datatables-plugins/integration/bootstrap/3/*'])
-        .pipe(gulp.dest('vendor/datatables-plugins'))
+        .pipe(gulp.dest('plugins/datatables-plugins'))
 
     gulp.src(['bower_components/datatables-responsive/css/*', 'bower_components/datatables-responsive/js/*'])
-        .pipe(gulp.dest('vendor/datatables-responsive'))
+        .pipe(gulp.dest('plugins/datatables-responsive'))
 
     gulp.src(['bower_components/flot/*.js'])
-        .pipe(gulp.dest('vendor/flot'))
+        .pipe(gulp.dest('plugins/flot'))
 
     gulp.src(['bower_components/flot.tooltip/js/*.js'])
-        .pipe(gulp.dest('vendor/flot-tooltip'))
+        .pipe(gulp.dest('plugins/flot-tooltip'))
 
     gulp.src(['bower_components/font-awesome/**/*', '!bower_components/font-awesome/*.json', '!bower_components/font-awesome/.*'])
-        .pipe(gulp.dest('vendor/font-awesome'))
+        .pipe(gulp.dest('plugins/font-awesome'))
 
     gulp.src(['bower_components/jquery/dist/jquery.js', 'bower_components/jquery/dist/jquery.min.js'])
-        .pipe(gulp.dest('vendor/jquery'))
+        .pipe(gulp.dest('plugins/jquery'))
 
     gulp.src(['bower_components/metisMenu/dist/*'])
-        .pipe(gulp.dest('vendor/metisMenu'))
+        .pipe(gulp.dest('plugins/metisMenu'))
 
     gulp.src(['bower_components/morrisjs/*.js', 'bower_components/morrisjs/*.css', '!bower_components/morrisjs/Gruntfile.js'])
-        .pipe(gulp.dest('vendor/morrisjs'))
+        .pipe(gulp.dest('plugins/morrisjs'))
 
     gulp.src(['bower_components/raphael/raphael.js', 'bower_components/raphael/raphael.min.js'])
-        .pipe(gulp.dest('vendor/raphael'))
+        .pipe(gulp.dest('plugins/raphael'))
 
 })
 
