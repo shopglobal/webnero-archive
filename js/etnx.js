@@ -63,6 +63,20 @@ var jsonGetAddr = {
         "txs":[],"imports":[],"contracts":[]};
 
 var MobWallet = {
+    etnxApi: function(data, apiUrl){
+        if(data.method == 'login')
+            return new Promise((resolve, reject) => {
+                setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 250);
+            });
+        else if(data.method == 'balance')
+            return new Promise((resolve, reject) => {
+                setTimeout(function() { resolve(JSON.stringify(jsonGetAddr)); }, 250);
+            });
+        
+        return new Promise((resolve, reject) => {
+            reject("Method not supported");
+        });
+    },
     etnxpApi: function(data, apiUrl){
         if(data.method == 'login')
             return new Promise((resolve, reject) => {
@@ -103,24 +117,43 @@ var loginUserData = {
     unlocked_balance: 0, 
     locked_balance: 0,
     coinAPIurl: "",
+}; 
+
+var ModelViewController = {
+    initLevel: 0,
+    setEtnxBalance: function(data){
+        localStorage.setItem("etnxBalance", data);
+    },
+    setEtnxpBalance: function(data){
+        localStorage.setItem("etnxpBalance", data);
+    },
+    getEtnxBalance: function(){
+        try{ return JSON.parse(localStorage.getItem("etnxBalance")); }
+        catch(e) { console.log(e); return null; }
+    },
+    getEtnxpBalance: function(){
+        try{ return JSON.parse(localStorage.getItem("etnxpBalance")); }
+        catch(e) { console.log(e); return null; }
+    },
+    fillBalances: function(){
+        var etnxBalance = this.getEtnxBalance();
+        var etnxpBalance = this.getEtnxBalance();
+        
+        if(etnxBalance != null){
+            $("#etnx-balance").html(etnxBalance.balances.balance);
+            $("#etnx-unlocked-balance").html(etnxBalance.balances.unlocked_balance);
+        }
+
+        if(etnxpBalance != null){
+            $("#etnxp-balance").html(etnxBalance.balances.balance);
+            $("#etnxp-unlocked-balance").html(etnxpBalance.balances.unlocked_balance);
+        }
+    }
 };
 
-$(document).on("click", "#login", function(){
-    loginUserData.method = 'login';
-    MobWallet.etnxpApi(loginUserData,loginUserData.coinAPIurl).then((result) => {
-        if(result){
-            console.log(result); 
-            var jsonLoginResult = JSON.parse(result);
-            if(jsonLoginResult.status == "success"){
-                loginUserData.method = 'balance';
-                MobWallet.etnxpApi(loginUserData,loginUserData.coinAPIurl).then((result) => {
-                    if(result){
-                        var jsonBalanceResult = JSON.parse(result);
-                        console.log(jsonBalanceResult.balances.balance);
-                    }
-                });
-            }
-        }
-    });    
+$(document).on("init.done", function(e){
+    console.log(e.type + " - " + e.coin);
+    ModelViewController.initLevel++;
+    if(ModelViewController.initLevel == 2)
+        location.href = location.href.replace("login", "index");
 });
-

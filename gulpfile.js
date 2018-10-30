@@ -30,23 +30,10 @@ gulp.task('minify-css', ['less'], function() {
 
 // Copy JS to dist
 gulp.task('js', function() {
-    return gulp.src(['js/etnx.js'])
-        .pipe(gulp.dest('dist/js'))
-        .pipe(browserSync.reload({
-            stream: true
-        }))
+    gulp.src(['js/etnx.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/index.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/login.js']).pipe(gulp.dest('dist/js'));
 })
-
-// Minify JS
-gulp.task('minify-js', ['js'], function() {
-    return gulp.src('js/etnx.js')
-        //.pipe(uglify())
-        .pipe(rename({ suffix: '.min' }))
-        .pipe(gulp.dest('dist/js'))
-        .pipe(browserSync.reload({
-            stream: true
-        }))
-});
 
 // Copy plugins libraries from /bower_components into /plugins
 gulp.task('copy', function() {
@@ -89,7 +76,7 @@ gulp.task('copy', function() {
 })
 
 // Run everything
-gulp.task('default', ['minify-css', 'minify-js', 'copy']);
+gulp.task('default', ['minify-css', 'js', 'copy']);
 
 // Configure the browserSync task
 gulp.task('browserSync', function() {
@@ -101,10 +88,9 @@ gulp.task('browserSync', function() {
 })
 
 // Dev task with browserSync
-gulp.task('dev', ['browserSync', 'less', 'minify-css', 'js', 'minify-js'], function() {
+gulp.task('dev', ['browserSync', 'less', 'minify-css', 'js'], function() {
     gulp.watch('less/*.less', ['less']);
     gulp.watch('dist/css/*.css', ['minify-css']);
-    gulp.watch('js/*.js', ['minify-js']);
     // Reloads the browser whenever HTML or JS files change
     gulp.watch('pages/*.html', browserSync.reload);
     gulp.watch('dist/js/*.js', browserSync.reload);
