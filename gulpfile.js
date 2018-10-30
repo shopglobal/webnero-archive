@@ -40,7 +40,7 @@ gulp.task('js', function() {
 // Minify JS
 gulp.task('minify-js', ['js'], function() {
     return gulp.src('js/etnx.js')
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('dist/js'))
         .pipe(browserSync.reload({

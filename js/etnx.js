@@ -52,3 +52,75 @@ $(document).on("click", "blockquote", function(){
 
     document.getElementById("qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent($(this).children("p").html())+"'/>";
 });
+
+var jsonLogin = {"status":"success","data":{"uid":"1","password":"test"}};
+
+var jsonGetAddr = {
+        "address":"88owYM3JXB5i8zT9pzcNGkhC3LmFCehSsdnnLZi995cSTeRPzHwXoXgdKD39NpErU8E2zmNjyoK7BV7DQ4e8ntm17UsNw1W",
+        "balances":
+            {"balance":123456789, "multisig_import_needed":false, "unlocked_balance":4567890
+        },
+        "txs":[],"imports":[],"contracts":[]};
+
+var MobWallet = {
+    etnxpApi: function(data, apiUrl){
+        if(data.method == 'login')
+            return new Promise((resolve, reject) => {
+                setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 250);
+            });
+        else if(data.method == 'balance')
+            return new Promise((resolve, reject) => {
+                setTimeout(function() { resolve(JSON.stringify(jsonGetAddr)); }, 250);
+            });
+        
+        return new Promise((resolve, reject) => {
+            reject("Method not supported");
+        });
+    }
+};
+
+var loginUserData = {
+    method: 'login',
+    timestamp: '',
+    date: '',
+    telegramID: '',
+    telegramUsername: '',
+    username: '',
+    email: '',
+    password: '',
+    code: null,
+    uid: null,
+    name: '',
+    addr: '',
+    pid: null,
+    receiver: '',
+    txid: '',
+    link: '',
+    notes: '',
+    bounty_id: '',
+    address: '',  
+    secret: null,
+    unlocked_balance: 0, 
+    locked_balance: 0,
+    coinAPIurl: "",
+};
+
+$(document).on("click", "#login", function(){
+    loginUserData.method = 'login';
+    MobWallet.etnxpApi(loginUserData,loginUserData.coinAPIurl).then((result) => {
+        if(result){
+            console.log(result); 
+            var jsonLoginResult = JSON.parse(result);
+            if(jsonLoginResult.status == "success"){
+                loginUserData.method = 'balance';
+                MobWallet.etnxpApi(loginUserData,loginUserData.coinAPIurl).then((result) => {
+                    if(result){
+                        var jsonBalanceResult = JSON.parse(result);
+                        console.log(jsonBalanceResult.balances.balance);
+                    }
+                });
+            }
+        }
+    });    
+});
+
