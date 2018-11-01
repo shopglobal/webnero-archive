@@ -9,10 +9,16 @@ var jsonGetAddr = {
 
 var MobWallet = {
     etnxApi: function(data, apiUrl){
-        if(data.method == 'login')
-            return new Promise((resolve, reject) => {
-                setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 250);
-            });
+        if(data.method == 'login'){
+            if(data.password != "qwe")
+                return new Promise((resolve, reject) => {
+                    setTimeout(function() { resolve(null); }, 250);
+                });
+            else
+                return new Promise((resolve, reject) => {
+                    setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 250);
+                });
+        }
         else if(data.method == 'balance')
             return new Promise((resolve, reject) => {
                 setTimeout(function() { resolve(JSON.stringify(jsonGetAddr)); }, 250);
@@ -23,10 +29,16 @@ var MobWallet = {
         });
     },
     etnxpApi: function(data, apiUrl){
-        if(data.method == 'login')
-            return new Promise((resolve, reject) => {
-                setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 250);
-            });
+        if(data.method == 'login'){
+            if(data.password != "qwe")
+                return new Promise((resolve, reject) => {
+                    setTimeout(function() { resolve(null); }, 250);
+                });
+            else
+                return new Promise((resolve, reject) => {
+                    setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 250);
+                });
+        }
         else if(data.method == 'balance')
             return new Promise((resolve, reject) => {
                 setTimeout(function() { resolve(JSON.stringify(jsonGetAddr)); }, 250);

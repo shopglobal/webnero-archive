@@ -18,12 +18,12 @@ $(document).on("click", "#login", function(){
                         console.log(result); 
                         ModelViewController.setEtnxBalance(result);
                     }
-                    initDone("etnx", true);
+                    initDone("etnx");
                 });
             }
         }
         else
-            initDone("etnx", false);
+            loginFail();
     });
     
     etnxpUserData.method = 'login';
@@ -42,25 +42,25 @@ $(document).on("click", "#login", function(){
                         console.log(result); 
                         ModelViewController.setEtnxpBalance(result);
                     }
-                    initDone("etnxp", true);
+                    initDone("etnxp");
                 });
             }
         }
         else
-            initDone("etnxp", false);
+            loginFail();
     });
 });
 
 function initDone(coinName, result){
-    $.event.trigger({
-        type: "init.done",
-        coin: coinName
-    });
+    
+    loginSuccess();
 
-    if(result)
-        loginSuccess();
-    else
-        loginFail();
+    setTimeout(function() { 
+            $.event.trigger({
+                type: "init.done",
+                coin: coinName
+            });
+    }, 250);
 }
 
 function loginFail(){
