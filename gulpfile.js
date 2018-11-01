@@ -31,6 +31,7 @@ gulp.task('minify-css', ['less'], function() {
 // Copy JS to dist
 gulp.task('js', function() {
     gulp.src(['js/etnx.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/simulatedData.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/index.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/login.js']).pipe(gulp.dest('dist/js'));
 })

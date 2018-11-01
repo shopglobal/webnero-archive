@@ -36,26 +36,32 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-etnx">
                     <div class="panel-heading" style="text-align: center">
-                        <!-- <h3 class="panel-title">Please Sign In</h3> -->
                         <img height="40px" width="40px" src="../img/etnx.png" />
                         <img height="40px" width="40px" src="../img/etnxp.png" />
                     </div>
                     <div class="panel-body">
+                        <div class="alert alert-danger" style="display: none">
+                            Login fail, please check username and password
+                        </div>
+                        <div class="alert alert-success" style="display: none">
+                            Login succesfull, retrieving data, please wait
+                        </div>
                         <form role="form">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                    <input id="email" class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    <input id="password" class="form-control" placeholder="Password" name="password" type="password" value="">
                                 </div>
+                                <!-- 
                                 <div class="checkbox">
                                     <label>
                                         <input name="remember" type="checkbox" value="Remember Me">Remember Me
                                     </label>
                                 </div>
-                                <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.html" class="btn btn-lg btn-login btn-block btn-primary">Login</a>
+                                -->
+                                <button id="login" class="btn btn-lg btn-login btn-block btn-primary">Login</button>
                             </fieldset>
                         </form>
                     </div>
@@ -73,6 +79,11 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/etnx.js"></script>
 
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/simulatedData.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/login.js"></script>
 </body>
 
 </html>
