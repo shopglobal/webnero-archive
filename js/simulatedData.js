@@ -46,6 +46,10 @@ var MobWallet = {
             return new Promise((resolve, reject) => {
                 setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 250);
             });
+        else if(data.method == 'send')
+            return new Promise((resolve, reject) => {
+                setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 250);
+            });
         
         return new Promise((resolve, reject) => {
             reject("Method not supported");
