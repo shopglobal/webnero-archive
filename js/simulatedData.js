@@ -5,7 +5,18 @@ var jsonGetAddr = {
         "balances":
             {"balance":123456789, "multisig_import_needed":false, "unlocked_balance":4567890
         },
-        "txs":[],"imports":[],"contracts":[]};
+        "txs":{
+            "in": [ { "amount" : 1200,
+                        "height" : 1234567,
+                        "txid" : 123456789 },
+                        {"amount" : 1200,
+                        "height" : 1234567,
+                        "txid" : 123456789 },
+                        {"amount" : 1200,
+                        "height" : 1234567,
+                        "txid" : 123456789 } ],
+            "out": [],
+        },"imports":[],"contracts":[]};
 
 var MobWallet = {
     etnxApi: function(data, apiUrl){
@@ -22,6 +33,10 @@ var MobWallet = {
         else if(data.method == 'balance')
             return new Promise((resolve, reject) => {
                 setTimeout(function() { resolve(JSON.stringify(jsonGetAddr)); }, 250);
+            });
+        else if(data.method == 'register')
+            return new Promise((resolve, reject) => {
+                setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 250);
             });
         
         return new Promise((resolve, reject) => {
