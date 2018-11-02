@@ -104,32 +104,63 @@ var etnxpUserData = {
 
 var ModelViewController = {
     initLevel: 0,
-    setEtnxBalance: function(data){
-        localStorage.setItem("etnxBalance", data);
+    setEtnxData: function(data){
+        localStorage.setItem("etnxData", data);
     },
-    setEtnxpBalance: function(data){
-        localStorage.setItem("etnxpBalance", data);
+    setEtnxpData: function(data){
+        localStorage.setItem("etnxpData", data);
     },
-    getEtnxBalance: function(){
-        try{ return JSON.parse(localStorage.getItem("etnxBalance")); }
+    getEtnxData: function(){
+        try{ return JSON.parse(localStorage.getItem("etnxData")); }
         catch(e) { console.log(e); return null; }
     },
-    getEtnxpBalance: function(){
-        try{ return JSON.parse(localStorage.getItem("etnxpBalance")); }
+    getEtnxpData: function(){
+        try{ return JSON.parse(localStorage.getItem("etnxpData")); }
         catch(e) { console.log(e); return null; }
     },
-    fillBalances: function(){
-        var etnxBalance = this.getEtnxBalance();
-        var etnxpBalance = this.getEtnxBalance();
+    fillData: function(){
+        var etnxData = this.getEtnxData();
+        var etnxpData = this.getEtnxpData();
         
-        if(etnxBalance != null){
-            $("#etnx-balance").html(etnxBalance.balances.balance);
-            $("#etnx-unlocked-balance").html(etnxBalance.balances.unlocked_balance);
+        if(etnxData != null){
+            $("#etnx-wallet").html(etnxData.address);
+            $("#etnx-balance").html(etnxData.balances.balance);
+            $("#etnx-unlocked-balance").html(etnxData.balances.unlocked_balance);
         }
 
-        if(etnxpBalance != null){
-            $("#etnxp-balance").html(etnxBalance.balances.balance);
-            $("#etnxp-unlocked-balance").html(etnxpBalance.balances.unlocked_balance);
+        if(etnxpData != null){
+            $("#etnxp-wallet").html(etnxpData.address);
+            $("#etnxp-balance").html(etnxpData.balances.balance);
+            $("#etnxp-unlocked-balance").html(etnxpData.balances.unlocked_balance);
+        }
+    },
+
+    fillHistory: function(){
+        var etnxData = this.getEtnxData();
+        var etnxpData = this.getEtnxpData();
+        
+        if(etnxData != null){
+            this.fillHistoryRows("ETNX", "Receive", etnxData.txs.in);
+            this.fillHistoryRows("ETNX", "Send", etnxData.txs.out);
+        }
+
+        if(etnxpData != null){
+            this.fillHistoryRows("ETNXP", "Receive", etnxpData.txs.in);
+            this.fillHistoryRows("ETNXP", "Send", etnxpData.txs.out);
+        }
+    },
+
+    fillHistoryRows: function(coin, type, items){
+        var tbody = $("#transaction-history").find('tbody');
+        for(var i = 0; i < items.length; i++) {
+            var item = items[i];
+            tbody.append( "<tr>" +
+                            "<td>" + coin + "</td>" + 
+                            "<td>" + type + "</td>" + 
+                            "<td>" + item.amount + "</td>" + 
+                            "<td>" + item.height + "</td>" + 
+                            "<td>" + item.txid + "</td>" + 
+                          "</tr>" );
         }
     }
 };

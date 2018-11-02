@@ -3,6 +3,5 @@ $(function() {
 });
 
 $(document).ready(function(){
-    ModelViewController.fillBalances();
+    ModelViewController.fillData();
 });
-

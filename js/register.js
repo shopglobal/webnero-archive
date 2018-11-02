@@ -15,10 +15,7 @@ $(document).on("click", "#register", function(){
                 console.log(result); 
                 var etnxpLogin = JSON.parse(result);
                 if(etnxpLogin.status == "success"){
-                    if($("#pin-code:checked").length > 0)
-                        location.href = location.href.replace("register", "pin-code");
-                    else
-                        location.href = location.href.replace("register", "login");
+                    location.href = location.href.replace("register", "pin-code");
                 }
                 else
                     registerFail("system error");

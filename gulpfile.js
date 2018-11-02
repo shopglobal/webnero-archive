@@ -36,6 +36,7 @@ gulp.task('js', function() {
     gulp.src(['js/login.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/register.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/pin-code.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/history.js']).pipe(gulp.dest('dist/js'));
 })
 
 // Copy plugins libraries from /bower_components into /plugins

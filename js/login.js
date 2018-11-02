@@ -16,7 +16,7 @@ $(document).on("click", "#login", function(){
                 MobWallet.etnxApi(etnxUserData,etnxUserData.coinAPIurl).then((result) => {
                     if(result){
                         console.log(result); 
-                        ModelViewController.setEtnxBalance(result);
+                        ModelViewController.setEtnxData(result);
                     }
                     initDone("etnx");
                 });
@@ -40,7 +40,7 @@ $(document).on("click", "#login", function(){
                 MobWallet.etnxpApi(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
                     if(result){
                         console.log(result); 
-                        ModelViewController.setEtnxpBalance(result);
+                        ModelViewController.setEtnxpData(result);
                     }
                     initDone("etnxp");
                 });

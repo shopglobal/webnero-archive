@@ -271,9 +271,6 @@
                         <li>
                             <a href="send.html"><i class="fa fa-share-square"></i> Send</a>
                         </li>
-                        <li>
-                            <a href="history.html"><i class="fa fa-share-square"></i> History</a>
-                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -283,76 +280,161 @@
 
         <div id="page-wrapper">
             <div class="row page-header">
-                <div class="col-lg-6 col-md-12 item">
-                        <div class="panel panel-etnx">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <img height="70px" width="70px" src="../img/etnx.png" />
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div id="etnx-balance" class="huge"></div>
-                                        <div>Balance</div>
-                                    </div>
-                                </div>
-                            </div>
-                                <div class="panel-footer">
-                                    <span class="pull-left">Unlocked Balance</span>
-                                    <span id="etnx-unlocked-balance" class="pull-right"></span>
-                                    <div class="clearfix"></div>
-                                </div>                       
-                        </div>
-                    </div>
                     <div class="col-lg-6 col-md-12 item">
-                        <div class="panel panel-green">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <img height="70px" width="70px" src="../img/etnxp.png" />
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div id="etnxp-balance" class="huge"></div>
-                                        <div>Balance</div>
+                            <div class="panel panel-etnx">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <img height="70px" width="70px" src="../img/etnx.png" />
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div id="etnx-balance" class="huge"></div>
+                                            <div>Balance</div>
+                                        </div>
                                     </div>
                                 </div>
+                                    <div class="panel-footer">
+                                        <span class="pull-left">Unlocked Balance</span>
+                                        <span id="etnx-unlocked-balance" class="pull-right"></span>
+                                        <div class="clearfix"></div>
+                                    </div>                       
                             </div>
-                            <a href="#">
-                                <div class="panel-footer">
-                                    <span class="pull-left">Unlocked Balance</span>
-                                    <span id="etnxp-unlocked-balance" class="pull-right"></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
                         </div>
-                    </div>
+                        <div class="col-lg-6 col-md-12 item">
+                            <div class="panel panel-green">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <img height="70px" width="70px" src="../img/etnxp.png" />
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div id="etnxp-balance" class="huge"></div>
+                                            <div>Balance</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#">
+                                    <div class="panel-footer">
+                                        <span class="pull-left">Unlocked Balance</span>
+                                        <span id="etnxp-unlocked-balance" class="pull-right"></span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                 </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-etnx">
                         <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> Your wallets
+                            <i class="fa fa-clock-o fa-fw"></i> Transaction history
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <h4 class="blockquote">ETNX Wallet</h4>
-                                    <blockquote class="selected">
-                                        <p id="etnx-wallet"></p>
-                                    </blockquote>
-                                </div>
-                                <div class="col-lg-12">
-                                    <h4 class="blockquote">ETNXP Wallet</h4>
-                                    <blockquote>
-                                        <p id="etnxp-wallet"></p>
-                                    </blockquote>
-                                </div>
-                            </div>
+                            <ul class="timeline">
+                                <li>
+                                    <div class="timeline-badge">
+                                            <img height="50px" width="50px" src="../img/etnx.png" />
+                                    </div>
+                                    <div class="timeline-panel">
+                                            <div class="timeline-body col-lg-6" >
+                                                <div><button type="button" class="btn btn-outline btn-primary btn-xs">copy transaction hash</button></div>
+                                                <div><button type="button" class="btn btn-outline btn-primary btn-xs">see transaction explorer</button></div>
+                                            </div>
+                                            <div class="timeline-heading col-lg-6" >
+                                                    <p class=" timeline-date"><small class="text-muted"><i class="fa fa-clock-o"></i>26/10/2018 16;47</small></p>
+                                                    <h4 class="timeline-title">Receive 1200 ETNX</h4>
+                                            </div>  
+                                            
+                                    </div>
+                                </li>
+                                <li class="timeline-inverted">
+                                        <div class="timeline-badge">
+                                                <img height="50px" width="50px" src="../img/etnxp.png" />
+                                        </div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading col-lg-6" >
+                                                <p class=" timeline-date"><small class="text-muted"><i class="fa fa-clock-o"></i>26/10/2018 16;47</small></p>
+                                                <h4 class="timeline-title">Receive 1200 ETNXP</h4>
+                                            </div>
+                                            <div class="timeline-body col-lg-6" >
+                                                <div><button type="button" class="btn btn-outline btn-primary btn-xs">copy transaction hash</button></div>
+                                                <div><button type="button" class="btn btn-outline btn-primary btn-xs">see transaction explorer</button></div>
+                                            </div>
+                                        </div>
+                                </li>
+                                <li>
+                                    <div class="timeline-badge">
+                                            <img height="50px" width="50px" src="../img/etnx.png" />
+                                    </div>
+                                    <div class="timeline-panel">
+                                            <div class="timeline-body col-lg-6" >
+                                                <div><button type="button" class="btn btn-outline btn-primary btn-xs">copy transaction hash</button></div>
+                                                <div><button type="button" class="btn btn-outline btn-primary btn-xs">see transaction explorer</button></div>
+                                            </div>
+                                            <div class="timeline-heading col-lg-6" >
+                                                    <p class=" timeline-date"><small class="text-muted"><i class="fa fa-clock-o"></i>26/10/2018 16;47</small></p>
+                                                    <h4 class="timeline-title">Receive 1200 ETNX</h4>
+                                            </div>  
+                                            
+                                    </div>
+                                </li>
+                                <li>
+                                        <div class="timeline-badge">
+                                                <img height="50px" width="50px" src="../img/etnxp.png" />
+                                        </div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading col-lg-6" >
+                                                <p class=" timeline-date"><small class="text-muted"><i class="fa fa-clock-o"></i>26/10/2018 16;47</small></p>
+                                                <h4 class="timeline-title">Receive 1200 ETNXP</h4>
+                                            </div>
+                                            <div class="timeline-body col-lg-6" >
+                                                <div><button type="button" class="btn btn-outline btn-primary btn-xs">copy transaction hash</button></div>
+                                                <div><button type="button" class="btn btn-outline btn-primary btn-xs">see transaction explorer</button></div>
+                                            </div>
+                                        </div>
+                                </li>
+                                <li>
+                                    <div class="timeline-badge">
+                                            <img height="50px" width="50px" src="../img/etnx.png" />
+                                    </div>
+                                    <div class="timeline-panel">
+                                            <div class="timeline-body col-lg-6" >
+                                                <div><button type="button" class="btn btn-outline btn-primary btn-xs">copy transaction hash</button></div>
+                                                <div><button type="button" class="btn btn-outline btn-primary btn-xs">see transaction explorer</button></div>
+                                            </div>
+                                            <div class="timeline-heading col-lg-6" >
+                                                    <p class=" timeline-date"><small class="text-muted"><i class="fa fa-clock-o"></i>26/10/2018 16;47</small></p>
+                                                    <h4 class="timeline-title">Receive 1200 ETNX</h4>
+                                            </div>  
+                                            
+                                    </div>
+                                </li>
+                                <li class="timeline-inverted">
+                                    <div class="timeline-badge">
+                                            <img height="50px" width="50px" src="../img/etnxp.png" />
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading col-lg-6" >
+                                            <p class=" timeline-date"><small class="text-muted"><i class="fa fa-clock-o"></i>26/10/2018 16;47</small></p>
+                                            <h4 class="timeline-title">Receive 1200 ETNXP</h4>
+                                        </div>
+                                        <div class="timeline-body col-lg-6" >
+                                            <div><button type="button" class="btn btn-outline btn-primary btn-xs">copy transaction hash</button></div>
+                                            <div><button type="button" class="btn btn-outline btn-primary btn-xs">see transaction explorer</button></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
+                        <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-8 -->
+                <div class="col-lg-4">
+                </div>
+                <!-- /.col-lg-4 -->
             </div>
             <!-- /.row -->
         </div>

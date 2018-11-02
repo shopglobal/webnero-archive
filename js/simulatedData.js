@@ -7,15 +7,23 @@ var jsonGetAddr = {
         },
         "txs":{
             "in": [ { "amount" : 1200,
-                        "height" : 1234567,
+                        "height" : 1234561,
                         "txid" : 123456789 },
                         {"amount" : 1200,
-                        "height" : 1234567,
+                        "height" : 1234562,
                         "txid" : 123456789 },
                         {"amount" : 1200,
-                        "height" : 1234567,
+                        "height" : 1234563,
                         "txid" : 123456789 } ],
-            "out": [],
+            "out": [ { "amount" : 1200,
+                        "height" : 1234564,
+                        "txid" : 123456789 },
+                        {"amount" : 1200,
+                        "height" : 1234565,
+                        "txid" : 123456789 },
+                        {"amount" : 1200,
+                        "height" : 1234566,
+                        "txid" : 123456789 }],
         },"imports":[],"contracts":[]};
 
 var MobWallet = {
