@@ -104,6 +104,12 @@ var etnxpUserData = {
 
 var ModelViewController = {
     initLevel: 0,
+    setCoinData: function(coin, data){
+        if(coin == "etnx")
+            setEtnxData(data);
+        else
+            setEtnxpData(data);
+    },
     setEtnxData: function(data){
         localStorage.setItem("etnxData", data);
     },
@@ -162,6 +168,24 @@ var ModelViewController = {
                             "<td>" + item.txid + "</td>" + 
                           "</tr>" );
         }
+    },
+
+    refreshData: function(coin){
+        var operationData = {};
+        var coinMethod = function (data, apiUrl) {};
+        if(coin == "etnx"){
+            coinMethod = MobWallet.etnxApi;
+            operationData = etnxUserData;
+        }
+        else{
+            coinMethod = MobWallet.etnxpApi;
+            operationData = etnxpUserData;
+        }
+        operationData.method = 'balance';
+        coinMethod(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
+            if(result)
+                this.setCoinData(coin, data);
+        });
     }
 };
 

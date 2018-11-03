@@ -35,12 +35,12 @@ $(document).on("click", "#send", function(){
         var coin_selected = $(".btn-selected").attr("id");
 
         var operationData = etnxUserData;
-        var operationMethod = function (data, apiUrl) {};
-        operationMethod = MobWallet.etnxApi;
+        var coinMethod = function (data, apiUrl) {};
+        coinMethod = MobWallet.etnxApi;
 
         if(coin_selected == "etnxp-send"){
             operationData = etnxpUserData;
-            operationMethod = MobWallet.etnxpApi;
+            coinMethod = MobWallet.etnxpApi;
         }
 
         operationData.method = 'send';
@@ -49,17 +49,17 @@ $(document).on("click", "#send", function(){
         operationData.pid = $("#pid").val();
         operationData.code = pin_code;
 
-        operationMethod(operationData, operationData.coinAPIurl).then((result) => {
+        coinMethod(operationData, operationData.coinAPIurl).then((result) => {
             if(result){
                 console.log(result); 
                 var sendResult = JSON.parse(result);
                 if(sendResult.status == "success")
-                    sendSuccess()
+                    sendSuccess();
                 else
-                    sendFail("System Fail");
+                    sendFail("Transaction Fail");
             }
             else
-                sendFail("Unable to comunicate");
+                sendFail("System Fail");
         });
     }     
 });
