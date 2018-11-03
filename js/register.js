@@ -7,9 +7,8 @@ $(document).on("click", "#register", function(){
     etnxUserData.email = $("#email").val();
     etnxUserData.password = $("#password").val();
 
-    if(etnxUserData.password != $("#re-password").val())
-        registerFail("password mismatch");
-    else{
+    if(validateField())
+    {
         MobWallet.etnxApi(etnxUserData,etnxUserData.coinAPIurl).then((result) => {
             if(result){
                 console.log(result); 
@@ -43,3 +42,23 @@ function registerFail(message){
     $(".alert-danger").css("display", "block");
 }
 
+function validateField(){
+    if(!isEmail($("#email").val()))
+        registerFail("invalid email");
+    else if(!isValidPassword($("#password").val()))
+        registerFail("invalid password (min. 8 chars, one digit, one uppercase )");
+    else if($("#password").val() != $("#re-password").val())
+        registerFail("password mismatch");
+
+    return $(".alert-danger").css("display") == "none";
+}
+
+function isEmail(email) {
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email);
+}
+
+function isValidPassword(password) {
+    var regex = /^(?=.*\d)(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+    return regex.test(password);
+}
