@@ -4,6 +4,26 @@ $(document).ready(function(){
 
 var pin_code = "";
 
+$(document).on("click", "#send-modal", function(){
+    $('.form-group').removeClass("has-error");
+    if(checkMandatoryField("amount") &&
+        checkMandatoryField("receiver"))
+        openModal();
+});
+
+function checkMandatoryField(id){
+    if($("#" + id).val() == ""){
+        $("#" + id).closest('.form-group').addClass("has-error");
+        return false;
+    }
+    
+    return true;
+}
+
+function openModal(){
+    $("#send-code-modal").modal();
+}
+
 $(document).on("click", "#send", function(){
     $(".alert").css("display", "none");
     $(".btn-code").css("display", "none");
