@@ -2,6 +2,8 @@ $(document).on("click", "#login", function(){
     
     $(".alert").css("display", "none");
 
+    $("#spinner-modal").modal('show');
+
     etnxUserData.method = 'login';
     etnxUserData.username = $("#email").val();
     etnxUserData.email = $("#email").val();
@@ -53,7 +55,7 @@ $(document).on("click", "#login", function(){
 
 function initDone(coinName, result){
     
-    loginSuccess();
+    //loginSuccess();
 
     setTimeout(function() { 
             $.event.trigger({
@@ -65,6 +67,7 @@ function initDone(coinName, result){
 
 function loginFail(){
     $(".alert-danger").css("display", "block");
+    $("#spinner-modal").modal('hide');
 }
 
 function loginSuccess(){

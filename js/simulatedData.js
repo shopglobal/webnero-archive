@@ -31,11 +31,11 @@ var MobWallet = {
         if(data.method == 'login'){
             if(data.password != "qwe")
                 return new Promise((resolve, reject) => {
-                    setTimeout(function() { resolve(null); }, 250);
+                    setTimeout(function() { resolve(null); }, 3000);
                 });
             else
                 return new Promise((resolve, reject) => {
-                    setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 250);
+                    setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 3000);
                 });
         }
         else if(data.method == 'balance')

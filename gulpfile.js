@@ -9,17 +9,30 @@ var pkg = require('./package.json');
 
 // Compile LESS files from /less into /css
 gulp.task('less', function() {
-    return gulp.src('less/etnx.less')
+    gulp.src('less/etnx.less')
         .pipe(less())
         .pipe(gulp.dest('dist/css'))
         .pipe(browserSync.reload({
             stream: true
-        }))
+        }));
+    gulp.src('less/spinner.less')
+            .pipe(less())
+            .pipe(gulp.dest('dist/css'))
+            .pipe(browserSync.reload({
+                stream: true
+        }));
 });
 
 // Minify compiled CSS
 gulp.task('minify-css', ['less'], function() {
-    return gulp.src('dist/css/etnx.css')
+    gulp.src('dist/css/etnx.css')
+        .pipe(cleanCSS({ compatibility: 'ie8' }))
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(gulp.dest('dist/css'))
+        .pipe(browserSync.reload({
+            stream: true
+        }));
+    gulp.src('dist/css/spinner.css')
         .pipe(cleanCSS({ compatibility: 'ie8' }))
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('dist/css'))
