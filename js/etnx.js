@@ -130,12 +130,14 @@ var ModelViewController = {
         
         if(etnxData != null){
             $("#etnx-wallet").html(etnxData.address);
+            document.getElementById("etnx-qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent(etnxData.address)+"'/>";
             $("#etnx-balance").html(etnxData.balances.balance);
             $("#etnx-unlocked-balance").html(etnxData.balances.unlocked_balance);
         }
 
         if(etnxpData != null){
             $("#etnxp-wallet").html(etnxpData.address);
+            document.getElementById("etnxp-qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent(etnxpData.address)+"'/>";
             $("#etnxp-balance").html(etnxpData.balances.balance);
             $("#etnxp-unlocked-balance").html(etnxpData.balances.unlocked_balance);
         }
