@@ -8,22 +8,22 @@ var jsonGetAddr = {
         "txs":{
             "in": [ { "amount" : 1200,
                         "height" : 1234561,
-                        "txid" : 123456789 },
+                        "txid" : "5516752caac1ad451ad87c4cd5972d44ef6a80535e0218b3ad1507bc0135c52f" },
                         {"amount" : 1200,
                         "height" : 1234562,
-                        "txid" : 123456789 },
+                        "txid" : "5516752caac1ad451ad87c4cd5972d44ef6a80535e0218b3ad1507bc0135c52f" },
                         {"amount" : 1200,
                         "height" : 1234563,
-                        "txid" : 123456789 } ],
+                        "txid" : "5516752caac1ad451ad87c4cd5972d44ef6a80535e0218b3ad1507bc0135c52f" } ],
             "out": [ { "amount" : 1200,
                         "height" : 1234564,
-                        "txid" : 123456789 },
+                        "txid" : "5516752caac1ad451ad87c4cd5972d44ef6a80535e0218b3ad1507bc0135c52f" },
                         {"amount" : 1200,
                         "height" : 1234565,
-                        "txid" : 123456789 },
+                        "txid" : "5516752caac1ad451ad87c4cd5972d44ef6a80535e0218b3ad1507bc0135c52f" },
                         {"amount" : 1200,
                         "height" : 1234566,
-                        "txid" : 123456789 }],
+                        "txid" : "5516752caac1ad451ad87c4cd5972d44ef6a80535e0218b3ad1507bc0135c52f" }],
         },"imports":[],"contracts":[]};
 
 var MobWallet = {
