@@ -50,7 +50,7 @@ $(document).on("click", "#pin-code", function(){
             });
         }
                 if(etnxLogin.status == "success"){
-                    checkCodeETNXP(etnxUserData);
+                    checkCodeETNX(etnxUserData);
                     // maybe later do something
                 }
             }
