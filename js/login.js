@@ -27,6 +27,19 @@ $(document).on("click", "#pin-code", function(){
             if(result){
                 console.log(result); 
                 var etnxLogin = JSON.parse(result);
+        let checkBalanceETNX = function(etnxUserData){
+                    etnxUserData.method = 'getaddr';
+                MobWallet.etnxApi(etnxUserData,etnxUserData.coinAPIurl).then((result) => {
+                if(result){
+                    console.log(result); 
+                    ModelViewController.setEtnxData(result);
+                    var etnxBalance = JSON.parse(result);
+                    console.log("etnxBalance: "+etnxBalance)
+                    initDone("etnx");
+                }
+                
+            });
+                }
         let checkCodeETNX = function(etnxUserData){
             etnxUserData.method = 'check_code';
             MobWallet.etnxApi(etnxUserData,etnxUserData.coinAPIurl).then((result) => {
@@ -34,16 +47,8 @@ $(document).on("click", "#pin-code", function(){
                     console.log(result); 
                     var etnxCheckCode = JSON.parse(result);
                     if(etnxCheckCode.status == "success"){
-            etnxUserData.method = 'getaddr'; 
-            MobWallet.etnxApi(etnxUserData,etnxUserData.coinAPIurl).then((result) => {
-                if(result){
-                    console.log(result); 
-                    ModelViewController.setEtnxData(result);
-                    var etnxBalance = JSON.parse(result);
-                    console.log("etnxBalance: "+etnxBalance)
-                }
-                initDone("etnx");
-            });
+                    checkBalanceETNX(etnxUserData);
+
                     // maybe later do something
                 }
                 }
@@ -72,13 +77,7 @@ $(document).on("click", "#pin-code", function(){
             if(result){
                 console.log(result); 
                 var etnxpLogin = JSON.parse(result);
-        let checkCodeETNXP = function(etnxpUserData){
-            etnxpUserData.method = 'check_code';
-            MobWallet.etnxApi(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
-                if(result){
-                    console.log(result); 
-                    var etnxpCheckCode = JSON.parse(result);
-                    if(etnxpCheckCode.status == "success"){
+        let checkBalanceETNXP = function(etnxpUserData){
             etnxpUserData.method = 'getaddr'; 
             MobWallet.etnxApi(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
                 if(result){
@@ -86,9 +85,19 @@ $(document).on("click", "#pin-code", function(){
                     ModelViewController.setEtnxData(result);
                     var etnxpBalance = JSON.parse(result);
                     console.log("etnxpBalance: "+etnxpBalance)
+                    initDone("etnxp");
                 }
-                initDone("etnxp");
+                
             });
+        }
+        let checkCodeETNXP = function(etnxpUserData){
+            etnxpUserData.method = 'check_code';
+            MobWallet.etnxApi(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
+                if(result){
+                    console.log(result); 
+                    var etnxpCheckCode = JSON.parse(result);
+                    if(etnxpCheckCode.status == "success"){
+                        checkBalanceETNXP(etnxpUserData);
                     // maybe later do something
                 }
                 }
