@@ -21,12 +21,26 @@ $(document).on("click", "#pin-code", function(){
         etnxUserData.password = $("#password").val();
         etnxUserData.code = pin_code;
         etnxUserData.coinAPIurl = 'https://pulse.electronero.org/api-etnx/api.php';
-
+        etnxUserData.uid = null;
         MobWallet.etnxApi(etnxUserData,etnxUserData.coinAPIurl).then((result) => {
-            console.log("userdata: "+ etnxUserData)
+            console.log(etnxUserData)
             if(result){
                 console.log(result); 
                 var etnxLogin = JSON.parse(result);
+                etnxUserData.uid = etnxLogin.data.uid;
+        let checkBalanceETNX = function(etnxUserData){
+                    etnxUserData.method = 'getaddr';
+                MobWallet.etnxApi(etnxUserData,etnxUserData.coinAPIurl).then((result) => {
+                if(result){
+                    console.log(result); 
+                    ModelViewController.setEtnxData(result);
+                    var etnxBalance = JSON.parse(result);
+                    console.log(etnxBalance)
+                    initDone("etnx");
+                }
+                
+            });
+                }
         let checkCodeETNX = function(etnxUserData){
             etnxUserData.method = 'check_code';
             MobWallet.etnxApi(etnxUserData,etnxUserData.coinAPIurl).then((result) => {
@@ -34,23 +48,15 @@ $(document).on("click", "#pin-code", function(){
                     console.log(result); 
                     var etnxCheckCode = JSON.parse(result);
                     if(etnxCheckCode.status == "success"){
-            etnxUserData.method = 'getaddr'; 
-            MobWallet.etnxApi(etnxUserData,etnxUserData.coinAPIurl).then((result) => {
-                if(result){
-                    console.log(result); 
-                    ModelViewController.setEtnxData(result);
-                    var etnxBalance = JSON.parse(result);
-                    console.log("etnxBalance: "+etnxBalance)
-                }
-                initDone("etnx");
-            });
+                    checkBalanceETNX(etnxUserData);
+
                     // maybe later do something
                 }
                 }
             });
         }
                 if(etnxLogin.status == "success"){
-                    checkCodeETNXP(etnxUserData);
+                    checkCodeETNX(etnxUserData);
                     // maybe later do something
                 }
             }
@@ -66,12 +72,27 @@ $(document).on("click", "#pin-code", function(){
         etnxpUserData.password = $("#password").val();
         etnxpUserData.code = pin_code;
         etnxpUserData.coinAPIurl = 'https://pulse.electronero.org/etnxp-api/api.php';
+        etnxpUserData.uid = null;
 
         MobWallet.etnxpApi(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
-            console.log("userdata: "+ etnxpUserData)
+            console.log(etnxpUserData)
             if(result){
                 console.log(result); 
                 var etnxpLogin = JSON.parse(result);
+                etnxpUserData.uid = etnxpLogin.data.uid;
+        let checkBalanceETNXP = function(etnxpUserData){
+            etnxpUserData.method = 'getaddr'; 
+            MobWallet.etnxApi(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
+                if(result){
+                    console.log(result); 
+                    ModelViewController.setEtnxpData(result);
+                    var etnxpBalance = JSON.parse(result);
+                    console.log(etnxpBalance)
+                    initDone("etnxp");
+                }
+                
+            });
+        }
         let checkCodeETNXP = function(etnxpUserData){
             etnxpUserData.method = 'check_code';
             MobWallet.etnxApi(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
@@ -79,16 +100,7 @@ $(document).on("click", "#pin-code", function(){
                     console.log(result); 
                     var etnxpCheckCode = JSON.parse(result);
                     if(etnxpCheckCode.status == "success"){
-            etnxpUserData.method = 'getaddr'; 
-            MobWallet.etnxApi(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
-                if(result){
-                    console.log(result); 
-                    ModelViewController.setEtnxData(result);
-                    var etnxpBalance = JSON.parse(result);
-                    console.log("etnxpBalance: "+etnxpBalance)
-                }
-                initDone("etnxp");
-            });
+                        checkBalanceETNXP(etnxpUserData);
                     // maybe later do something
                 }
                 }
