@@ -21,7 +21,7 @@ gulp.task('less', function(done) {
             .pipe(browserSync.reload({
                 stream: true
         }));
-            done();
+        done();
 });
 
 // Minify compiled CSS
@@ -111,9 +111,11 @@ gulp.task('browserSync', function(done) {
 })
 
 // Run everything
-gulp.task('default', gulp.parallel('minify-css', 'js', 'copy', function(done){
+gulp.task('default', gulp.series('less', 'minify-css', 'js', 'copy', function(done){
 	done();
 }));
+
+
 
 // Dev task with browserSync
 gulp.task('dev', gulp.series('browserSync', 'less', 'minify-css', 'js', function(done) {
