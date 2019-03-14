@@ -20,14 +20,14 @@ $(document).on("click", "#pin-code", function(){
         etnxUserData.email = $("#email").val();
         etnxUserData.password = $("#password").val();
         etnxUserData.code = pin_code;
-        etnxUserData.coinAPIurl = 'http://pulse.electronero.org/api-etnx/api.php';
+        etnxUserData.coinAPIurl = 'https://pulse.electronero.org/api-etnx/api.php';
 
         MobWallet.etnxApi(etnxUserData,etnxUserData.coinAPIurl).then((result) => {
             if(result){
                 console.log(result); 
                 var etnxpLogin = JSON.parse(result);
                 if(etnxpLogin.status == "success"){
-                    etnxUserData.method = 'balance';
+                    etnxUserData.method = 'getaddr';
                     MobWallet.etnxApi(etnxUserData,etnxUserData.coinAPIurl).then((result) => {
                         if(result){
                             console.log(result); 
@@ -46,14 +46,14 @@ $(document).on("click", "#pin-code", function(){
         etnxpUserData.email = $("#email").val();
         etnxpUserData.password = $("#password").val();
         etnxpUserData.code = pin_code;
-        etnxpUserData.coinAPIurl = 'http://pulse.electronero.org/etnxp-api/api.php';
+        etnxpUserData.coinAPIurl = 'https://pulse.electronero.org/etnxp-api/api.php';
 
         MobWallet.etnxpApi(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
             if(result){
                 console.log(result); 
                 var etnxpLogin = JSON.parse(result);
                 if(etnxpLogin.status == "success"){
-                    etnxpUserData.method = 'balance';
+                    etnxpUserData.method = 'getaddr';
                     MobWallet.etnxpApi(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
                         if(result){
                             console.log(result); 
