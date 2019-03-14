@@ -22,7 +22,9 @@ $(document).on("click", "#pin-code", function(){
         etnxUserData.code = pin_code;
         etnxUserData.coinAPIurl = 'https://pulse.electronero.org/api-etnx/api.php';
 
+
         MobWallet.etnxApi(etnxUserData,etnxUserData.coinAPIurl).then((result) => {
+            console.log("userdata: "+ etnxUserData)
             if(result){
                 console.log(result); 
                 var etnxpLogin = JSON.parse(result);
@@ -49,6 +51,7 @@ $(document).on("click", "#pin-code", function(){
         etnxpUserData.coinAPIurl = 'https://pulse.electronero.org/etnxp-api/api.php';
 
         MobWallet.etnxpApi(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
+            console.log("userdata: "+ etnxpUserData)
             if(result){
                 console.log(result); 
                 var etnxpLogin = JSON.parse(result);
