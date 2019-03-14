@@ -1,5 +1,6 @@
 var MobWallet = {
     etnxApi: function(form, apiUrl){
+        console.log(form)
 
         return $.ajax({
                     url: apiUrl,
@@ -9,6 +10,7 @@ var MobWallet = {
                 });
     },
     etnxpApi: function(form, apiUrl){
+        console.log(form)
         
         return $.ajax({
             url: apiUrl,
