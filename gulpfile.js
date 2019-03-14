@@ -24,7 +24,7 @@ gulp.task('less', function() {
 });
 
 // Minify compiled CSS
-gulp.task('minify-css', ['less'], function() {
+gulp.task('minify-css', gulp.series('less', function() {
     gulp.src('dist/css/etnx.css')
         .pipe(cleanCSS({ compatibility: 'ie8' }))
         .pipe(rename({ suffix: '.min' }))
@@ -39,7 +39,7 @@ gulp.task('minify-css', ['less'], function() {
         .pipe(browserSync.reload({
             stream: true
         }))
-});
+}));
 
 // Copy JS to dist
 gulp.task('js', function() {
@@ -94,7 +94,9 @@ gulp.task('copy', function() {
 })
 
 // Run everything
-gulp.task('default', ['minify-css', 'js', 'copy']);
+gulp.task('default', gulp.series('minify-css', 'js', 'copy', function(){
+	
+}));
 
 // Configure the browserSync task
 gulp.task('browserSync', function() {
@@ -106,10 +108,10 @@ gulp.task('browserSync', function() {
 })
 
 // Dev task with browserSync
-gulp.task('dev', ['browserSync', 'less', 'minify-css', 'js'], function() {
+gulp.task('dev', gulp.series('browserSync', 'less', 'minify-css', 'js', function() {
     gulp.watch('less/*.less', ['less']);
     gulp.watch('dist/css/*.css', ['minify-css']);
     // Reloads the browser whenever HTML or JS files change
     gulp.watch('pages/*.html', browserSync.reload);
     gulp.watch('dist/js/*.js', browserSync.reload);
-});
+}));
