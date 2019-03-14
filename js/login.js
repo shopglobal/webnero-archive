@@ -23,7 +23,7 @@ $(document).on("click", "#pin-code", function(){
         etnxUserData.coinAPIurl = 'https://pulse.electronero.org/api-etnx/api.php';
 
         MobWallet.etnxApi(etnxUserData,etnxUserData.coinAPIurl).then((result) => {
-            console.log("userdata: "+ etnxUserData)
+            console.log(etnxUserData)
             if(result){
                 console.log(result); 
                 var etnxLogin = JSON.parse(result);
@@ -34,7 +34,7 @@ $(document).on("click", "#pin-code", function(){
                     console.log(result); 
                     ModelViewController.setEtnxData(result);
                     var etnxBalance = JSON.parse(result);
-                    console.log("etnxBalance: "+etnxBalance)
+                    console.log(etnxBalance)
                     initDone("etnx");
                 }
                 
@@ -73,7 +73,7 @@ $(document).on("click", "#pin-code", function(){
         etnxpUserData.coinAPIurl = 'https://pulse.electronero.org/etnxp-api/api.php';
 
         MobWallet.etnxpApi(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
-            console.log("userdata: "+ etnxpUserData)
+            console.log(etnxpUserData)
             if(result){
                 console.log(result); 
                 var etnxpLogin = JSON.parse(result);
@@ -82,9 +82,9 @@ $(document).on("click", "#pin-code", function(){
             MobWallet.etnxApi(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
                 if(result){
                     console.log(result); 
-                    ModelViewController.setEtnxData(result);
+                    ModelViewController.setEtnxpData(result);
                     var etnxpBalance = JSON.parse(result);
-                    console.log("etnxpBalance: "+etnxpBalance)
+                    console.log(etnxpBalance)
                     initDone("etnxp");
                 }
                 
