@@ -53,6 +53,7 @@ gulp.task('js', function(done) {
     gulp.src(['js/pin-code.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/history.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/send.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/mob_wallet.js']).pipe(gulp.dest('dist/js'));
 
     done();
 })
