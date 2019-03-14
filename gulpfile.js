@@ -8,7 +8,7 @@ var uglify = require('gulp-uglify');
 var pkg = require('./package.json');
 
 // Compile LESS files from /less into /css
-gulp.task('less', function() {
+gulp.task('less', function(done) {
     gulp.src('less/etnx.less')
         .pipe(less())
         .pipe(gulp.dest('dist/css'))
@@ -21,10 +21,11 @@ gulp.task('less', function() {
             .pipe(browserSync.reload({
                 stream: true
         }));
+            done();
 });
 
 // Minify compiled CSS
-gulp.task('minify-css', gulp.series('less', function() {
+gulp.task('minify-css', gulp.series('less', function(done) {
     gulp.src('dist/css/etnx.css')
         .pipe(cleanCSS({ compatibility: 'ie8' }))
         .pipe(rename({ suffix: '.min' }))
@@ -39,10 +40,11 @@ gulp.task('minify-css', gulp.series('less', function() {
         .pipe(browserSync.reload({
             stream: true
         }))
+        done();
 }));
 
 // Copy JS to dist
-gulp.task('js', function() {
+gulp.task('js', function(done) {
     gulp.src(['js/etnx.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/simulatedData.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/index.js']).pipe(gulp.dest('dist/js'));
@@ -51,10 +53,12 @@ gulp.task('js', function() {
     gulp.src(['js/pin-code.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/history.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/send.js']).pipe(gulp.dest('dist/js'));
+
+    done();
 })
 
 // Copy plugins libraries from /bower_components into /plugins
-gulp.task('copy', function() {
+gulp.task('copy', function(done) {
     gulp.src(['bower_components/bootstrap/dist/**/*', '!**/npm.js', '!**/bootstrap-theme.*', '!**/*.map'])
         .pipe(gulp.dest('plugins/bootstrap'))
 
@@ -91,12 +95,12 @@ gulp.task('copy', function() {
     gulp.src(['bower_components/raphael/raphael.js', 'bower_components/raphael/raphael.min.js'])
         .pipe(gulp.dest('plugins/raphael'))
 
+        done();
+
 })
 
 // Run everything
-gulp.task('default', gulp.series('minify-css', 'js', 'copy', function(){
-	
-}));
+gulp.task('default', gulp.parallel(['minify-css', 'js', 'copy']));
 
 // Configure the browserSync task
 gulp.task('browserSync', function() {
@@ -108,10 +112,11 @@ gulp.task('browserSync', function() {
 })
 
 // Dev task with browserSync
-gulp.task('dev', gulp.series('browserSync', 'less', 'minify-css', 'js', function() {
+gulp.task('dev', gulp.series('browserSync', 'less', 'minify-css', 'js', function(done) {
     gulp.watch('less/*.less', ['less']);
     gulp.watch('dist/css/*.css', ['minify-css']);
     // Reloads the browser whenever HTML or JS files change
     gulp.watch('pages/*.html', browserSync.reload);
     gulp.watch('dist/js/*.js', browserSync.reload);
+    done();
 }));
