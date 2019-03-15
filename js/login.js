@@ -82,7 +82,7 @@ $(document).on("click", "#pin-code", function(){
                 etnxpUserData.uid = etnxpLogin.data.uid;
         let checkBalanceETNXP = function(etnxpUserData){
             etnxpUserData.method = 'getaddr'; 
-            MobWallet.etnxApi(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
+            MobWallet.etnxpApi(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
                 if(result){
                     console.log(result); 
                     ModelViewController.setEtnxpData(result);
@@ -95,7 +95,7 @@ $(document).on("click", "#pin-code", function(){
         }
         let checkCodeETNXP = function(etnxpUserData){
             etnxpUserData.method = 'check_code';
-            MobWallet.etnxApi(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
+            MobWallet.etnxpApi(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
                 if(result){
                     console.log(result); 
                     var etnxpCheckCode = JSON.parse(result);
