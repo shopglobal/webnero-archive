@@ -1,5 +1,7 @@
 var jsonLogin = {"status":"success","data":{"uid":"1","password":"test"}};
 
+var jsonLoginError = {"error": "fail"};
+
 var jsonGetAddr = {
         "address":"88owYM3JXB5i8zT9pzcNGkhC3LmFCehSsdnnLZi995cSTeRPzHwXoXgdKD39NpErU8E2zmNjyoK7BV7DQ4e8ntm17UsNw1W",
         "balances":
@@ -29,16 +31,26 @@ var jsonGetAddr = {
 var MobWallet = {
     etnxApi: function(data, apiUrl){
         if(data.method == 'login'){
-            if(data.password != "qwe")
+            if(data.password != "qwerty")
                 return new Promise((resolve, reject) => {
-                    setTimeout(function() { resolve(null); }, 3000);
+                    setTimeout(function() { resolve(JSON.stringify(jsonLoginError)); }, 3000);
                 });
             else
                 return new Promise((resolve, reject) => {
                     setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 3000);
                 });
         }
-        else if(data.method == 'balance')
+        else if(data.method == 'check_code'){
+            if(data.code != "12345")
+                return new Promise((resolve, reject) => {
+                    setTimeout(function() { resolve(JSON.stringify(jsonLoginError)); }, 3000);
+                });
+            else
+                return new Promise((resolve, reject) => {
+                    setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 3000);
+                });
+        }
+        else if(data.method == 'getaddr')
             return new Promise((resolve, reject) => {
                 setTimeout(function() { resolve(JSON.stringify(jsonGetAddr)); }, 250);
             });
@@ -57,16 +69,26 @@ var MobWallet = {
     },
     etnxpApi: function(data, apiUrl){
         if(data.method == 'login'){
-            if(data.password != "qwe")
+            if(data.password != "qwerty")
                 return new Promise((resolve, reject) => {
-                    setTimeout(function() { resolve(null); }, 250);
+                    setTimeout(function() { resolve(JSON.stringify(jsonLoginError)); }, 3000);
                 });
             else
                 return new Promise((resolve, reject) => {
-                    setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 250);
+                    setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 3000);
                 });
         }
-        else if(data.method == 'balance')
+        else if(data.method == 'check_code'){
+            if(data.code != "12345")
+                return new Promise((resolve, reject) => {
+                    setTimeout(function() { resolve(JSON.stringify(jsonLoginError)); }, 3000);
+                });
+            else
+                return new Promise((resolve, reject) => {
+                    setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 3000);
+                });
+        }
+        else if(data.method == 'getaddr')
             return new Promise((resolve, reject) => {
                 setTimeout(function() { resolve(JSON.stringify(jsonGetAddr)); }, 250);
             });
