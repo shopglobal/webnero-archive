@@ -23,47 +23,47 @@ $(document).on("click", "#pin-code", function(){
         etnxUserData.coinAPIurl = 'https://pulse.electronero.org/api-etnx/api.php';
         etnxUserData.uid = null;
         MobWallet.etnxApi(etnxUserData,etnxUserData.coinAPIurl).then((result) => {
-            console.log(etnxUserData)
+            console.log(etnxUserData);
             if(result){
-                console.log(result); 
+                console.log(result);
                 var etnxLogin = JSON.parse(result);
                 etnxUserData.uid = etnxLogin.data.uid;
-        let checkBalanceETNX = function(etnxUserData){
+        var checkBalanceETNX = function(etnxUserData){
                     etnxUserData.method = 'getaddr';
                 MobWallet.etnxApi(etnxUserData,etnxUserData.coinAPIurl).then((result) => {
                 if(result){
-                    console.log(result); 
+                    console.log(result);
                     ModelViewController.setEtnxData(result);
                     var etnxBalance = JSON.parse(result);
-                    console.log(etnxBalance)
+                    console.log(etnxBalance);
                     initDone("etnx");
-                }
+                };
                 
             });
-                }
+                };
         let checkCodeETNX = function(etnxUserData){
             etnxUserData.method = 'check_code';
             MobWallet.etnxApi(etnxUserData,etnxUserData.coinAPIurl).then((result) => {
                 if(result){
-                    console.log(result); 
+                    console.log(result);
                     var etnxCheckCode = JSON.parse(result);
                     if(etnxCheckCode.status == "success"){
                     checkBalanceETNX(etnxUserData);
 
                     // maybe later do something
-                }
-                }
+                };
+                };
             });
-        }
+        };
                 if(etnxLogin.status == "success"){
                     checkCodeETNX(etnxUserData);
                     // maybe later do something
-                }
-            }
+                };
+            };
             else
             {
                 loginFail();
-            }
+            };
         });
 
         etnxpUserData.method = 'login';
@@ -75,46 +75,48 @@ $(document).on("click", "#pin-code", function(){
         etnxpUserData.uid = null;
 
         MobWallet.etnxpApi(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
-            console.log(etnxpUserData)
+            console.log(etnxpUserData);
             if(result){
-                console.log(result); 
+                console.log(result);
                 var etnxpLogin = JSON.parse(result);
                 etnxpUserData.uid = etnxpLogin.data.uid;
-        let checkBalanceETNXP = function(etnxpUserData){
-            etnxpUserData.method = 'getaddr'; 
+        var checkBalanceETNXP = function(etnxpUserData){
+            etnxpUserData.method = 'getaddr';
             MobWallet.etnxpApi(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
                 if(result){
-                    console.log(result); 
+                    console.log(result);
                     ModelViewController.setEtnxpData(result);
                     var etnxpBalance = JSON.parse(result);
-                    console.log(etnxpBalance)
+                    console.log(etnxpBalance);
                     initDone("etnxp");
-                }
+                };
                 
             });
-        }
-        let checkCodeETNXP = function(etnxpUserData){
+        };
+        const checkCodeETNXP = function(etnxpUserData){
             etnxpUserData.method = 'check_code';
             MobWallet.etnxpApi(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
                 if(result){
-                    console.log(result); 
+                    console.log(result);
                     var etnxpCheckCode = JSON.parse(result);
                     if(etnxpCheckCode.status == "success"){
                         checkBalanceETNXP(etnxpUserData);
                     // maybe later do something
-                }
-                }
+                };
+                };
             });
-        }
+        };
                 if(etnxpLogin.status == "success"){
                     checkCodeETNXP(etnxpUserData);
                     // maybe later do something
-                }
-            }
+                };
+            };
             else
+            {
                 loginFail();
+            };
         });
-    }
+    };
         
 });
 
