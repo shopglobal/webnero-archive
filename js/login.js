@@ -15,61 +15,12 @@ $(document).on("click", "#pin-code", function(){
         $(".alert").css("display", "none");
 
         $("#spinner-modal").modal('show');
-
-        loginWorkflow(etnxUserData, 'https://pulse.electronero.org/api-etnx/api.php', 
-                        MobWallet.etnxApi, "etnx", ModelViewController.setEtnxData);
-
-        loginWorkflow(etnxpUserData, 'https://pulse.electronero.org/etnxp-api/api.php', 
-                        MobWallet.etnxpApi, "etnxp", ModelViewController.setEtnxpData);
+        
+        PassportPipeline.setCredentials($("#email").val(), $("#password").val(), pin_code);
+        PassportPipeline.performOperation("etnx", ModelViewController.initCoin);
+        PassportPipeline.performOperation("etnxp", ModelViewController.initCoin);
     }
 });
-
-function loginWorkflow(passportData, apiURL, walletApi, coinSymbol, mvcStore){
-    passportData.method = 'login';
-    passportData.username = $("#email").val();
-    passportData.email = $("#email").val();
-    passportData.password = $("#password").val();
-    passportData.code = pin_code;
-    passportData.coinAPIurl = apiURL;
-    passportData.uid = null;
-
-    walletApi(passportData, passportData.coinAPIurl).then((response) => {
-        console.log(passportData);
-        if(response){
-            var passportLogin = JSON.parse(response);
-            if(passportLogin.hasOwnProperty("error")){
-                loginFail();
-                return;
-            }
-            console.log(passportLogin); 
-            passportData.uid = passportLogin.data.uid;
-            passportData.method = 'check_code';
-            walletApi(passportData, passportData.coinAPIurl).then((response) => {
-                if(response){
-                    console.log(response); 
-                    let passportCheckCode = JSON.parse(response);
-                    if(passportCheckCode.hasOwnProperty("error")){
-                        loginCodeFail();
-                        return;
-                    }
-
-                    passportData.method = 'getaddr';
-                    walletApi(passportData, passportData.coinAPIurl).then((response) => {
-                        if(response){
-                            console.log(response); 
-                            mvcStore(response);
-                            let passportBalance = JSON.parse(response);
-                            console.log(passportBalance)
-                        }
-
-                        initDone(coinSymbol);
-                    });
-                }
-            });
-        }
-    });
-}
-
 
 $(document).on("click", "#del", function(){
     $("#digit-" + pin_code.length).val("");
