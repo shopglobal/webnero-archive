@@ -175,7 +175,7 @@ var ModelViewController = {
     blockchainExplorerLink: function(height, txid, coin){
         const secureSocketLayer = 'https://';
         const blockchainLink = coin==="etnx" ? 'blockexplorer.electronero.org' : coin==="etnxp" ? 'blockexplorer.electroneropulse.org' : '';
-        const operative = height=! 0 ? '/block/' + height : '/tx/' + txid;
+        const operative = height=! 0 ? '/tx/' + txid : '/block/' + height;
         const blockchainExplorerURL = secureSocketLayer + blockchainLink + operative;
 
         return blockchainExplorerURL;
