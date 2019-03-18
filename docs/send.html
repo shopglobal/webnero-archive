@@ -34,6 +34,12 @@
 
 <body>
 
+<style>
+.hidden {
+    display:none;
+}
+</style>
+
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -274,6 +280,12 @@
                         </ul>
                     </div>
                     <!-- /.sidebar-collapse -->
+
+                    <!-- do something -->
+                    <div class="hidden">
+                        <span id="etnx-qrimage" class="qr-coins"></span>
+                        <span id="etnxp-qrimage" class="qr-coins"></span>
+                    </div>
             </div>
             <!-- /.navbar-static-side -->
         </nav>
@@ -288,16 +300,16 @@
                                         <img height="70px" width="70px" src="../img/etnx.png" />
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">15.984</div>
+                                        <div id="etnx-balance" class="huge"></div>
                                         <div>Balance</div>
                                     </div>
                                 </div>
                             </div>
                                 <div class="panel-footer">
                                     <span class="pull-left">Unlocked Balance</span>
-                                    <span class="pull-right">26.895</span>
+                                    <span id="etnx-unlocked-balance" class="pull-right"></span>
                                     <div class="clearfix"></div>
-                                </div>                       
+                                </div>                        
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 item">
@@ -308,7 +320,7 @@
                                         <img height="70px" width="70px" src="../img/etnxp.png" />
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">122.229.800</div>
+                                        <div id="etnxp-balance" class="huge"></div>
                                         <div>Balance</div>
                                     </div>
                                 </div>
@@ -316,7 +328,7 @@
                             <a href="#">
                                 <div class="panel-footer">
                                     <span class="pull-left">Unlocked Balance</span>
-                                    <span class="pull-right">26.895.000</span>
+                                    <span id="etnxp-unlocked-balance" class="pull-right"></span>
                                     <div class="clearfix"></div>
                                 </div>
                             </a>
