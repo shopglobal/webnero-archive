@@ -172,12 +172,13 @@ var ModelViewController = {
             this.fillHistoryRows("ETNXP", "Send", etnxpData.txs.out);
         }
     },
-    blockchainExplorerLink: function(height, txid, coin){
+    blockchainExplorerLink: function(transaction, height, txid, coin){
         const secureSocketLayer = 'https://';
         const blockchainLink = coin==="etnx" ? 'blockexplorer.electronero.org' : coin==="etnxp" ? 'blockexplorer.electroneropulse.org' : '';
         const txidURL = '/tx/' + txid;
         const heightURL = '/block/' + height;
-        const operative = height=! NaN ? heightURL : txidURL;
+        const operative = height=! false ? heightURL : txidURL;
+        if (transaction){operative=txidURL}
         const blockchainExplorerURL = secureSocketLayer + blockchainLink + operative;
 
         return blockchainExplorerURL;
@@ -190,8 +191,8 @@ var ModelViewController = {
                             "<td>" + coin + "</td>" + 
                             "<td>" + type + "</td>" + 
                             "<td>" + this.formatCoinUnits(item.amount, coin.toLowerCase()) + "</td>" + 
-                            "<td>" + "<a href='"+this.blockchainExplorerLink(parseInt(item.height), item.txid, coin.toLowerCase())+"'>" + item.height + "</td>" + 
-                            "<td>" + "<a href='"+this.blockchainExplorerLink(false, item.txid, coin.toLowerCase())+"'>" + item.txid + "</a>" + "</td>" + 
+                            "<td>" + "<a href='"+this.blockchainExplorerLink(false, parseInt(item.height), item.txid, coin.toLowerCase())+"'>" + item.height + "</td>" + 
+                            "<td>" + "<a href='"+this.blockchainExplorerLink(true, false, item.txid, coin.toLowerCase())+"'>" + item.txid + "</a>" + "</td>" + 
                           "</tr>" );
         }
     },
