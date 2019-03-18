@@ -172,18 +172,24 @@ var ModelViewController = {
             this.fillHistoryRows("ETNXP", "Send", etnxpData.txs.out);
         }
     },
+    blockchainExplorerLink: function(height, txid, coin){
+        const secureSocketLayer = 'https://';
+        const blockchainLink = coin==="etnx" ? 'blockexplorer.electronero.org' : coin==="etnxp" 'blockexplorer.electroneropulse.org' : '';
+        const operative = height=! 0 ? '/block/'+height : txid=! 'x' ? '/tx/'+txid;
+        const blockchainExplorerURL = secureSocketLayer + blockchainLink + operative;
 
+        return blockchainExplorerURL;
+    },
     fillHistoryRows: function(coin, type, items){
         var tbody = $("#transaction-history").find('tbody');
         for(var i = 0; i < items.length; i++) {
             var item = items[i];
-            const balancedAmount = this.formatCoinUnits(item.amount, coin.toLowerCase())
             tbody.append( "<tr class='row_" + coin +"'>" +
                             "<td>" + coin + "</td>" + 
                             "<td>" + type + "</td>" + 
-                            "<td>" + balancedAmount + "</td>" + 
-                            "<td>" + item.height + "</td>" + 
-                            "<td>" + item.txid + "</td>" + 
+                            "<td>" + this.formatCoinUnits(item.amount, coin.toLowerCase()) + "</td>" + 
+                            "<td>" + "<a href='"+this.blockchainExplorerLink(parseInt(item.height), 'x', coin.toLowerCase())+"'>" + item.height + "</td>" + 
+                            "<td>" + "<a href='"+this.blockchainExplorerLink(0, item.txid, coin.toLowerCase())+"'>" + item.txid + "</a>" + "</td>" + 
                           "</tr>" );
         }
     },
