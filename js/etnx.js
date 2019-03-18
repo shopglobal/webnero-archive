@@ -50,6 +50,7 @@ $(document).on("click", "blockquote", function(){
     document.getElementById("qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent($(this).children("p").html())+"'/>";
 });
  
+
 var etnxUserData = {
     method: 'login',
     timestamp: '',
@@ -72,6 +73,7 @@ var etnxUserData = {
     address: '',  
     secret: null,
     unlocked_balance: 0, 
+    balance: 0,
     locked_balance: 0,
     coinAPIurl: "",
 }; 
@@ -98,6 +100,7 @@ var etnxpUserData = {
     address: '',  
     secret: null,
     unlocked_balance: 0, 
+    balance: 0,
     locked_balance: 0,
     coinAPIurl: "",
 }; 
@@ -124,24 +127,34 @@ var ModelViewController = {
         try{ return JSON.parse(localStorage.getItem("etnxpData")); }
         catch(e) { console.log(e); return null; }
     },
+    formatCoinUnits: function(coins, coinSymbol, units){
+    const coinUnits = coinSymbol==="etnxp" ? 100 : coinSymbol==="etnx" ? 100000000 : 100000000;
+    var coinDecimalPlaces = coinUnits.toString().length - 1;
+    var balancedCoins = (parseInt(coins || 0) / coinUnits).toFixed(units || coinDecimalPlaces);
+    return balancedCoins;
+    },
     fillData: function(){
         var etnxData = this.getEtnxData();
         var etnxpData = this.getEtnxpData();
+        const etnxLockedBalance = this.formatCoinUnits(etnxData.balances.balance, "etnx")
+        const etnxBalance = this.formatCoinUnits(etnxData.balances.unlocked_balance, "etnx")
+        const etnxpLockedBalance = this.formatCoinUnits(etnxpData.balances.balance, "etnxp")
+        const etnxpBalance = this.formatCoinUnits(etnxpData.balances.unlocked_balance, "etnxp")
         
         if(etnxData != null){
             $("#etnx-wallet").html(etnxData.address);
             document.getElementById("etnx-qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent(etnxData.address)+"'/>";
             console.log(etnxData);
-            $("#etnx-balance").html(etnxData.balances.balance);
-            $("#etnx-unlocked-balance").html(etnxData.balances.unlocked_balance);
+            $("#etnx-balance").html(etnxLockedBalance);
+            $("#etnx-unlocked-balance").html(etnxBalance);
         }
 
         if(etnxpData != null){
             $("#etnxp-wallet").html(etnxpData.address);
             document.getElementById("etnxp-qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent(etnxpData.address)+"'/>";
             console.log(etnxpData);
-            $("#etnxp-balance").html(etnxpData.balances.balance);
-            $("#etnxp-unlocked-balance").html(etnxpData.balances.unlocked_balance);
+            $("#etnxp-balance").html(etnxpLockedBalance);
+            $("#etnxp-unlocked-balance").html(etnxpBalance);
         }
     },
 
@@ -164,10 +177,11 @@ var ModelViewController = {
         var tbody = $("#transaction-history").find('tbody');
         for(var i = 0; i < items.length; i++) {
             var item = items[i];
+            const balancedAmount = this.formatCoinUnits(item.amount, coin.toLowerCase())
             tbody.append( "<tr class='row_" + coin +"'>" +
                             "<td>" + coin + "</td>" + 
                             "<td>" + type + "</td>" + 
-                            "<td>" + item.amount + "</td>" + 
+                            "<td>" + balancedAmount + "</td>" + 
                             "<td>" + item.height + "</td>" + 
                             "<td>" + item.txid + "</td>" + 
                           "</tr>" );
@@ -185,8 +199,8 @@ var ModelViewController = {
             coinMethod = MobWallet.etnxpApi;
             operationData = etnxpUserData;
         }
-        operationData.method = 'balance';
-        coinMethod(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
+        operationData.method = 'getaddr';
+        coinMethod(operationData,operationData.coinAPIurl).then((result) => {
             if(result)
                 this.setCoinData(coin, data);
         });
