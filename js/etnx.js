@@ -175,7 +175,9 @@ var ModelViewController = {
     blockchainExplorerLink: function(height, txid, coin){
         const secureSocketLayer = 'https://';
         const blockchainLink = coin==="etnx" ? 'blockexplorer.electronero.org' : coin==="etnxp" ? 'blockexplorer.electroneropulse.org' : '';
-        const operative = height=! 0 ? '/tx/' + txid : '/block/' + height;
+        const txidURL = '/tx/' + txid;
+        const heightURL = '/block/' + height;
+        const operative = height=! NaN ? heightURL : txidURL;
         const blockchainExplorerURL = secureSocketLayer + blockchainLink + operative;
 
         return blockchainExplorerURL;
@@ -189,7 +191,7 @@ var ModelViewController = {
                             "<td>" + type + "</td>" + 
                             "<td>" + this.formatCoinUnits(item.amount, coin.toLowerCase()) + "</td>" + 
                             "<td>" + "<a href='"+this.blockchainExplorerLink(parseInt(item.height), item.txid, coin.toLowerCase())+"'>" + item.height + "</td>" + 
-                            "<td>" + "<a href='"+this.blockchainExplorerLink(0, item.txid, coin.toLowerCase())+"'>" + item.txid + "</a>" + "</td>" + 
+                            "<td>" + "<a href='"+this.blockchainExplorerLink(false, item.txid, coin.toLowerCase())+"'>" + item.txid + "</a>" + "</td>" + 
                           "</tr>" );
         }
     },
