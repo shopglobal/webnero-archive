@@ -153,9 +153,6 @@ var ModelViewController = {
                 });
 
                 $value_etnx = etnxData.address;
-                $value_etnx.addEventListener('input', function() {
-                  qr1.value = $value_etnx;
-                });
               })();
             document.getElementById("etnx-qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent(etnxData.address)+"'/>";
             console.log(etnxData);
@@ -175,9 +172,6 @@ var ModelViewController = {
                 });
 
                 $value_etnxp = etnxpData.address;
-                $value_etnxp.addEventListener('input', function() {
-                  qr2.value = $value_etnxp;
-                });
               })();
             document.getElementById("etnxp-qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent(etnxpData.address)+"'/>";
             console.log(etnxpData);
