@@ -14,7 +14,7 @@ for (i = 0; i < sessionStorage.length; i++) {
 }
 
 	//To decipher sensitive data, we need to create a decipher and use it:
-    let myDecipher = Crypto.decryptData(Crypto.salt)
+    let myDecipher = Crypto.decryptData(Crypto.salt('mySecretSalt'))
 	if(sessionStorage.username){
 	console.log(myDecipher(sessionStorage.username))    // --> 'the secret string'
 	}

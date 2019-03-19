@@ -1,7 +1,6 @@
 var Crypto = {
-    salt: function(salt){
-        const magic = salt=!undefined ? salt : 'mySecretSalt';
-        console.log('salt'+salt)
+    salt: function(magic){
+        console.log('magic: '+magic)
         return magic;
     },
     encryptData: function(salt){
