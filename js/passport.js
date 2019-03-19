@@ -53,16 +53,19 @@ var PassportPipeline = {
         this.passportParams.email = this.myDecipher(sessionStorage.username);
         this.passportParams.password = this.myDecipher(sessionStorage.password);
     },
-
     remoteCall: function(coinSymbol){
-        this.passportParams.coinAPIurl = this.getPassportApi(coinSymbol);
-        return this.remoteCall();
+        return $.ajax({
+                    url: this.getPassportApi(coinSymbol),
+                    type: 'POST',
+                    cache: false,
+                    data: this.passportParams
+                });
     },
-
-    remoteCall: function(){
-        if(location.hostname.indexOf("electronero.org") >= 0){
+    
+    remoteCall_simulation: function(coinSymbol){
+        if(window.location.hostname.indexOf("electronero.org")){
             return $.ajax({
-                url: this.passportParams.coinAPIurl,
+                url: this.getPassportApi(coinSymbol),
                 type: 'POST',
                 cache: false,
                 data: this.passportParams
@@ -91,7 +94,7 @@ var PassportPipeline = {
         this.passportParams.coinAPIurl = this.getPassportApi(coinSymbol);
         this.passportParams.uid = null;
 
-        this.remoteCall().then((response) => {
+        this.remoteCall(coinSymbol).then((response) => {
             console.log(this.passportParams);
             if(response){
                 let passportLogin = JSON.parse(response);
@@ -103,7 +106,7 @@ var PassportPipeline = {
                 this.passportParams.uid = passportLogin.data.uid;
                 sessionStorage.setItem(coinSymbol+"_uuid", this.myCipher(passportLogin.data.uid));
                 this.passportParams.method = 'check_code';
-                this.remoteCall().then((response) => {
+                this.remoteCall(coinSymbol).then((response) => {
                     if(response){
                         console.log(response); 
                         let passportCheckCode = JSON.parse(response);
@@ -111,8 +114,7 @@ var PassportPipeline = {
                             loginCodeFail();
                             return;
                         }
-
-                        operationCallback(coinSymbol);
+                        ModelViewController.initCoin(operationCallback);
                     }
                 });
             }
