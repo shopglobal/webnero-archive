@@ -27,7 +27,7 @@ var PassportPipeline = {
     },
 
     myCipher: Crypto.encryptData(Crypto.salt()),
-    myDecipher = Crypto.decryptData(Crypto.salt()),
+    myDecipher: Crypto.decryptData(Crypto.salt()),
 
     etnxApi: 'https://pulse.electronero.org/api-etnx/api.php',
     ltnxApi: 'https://pulse.electronero.org/ltnx-api/api.php',
