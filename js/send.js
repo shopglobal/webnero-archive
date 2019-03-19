@@ -31,7 +31,7 @@ $(document).on("click", "#send", function(){
         sendFail("Provide 5 digits code");
     }
     else {
-        sessionStorage.setItem("code", Passport.myCipher(pin_code));
+        sessionStorage.setItem("code", PassportPipeline.myCipher(pin_code));
         console.log(pin_code);
         // check_code
 
@@ -55,9 +55,9 @@ function sendCallback(coinSymbol){
     PassportPipeline.passportParams.receiver = $("#receiver").val();
     PassportPipeline.passportParams.pid = $("#pid").val();
    
-    const _uuid = Passport.myDecipher(sessionStorage.getItem(coinSymbol+"_uuid"));
-    const _email = Passport.myDecipher(sessionStorage.getItem("username"));
-    const _password = Passport.myDecipher(sessionStorage.getItem("password"));
+    const _uuid = PassportPipeline.myDecipher(sessionStorage.getItem(coinSymbol+"_uuid"));
+    const _email = PassportPipeline.myDecipher(sessionStorage.getItem("username"));
+    const _password = PassportPipeline.myDecipher(sessionStorage.getItem("password"));
 	if(_uuid){
         // logs
         console.log(_uuid);
