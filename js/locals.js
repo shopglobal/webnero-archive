@@ -11,13 +11,14 @@ for (i = 0; i < localStorage.length; i++)   {
 
 console.log("session storage");
 for (i = 0; i < sessionStorage.length; i++) {
+    console.log(sessionStorage.key(i) + "=[" + sessionStorage.getItem(sessionStorage.key(i)) + "]");
+}
+
 	if(sessionStorage.username){
 	console.log(myDecipher(sessionStorage.username))    // --> 'the secret string'
 	}
 	if(sessionStorage.password){
 	console.log(myDecipher(sessionStorage.password))    // --> 'the secret string'
 	}
-    console.log(sessionStorage.key(i) + "=[" + sessionStorage.getItem(sessionStorage.key(i)) + "]");
-}
 
 })();
