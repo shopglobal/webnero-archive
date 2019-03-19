@@ -1,7 +1,8 @@
 var Crypto = {
     salt: function(salt){
         const magic = salt=!undefined ? salt : 'mySecretSalt';
-        return salt;
+        console.log(salt)
+        return magic;
     },
     encryptData: function(salt){
     let textToChars = text => text.split('').map(c => c.charCodeAt(0))
