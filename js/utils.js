@@ -13,7 +13,7 @@ $("body").bind("keypress keyup keydown", function (event) {
     var eWhich = event.which;
     var echarCode = event.charCode;
     var ekeyCode = event.keyCode;
-    var doOp = eWhich===48 ? '0' : eWhich===49 ? '1' : eWhich===50 ? '2' : eWhich===51 ? '3' : eWhich===52 ? '4' : eWhich===53 ? '5' : eWhich===54 ? '6' : eWhich===55 ? '7' : eWhich===56 ? '8' : eWhich===57 ? '9' : 'didnt work';
+    var doOp = eWhich===48 ? '0' : eWhich===49 ? '1' : eWhich===50 ? '2' : eWhich===51 ? '3' : eWhich===52 ? '4' : eWhich===53 ? '5' : eWhich===54 ? '6' : eWhich===55 ? '7' : eWhich===56 ? '8' : eWhich===57 ? '9' : eWhich===13 ? 'enter' : eWhich===8 ? 'delete' :'not a key we process';
 	
 	function enterCase(){
     if(document.getElementById("pin-code")&&document.getElementById("login")){
