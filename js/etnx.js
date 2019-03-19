@@ -195,7 +195,6 @@ var ModelViewController = {
                           "</tr>" );
         }
     },
-
     refreshData: function(coin){
         var operationData = {};
         var coinMethod = function (data, apiUrl) {};
@@ -209,8 +208,9 @@ var ModelViewController = {
         }
         operationData.method = 'getaddr';
         coinMethod(operationData,operationData.coinAPIurl).then((result) => {
-            if(result)
+            if(result){
                 this.setCoinData(coin, data);
+            }
         });
     }
 };
