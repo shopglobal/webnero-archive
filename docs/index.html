@@ -126,6 +126,7 @@
                         </div>
                     </div>
                 </div>
+                <main>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-etnx">
@@ -138,7 +139,7 @@
                                     <h4 class="blockquote">ETNX Wallet</h4>
                                     <blockquote class="selected">
                                         <button style="background-color: white; color: black" onclick="copyToClipboard('#etnx-wallet')">
-                                    <p id="etnx-wallet"></p>
+                                    <p id="etnx-wallet" name="etnx-value"></p>
                                     </button>
                                     </blockquote>
                                 </div>
@@ -146,6 +147,7 @@
                             <div class="row" style="text-align: center">
                                 <div class="col-lg-12">
                                     <div id="etnx-qrimage">
+                                        <img id="qrious-etnx">
                                     </div>
                                 </div>
                             </div>
@@ -154,7 +156,7 @@
                                     <h4 class="blockquote">ETNXP Wallet</h4>
                                     <blockquote>
                                         <button style="background-color: white; color: black" onclick="copyToClipboard('#etnxp-wallet')">
-                                    <p id="etnxp-wallet"></p>
+                                    <p id="etnxp-wallet" name="etnxp-value"></p>
                                     </button>
                                     </blockquote>
                                 </div>
@@ -162,6 +164,7 @@
                             <div class="row" style="text-align: center">
                                 <div class="col-lg-12">
                                     <div id="etnxp-qrimage">
+                                        <img id="qrious-etnxp">
                                     </div>
                                 </div>
                             </div>
@@ -169,6 +172,7 @@
                     </div>
                 </div>
             </div>
+        </main>
         </div>
 
         <div class="modal fade" id="spinner-modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" style="display: none;">
@@ -204,6 +208,7 @@
     <script type="text/javascript" src="../dist/js/web_wallet.js"></script>
     <script type="text/javascript" src="../dist/js/index.js"></script>
     <script type="text/javascript" src="../dist/js/c2c.js"></script>
+    <script type="text/javascript" src="../dist/js/qr.js"></script>
 
 </body>
 

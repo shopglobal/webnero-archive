@@ -143,7 +143,20 @@ var ModelViewController = {
         
         if(etnxData != null){
             $("#etnx-wallet").html(etnxData.address);
-            
+              (function() {
+
+                var $value_etnx = document.querySelector('main p [name="etnx-value"]');
+                var qr = window.qr = new QRious({
+                  element: document.getElementById('qrious-etnx'),
+                  size: 250,
+                  value: $value_etnx
+                });
+
+                $value_etnx = etnxData.address;
+                $value_etnx.addEventListener('input', function() {
+                  qr1.value = $value_etnx;
+                });
+              })();
             document.getElementById("etnx-qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent(etnxData.address)+"'/>";
             console.log(etnxData);
             $("#etnx-balance").html(etnxLockedBalance);
@@ -152,6 +165,20 @@ var ModelViewController = {
 
         if(etnxpData != null){
             $("#etnxp-wallet").html(etnxpData.address);
+                (function() {
+                var $value_etnxp = document.querySelector('main p [name="etnxp-value"]');
+
+                var qr2 = window.qr2 = new QRious({
+                  element: document.getElementById('qrious-etnxp'),
+                  size: 250,
+                  value: $value_etnxp
+                });
+
+                $value_etnxp = etnxpData.address;
+                $value_etnxp.addEventListener('input', function() {
+                  qr2.value = $value_etnxp;
+                });
+              })();
             document.getElementById("etnxp-qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent(etnxpData.address)+"'/>";
             console.log(etnxpData);
             $("#etnxp-balance").html(etnxpLockedBalance);
