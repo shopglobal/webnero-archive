@@ -42,6 +42,13 @@ function loginWorkflow(passportData, apiURL, walletApi, coinSymbol, mvcStore){
                 return;
             }
             console.log(passportLogin); 
+
+            // Store Session
+            sessionStorage.setItem("username", passportData.username);
+            sessionStorage.setItem("password", passportData.password);
+            sessionStorage.setItem(coinSymbol+"-uuid", passportLogin.data.uid);
+            // end Session Store 
+
             passportData.uid = passportLogin.data.uid;
             passportData.method = 'check_code';
             walletApi(passportData, passportData.coinAPIurl).then((response) => {

@@ -10,4 +10,6 @@ console.log("session storage");
 for (i = 0; i < sessionStorage.length; i++) {
     console.log(sessionStorage.key(i) + "=[" + sessionStorage.getItem(sessionStorage.key(i)) + "]");
 }
+
+
 })();
