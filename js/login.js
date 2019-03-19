@@ -19,10 +19,12 @@ $(document).on("click", "#pin-code", function(){
             return  console.log("ModelViewController.initCoin(coinSymbol); here will run");
             //return  ModelViewController.initCoin(coinSymbol);
         }
+        const returnETNX = returnDone('etnx');
+        const returnETNXP = returnDone('etnxp');
         PassportPipeline.setCredentials($("#email").val(), $("#password").val());
         PassportPipeline.setCode(pin_code);
-        PassportPipeline.performOperation("etnx", returnDone('etnx'));
-        PassportPipeline.performOperation("etnxp", returnDone('etnxp'));
+        PassportPipeline.performOperation("etnx", returnETNX);
+        PassportPipeline.performOperation("etnxp", returnETNXP);
     }
 });
 
