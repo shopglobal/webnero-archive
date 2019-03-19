@@ -34,35 +34,35 @@ $(document).on("click", "#send", function(){
         console.log(pin_code);
         var coin_selected = $(".btn-selected").attr("id");
 
-        var operationData = etnxUserData;
-        var coinMethod = function (data, apiUrl) {};
-        coinMethod = MobWallet.etnxApi;
-
-        if(coin_selected == "etnxp-send"){
-            operationData = etnxpUserData;
-            coinMethod = MobWallet.etnxpApi;
-        }
-
-        operationData.method = 'send';
-        operationData.amount = $("#amount").val();
-        operationData.receiver = $("#receiver").val();
-        operationData.pid = $("#pid").val();
-        operationData.code = pin_code;
-
-        coinMethod(operationData, operationData.coinAPIurl).then((result) => {
-            if(result){
-                console.log(result); 
-                var sendResult = JSON.parse(result);
-                if(sendResult.status == "success")
-                    sendSuccess();
-                else
-                    sendFail("Transaction Fail");
-            }
-            else
-                sendFail("System Fail");
-        });
+        PassportPipeline.setCode(pin_code);
+        if(coin_selected == "etnxp-send")
+            PassportPipeline.performOperation("etnxp", sendCallback);
+        else
+            PassportPipeline.performOperation("etnx", sendCallback);            
     }     
 });
+
+function sendCallback(coinSymbol){
+
+    PassportPipeline.passportParams.method = 'send';
+    PassportPipeline.passportParams.amount = $("#amount").val();
+    PassportPipeline.passportParams.receiver = $("#receiver").val();
+    PassportPipeline.passportParams.pid = $("#pid").val();
+    
+    PassportPipeline.remoteCall().then((response) => {
+        if(response){
+            console.log(response); 
+            var sendResult = JSON.parse(response);
+
+            if(sendResult.hasOwnProperty("error"))
+                sendFail("Transaction Fail");
+            else
+                sendSuccess();    
+        }
+        else
+            sendFail("System Fail");
+    });
+}
 
 $(document).on("click", "#del", function(){
     $("#digit-" + pin_code.length).val("");
