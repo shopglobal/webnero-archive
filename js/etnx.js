@@ -147,7 +147,7 @@ var ModelViewController = {
     },
 
     initCoin: function(coinSymbol){
-        PassportPipeline.passportParams.method = 'getaddr';
+        PassportPipeline.passportParams.method = 'login';
         PassportPipeline.remoteCall(coinSymbol).then((response) => {
             if(response){
                 console.log(response); 
