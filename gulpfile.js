@@ -47,7 +47,7 @@ gulp.task('minify-css', gulp.series('less', function(done) {
 gulp.task('js', function(done) {
     gulp.src(['js/etnx.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/c2c.js']).pipe(gulp.dest('dist/js'));
-    gulp.src(['js/qr.js']).pipe(gulp.dest('dist/js'));
+    //gulp.src(['js/qr.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/qr-gen.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/locals.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/crypto.js']).pipe(gulp.dest('dist/js'));

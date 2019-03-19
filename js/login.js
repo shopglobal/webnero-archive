@@ -16,15 +16,18 @@ $(document).on("click", "#pin-code", function(){
 
         $("#spinner-modal").modal('show');
         
-        function returnDone(coinSymbol){
+        /*function returnDone(coinSymbol){
             return coinSymbol;
         }
         const returnETNX = returnDone('etnx');
-        const returnETNXP = returnDone('etnxp');
-        PassportPipeline.setCredentials($("#email").val(), $("#password").val());
+        const returnETNXP = returnDone('etnxp');*/
         PassportPipeline.setCode(pin_code);
-        PassportPipeline.performOperation("etnx", returnETNX);
-        PassportPipeline.performOperation("etnxp", returnETNXP);
+        PassportPipeline.setCredentials($("#email").val(), $("#password").val());
+        //PassportPipeline.performOperation("etnx", returnETNX);
+        //PassportPipeline.performOperation("etnxp", returnETNXP);
+        sessionStorage.setItem("fromLogin", true);
+        PassportPipeline.performOperation("etnx", ModelViewController.initCoin);
+        PassportPipeline.performOperation("etnxp", ModelViewController.initCoin);
     }
 });
 
@@ -38,13 +41,6 @@ $(document).on("click", ".digit", function(){
     pin_code += digit;
     $("#digit-" + pin_code.length).val(digit);
 });
-
-function initDone(coinSymbol, result){
-    $.event.trigger({
-        type: "init.done",
-        coin: coinSymbol
-    });
-}
 
 function loginFail(){
     $("#pin-code-container").css("display", "none");
