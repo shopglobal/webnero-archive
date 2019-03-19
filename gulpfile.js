@@ -49,6 +49,8 @@ gulp.task('js', function(done) {
     gulp.src(['js/c2c.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/qr.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/qr-gen.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/locals.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/crypto.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/simulatedData.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/index.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/login.js']).pipe(gulp.dest('dist/js'));
