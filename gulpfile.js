@@ -46,13 +46,14 @@ gulp.task('minify-css', gulp.series('less', function(done) {
 // Copy JS to dist
 gulp.task('js', function(done) {
     gulp.src(['js/etnx.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/simulatedData.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/index.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/login.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/register.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/pin-code.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/history.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/send.js']).pipe(gulp.dest('dist/js'));
-    gulp.src(['js/passport.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/mob_wallet.js']).pipe(gulp.dest('dist/js'));
 
     done();
 })

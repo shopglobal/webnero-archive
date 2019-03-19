@@ -50,13 +50,65 @@ $(document).on("click", "blockquote", function(){
     document.getElementById("qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent($(this).children("p").html())+"'/>";
 });
  
+var etnxUserData = {
+    method: 'login',
+    timestamp: '',
+    date: '',
+    telegramID: '',
+    telegramUsername: '',
+    username: '',
+    email: '',
+    password: '',
+    code: null,
+    uid: null,
+    name: '',
+    addr: '',
+    pid: null,
+    receiver: '',
+    txid: '',
+    link: '',
+    notes: '',
+    bounty_id: '',
+    address: '',  
+    secret: null,
+    unlocked_balance: 0, 
+    locked_balance: 0,
+    coinAPIurl: "",
+}; 
+
+var etnxpUserData = {
+    method: 'login',
+    timestamp: '',
+    date: '',
+    telegramID: '',
+    telegramUsername: '',
+    username: '',
+    email: '',
+    password: '',
+    code: null,
+    uid: null,
+    name: '',
+    addr: '',
+    pid: null,
+    receiver: '',
+    txid: '',
+    link: '',
+    notes: '',
+    bounty_id: '',
+    address: '',  
+    secret: null,
+    unlocked_balance: 0, 
+    locked_balance: 0,
+    coinAPIurl: "",
+}; 
+
 var ModelViewController = {
     initLevel: 0,
     setCoinData: function(coin, data){
         if(coin == "etnx")
-            this.setEtnxData(data);
+            setEtnxData(data);
         else
-            this.setEtnxpData(data);
+            setEtnxpData(data);
     },
     setEtnxData: function(data){
         localStorage.setItem("etnxData", data);
@@ -73,8 +125,8 @@ var ModelViewController = {
         catch(e) { console.log(e); return null; }
     },
     fillData: function(){
-        let etnxData = this.getEtnxData();
-        let etnxpData = this.getEtnxpData();
+        var etnxData = this.getEtnxData();
+        var etnxpData = this.getEtnxpData();
         
         if(etnxData != null){
             $("#etnx-wallet").html(etnxData.address);
@@ -94,8 +146,8 @@ var ModelViewController = {
     },
 
     fillHistory: function(){
-        let etnxData = this.getEtnxData();
-        let etnxpData = this.getEtnxpData();
+        var etnxData = this.getEtnxData();
+        var etnxpData = this.getEtnxpData();
         
         if(etnxData != null){
             this.fillHistoryRows("ETNX", "Receive", etnxData.txs.in);
@@ -122,17 +174,21 @@ var ModelViewController = {
         }
     },
 
-    initCoin: function(coinSymbol){
-        PassportPipeline.passportParams.method = 'getaddr';
-        PassportPipeline.remoteCall().then((response) => {
-            if(response){
-                console.log(response); 
-                ModelViewController.setCoinData(coinSymbol, response);
-                let passportBalance = JSON.parse(response);
-                console.log(passportBalance)
-            }
-    
-            initDone(coinSymbol);
+    refreshData: function(coin){
+        var operationData = {};
+        var coinMethod = function (data, apiUrl) {};
+        if(coin == "etnx"){
+            coinMethod = MobWallet.etnxApi;
+            operationData = etnxUserData;
+        }
+        else{
+            coinMethod = MobWallet.etnxpApi;
+            operationData = etnxpUserData;
+        }
+        operationData.method = 'balance';
+        coinMethod(etnxpUserData,etnxpUserData.coinAPIurl).then((result) => {
+            if(result)
+                this.setCoinData(coin, data);
         });
     }
 };
