@@ -43,7 +43,7 @@ $(document).on("click", "#send", function(){
             coinMethod = MobWallet.etnxpApi;
         }
 
-        operationData.method = 'send';
+        operationData.method = 'send_transaction';
         operationData.amount = $("#amount").val();
         operationData.receiver = $("#receiver").val();
         operationData.pid = $("#pid").val();
