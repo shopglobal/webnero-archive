@@ -2,6 +2,6 @@ bower_components/
 march14/
 test/
 node_modules/
-
+plugins/
 dist/
 package-lock.json
