@@ -143,6 +143,7 @@ var ModelViewController = {
         
         if(etnxData != null){
             $("#etnx-wallet").html(etnxData.address);
+            
             document.getElementById("etnx-qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent(etnxData.address)+"'/>";
             console.log(etnxData);
             $("#etnx-balance").html(etnxLockedBalance);
