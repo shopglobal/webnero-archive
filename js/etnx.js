@@ -143,6 +143,7 @@ var ModelViewController = {
         
         if(etnxData != null){
             $("#etnx-wallet").html(etnxData.address);
+            
             document.getElementById("etnx-qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent(etnxData.address)+"'/>";
             console.log(etnxData);
             $("#etnx-balance").html(etnxLockedBalance);
@@ -172,18 +173,26 @@ var ModelViewController = {
             this.fillHistoryRows("ETNXP", "Send", etnxpData.txs.out);
         }
     },
+    blockchainExplorerLink: function(block, height, txid, coin){
+        const secureSocketLayer = 'https://';
+        const blockchainLink = coin==="etnx" ? 'blockexplorer.electronero.org' : coin==="etnxp" ? 'blockexplorer.electroneropulse.org' : '';
+        const txidURL = '/tx/' + txid;
+        const heightURL = '/block/' + height;
+        const operative = block===true ? heightURL : txidURL;
+        const blockchainExplorerURL = secureSocketLayer + blockchainLink + operative;
 
+        return blockchainExplorerURL;
+    },
     fillHistoryRows: function(coin, type, items){
         var tbody = $("#transaction-history").find('tbody');
         for(var i = 0; i < items.length; i++) {
             var item = items[i];
-            const balancedAmount = this.formatCoinUnits(item.amount, coin.toLowerCase())
             tbody.append( "<tr class='row_" + coin +"'>" +
                             "<td>" + coin + "</td>" + 
                             "<td>" + type + "</td>" + 
-                            "<td>" + balancedAmount + "</td>" + 
-                            "<td>" + item.height + "</td>" + 
-                            "<td>" + item.txid + "</td>" + 
+                            "<td>" + this.formatCoinUnits(item.amount, coin.toLowerCase()) + "</td>" + 
+                            "<td>" + "<a href='"+this.blockchainExplorerLink(true, parseInt(item.height), item.txid, coin.toLowerCase())+"'>" + item.height + "</td>" + 
+                            "<td>" + "<a href='"+this.blockchainExplorerLink(false, parseInt(item.height), item.txid, coin.toLowerCase())+"'>" + item.txid + "</a>" + "</td>" + 
                           "</tr>" );
         }
     },
