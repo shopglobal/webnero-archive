@@ -46,8 +46,8 @@ $(document).on("click", ".coin-selector", function(){
 $(document).on("click", "blockquote", function(){
     $("blockquote").removeClass("selected");
     $(this).addClass("selected");
-
-    document.getElementById("qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent($(this).children("p").html())+"'/>";
+    // this didn't quite work, and google suspended the charts API for QR and now has deprecated/shutdown those endpoints. I replaced it with qrious
+    // document.getElementById("qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent($(this).children("p").html())+"'/>";
 });
  
 
