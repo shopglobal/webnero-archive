@@ -170,12 +170,5 @@ $(document).on("init.done", function(e){
 $(document).on("click", "#logout", function(){
     sessionStorage.clear();
     localStorage.clear();
-
-    // TODO change with Regex
-    if(location.pathname.indexOf("index") > -1)
-        location.href = location.href.replace("index", "login");
-    if(location.pathname.indexOf("send") > -1)
-        location.href = location.href.replace("send", "login");
-    if(location.pathname.indexOf("history") > -1)
-        location.href = location.href.replace("history", "login");
+    location.href = "login.html";
 });
