@@ -48,6 +48,7 @@ $(document).on("click", "#send", function(){
         operationData.receiver = $("#receiver").val();
         operationData.pid = $("#pid").val();
         operationData.code = pin_code;
+        console.log(operationData)
 
         coinMethod(operationData, operationData.coinAPIurl).then((result) => {
             if(result){

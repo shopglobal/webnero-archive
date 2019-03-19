@@ -1,3 +1,4 @@
+(function() {
 // global copyToClipboard
     function copyToClipboard(element) {
   var $temp = $("<input>");
@@ -6,3 +7,4 @@
   document.execCommand("copy");
   $temp.remove();
 }
+})();
