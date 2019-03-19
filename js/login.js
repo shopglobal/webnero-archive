@@ -18,8 +18,8 @@ $(document).on("click", "#pin-code", function(){
 
         PassportPipeline.setCredentials($("#email").val(), $("#password").val());
         PassportPipeline.setCode(pin_code);
-        PassportPipeline.performOperation("etnx", ModelViewController.initCoin);
-        PassportPipeline.performOperation("etnxp", ModelViewController.initCoin);
+        PassportPipeline.performOperation("etnx", ModelViewController.initCoin('etnx'));
+        PassportPipeline.performOperation("etnxp", ModelViewController.initCoin('etnxp'));
     }
 });
 
