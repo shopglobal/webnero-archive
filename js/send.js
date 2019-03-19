@@ -38,9 +38,18 @@ $(document).on("click", "#send", function(){
         var coinMethod = function (data, apiUrl) {};
         coinMethod = MobWallet.etnxApi;
 
+        // instantiate decryption methods 
+        let myDecipher = Crypto.decryptData(Crypto.salt('mySecretSalt'))
+
         if(coin_selected == "etnxp-send"){
             operationData = etnxpUserData;
             coinMethod = MobWallet.etnxpApi;
+            operationData.uid = myDecipher(sessionStorage.etnxp_uuid)   
+            console.log(myDecipher(sessionStorage.etnxp_uuid))  
+        }
+        if(coin_selected != "etnxp-send"){
+            operationData.uid = myDecipher(sessionStorage.etnx_uuid)   
+            console.log(myDecipher(sessionStorage.etnx_uuid))  
         }
 
         operationData.method = 'send_transaction';
@@ -48,6 +57,9 @@ $(document).on("click", "#send", function(){
         operationData.receiver = $("#receiver").val();
         operationData.pid = $("#pid").val();
         operationData.code = pin_code;
+        operationData.username = sessionStorage.username;
+        operationData.password = sessionStorage.password;
+
         console.log(operationData)
 
         coinMethod(operationData, operationData.coinAPIurl).then((result) => {
