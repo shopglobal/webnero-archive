@@ -100,6 +100,9 @@ gulp.task('copy', function(done) {
     gulp.src(['bower_components/raphael/raphael.js', 'bower_components/raphael/raphael.min.js'])
         .pipe(gulp.dest('plugins/raphael'))
 
+    gulp.src(['bower_components/qrious/dist/qrious.js', 'bower_components/qrious/dist/qrious.min.js])
+        .pipe(gulp.dest('plugins/qrious'))
+
         done();
 
 })
