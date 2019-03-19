@@ -52,12 +52,12 @@ $(document).on("click", "#send", function(){
             coinMethod = MobWallet.etnxpApi;
             operationData.uid = parseInt(myDecipher(sessionStorage.etnxp_uuid))  
             console.log("etnxp_uuid: "+myDecipher(sessionStorage.etnxp_uuid)) 
-            amountCoins = ModelViewController.formatCoinTransaction(coinAmount,'etnx'); 
+            amountCoins = parseVal(ModelViewController.formatCoinTransaction(coinAmount,'etnx')); 
         }
         if(coin_selected != "etnxp-send"){
             operationData.uid = parseInt(myDecipher(sessionStorage.etnx_uuid))   
             console.log("etnx_uuid: "+myDecipher(sessionStorage.etnx_uuid))  
-            amountCoins = ModelViewController.formatCoinTransaction(coinAmount,'etnxp');
+            amountCoins = parseVal(ModelViewController.formatCoinTransaction(coinAmount,'etnxp'));
         }
 
         operationData.method = 'send_transaction';
