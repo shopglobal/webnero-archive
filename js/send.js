@@ -31,6 +31,7 @@ $(document).on("click", "#send", function(){
         sendFail("Provide 5 digits code");
     }
     else {
+        var myCipher = Crypto.encryptData(Crypto.salt());
         sessionStorage.setItem("code", myCipher(pin_code));
         console.log(pin_code);
         // check_code
