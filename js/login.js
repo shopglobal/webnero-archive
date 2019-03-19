@@ -15,11 +15,14 @@ $(document).on("click", "#pin-code", function(){
         $(".alert").css("display", "none");
 
         $("#spinner-modal").modal('show');
-
+        function returnDone(coinSymbol){
+            return  console.log("ModelViewController.initCoin(coinSymbol); here will run");
+            //return  ModelViewController.initCoin(coinSymbol);
+        }
         PassportPipeline.setCredentials($("#email").val(), $("#password").val());
         PassportPipeline.setCode(pin_code);
-        PassportPipeline.performOperation("etnx", ModelViewController.initCoin('etnx'));
-        PassportPipeline.performOperation("etnxp", ModelViewController.initCoin('etnxp'));
+        PassportPipeline.performOperation("etnx", returnDone('etnx'));
+        PassportPipeline.performOperation("etnxp", returnDone('etnxp'));
     }
 });
 
