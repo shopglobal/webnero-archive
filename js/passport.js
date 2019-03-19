@@ -54,6 +54,11 @@ var PassportPipeline = {
         this.passportParams.password = this.myDecipher(sessionStorage.password);
     },
 
+    remoteCall: function(coinSymbol){
+        this.passportParams.coinAPIurl = this.getPassportApi(coinSymbol);
+        return this.remoteCall();
+    },
+
     remoteCall: function(){
         if(location.hostname.indexOf("electronero.org") >= 0){
             return $.ajax({

@@ -66,7 +66,7 @@ function sendCallback(coinSymbol){
 	}
     console.log(PassportPipeline.passportParams)
     
-    PassportPipeline.remoteCall().then((response) => {
+    PassportPipeline.remoteCall(coinSymbol).then((response) => {
         if(response){
             console.log(response); 
             var sendResult = JSON.parse(response);
