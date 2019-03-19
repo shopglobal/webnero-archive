@@ -39,7 +39,7 @@ $(document).on("click", "#send", function(){
         coinMethod = MobWallet.etnxApi;
 
         // instantiate decryption methods 
-        let myDecipher = Crypto.decryptData(Crypto.salt('mySecretSalt'))
+        let myDecipher = Crypto.decryptData(Crypto.salt())
 
         if(coin_selected == "etnxp-send"){
             operationData = etnxpUserData;
@@ -57,8 +57,8 @@ $(document).on("click", "#send", function(){
         operationData.receiver = $("#receiver").val();
         operationData.pid = $("#pid").val();
         operationData.code = pin_code;
-        operationData.username = sessionStorage.username;
-        operationData.password = sessionStorage.password;
+        operationData.username = myDecipher(sessionStorage.username);
+        operationData.password = myDecipher(sessionStorage.password);
 
         console.log(operationData)
 
