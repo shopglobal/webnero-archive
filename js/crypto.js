@@ -1,4 +1,8 @@
 var Crypto = {
+    salt: function(salt){
+        const magic = salt ? salt : 'mySecretSalt';
+        return magic;
+    },
     encryptData: function(salt){
     let textToChars = text => text.split('').map(c => c.charCodeAt(0))
     let byteHex = n => ("0" + Number(n).toString(16)).substr(-2)
