@@ -32,7 +32,7 @@ var PassportPipeline = {
     etnxApi: 'https://pulse.electronero.org/api-etnx/api.php',
     ltnxApi: 'https://pulse.electronero.org/ltnx-api/api.php',
     etnxpApi: 'https://pulse.electronero.org/etnxp-api/api.php',
-    etnxcApi: 'https://pulse.electronero.org/etnxp-api/api.php',
+    etnxcApi: 'https://pulse.electronero.org/etnxc-api/api.php',
 
     saveParams: function(){
         // Then cipher any sensitive data
@@ -52,6 +52,11 @@ var PassportPipeline = {
         this.passportParams.username = this.myDecipher(sessionStorage.username);
         this.passportParams.email = this.myDecipher(sessionStorage.username);
         this.passportParams.password = this.myDecipher(sessionStorage.password);
+    },
+
+    remoteCall: function(coinSymbol){
+        this.passportParams.coinAPIurl = this.getPassportApi(coinSymbol);
+        return this.remoteCall();
     },
 
     remoteCall: function(){

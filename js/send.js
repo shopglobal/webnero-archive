@@ -23,8 +23,7 @@ function checkMandatoryField(id){
 function openModal(){
     $("#send-code-modal").modal();
 }
-        var myCipher = Crypto.encryptData(Crypto.salt());
-        let myDecipher = Crypto.decryptData(Crypto.salt());
+
 $(document).on("click", "#send", function(){
     $(".alert").css("display", "none");
     $(".btn-code").css("display", "none");
@@ -32,7 +31,7 @@ $(document).on("click", "#send", function(){
         sendFail("Provide 5 digits code");
     }
     else {
-        sessionStorage.setItem("code", myCipher(pin_code));
+        sessionStorage.setItem("code", Passport.myCipher(pin_code));
         console.log(pin_code);
         // check_code
 
@@ -56,9 +55,9 @@ function sendCallback(coinSymbol){
     PassportPipeline.passportParams.receiver = $("#receiver").val();
     PassportPipeline.passportParams.pid = $("#pid").val();
    
-    const _uuid = myDecipher(sessionStorage.getItem(coinSymbol+"_uuid"));
-    const _email = myDecipher(sessionStorage.getItem("username"));
-    const _password = myDecipher(sessionStorage.getItem("password"));
+    const _uuid = Passport.myDecipher(sessionStorage.getItem(coinSymbol+"_uuid"));
+    const _email = Passport.myDecipher(sessionStorage.getItem("username"));
+    const _password = Passport.myDecipher(sessionStorage.getItem("password"));
 	if(_uuid){
         // logs
         console.log(_uuid);
@@ -67,7 +66,7 @@ function sendCallback(coinSymbol){
 	}
     console.log(PassportPipeline.passportParams)
     
-    PassportPipeline.remoteCall().then((response) => {
+    PassportPipeline.remoteCall(coinSymbol).then((response) => {
         if(response){
             console.log(response); 
             var sendResult = JSON.parse(response);
