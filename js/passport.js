@@ -115,7 +115,7 @@ var PassportPipeline = {
                             return;
                         }
 
-                        operationCallback(coinSymbol);
+                        //operationCallback(coinSymbol);
                     }
                 });
             }
