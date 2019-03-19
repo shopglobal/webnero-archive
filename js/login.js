@@ -44,20 +44,18 @@ function loginWorkflow(passportData, apiURL, walletApi, coinSymbol, mvcStore){
             console.log(passportLogin); 
 
             // To create a cipher
-            let myCipher = Crypto.encryptData('mySecretSalt')
+            let myCipher = Crypto.encryptData(Crypto.salt())
             // Then cipher any sensitive data
             // Store Session
             sessionStorage.setItem("username", myCipher(passportData.username));
             sessionStorage.setItem("password", myCipher(passportData.password));
-            sessionStorage.setItem(coinSymbol+"-uuid", myCipher(passportLogin.data.uid));
+            sessionStorage.setItem("code", myCipher(passportData.code));
+            sessionStorage.setItem(coinSymbol+"_uuid", myCipher(passportLogin.data.uid));
             
             console.log(myCipher(passportData.username))   // --> "7c606d287b6d6b7a6d7c287b7c7a61666f"
             console.log(myCipher(passportData.password))
             console.log(myCipher(passportLogin.data.uid))
 
-            //To decipher, you need to create a decipher and use it:
-            let myDecipher = Crypto.decryptData('mySecretSalt')
-            console.log(myDecipher("7c606d287b6d6b7a6d7c287b7c7a61666f"))    // --> 'the secret string'
             // end Session Store 
 
             passportData.uid = passportLogin.data.uid;
