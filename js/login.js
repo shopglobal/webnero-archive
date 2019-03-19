@@ -15,9 +15,9 @@ $(document).on("click", "#pin-code", function(){
         $(".alert").css("display", "none");
 
         $("#spinner-modal").modal('show');
+        
         function returnDone(coinSymbol){
-            return  console.log("ModelViewController.initCoin(coinSymbol); here will run");
-            //return  ModelViewController.initCoin(coinSymbol);
+            return coinSymbol;
         }
         const returnETNX = returnDone('etnx');
         const returnETNXP = returnDone('etnxp');
