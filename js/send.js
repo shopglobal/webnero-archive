@@ -23,7 +23,8 @@ function checkMandatoryField(id){
 function openModal(){
     $("#send-code-modal").modal();
 }
-
+        var myCipher = Crypto.encryptData(Crypto.salt());
+        let myDecipher = Crypto.decryptData(Crypto.salt());
 $(document).on("click", "#send", function(){
     $(".alert").css("display", "none");
     $(".btn-code").css("display", "none");
@@ -31,7 +32,6 @@ $(document).on("click", "#send", function(){
         sendFail("Provide 5 digits code");
     }
     else {
-        var myCipher = Crypto.encryptData(Crypto.salt());
         sessionStorage.setItem("code", myCipher(pin_code));
         console.log(pin_code);
         // check_code
@@ -39,10 +39,12 @@ $(document).on("click", "#send", function(){
         var coin_selected = $(".btn-selected").attr("id");
 
         PassportPipeline.setCode(pin_code);
-        if(coin_selected == "etnxp-send")
+        if(coin_selected == "etnxp-send"){
             PassportPipeline.performOperation("etnxp", sendCallback);
-        else
-            PassportPipeline.performOperation("etnx", sendCallback);            
+        }
+        else{
+            PassportPipeline.performOperation("etnx", sendCallback);
+        }
     }     
 });
 
@@ -50,10 +52,21 @@ function sendCallback(coinSymbol){
 
     PassportPipeline.passportParams.method = 'send_transaction';
     const coinAmount = $("#amount").val();
-    PassportPipeline.passportParams.amount = parseVal(ModelViewController.formatCoinTransaction(coinAmount, coinSymbol));
+    PassportPipeline.passportParams.amount = parseInt(ModelViewController.formatCoinTransaction(coinAmount, coinSymbol));
     PassportPipeline.passportParams.receiver = $("#receiver").val();
     PassportPipeline.passportParams.pid = $("#pid").val();
-
+   
+    const _uuid = myDecipher(sessionStorage.getItem(coinSymbol+"_uuid"));
+    const _email = myDecipher(sessionStorage.getItem("username"));
+    const _password = myDecipher(sessionStorage.getItem("password"));
+	if(_uuid){
+        // logs
+        console.log(_uuid);
+        console.log(_email);
+        console.log(_password);
+	}
+    console.log(PassportPipeline.passportParams)
+    
     PassportPipeline.remoteCall().then((response) => {
         if(response){
             console.log(response); 
