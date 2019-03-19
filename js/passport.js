@@ -114,8 +114,7 @@ var PassportPipeline = {
                             loginCodeFail();
                             return;
                         }
-
-                        //operationCallback(coinSymbol);
+                        ModelViewController.initCoin(operationCallback);
                     }
                 });
             }
