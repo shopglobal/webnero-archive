@@ -42,8 +42,8 @@ var PassportPipeline = {
         //sessionStorage.setItem("code", this.myCipher(this.passportParams.code));
         //sessionStorage.setItem(coinSymbol+"_uuid", this.myCipher(passportLogin.data.uid));
         
-        console.log(myCipher(this.passportParams.username))   // --> "7c606d287b6d6b7a6d7c287b7c7a61666f"
-        console.log(myCipher(this.passportParams.password))
+        console.log(this.myCipher(this.passportParams.username))   // --> "7c606d287b6d6b7a6d7c287b7c7a61666f"
+        console.log(this.myCipher(this.passportParams.password))
         //console.log(myCipher(this.passportParams.data.uid))
     },
 
