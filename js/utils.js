@@ -8,7 +8,7 @@
   $temp.remove();
 }
 
-$(".inputTxt").bind("keypress keyup keydown", function (event) {
+$("body").bind("keypress keyup keydown", function (event) {
     var evtType = event.type;
     var eWhich = event.which;
     var echarCode = event.charCode;
