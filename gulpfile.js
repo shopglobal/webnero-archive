@@ -46,8 +46,7 @@ gulp.task('minify-css', gulp.series('less', function(done) {
 // Copy JS to dist
 gulp.task('js', function(done) {
     gulp.src(['js/etnx.js']).pipe(gulp.dest('dist/js'));
-    gulp.src(['js/c2c.js']).pipe(gulp.dest('dist/js'));
-    //gulp.src(['js/qr.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/utils.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/qr-gen.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/locals.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/crypto.js']).pipe(gulp.dest('dist/js'));
@@ -99,6 +98,9 @@ gulp.task('copy', function(done) {
 
     gulp.src(['bower_components/raphael/raphael.js', 'bower_components/raphael/raphael.min.js'])
         .pipe(gulp.dest('plugins/raphael'))
+
+    gulp.src(['bower_components/qrious/dist/qrious.js', 'bower_components/qrious/dist/qrious.min.js'])
+        .pipe(gulp.dest('plugins/qrious'))
 
         done();
 
