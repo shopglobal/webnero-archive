@@ -45,11 +45,11 @@ $(document).on("click", "#send", function(){
             operationData = etnxpUserData;
             coinMethod = MobWallet.etnxpApi;
             operationData.uid = myDecipher(sessionStorage.etnxp_uuid)   
-            console.log(myDecipher(sessionStorage.etnxp_uuid))  
+            console.log("etnxp_uuid"+myDecipher(sessionStorage.etnxp_uuid))  
         }
         if(coin_selected != "etnxp-send"){
             operationData.uid = myDecipher(sessionStorage.etnx_uuid)   
-            console.log(myDecipher(sessionStorage.etnx_uuid))  
+            console.log("etnx_uuid"myDecipher(sessionStorage.etnx_uuid))  
         }
 
         operationData.method = 'send_transaction';
