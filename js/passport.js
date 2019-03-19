@@ -55,14 +55,9 @@ var PassportPipeline = {
     },
 
     remoteCall: function(coinSymbol){
-        this.passportParams.coinAPIurl = this.getPassportApi(coinSymbol);
-        return this.remoteCall();
-    },
-
-    testCall: function(){
         if(location.hostname.indexOf("electronero.org") >= 0){
             return $.ajax({
-                url: this.passportParams.coinAPIurl,
+                url: this.getPassportApi(coinSymbol),
                 type: 'POST',
                 cache: false,
                 data: this.passportParams
