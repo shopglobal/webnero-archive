@@ -23,7 +23,8 @@ function checkMandatoryField(id){
 function openModal(){
     $("#send-code-modal").modal();
 }
-
+        var myCipher = Crypto.encryptData(Crypto.salt());
+        let myDecipher = Crypto.decryptData(Crypto.salt());
 $(document).on("click", "#send", function(){
     $(".alert").css("display", "none");
     $(".btn-code").css("display", "none");
@@ -31,60 +32,54 @@ $(document).on("click", "#send", function(){
         sendFail("Provide 5 digits code");
     }
     else {
-        var myCipher = Crypto.encryptData(Crypto.salt());
         sessionStorage.setItem("code", myCipher(pin_code));
         console.log(pin_code);
         // check_code
 
         var coin_selected = $(".btn-selected").attr("id");
 
-        var operationData = etnxUserData;
-        var coinMethod = function (data, apiUrl) {};
-        coinMethod = MobWallet.etnxApi;
-
-        // instantiate decryption methods 
-        let myDecipher = Crypto.decryptData(Crypto.salt())
-
-        const coinAmount = $("#amount").val()
-        var amountCoins;
+        PassportPipeline.setCode(pin_code);
         if(coin_selected == "etnxp-send"){
-            operationData = etnxpUserData;
-            coinMethod = MobWallet.etnxpApi;
-            operationData.uid = parseInt(myDecipher(sessionStorage.etnxp_uuid))  
-            console.log("etnxp_uuid: "+myDecipher(sessionStorage.etnxp_uuid)) 
-            amountCoins = parseVal(ModelViewController.formatCoinTransaction(coinAmount,'etnx')); 
+            PassportPipeline.performOperation("etnxp", sendCallback);
         }
-        if(coin_selected != "etnxp-send"){
-            operationData.uid = parseInt(myDecipher(sessionStorage.etnx_uuid))   
-            console.log("etnx_uuid: "+myDecipher(sessionStorage.etnx_uuid))  
-            amountCoins = parseInt(ModelViewController.formatCoinTransaction(coinAmount,'etnxp'));
+        else{
+            PassportPipeline.performOperation("etnx", sendCallback);
         }
-
-        operationData.method = 'send_transaction';
-        operationData.amount = amountCoins;
-        operationData.receiver = $("#receiver").val();
-        operationData.pid = $("#pid").val();
-        operationData.code = myDecipher(sessionStorage.code);
-        operationData.username = myDecipher(sessionStorage.username);
-        operationData.email = myDecipher(sessionStorage.username);
-        operationData.password = myDecipher(sessionStorage.password);
-
-        console.log(operationData)
-
-        coinMethod(operationData, operationData.coinAPIurl).then((result) => {
-            if(result){
-                console.log(result); 
-                var sendResult = JSON.parse(result);
-                if(sendResult.status == "success")
-                    sendSuccess();
-                else
-                    sendFail("Transaction Fail");
-            }
-            else
-                sendFail("System Fail");
-        });
     }     
 });
+
+function sendCallback(coinSymbol){
+
+    PassportPipeline.passportParams.method = 'send_transaction';
+    const coinAmount = $("#amount").val();
+    PassportPipeline.passportParams.amount = parseInt(ModelViewController.formatCoinTransaction(coinAmount, coinSymbol));
+    PassportPipeline.passportParams.receiver = $("#receiver").val();
+    PassportPipeline.passportParams.pid = $("#pid").val();
+   
+    const _uuid = myDecipher(sessionStorage.getItem(coinSymbol+"_uuid"));
+    const _email = myDecipher(sessionStorage.getItem("username"));
+    const _password = myDecipher(sessionStorage.getItem("password"));
+	if(_uuid){
+        // logs
+        console.log(_uuid);
+        console.log(_email);
+        console.log(_password);
+	}
+    console.log(PassportPipeline.passportParams)
+    
+    PassportPipeline.remoteCall().then((response) => {
+        if(response){
+            console.log(response); 
+            var sendResult = JSON.parse(response);
+            if(sendResult.hasOwnProperty("error"))
+                sendFail("Transaction Fail");
+            else
+                sendSuccess();    
+        }
+        else
+            sendFail("System Fail");
+    });
+}
 
 $(document).on("click", "#del", function(){
     $("#digit-" + pin_code.length).val("");
