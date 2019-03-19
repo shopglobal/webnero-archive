@@ -57,7 +57,7 @@ $(document).on("click", "#send", function(){
         if(coin_selected != "etnxp-send"){
             operationData.uid = parseInt(myDecipher(sessionStorage.etnx_uuid))   
             console.log("etnx_uuid: "+myDecipher(sessionStorage.etnx_uuid))  
-            amountCoins = parseVal(ModelViewController.formatCoinTransaction(coinAmount,'etnxp'));
+            amountCoins = parseInt(ModelViewController.formatCoinTransaction(coinAmount,'etnxp'));
         }
 
         operationData.method = 'send_transaction';
