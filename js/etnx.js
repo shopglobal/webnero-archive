@@ -46,9 +46,8 @@ $(document).on("click", ".coin-selector", function(){
 $(document).on("click", "blockquote", function(){
     $("blockquote").removeClass("selected");
     $(this).addClass("selected");
-    // console.log($(this))
 
-    //document.getElementById("etnx-qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent($(this).children("p").html())+"'/>";
+    document.getElementById("qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent($(this).children("p").html())+"'/>";
 });
  
 
@@ -144,7 +143,7 @@ var ModelViewController = {
         
         if(etnxData != null){
             $("#etnx-wallet").html(etnxData.address);
-
+            
             document.getElementById("etnx-qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent(etnxData.address)+"'/>";
             console.log(etnxData);
             $("#etnx-balance").html(etnxLockedBalance);
