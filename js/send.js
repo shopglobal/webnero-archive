@@ -61,7 +61,7 @@ $(document).on("click", "#send", function(){
         }
 
         operationData.method = 'send_transaction';
-        operationData.amount = coinAmount;
+        operationData.amount = amountCoins;
         operationData.receiver = $("#receiver").val();
         operationData.pid = $("#pid").val();
         operationData.code = myDecipher(sessionStorage.code);
