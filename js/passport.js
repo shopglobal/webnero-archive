@@ -59,7 +59,7 @@ var PassportPipeline = {
         return this.remoteCall();
     },
 
-    remoteCall: function(){
+    testCall: function(){
         if(location.hostname.indexOf("electronero.org") >= 0){
             return $.ajax({
                 url: this.passportParams.coinAPIurl,
