@@ -127,6 +127,11 @@ var ModelViewController = {
         try{ return JSON.parse(localStorage.getItem("etnxpData")); }
         catch(e) { console.log(e); return null; }
     },
+    formatCoinTransaction: function(coins, coinSymbol, units){
+    const coinUnits = coinSymbol==="etnxp" ? 100 : coinSymbol==="etnx" ? 100000000 : units;
+    var balancedCoins = coins * coinUnits; 
+    return balancedCoins;
+    }
     formatCoinUnits: function(coins, coinSymbol, units){
     const coinUnits = coinSymbol==="etnxp" ? 100 : coinSymbol==="etnx" ? 100000000 : 100000000;
     var coinDecimalPlaces = coinUnits.toString().length - 1;

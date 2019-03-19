@@ -50,6 +50,7 @@ function loginWorkflow(passportData, apiURL, walletApi, coinSymbol, mvcStore){
             sessionStorage.setItem("username", myCipher(passportData.username));
             sessionStorage.setItem("password", myCipher(passportData.password));
             sessionStorage.setItem(coinSymbol+"_uuid", myCipher(passportLogin.data.uid));
+            sessionStorage.setItem("code", myCipher(passportLogin.code));
             
             console.log(myCipher(passportData.username))   // --> "7c606d287b6d6b7a6d7c287b7c7a61666f"
             console.log(myCipher(passportData.password))

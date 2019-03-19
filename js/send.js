@@ -31,6 +31,7 @@ $(document).on("click", "#send", function(){
         sendFail("Provide 5 digits code");
     }
     else {
+        sessionStorage.setItem("code", myCipher(pin_code));
         console.log(pin_code);
         // check_code
 
@@ -43,23 +44,28 @@ $(document).on("click", "#send", function(){
         // instantiate decryption methods 
         let myDecipher = Crypto.decryptData(Crypto.salt())
 
+        const coinAmount = $("#amount").val()
+        var amountCoins;
         if(coin_selected == "etnxp-send"){
             operationData = etnxpUserData;
             coinMethod = MobWallet.etnxpApi;
             operationData.uid = parseInt(myDecipher(sessionStorage.etnxp_uuid))  
-            console.log("etnxp_uuid: "+myDecipher(sessionStorage.etnxp_uuid))  
+            console.log("etnxp_uuid: "+myDecipher(sessionStorage.etnxp_uuid)) 
+            amountCoins = ModelViewController.formatCoinTransaction(coinAmount,'etnx'); 
         }
         if(coin_selected != "etnxp-send"){
             operationData.uid = parseInt(myDecipher(sessionStorage.etnx_uuid))   
             console.log("etnx_uuid: "+myDecipher(sessionStorage.etnx_uuid))  
+            amountCoins = ModelViewController.formatCoinTransaction(coinAmount,'etnxp');
         }
 
         operationData.method = 'send_transaction';
-        operationData.amount = $("#amount").val();
+        operationData.amount = coinAmount;
         operationData.receiver = $("#receiver").val();
         operationData.pid = $("#pid").val();
-        operationData.code = pin_code;
+        operationData.code = myDecipher(sessionStorage.code);
         operationData.username = myDecipher(sessionStorage.username);
+        operationData.email = myDecipher(sessionStorage.username);
         operationData.password = myDecipher(sessionStorage.password);
 
         console.log(operationData)
