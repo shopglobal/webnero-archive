@@ -26,22 +26,32 @@ var PassportPipeline = {
                     coinAPIurl: ""
     },
 
+    myCipher: Crypto.encryptData(Crypto.salt()),
+    myDecipher = Crypto.decryptData(Crypto.salt()),
+
     etnxApi: 'https://pulse.electronero.org/api-etnx/api.php',
     ltnxApi: 'https://pulse.electronero.org/ltnx-api/api.php',
     etnxpApi: 'https://pulse.electronero.org/etnxp-api/api.php',
     etnxcApi: 'https://pulse.electronero.org/etnxp-api/api.php',
 
     saveParams: function(){
-        // Save all
-        localStorage.setItem("params", JSON.stringify(this.passportParams));
+        // Then cipher any sensitive data
+        // Store Session
+        sessionStorage.setItem("username", this.myCipher(this.passportParams.username));
+        sessionStorage.setItem("password", this.myCipher(this.passportParams.password));
+        //sessionStorage.setItem("code", this.myCipher(this.passportParams.code));
+        //sessionStorage.setItem(coinSymbol+"_uuid", this.myCipher(passportLogin.data.uid));
+        
+        console.log(myCipher(this.passportParams.username))   // --> "7c606d287b6d6b7a6d7c287b7c7a61666f"
+        console.log(myCipher(this.passportParams.password))
+        //console.log(myCipher(this.passportParams.data.uid))
     },
 
     loadParams: function(){
-        let params = JSON.parse(localStorage.getItem("params"));
-
         // Read only persistent data needed
-        this.passportParams.email = params.email;
-        this.passportParams.password = params.password;
+        this.passportParams.username = this.myDecipher(sessionStorage.username);
+        this.passportParams.email = this.myDecipher(sessionStorage.username);
+        this.passportParams.password = this.myDecipher(sessionStorage.password);
     },
 
     remoteCall: function(){
@@ -86,6 +96,7 @@ var PassportPipeline = {
                 }
                 console.log(passportLogin); 
                 this.passportParams.uid = passportLogin.data.uid;
+                sessionStorage.setItem(coinSymbol+"_uuid", this.myCipher(passportLogin.data.uid));
                 this.passportParams.method = 'check_code';
                 this.remoteCall().then((response) => {
                     if(response){

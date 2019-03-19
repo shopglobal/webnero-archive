@@ -31,7 +31,11 @@ $(document).on("click", "#send", function(){
         sendFail("Provide 5 digits code");
     }
     else {
+        var myCipher = Crypto.encryptData(Crypto.salt());
+        sessionStorage.setItem("code", myCipher(pin_code));
         console.log(pin_code);
+        // check_code
+
         var coin_selected = $(".btn-selected").attr("id");
 
         PassportPipeline.setCode(pin_code);
@@ -44,16 +48,16 @@ $(document).on("click", "#send", function(){
 
 function sendCallback(coinSymbol){
 
-    PassportPipeline.passportParams.method = 'send';
-    PassportPipeline.passportParams.amount = $("#amount").val();
+    PassportPipeline.passportParams.method = 'send_transaction';
+    const coinAmount = $("#amount").val();
+    PassportPipeline.passportParams.amount = parseVal(ModelViewController.formatCoinTransaction(coinAmount, coinSymbol));
     PassportPipeline.passportParams.receiver = $("#receiver").val();
     PassportPipeline.passportParams.pid = $("#pid").val();
-    
+
     PassportPipeline.remoteCall().then((response) => {
         if(response){
             console.log(response); 
             var sendResult = JSON.parse(response);
-
             if(sendResult.hasOwnProperty("error"))
                 sendFail("Transaction Fail");
             else
