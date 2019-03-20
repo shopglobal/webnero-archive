@@ -70,15 +70,20 @@ var PassportPipeline = {
                 });
     },
     
-//     remoteCall: function(coinSymbol){
-//         return Passport.simulate(this.passportParams);
-//     },
+     /*remoteCall: function(coinSymbol){
+         return Passport.simulate(this.passportParams);
+     },*/
 
-    setCredentials: function(email, password){
+    setCredentials: function(email, password, save){
         this.passportParams.username = email;
         this.passportParams.email = email;
         this.passportParams.password = password;
-        this.saveParams();
+        if(save)
+            this.saveParams();
+    },
+
+    setMethod: function(method){
+        this.passportParams.method = method;
     },
 
     setCode: function(code){
@@ -198,11 +203,11 @@ var Passport = {
             });
         else if(data.method == 'register')
             return new Promise((resolve, reject) => {
-                setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 250);
+                setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 1000);
             });
         else if(data.method == 'send')
             return new Promise((resolve, reject) => {
-                setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 250);
+                setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 1000);
             });
         
         return new Promise((resolve, reject) => {

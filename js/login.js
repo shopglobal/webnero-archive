@@ -3,8 +3,6 @@ $(document).on("click", "#login", function(){
     $("#login-container").css("display", "none");
 });
 
-var pin_code = "";
-
 $(document).on("click", "#pin-code", function(){
     $(".alert").css("display", "none");
     if(pin_code.length < 5){
@@ -29,17 +27,6 @@ $(document).on("click", "#pin-code", function(){
         PassportPipeline.performOperation("etnx", ModelViewController.initCoin);
         PassportPipeline.performOperation("etnxp", ModelViewController.initCoin);
     }
-});
-
-$(document).on("click", "#del", function(){
-    $("#digit-" + pin_code.length).val("");
-    pin_code = pin_code.substring(0, pin_code.length - 1);
-});
-
-$(document).on("click", ".digit", function(){
-    var digit = $(this).attr("id");
-    pin_code += digit;
-    $("#digit-" + pin_code.length).val(digit);
 });
 
 function loginFail(){

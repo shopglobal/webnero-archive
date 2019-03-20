@@ -2,8 +2,6 @@ $(document).ready(function(){
     ModelViewController.fillData();
 });
 
-var pin_code = "";
-
 $(document).on("click", "#send-modal", function(){
     $('.form-group').removeClass("has-error");
     if(checkMandatoryField("amount") &&
@@ -49,7 +47,7 @@ $(document).on("click", "#send", function(){
 
 function sendCallback(coinSymbol){
 
-    PassportPipeline.passportParams.method = 'send_transaction';
+    PassportPipelinesetMethod('send_transaction');
     const coinAmount = $("#amount").val();
     PassportPipeline.passportParams.amount = parseInt(ModelViewController.formatCoinTransaction(coinAmount, coinSymbol));
     PassportPipeline.passportParams.receiver = $("#receiver").val();
@@ -79,17 +77,6 @@ function sendCallback(coinSymbol){
             sendFail("System Fail");
     });
 }
-
-$(document).on("click", "#del", function(){
-    $("#digit-" + pin_code.length).val("");
-    pin_code = pin_code.substring(0, pin_code.length - 1);
-});
-
-$(document).on("click", ".digit", function(){
-    var digit = $(this).attr("id");
-    pin_code += digit;
-    $("#digit-" + pin_code.length).val(digit);
-});
 
 function sendSuccess(){
     $(".alert-success").css("display", "block");
