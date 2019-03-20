@@ -205,7 +205,7 @@ var Passport = {
             return new Promise((resolve, reject) => {
                 setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 1000);
             });
-        else if(data.method == 'send')
+        else if(data.method == 'send_transaction')
             return new Promise((resolve, reject) => {
                 setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 1000);
             });
