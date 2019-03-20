@@ -155,16 +155,30 @@ var ModelViewController = {
                 let passportBalance = JSON.parse(response);
                 console.log(passportBalance)
             }
-            initDone(coinSymbol);
+
+            $.event.trigger({
+                type: "init.done",
+                coin: coinSymbol
+            });
         });
-    }
+    },
+
+    refreshData: function(){
+        PassportPipeline.loadCode();
+        PassportPipeline.performOperation("etnx", ModelViewController.initCoin);
+        PassportPipeline.performOperation("etnxp", ModelViewController.initCoin);
+    },
 };
 
 $(document).on("init.done", function(e){
     console.log(e.type + " - " + e.coin);
     ModelViewController.initLevel++;
-    if(ModelViewController.initLevel == 2)
-        location.href = location.href.replace("login", "index");
+    if(ModelViewController.initLevel == 2){
+        if(location.pathname.indexOf("login") > -1)
+            location.href = location.href.replace("login", "index");
+        else
+            ModelViewController.fillData();
+    }
 });
 
 $(document).on("click", "#logout", function(){

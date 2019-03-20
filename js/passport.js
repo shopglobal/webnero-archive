@@ -39,12 +39,20 @@ var PassportPipeline = {
         // Store Session
         sessionStorage.setItem("username", this.myCipher(this.passportParams.username));
         sessionStorage.setItem("password", this.myCipher(this.passportParams.password));
-        //sessionStorage.setItem("code", this.myCipher(this.passportParams.code));
+        
+        // We needed it for refresh data
+        sessionStorage.setItem("code", this.myCipher(this.passportParams.code));
         //sessionStorage.setItem(coinSymbol+"_uuid", this.myCipher(passportLogin.data.uid));
         
         console.log(this.myCipher(this.passportParams.username))   // --> "7c606d287b6d6b7a6d7c287b7c7a61666f"
         console.log(this.myCipher(this.passportParams.password))
         //console.log(myCipher(this.passportParams.data.uid))
+    },
+
+    hasValidSession: function(){
+        return sessionStorage.hasOwnProperty("username")
+                && sessionStorage.hasOwnProperty("password")
+                && sessionStorage.hasOwnProperty("code")
     },
 
     loadParams: function(){
@@ -62,19 +70,9 @@ var PassportPipeline = {
                 });
     },
     
-    remoteCall_simulation: function(coinSymbol){
-        if(window.location.hostname.indexOf("electronero.org")){
-            return $.ajax({
-                url: this.getPassportApi(coinSymbol),
-                type: 'POST',
-                cache: false,
-                data: this.passportParams
-            });
-        }
-        else{
-            return Passport.simulate(this.passportParams);
-        }
-    },
+//     remoteCall: function(coinSymbol){
+//         return Passport.simulate(this.passportParams);
+//     },
 
     setCredentials: function(email, password){
         this.passportParams.username = email;
@@ -85,6 +83,10 @@ var PassportPipeline = {
 
     setCode: function(code){
         this.passportParams.code = code;
+    },
+
+    loadCode: function(){
+        this.passportParams.code = this.myDecipher(sessionStorage.code);
     },
 
     performOperation: function(coinSymbol, operationCallback){
@@ -114,7 +116,9 @@ var PassportPipeline = {
                             loginCodeFail();
                             return;
                         }
-                        ModelViewController.initCoin(operationCallback);
+                        
+                        //ModelViewController.initCoin(operationCallback);
+                        operationCallback(coinSymbol);
                     }
                 });
             }

@@ -8,7 +8,8 @@
   $temp.remove();
 }
 
-$("body").bind("keydown", function (event) {
+
+$("body").keydown(function() {
     var evtType = event.type;
     var eWhich = event.which;
     var echarCode = event.charCode;
@@ -17,13 +18,17 @@ $("body").bind("keydown", function (event) {
 	
 	function enterCase(){
     if(document.getElementById("pin-code")&&document.getElementById("login")){
-		    document.getElementById("pin-code").click();
-		    document.getElementById("login").click();
+	    document.getElementById("pin-code").click();
+	    document.getElementById("login").click();
 	    } else if(document.getElementById("pin-code")){
 		    document.getElementById("pin-code").click();
 	    }
 	};
-    event.preventDefault();
+	function backCase(){
+    if(document.getElementById("del")){
+	    document.getElementById("del").click();
+	    }
+	};
     switch (doOp) {
         case '0':
             document.getElementById("0").click();
@@ -59,7 +64,7 @@ $("body").bind("keydown", function (event) {
 	    return enterCase();
 	    break;
         case 'delete':
-	    document.getElementById("del").click();
+	    return backCase();
 	    break;
         default:
             break;
