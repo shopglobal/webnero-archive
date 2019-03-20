@@ -20,7 +20,7 @@ $(document).on("click", "#pin-code", function(){
         const returnETNX = returnDone('etnx');
         const returnETNXP = returnDone('etnxp');*/
         PassportPipeline.setCode(pin_code);
-        PassportPipeline.setCredentials($("#email").val(), $("#password").val());
+        PassportPipeline.setCredentials($("#email").val(), $("#password").val(), true);
         //PassportPipeline.performOperation("etnx", returnETNX);
         //PassportPipeline.performOperation("etnxp", returnETNXP);
         sessionStorage.setItem("fromLogin", true);

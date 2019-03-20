@@ -147,7 +147,7 @@ var ModelViewController = {
     },
 
     initCoin: function(coinSymbol){
-        PassportPipelinesetMethod('getaddr');
+        PassportPipeline.setMethod('getaddr');
         PassportPipeline.remoteCall(coinSymbol).then((response) => {
             if(response){
                 console.log(response); 
@@ -164,6 +164,7 @@ var ModelViewController = {
     },
 
     refreshData: function(){
+        $("#spinner-modal").modal('show');
         PassportPipeline.loadCode();
         PassportPipeline.performOperation("etnx", ModelViewController.initCoin);
         PassportPipeline.performOperation("etnxp", ModelViewController.initCoin);
@@ -174,6 +175,7 @@ $(document).on("init.done", function(e){
     console.log(e.type + " - " + e.coin);
     ModelViewController.initLevel++;
     if(ModelViewController.initLevel == 2){
+        $("#spinner-modal").modal('hide');
         if(location.pathname.indexOf("login") > -1)
             location.href = location.href.replace("login", "index");
         else
