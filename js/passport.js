@@ -78,9 +78,9 @@ var PassportPipeline = {
 
     setCredentials: function(email, password, save){
         // maybe cipher the data, but it's done elsewhere
-        this.passportParams.username = email;
-        this.passportParams.email = email;
-        this.passportParams.password = password;
+        this.passportParams.username = this.myDecipher(email);
+        this.passportParams.email = this.myDecipher(email);
+        this.passportParams.password = this.myDecipher(password);
         if(save)
         {
             return this.saveParams();
