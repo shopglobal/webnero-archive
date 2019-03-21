@@ -92,7 +92,7 @@ var ModelViewController = {
     };
     },
     formatCoinTransaction: function(coins, coinSymbol, units){
-    const coinUnits = coinSymbol==="etnx" ? 10000000000000000 : coinSymbol==="etnxp" ? 100000 : coinSymbol==="etnxc" ? 1 : coinSymbol==="ltnx" ? 1 : units;
+    const coinUnits = coinSymbol==="etnx" ? 10000000000000000 : coinSymbol==="etnxp" ? 10000 : coinSymbol==="etnxc" ? 1 : coinSymbol==="ltnx" ? 1 : units;
     var balancedCoins = coins * coinUnits; 
     return balancedCoins;
     },
