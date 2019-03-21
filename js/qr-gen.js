@@ -1,6 +1,6 @@
 (function() {
 	// etnx
-	var etnxData = ModelViewController.getEtnxData();
+	var etnxData = ModelViewController.getCoinData("etnx");
 	if(etnxData != null){
     (function() {
 
@@ -15,7 +15,7 @@
     })();
 }
 	// etnxp
-	var etnxpData = ModelViewController.getEtnxpData();
+	var etnxpData = ModelViewController.getCoinData("etnxp");
 	if (etnxpData != null) {
     (function() {
         var $value_etnxp = document.querySelector('main p [name="etnxp-value"]');
@@ -30,7 +30,7 @@
     })();
 }
 	// etnxc
-	var etnxcData = ModelViewController.getEtnxcData();
+	var etnxcData = ModelViewController.getCoinData("etnxc");
 	if (etnxcData != null) {
     (function() {
         var $value_etnxc = document.querySelector('main p [name="etnxc-value"]');
@@ -45,7 +45,7 @@
     })();
 }
 	// ltnx
-	var ltnxData = ModelViewController.getLtnxData();
+	var ltnxData = ModelViewController.getCoinData("ltnx");
 	if (ltnxData != null) {
     (function() {
         var $value_ltnx = document.querySelector('main p [name="ltnx-value"]');
