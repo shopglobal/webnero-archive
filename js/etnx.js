@@ -117,7 +117,7 @@ var ModelViewController = {
         try{ return JSON.parse(localStorage.getItem("etnxcData")); }
         catch(e) { console.log(e); return null; }
     },
-    getLtnxpData: function(){
+    getLtnxData: function(){
         try{ return JSON.parse(localStorage.getItem("ltnxData")); }
         catch(e) { console.log(e); return null; }
     },
@@ -133,30 +133,46 @@ var ModelViewController = {
     return balancedCoins;
     },
     fillData: function(){
-        var etnxData = this.getEtnxData();
-        var etnxpData = this.getEtnxpData();
-        var etnxcData = this.getEtnxcData();
-        var ltnxData = this.getLtnxData();
-        const etnxLockedBalance = this.formatCoinUnits(etnxData.balances.balance, "etnx")
-        const etnxBalance = this.formatCoinUnits(etnxData.balances.unlocked_balance, "etnx")
-        const etnxpLockedBalance = this.formatCoinUnits(etnxpData.balances.balance, "etnxp")
-        const etnxpBalance = this.formatCoinUnits(etnxpData.balances.unlocked_balance, "etnxp")
         
+        var etnxData = this.getEtnxData();
         if(etnxData != null){
+            const etnxLockedBalance = this.formatCoinUnits(etnxData.balances.balance, "etnx")
+            const etnxBalance = this.formatCoinUnits(etnxData.balances.unlocked_balance, "etnx")
             $("#etnx-wallet").html(etnxData.address);
-            // document.getElementById("etnx-qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent(etnxData.address)+"'/>";
             console.log(etnxData);
             $("#etnx-balance").html(etnxLockedBalance);
             $("#etnx-unlocked-balance").html(etnxBalance);
-        }
-
+        };
+        
+        var etnxpData = this.getEtnxpData();
         if(etnxpData != null){
+            const etnxpLockedBalance = this.formatCoinUnits(etnxpData.balances.balance, "etnxp")
+            const etnxpBalance = this.formatCoinUnits(etnxpData.balances.unlocked_balance, "etnxp")
             $("#etnxp-wallet").html(etnxpData.address);
-            // document.getElementById("etnxp-qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent(etnxpData.address)+"'/>";
             console.log(etnxpData);
             $("#etnxp-balance").html(etnxpLockedBalance);
             $("#etnxp-unlocked-balance").html(etnxpBalance);
-        }
+        };
+        
+        var etnxcData = this.getEtnxcData();
+        if(etnxcData != null){
+            const etnxcLockedBalance = this.formatCoinUnits(etnxcData.balances.balance, "etnxc")
+            const etnxcBalance = this.formatCoinUnits(etnxcData.balances.unlocked_balance, "etnxc")
+            $("#etnxc-wallet").html(etnxcData.address);
+            console.log(etnxcData);
+            $("#etnxc-balance").html(etnxcLockedBalance);
+            $("#etnxc-unlocked-balance").html(etnxcBalance);
+        };
+        
+        var ltnxData = this.getLtnxData();
+        if(ltnxData != null){
+            const ltnxLockedBalance = this.formatCoinUnits(ltnxData.balances.balance, "ltnx")
+            const ltnxBalance = this.formatCoinUnits(ltnxData.balances.unlocked_balance, "ltnx")
+            $("#ltnx-wallet").html(ltnxData.address);
+            console.log(ltnxData);
+            $("#ltnx-balance").html(ltnxLockedBalance);
+            $("#ltnx-unlocked-balance").html(ltnxBalance);
+        };
     },
 
     fillHistory: function(){
