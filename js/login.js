@@ -3,8 +3,6 @@ $(document).on("click", "#login", function(){
     $("#login-container").css("display", "none");
 });
 
-var pin_code = "";
-
 $(document).on("click", "#pin-code", function(){
     $(".alert").css("display", "none");
     if(pin_code.length < 5){
@@ -16,30 +14,13 @@ $(document).on("click", "#pin-code", function(){
 
         $("#spinner-modal").modal('show');
         
-        /*function returnDone(coinSymbol){
-            return coinSymbol;
-        }
-        const returnETNX = returnDone('etnx');
-        const returnETNXP = returnDone('etnxp');*/
-        PassportPipeline.setCode(pin_code);
-        PassportPipeline.setCredentials($("#email").val(), $("#password").val());
-        //PassportPipeline.performOperation("etnx", returnETNX);
-        //PassportPipeline.performOperation("etnxp", returnETNXP);
+        PassportPipeline.setCode(PassportPipeline.myCipher(pin_code));
+        console.log(pin_code)
+        PassportPipeline.setCredentials(PassportPipeline.myCipher($("#email").val()), PassportPipeline.myCipher($("#password").val()), true);
         sessionStorage.setItem("fromLogin", true);
         PassportPipeline.performOperation("etnx", ModelViewController.initCoin);
         PassportPipeline.performOperation("etnxp", ModelViewController.initCoin);
     }
-});
-
-$(document).on("click", "#del", function(){
-    $("#digit-" + pin_code.length).val("");
-    pin_code = pin_code.substring(0, pin_code.length - 1);
-});
-
-$(document).on("click", ".digit", function(){
-    var digit = $(this).attr("id");
-    pin_code += digit;
-    $("#digit-" + pin_code.length).val(digit);
 });
 
 function loginFail(){

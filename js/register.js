@@ -1,20 +1,32 @@
 $(document).on("click", "#register", function(){
+    $(".alert").css("display", "none");
+    if(validateField()){
+        $("#pin-code-container").css("display", "block");
+        $("#register-container").css("display", "none");
+    }
+});
+
+$(document).on("click", "#pin-code", function(){
     
     $(".alert").css("display", "none");
-
-    etnxUserData.method = 'register';
-    etnxUserData.username = $("#email").val();
-    etnxUserData.email = $("#email").val();
-    etnxUserData.password = $("#password").val();
-
-    if(validateField())
+    if(pin_code.length < 5){
+        $(".alert-danger").html("Please provide 5 digits");
+        $(".alert-danger").css("display", "block");
+    }
+    else
     {
-        MobWallet.etnxApi(etnxUserData,etnxUserData.coinAPIurl).then((result) => {
-            if(result){
-                console.log(result); 
-                var etnxpLogin = JSON.parse(result);
-                if(etnxpLogin.status == "success"){
-                    location.href = location.href.replace("register", "pin-code");
+        $("#spinner-modal").modal('show');
+
+        PassportPipeline.setMethod('register');
+        PassportPipeline.setCredentials($("#email").val(), $("#password").val(), false);
+        PassportPipeline.setCode(pin_code);
+
+        PassportPipeline.remoteCall("etnx").then((response) => {
+            if(response){
+                console.log(response); 
+                var registerJson = JSON.parse(response);
+                if(registerJson.status == "success"){
+                    location.href = "login.html";
                 }
                 else
                     registerFail("system error");
@@ -25,21 +37,10 @@ $(document).on("click", "#register", function(){
     }
 });
 
-function initDone(coinName, result){
-    
-    loginSuccess();
-
-    setTimeout(function() { 
-            $.event.trigger({
-                type: "init.done",
-                coin: coinName
-            });
-    }, 250);
-}
-
 function registerFail(message){
     $(".alert-danger").html("Registration error: " + message);
     $(".alert-danger").css("display", "block");
+    $("#spinner-modal").modal('hide');
 }
 
 function validateField(){

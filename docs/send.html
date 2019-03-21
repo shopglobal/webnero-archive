@@ -11,18 +11,12 @@
 
     <title>Electronero & Pulse Web Wallet</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="../plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../dist/css/etnx.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
+    <link href="../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../plugins/metisMenu/metisMenu.min.css" rel="stylesheet" type="text/css">
+    <link href="../dist/css/etnx.css" rel="stylesheet" type="text/css">
+    <link href="../dist/css/spinner.css" rel="stylesheet" type="text/css">
     <link href="../plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -266,26 +260,26 @@
             <!-- /.navbar-top-links -->
 
             <div class="navbar-default sidebar" role="navigation">
-                    <div class="sidebar-nav navbar-collapse">
-                        <ul class="nav" id="side-menu">
-                            <li>
-                                <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                            </li>
-                            <li>
-                                <a href="send.html"><i class="fa fa-share-square"></i> Send</a>
-                            </li>
-                            <li>
-                                <a href="history.html"><i class="fa fa-share-square"></i> History</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /.sidebar-collapse -->
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="send.html"><i class="fa fa-share-square"></i> Send</a>
+                        </li>
+                        <li>
+                            <a href="history.html"><i class="fa fa-share-square"></i> History</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
 
-                    <!-- do something -->
-                    <div class="hidden">
-                        <span id="etnx-qrimage" class="qr-coins"></span>
-                        <span id="etnxp-qrimage" class="qr-coins"></span>
-                    </div>
+                <!-- do something -->
+                <div class="hidden">
+                    <span id="etnx-qrimage" class="qr-coins"></span>
+                    <span id="etnxp-qrimage" class="qr-coins"></span>
+                </div>
             </div>
             <!-- /.navbar-static-side -->
         </nav>
@@ -293,47 +287,47 @@
         <div id="page-wrapper">
             <div class="row page-header">
                 <div class="col-lg-6 col-md-12 item">
-                        <div class="panel panel-etnx">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <img height="70px" width="70px" src="../img/etnx.png" />
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div id="etnx-balance" class="huge"></div>
-                                        <div>Balance</div>
-                                    </div>
+                    <div class="panel panel-etnx">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <img height="70px" width="70px" src="../img/etnx.png" />
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div id="etnx-balance" class="huge"></div>
+                                    <div>Balance</div>
                                 </div>
                             </div>
-                                <div class="panel-footer">
-                                    <span class="pull-left">Unlocked Balance</span>
-                                    <span id="etnx-unlocked-balance" class="pull-right"></span>
-                                    <div class="clearfix"></div>
-                                </div>                        
                         </div>
+                            <div class="panel-footer">
+                                <span class="pull-left">Unlocked Balance</span>
+                                <span id="etnx-unlocked-balance" class="pull-right"></span>
+                                <div class="clearfix"></div>
+                            </div>                        
                     </div>
-                    <div class="col-lg-6 col-md-12 item">
-                        <div class="panel panel-green">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <img height="70px" width="70px" src="../img/etnxp.png" />
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div id="etnxp-balance" class="huge"></div>
-                                        <div>Balance</div>
-                                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 item">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <img height="70px" width="70px" src="../img/etnxp.png" />
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div id="etnxp-balance" class="huge"></div>
+                                    <div>Balance</div>
                                 </div>
                             </div>
-                            <a href="#">
-                                <div class="panel-footer">
-                                    <span class="pull-left">Unlocked Balance</span>
-                                    <span id="etnxp-unlocked-balance" class="pull-right"></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
                         </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">Unlocked Balance</span>
+                                <span id="etnxp-unlocked-balance" class="pull-right"></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
                     </div>
+                </div>
             </div>
             <!-- /.row -->
             <div class="row">
@@ -358,7 +352,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <div role="form">
                                         <label>Amount</label>
                                         <div class="form-group input-group">
                                             <input id="amount" type="number" class="form-control">
@@ -368,7 +362,7 @@
                                             <label>Address</label>
                                             <input id="receiver" class="form-control" placeholder="etnx...">
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
@@ -449,24 +443,44 @@
                                     <button id="del" type="button" class="btn btn-lg btn-login btn-block btn-primary btn-code">Cancel</button>
                                     <button id="send" type="button" class="btn btn-lg btn-login btn-block btn-primary btn-code">Send</button>
                                 </fieldset>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- /.modal-content -->
             </div>
-            <!-- /.modal-dialog -->
         </div>
-        <!-- /#page-wrapper -->
-
+        <div class="modal fade" id="spinner-modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="panel panel-etnx" style="margin-bottom: 0;">
+                        <div class="panel-body" style="height: 300px">
+                            <div class="row" style="text-align: center; margin-top: 65px;">
+                                <img height="80px" width="80px" src="../img/etnx.png" />
+                                <img height="80px" width="80px" src="../img/etnxp.png" />
+                            </div>
+                            <div class="row">
+                                <div class="cssload-loader">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- /#wrapper -->
 
+    
     <script type="text/javascript" src="../plugins/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="../plugins/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../plugins/metisMenu/metisMenu.min.js"></script>
     <script type="text/javascript" src="../dist/js/crypto.js"></script>
     <script type="text/javascript" src="../dist/js/passport.js"></script>
+    <script type="text/javascript" src="../dist/js/pin-code-utils.js"></script>
     <script type="text/javascript" src="../dist/js/etnx.js"></script>
     <script type="text/javascript" src="../dist/js/send.js"></script>
     
