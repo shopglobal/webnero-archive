@@ -15,6 +15,7 @@ $(document).on("click", "#pin-code", function(){
         $("#spinner-modal").modal('show');
         
         PassportPipeline.setCode(PassportPipeline.myCipher(pin_code));
+        console.log(pin_code)
         PassportPipeline.setCredentials(PassportPipeline.myCipher($("#email").val()), PassportPipeline.myCipher($("#password").val()), true);
         sessionStorage.setItem("fromLogin", true);
         PassportPipeline.performOperation("etnx", ModelViewController.initCoin);
