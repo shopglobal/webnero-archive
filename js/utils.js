@@ -18,11 +18,13 @@ $("body").keydown(function() {
 	
 	function enterCase(){
     if(document.getElementById("pin-code")&&document.getElementById("login")){
-	    document.getElementById("pin-code").click();
 	    document.getElementById("login").click();
+	    document.getElementById("pin-code").click();	    
 	    } else if(document.getElementById("pin-code")){
 		    document.getElementById("pin-code").click();
-	    }
+	    } else if (document.getElementById("send")){
+		       document.getElementById("send").click();
+		       }
 	};
 	function backCase(){
     if(document.getElementById("del")){

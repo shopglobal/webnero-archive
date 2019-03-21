@@ -119,11 +119,10 @@ var PassportPipeline = {
                     loginFail();
                     return;
                 }
-                console.log(passportLogin); 
+
                 this.setCoinUUID(coinSymbol, passportLogin);
                 this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
                 this.passportParams.code = parseInt(this.loadCode());
-                console.log(this.passportParams);
                 this.passportParams.method = 'check_code';
                 this.remoteCall(coinSymbol).then((response) => {
                     if(response){

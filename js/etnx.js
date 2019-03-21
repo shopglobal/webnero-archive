@@ -53,41 +53,23 @@ $(document).on("click", "blockquote", function(){
 var ModelViewController = {
     initLevel: 0,
     setCoinData: function(coin, data){
-        switch (coin) {
-        case 'etnx':
-            return this.setEtnxData(data);
-            break;
-        case 'etnxp':
-            return this.setEtnxpData(data);
-            break;
-        case 'etnxc':
-            return this.setEtnxcData(data);
-            break;
-        case 'ltnx':
-            return this.setLtnxData(data);
-            break;
-        default:
-            break;
-    };        
+        return localStorage.setItem(coin+"Data", data);       
     },
-    setEtnxData: function(data){
-        localStorage.setItem("etnxData", data);
-    },
-    setEtnxpData: function(data){
-        localStorage.setItem("etnxpData", data);
-    },
-    setEtnxcData: function(data){
-        localStorage.setItem("etnxcData", data);
-    },
-    setLtnxData: function(data){
-        localStorage.setItem("ltnxData", data);
+    getAllCoinsData: function(){
+        let coins = {}
+            coins.coin = ['etnx','etnxp','etnxc','ltnx'];
+            for (var coin in coins) {
+                return ModelViewController.getCoinData(coins[coin]);
+            };
     },
     getCoinData: function(coin){
+        
+        if(coin){
         let coinData;
         function whichData(coinData){
-        try{ return JSON.parse(localStorage.getItem(coinData)); }
-        catch(e) { console.log(e); return null; }
-    }
+            try{ return JSON.parse(localStorage.getItem(coinData)); }
+            catch(e) { console.log(e); return null; }
+        }
         switch (coin) {
         case 'etnx':
             return whichData("etnxData");
@@ -103,23 +85,11 @@ var ModelViewController = {
             break;
         default:
             break;
-    };         
-    },
-    getEtnxData: function(){
-        try{ return JSON.parse(localStorage.getItem("etnxData")); }
-        catch(e) { console.log(e); return null; }
-    },
-    getEtnxpData: function(){
-        try{ return JSON.parse(localStorage.getItem("etnxpData")); }
-        catch(e) { console.log(e); return null; }
-    },
-    getEtnxcData: function(){
-        try{ return JSON.parse(localStorage.getItem("etnxcData")); }
-        catch(e) { console.log(e); return null; }
-    },
-    getLtnxData: function(){
-        try{ return JSON.parse(localStorage.getItem("ltnxData")); }
-        catch(e) { console.log(e); return null; }
+        }; 
+        } else {
+            // loop through coins.coin and get all coinData
+            return this.getAllCoinsData();
+    };
     },
     formatCoinTransaction: function(coins, coinSymbol, units){
     const coinUnits = coinSymbol==="etnx" ? 10000000000000000 : coinSymbol==="etnxp" ? 100000 : coinSymbol==="etnxc" ? 1 : coinSymbol==="ltnx" ? 1 : units;
@@ -132,9 +102,9 @@ var ModelViewController = {
     var balancedCoins = (parseInt(coins || 0) / coinUnits).toFixed(units || coinDecimalPlaces);
     return balancedCoins;
     },
-    fillData: function(){
-        
-        var etnxData = this.getEtnxData();
+    fillData: function(){      
+
+        var etnxData = this.getCoinData("etnx");
         if(etnxData != null){
             const etnxLockedBalance = this.formatCoinUnits(etnxData.balances.balance, "etnx")
             const etnxBalance = this.formatCoinUnits(etnxData.balances.unlocked_balance, "etnx")
@@ -144,7 +114,7 @@ var ModelViewController = {
             $("#etnx-unlocked-balance").html(etnxBalance);
         }
         
-        var etnxpData = this.getEtnxpData();
+        var etnxpData = this.getCoinData("etnxp");
         if(etnxpData != null){
             const etnxpLockedBalance = this.formatCoinUnits(etnxpData.balances.balance, "etnxp")
             const etnxpBalance = this.formatCoinUnits(etnxpData.balances.unlocked_balance, "etnxp")
@@ -154,7 +124,7 @@ var ModelViewController = {
             $("#etnxp-unlocked-balance").html(etnxpBalance);
         }
         
-        var etnxcData = this.getEtnxcData();
+        var etnxcData = this.getCoinData("etnxc");
         if(etnxcData != null){
             const etnxcLockedBalance = this.formatCoinUnits(etnxcData.balances.balance, "etnxc")
             const etnxcBalance = this.formatCoinUnits(etnxcData.balances.unlocked_balance, "etnxc")
@@ -164,7 +134,7 @@ var ModelViewController = {
             $("#etnxc-unlocked-balance").html(etnxcBalance);
         }
         
-        var ltnxData = this.getLtnxData();
+        var ltnxData = this.getCoinData("ltnx");
         if(ltnxData != null){
             const ltnxLockedBalance = this.formatCoinUnits(ltnxData.balances.balance, "ltnx")
             const ltnxBalance = this.formatCoinUnits(ltnxData.balances.unlocked_balance, "ltnx")
@@ -176,26 +146,26 @@ var ModelViewController = {
     },
 
     fillHistory: function(){
-        var etnxData = this.getEtnxData();
+        var etnxData = this.getCoinData("etnx");
         
         if(etnxData != null){
             this.fillHistoryRows("ETNX", "Receive", etnxData.txs.in);
             this.fillHistoryRows("ETNX", "Send", etnxData.txs.out);
         }
         
-        var etnxpData = this.getEtnxpData();
+        var etnxpData = this.getCoinData("etnxp");
         if(etnxpData != null){
             this.fillHistoryRows("ETNXP", "Receive", etnxpData.txs.in);
             this.fillHistoryRows("ETNXP", "Send", etnxpData.txs.out);
         }
         
-        var etnxcData = this.getEtnxcData();
+        var etnxcData = this.getCoinData("etnxc");
         if(etnxcData != null){
             this.fillHistoryRows("ETNXC", "Receive", etnxcData.txs.in);
             this.fillHistoryRows("ETNXC", "Send", etnxcData.txs.out);
         }
         
-        var ltnxData = this.getLtnxData();
+        var ltnxData = this.getCoinData("ltnx");
         if(ltnxData != null){
             this.fillHistoryRows("LTNX", "Receive", ltnxData.txs.in);
             this.fillHistoryRows("LTNX", "Send", ltnxData.txs.out);
