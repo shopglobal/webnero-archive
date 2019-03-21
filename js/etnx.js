@@ -71,7 +71,7 @@ var ModelViewController = {
     };        
     },
     setEtnxData: function(data){
-        localStorage.setItem("etnxpData", data);
+        localStorage.setItem("etnxData", data);
     },
     setEtnxpData: function(data){
         localStorage.setItem("etnxpData", data);
