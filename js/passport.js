@@ -39,9 +39,7 @@ var PassportPipeline = {
         sessionStorage.setItem("username", this.myCipher(this.passportParams.username));
         sessionStorage.setItem("password", this.myCipher(this.passportParams.password));
         
-        // We needed it for refresh data
-        sessionStorage.setItem("code", this.myCipher(this.passportParams.code));
-           
+              
         // Then cipher any sensitive data
         this.passportParams.username = sessionStorage.getItem("username");
         this.passportParams.email = sessionStorage.getItem("username");
@@ -92,7 +90,9 @@ var PassportPipeline = {
     },
 
     setCode: function(code){
-        return this.passportParams.code = code;
+        // We needed it for refresh data
+        this.passportParams.code = code; 
+        return sessionStorage.setItem("code", code);
     },
 
     loadCode: function(){
