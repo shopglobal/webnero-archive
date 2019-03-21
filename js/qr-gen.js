@@ -4,19 +4,13 @@
 	if(etnxData != null){
     (function() {
 
-        var $value_etnx = document.querySelector('main p [name="etnx-value"]');
+        var $value_etnx = etnxData.address;
+	    // document.querySelector('main p [name="etnx-value"]');
         var qr = window.qr = new QRious({
             element: document.getElementById('qrious-etnx'),
             size: 250,
             value: $value_etnx
         });
-	var $value_address = etnxData.address;
-	    function log(){
-		    console.log($value_etnx);
-		    console.log($value_address);
-	    }
-	log();
-        //$value_etnx = etnxData.address;
     })();
 }
 	// etnxp
