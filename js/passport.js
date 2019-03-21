@@ -82,19 +82,21 @@ var PassportPipeline = {
         this.passportParams.email = email;
         this.passportParams.password = password;
         if(save)
-            this.saveParams();
+        {
+            return this.saveParams();
+        }
     },
 
     setMethod: function(method){
-        this.passportParams.method = method;
+        return this.passportParams.method = method;
     },
 
     setCode: function(code){
-        this.passportParams.code = this.myCipher(code);
+        return this.passportParams.code = code;
     },
 
     loadCode: function(){
-        this.passportParams.code = this.myDecipher(sessionStorage.code);
+        return this.passportParams.code = this.myDecipher(sessionStorage.code);
     },
     setCoinUUID: function(coinSymbol, passportLogin){
         return sessionStorage.setItem(coinSymbol+"_uuid", this.myCipher(passportLogin.data.uid));
@@ -120,6 +122,8 @@ var PassportPipeline = {
                 console.log(passportLogin); 
                 this.setCoinUUID(coinSymbol, passportLogin);
                 this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
+                this.passportParams.code = parseInt(this.loadCode());
+                console.log(passportParams);
                 this.passportParams.method = 'check_code';
                 this.remoteCall(coinSymbol).then((response) => {
                     if(response){
