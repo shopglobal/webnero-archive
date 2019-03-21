@@ -14,15 +14,8 @@ $(document).on("click", "#pin-code", function(){
 
         $("#spinner-modal").modal('show');
         
-        /*function returnDone(coinSymbol){
-            return coinSymbol;
-        }
-        const returnETNX = returnDone('etnx');
-        const returnETNXP = returnDone('etnxp');*/
         PassportPipeline.setCode(pin_code);
         PassportPipeline.setCredentials($("#email").val(), $("#password").val(), true);
-        //PassportPipeline.performOperation("etnx", returnETNX);
-        //PassportPipeline.performOperation("etnxp", returnETNXP);
         sessionStorage.setItem("fromLogin", true);
         PassportPipeline.performOperation("etnx", ModelViewController.initCoin);
         PassportPipeline.performOperation("etnxp", ModelViewController.initCoin);
