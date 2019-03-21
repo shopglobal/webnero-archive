@@ -11,8 +11,11 @@
             value: $value_etnx
         });
 	var $value_address = etnxData.address;
-	console.log($value_etnx);
-	console.log($value_address);
+	    function log(){
+		    console.log($value_etnx);
+		    console.log($value_address);
+	    }
+	log();
         //$value_etnx = etnxData.address;
     })();
 }
