@@ -142,7 +142,7 @@ var ModelViewController = {
             console.log(etnxData);
             $("#etnx-balance").html(etnxLockedBalance);
             $("#etnx-unlocked-balance").html(etnxBalance);
-        };
+        }
         
         var etnxpData = this.getEtnxpData();
         if(etnxpData != null){
@@ -152,7 +152,7 @@ var ModelViewController = {
             console.log(etnxpData);
             $("#etnxp-balance").html(etnxpLockedBalance);
             $("#etnxp-unlocked-balance").html(etnxpBalance);
-        };
+        }
         
         var etnxcData = this.getEtnxcData();
         if(etnxcData != null){
@@ -162,7 +162,7 @@ var ModelViewController = {
             console.log(etnxcData);
             $("#etnxc-balance").html(etnxcLockedBalance);
             $("#etnxc-unlocked-balance").html(etnxcBalance);
-        };
+        }
         
         var ltnxData = this.getLtnxData();
         if(ltnxData != null){
@@ -172,21 +172,33 @@ var ModelViewController = {
             console.log(ltnxData);
             $("#ltnx-balance").html(ltnxLockedBalance);
             $("#ltnx-unlocked-balance").html(ltnxBalance);
-        };
+        }
     },
 
     fillHistory: function(){
         var etnxData = this.getEtnxData();
-        var etnxpData = this.getEtnxpData();
         
         if(etnxData != null){
             this.fillHistoryRows("ETNX", "Receive", etnxData.txs.in);
             this.fillHistoryRows("ETNX", "Send", etnxData.txs.out);
         }
-
+        
+        var etnxpData = this.getEtnxpData();
         if(etnxpData != null){
             this.fillHistoryRows("ETNXP", "Receive", etnxpData.txs.in);
             this.fillHistoryRows("ETNXP", "Send", etnxpData.txs.out);
+        }
+        
+        var etnxcData = this.getEtnxcData();
+        if(etnxcData != null){
+            this.fillHistoryRows("ETNXC", "Receive", etnxcData.txs.in);
+            this.fillHistoryRows("ETNXC", "Send", etnxcData.txs.out);
+        }
+        
+        var ltnxData = this.getLtnxData();
+        if(ltnxData != null){
+            this.fillHistoryRows("LTNX", "Receive", ltnxData.txs.in);
+            this.fillHistoryRows("LTNX", "Send", ltnxData.txs.out);
         }
     },
     blockchainExplorerLink: function(block, height, txid, coin){
