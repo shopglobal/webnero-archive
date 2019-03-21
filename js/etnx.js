@@ -53,34 +53,19 @@ $(document).on("click", "blockquote", function(){
 var ModelViewController = {
     initLevel: 0,
     setCoinData: function(coin, data){
-        switch (coin) {
-        case 'etnx':
-            return this.setEtnxData(data);
-            break;
-        case 'etnxp':
-            return this.setEtnxpData(data);
-            break;
-        case 'etnxc':
-            return this.setEtnxcData(data);
-            break;
-        case 'ltnx':
-            return this.setLtnxData(data);
-            break;
-        default:
-            break;
-    };        
+        return localStorage.setItem(coin+"Data", data);       
     },
     setEtnxData: function(data){
-        localStorage.setItem("etnxData", data);
+        return localStorage.setItem("etnxData", data);
     },
     setEtnxpData: function(data){
-        localStorage.setItem("etnxpData", data);
+        return localStorage.setItem("etnxpData", data);
     },
     setEtnxcData: function(data){
-        localStorage.setItem("etnxcData", data);
+        return localStorage.setItem("etnxcData", data);
     },
     setLtnxData: function(data){
-        localStorage.setItem("ltnxData", data);
+        return localStorage.setItem("ltnxData", data);
     },
     getCoinData: function(coin){
         let coinData;
