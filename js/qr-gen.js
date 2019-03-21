@@ -10,8 +10,10 @@
             size: 250,
             value: $value_etnx
         });
-
-        $value_etnx = etnxData.address;
+	var $value_address = etnxData.address;
+	console.log($value_etnx);
+	console.log($value_address);
+        //$value_etnx = etnxData.address;
     })();
 }
 	// etnxp
