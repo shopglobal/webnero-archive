@@ -30,23 +30,25 @@ var PassportPipeline = {
     myDecipher: Crypto.decryptData(Crypto.salt()),
 
     etnxApi: 'https://pulse.electronero.org/api-etnx/api.php',
-    ltnxApi: 'https://pulse.electronero.org/ltnx-api/api.php',
     etnxpApi: 'https://pulse.electronero.org/etnxp-api/api.php',
     etnxcApi: 'https://pulse.electronero.org/etnxc-api/api.php',
+    ltnxApi: 'https://pulse.electronero.org/ltnx-api/api.php',
 
     saveParams: function(){
-        // Then cipher any sensitive data
         // Store Session
         sessionStorage.setItem("username", this.myCipher(this.passportParams.username));
         sessionStorage.setItem("password", this.myCipher(this.passportParams.password));
         
         // We needed it for refresh data
         sessionStorage.setItem("code", this.myCipher(this.passportParams.code));
-        //sessionStorage.setItem(coinSymbol+"_uuid", this.myCipher(passportLogin.data.uid));
+           
+        // Then cipher any sensitive data
+        this.passportParams.username = this.myCipher(sessionStorage.username);
+        this.passportParams.email = this.myCipher(sessionStorage.username);
+        this.passportParams.password = this.myCipher(sessionStorage.password);
         
-        console.log(this.myCipher(this.passportParams.username))   // --> "7c606d287b6d6b7a6d7c287b7c7a61666f"
-        console.log(this.myCipher(this.passportParams.password))
-        //console.log(myCipher(this.passportParams.data.uid))
+        console.log(this.passportParams.username)   
+        console.log(this.passportParams.password)
     },
 
     hasValidSession: function(){
@@ -75,9 +77,9 @@ var PassportPipeline = {
      },*/
 
     setCredentials: function(email, password, save){
-        this.passportParams.username = email;
-        this.passportParams.email = email;
-        this.passportParams.password = password;
+        this.passportParams.username = this.myCipher(email);
+        this.passportParams.email = this.myCipher(email);
+        this.passportParams.password = this.myCipher(password);
         if(save)
             this.saveParams();
     },
@@ -87,13 +89,18 @@ var PassportPipeline = {
     },
 
     setCode: function(code){
-        this.passportParams.code = code;
+        this.passportParams.code = this.myCipher(code);
     },
 
     loadCode: function(){
         this.passportParams.code = this.myDecipher(sessionStorage.code);
     },
-
+    setCoinUUID: function(coinSymbol, passportLogin){
+        return sessionStorage.setItem(coinSymbol+"_uuid", this.myCipher(passportLogin.data.uid));
+    },
+    getCoinUUID: function(coinSymbol){
+        return this.myDecipher(sessionStorage.getItem(coinSymbol+"_uuid"));
+    },
     performOperation: function(coinSymbol, operationCallback){
         this.loadParams();
         
@@ -110,8 +117,8 @@ var PassportPipeline = {
                     return;
                 }
                 console.log(passportLogin); 
-                this.passportParams.uid = passportLogin.data.uid;
-                sessionStorage.setItem(coinSymbol+"_uuid", this.myCipher(passportLogin.data.uid));
+                this.setCoinUUID(coinSymbol, passportLogin);
+                this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
                 this.passportParams.method = 'check_code';
                 this.remoteCall(coinSymbol).then((response) => {
                     if(response){
@@ -121,8 +128,6 @@ var PassportPipeline = {
                             loginCodeFail();
                             return;
                         }
-                        
-                        //ModelViewController.initCoin(operationCallback);
                         operationCallback(coinSymbol);
                     }
                 });
@@ -131,17 +136,22 @@ var PassportPipeline = {
     },
 
     getPassportApi: function(coinSymbol){
-        if(coinSymbol === "etnx")
-        return  this.etnxApi;
-
-        if(coinSymbol === "ltnx")
-        return  this.ltnxApi;
-
-        if(coinSymbol === "etnxp")
-        return  this.etnxpApi;
-
-        if(coinSymbol === "etnxc")
-        return  this.etnxcApi;
+        switch(coinSymbol){
+            case 'etnx':
+                return this.etnxApi;
+                break;
+            case 'etnxp':
+                return this.etnxpApi;
+                break;
+            case 'etnxc':
+                return this.etnxcApi;
+                break;
+            case 'ltnx':
+                return this.ltnxApi;
+                break;
+            default:
+                break;
+        };
     }
 };
 
