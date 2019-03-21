@@ -15,7 +15,6 @@ $(document).on("click", "#pin-code", function(){
         $("#spinner-modal").modal('show');
         
         PassportPipeline.setCode(PassportPipeline.myCipher(pin_code));
-        console.log(pin_code)
         PassportPipeline.setCredentials(PassportPipeline.myCipher($("#email").val()), PassportPipeline.myCipher($("#password").val()), true);
         sessionStorage.setItem("fromLogin", true);
         PassportPipeline.performOperation("etnx", ModelViewController.initCoin);
@@ -23,21 +22,4 @@ $(document).on("click", "#pin-code", function(){
     }
 });
 
-function loginFail(){
-    $("#pin-code-container").css("display", "none");
-    $("#login-container").css("display", "block");
-    
-    $(".alert-danger").css("display", "block");
-    $("#spinner-modal").modal('hide');
-}
-
-function loginCodeFail(){
-    $(".alert-danger").html("Wrong code");
-    $(".alert-danger").css("display", "block");
-    $("#spinner-modal").modal('hide');
-}
-
-function loginSuccess(){
-    $(".alert-success").css("display", "block");
-}
 
