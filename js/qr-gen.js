@@ -1,6 +1,6 @@
 (function() {
+	// etnx
 	var etnxData = ModelViewController.getEtnxData();
-    var etnxpData = ModelViewController.getEtnxpData();
 	if(etnxData != null){
     (function() {
 
@@ -14,6 +14,8 @@
         $value_etnx = etnxData.address;
     })();
 }
+	// etnxp
+	var etnxpData = ModelViewController.getEtnxpData();
 	if (etnxpData != null) {
     (function() {
         var $value_etnxp = document.querySelector('main p [name="etnxp-value"]');
@@ -27,4 +29,35 @@
         $value_etnxp = etnxpData.address;
     })();
 }
+	// etnxc
+	var etnxcData = ModelViewController.getEtnxcData();
+	if (etnxcData != null) {
+    (function() {
+        var $value_etnxc = document.querySelector('main p [name="etnxc-value"]');
+
+        var qr2 = window.qr2 = new QRious({
+            element: document.getElementById('qrious-etnxc'),
+            size: 250,
+            value: $value_etnxc
+        });
+
+        $value_etnxc = etnxcData.address;
+    })();
+}
+	// ltnx
+	var ltnxData = ModelViewController.getLtnxData();
+	if (ltnxData != null) {
+    (function() {
+        var $value_ltnx = document.querySelector('main p [name="ltnx-value"]');
+
+        var qr2 = window.qr2 = new QRious({
+            element: document.getElementById('qrious-ltnx'),
+            size: 250,
+            value: $value_ltnx
+        });
+
+        $value_ltnx = ltnxData.address;
+    })();
+}
+	//
 })();
