@@ -17,31 +17,6 @@ function checkMandatoryField(id){
     return true;
 }
 
-$(document).on("click", "#send", function(){
-    $(".alert").css("display", "none");
-    $(".btn-code").css("display", "none");
-    if(pin_code.length < 5){
-        sendFail("Provide 5 digits code");
-    }
-    else {
-        $("#spinner-modal").modal('show');
-        $("#send-code-modal").modal('hide');
-
-        sessionStorage.setItem("code", PassportPipeline.myCipher(pin_code));
-        console.log(pin_code);
-        // check_code
-
-        var coin_selected = $(".btn-selected").attr("id");
-        PassportPipeline.setCode(pin_code);
-        if(coin_selected == "etnxp-send"){
-            PassportPipeline.performOperation("etnxp", sendCallback);
-        }
-        else{
-            PassportPipeline.performOperation("etnx", sendCallback);
-        }
-    }     
-});
-
 function sendCallback(coinSymbol){
 
     PassportPipeline.setMethod('send_transaction');
@@ -74,6 +49,42 @@ function sendCallback(coinSymbol){
             sendFail("System Fail");
     });
 }
+
+
+$(document).on("click", "#send", function(){
+    $(".alert").css("display", "none");
+    $(".btn-code").css("display", "none");
+    if(pin_code.length < 5){
+        sendFail("Provide 5 digits code");
+    }
+    else {
+        $("#spinner-modal").modal('show');
+        $("#send-code-modal").modal('hide');
+
+        sessionStorage.setItem("code", PassportPipeline.myCipher(pin_code));
+        console.log(pin_code);
+        // check_code
+
+        var coin_selected = $(".btn-selected").attr("id");
+        PassportPipeline.setCode(PassportPipeline.myCipher(pin_code));
+	    switch(coin_selected){
+		case 'etnx-send':
+		     return PassportPipeline.performOperation("etnx", sendCallback);
+	             break;
+		case 'etnxp-send':
+		     return PassportPipeline.performOperation("etnxp", sendCallback);
+	             break;
+		case 'etnxc-send':
+		     return PassportPipeline.performOperation("etnxc", sendCallback); 
+	             break;
+		case 'ltnx-send':
+		     return PassportPipeline.performOperation("ltnx", sendCallback); 
+	             break;
+                default:
+                     break;
+	    }
+    }     
+});
 
 function sendSuccess(){
     $(".alert-success").css("display", "block");
