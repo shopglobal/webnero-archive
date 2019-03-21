@@ -52,6 +52,7 @@ gulp.task('js', function(done) {
     gulp.src(['js/crypto.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/index.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/login.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/login-utils.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/register.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/pin-code-utils.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/pin-code.js']).pipe(gulp.dest('dist/js'));
