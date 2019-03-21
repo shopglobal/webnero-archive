@@ -43,9 +43,9 @@ var PassportPipeline = {
         sessionStorage.setItem("code", this.myCipher(this.passportParams.code));
            
         // Then cipher any sensitive data
-        this.passportParams.username = this.myCipher(sessionStorage.username);
-        this.passportParams.email = this.myCipher(sessionStorage.username);
-        this.passportParams.password = this.myCipher(sessionStorage.password);
+        this.passportParams.username = sessionStorage.getItem("username");
+        this.passportParams.email = sessionStorage.getItem("username");
+        this.passportParams.password = sessionStorage.getItem("password");
         
         console.log(this.passportParams.username)   
         console.log(this.passportParams.password)
@@ -77,9 +77,10 @@ var PassportPipeline = {
      },*/
 
     setCredentials: function(email, password, save){
-        this.passportParams.username = this.myCipher(email);
-        this.passportParams.email = this.myCipher(email);
-        this.passportParams.password = this.myCipher(password);
+        // maybe cipher the data, but it's done elsewhere
+        this.passportParams.username = email;
+        this.passportParams.email = email;
+        this.passportParams.password = password;
         if(save)
             this.saveParams();
     },
