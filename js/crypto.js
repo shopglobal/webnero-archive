@@ -1,6 +1,6 @@
 var Crypto = {
     salt: function(){
-		return CryptoLock.salt();
+	    return CryptoLock.salt();
 	},
     encryptData: function(salt){
     let textToChars = text => text.split('').map(c => c.charCodeAt(0))
