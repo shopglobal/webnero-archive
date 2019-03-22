@@ -59,7 +59,7 @@ var ModelViewController = {
         if(coin){
         let coinData;
         function whichData(coinData){
-            ModelViewController.coinState++ // local check if === 4 we got all data
+            ModelViewController.coinState++ 
             try{ return JSON.parse(localStorage.getItem(coinData)); }
             catch(e) { console.log(e); return null; }
         }
