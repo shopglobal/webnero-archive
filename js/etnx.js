@@ -46,27 +46,20 @@ $(document).on("click", ".coin-selector", function(){
 $(document).on("click", "blockquote", function(){
     $("blockquote").removeClass("selected");
     $(this).addClass("selected");
-    // this didn't quite work, and google suspended the charts API for QR and now has deprecated/shutdown those endpoints. I replaced it with qrious
-    // document.getElementById("qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent($(this).children("p").html())+"'/>";
 });
  
 var ModelViewController = {
     initLevel: 0,
+    coinState: 0,
+    coins: { coin: ['etnx','etnxp','etnxc','ltnx'] },
     setCoinData: function(coin, data){
         return localStorage.setItem(coin+"Data", data);       
     },
-    getAllCoinsData: function(){
-        let coins = {}
-            coins.coin = ['etnx','etnxp','etnxc','ltnx'];
-            for (var coin in coins) {
-                return ModelViewController.getCoinData(coins[coin]);
-            };
-    },
     getCoinData: function(coin){
-        
         if(coin){
         let coinData;
         function whichData(coinData){
+            ModelViewController.coinState++ // local check if === 4 we got all data
             try{ return JSON.parse(localStorage.getItem(coinData)); }
             catch(e) { console.log(e); return null; }
         }
@@ -87,8 +80,11 @@ var ModelViewController = {
             break;
         }; 
         } else {
-            // loop through coins.coin and get all coinData
-            return this.getAllCoinsData();
+             // loop through coins.coin and get all coinData
+            let coins = ModelViewController.coins.coin;
+            for (var i=0;i<coins.length;i++) {
+                ModelViewController.getCoinData(coins[i]);
+            };
     };
     },
     formatCoinTransaction: function(coins, coinSymbol, units){
