@@ -166,6 +166,10 @@ var PassportPipeline = {
                             loginCodeFail();
                             return;
                         }
+                        ModelViewController.coinState++
+                        if(ModelViewController.coinState>=4){
+                           location.href = "verify.html";
+                           }
                         operationCallback(coinSymbol);
                     }
                 });
