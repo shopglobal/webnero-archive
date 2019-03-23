@@ -51,6 +51,12 @@ $(document).on("click", "blockquote", function(){
 var ModelViewController = {
     initLevel: 0,
     coinState: 0,
+    returnState: function(which){
+        if(!which){
+            which = 0;
+        }
+        return ModelViewController.coinState = which;
+    },
     coins: { coin: ['etnx','etnxp','etnxc','ltnx'] },
     setCoinData: function(coin, data){
         return localStorage.setItem(coin+"Data", data);       
