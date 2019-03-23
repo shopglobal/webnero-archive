@@ -200,7 +200,6 @@ var ModelViewController = {
         console.log("3");
         PassportPipeline.setMethod('getaddr');
         PassportPipeline.loadParams();
-        PassportPipeline.passportParams.uid = parseInt(PassportPipeline.getCoinUUID(coinSymbol));
         PassportPipeline.passportParams.code = parseInt(PassportPipeline.loadCode());
         console.log(PassportPipeline.passportParams);
         if(coinSymbol){
