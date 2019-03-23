@@ -198,11 +198,15 @@ var ModelViewController = {
     
     initCoin: function(coinSymbol){
         console.log("3");
-        console.log(PassportPipeline.passportParams);
         PassportPipeline.setMethod('getaddr');
+        PassportPipeline.loadParams();
+        PassportPipeline.passportParams.uid = parseInt(PassportPipeline.getCoinUUID(coinSymbol));
+        PassportPipeline.passportParams.code = parseInt(PassportPipeline.loadCode());
+        console.log(PassportPipeline.passportParams);
         if(coinSymbol){
                 ModelViewController.coinState++
             }
+        
         PassportPipeline.remoteCall(coinSymbol).then((response) => {
             if(response){
                 console.log(response); 
