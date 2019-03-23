@@ -18,8 +18,8 @@ $(document).on("click", "#pin-code", function(){
         $("#spinner-modal").modal('show');
 
         PassportPipeline.setMethod('register');
-        PassportPipeline.setCredentials(PassportPipeline.myCipher($("#email").val()), PassportPipeline.myCipher($("#password").val()), false);
         PassportPipeline.setCode(PassportPipeline.myCipher(pin_code));
+        PassportPipeline.setCredentials(PassportPipeline.myCipher($("#email").val()), PassportPipeline.myCipher($("#password").val()), true);
             
             // loop through coins.coin and register all coins simultaneously
             let coins = ModelViewController.coins.coin;
