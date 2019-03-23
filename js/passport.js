@@ -139,7 +139,6 @@ var PassportPipeline = {
         });
     },
     registerOperation: function(coinSymbol, operationCallback){
-        this.saveParams();
         this.loadParams();
         
         this.passportParams.method = 'register';
