@@ -109,6 +109,7 @@ var PassportPipeline = {
         
         
         this.passportParams.method = 'login';
+        this.setMethod('login');
         this.passportParams.coinAPIurl = this.getPassportApi(coinSymbol);
         this.passportParams.uid = null;
 
@@ -125,6 +126,7 @@ var PassportPipeline = {
                 this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
                 this.passportParams.code = parseInt(this.loadCode());
                 this.passportParams.method = 'check_code';
+                this.setMethod('check_code');
                 this.remoteCall(coinSymbol).then((response) => {
                     if(response){
                         console.log(response); 
@@ -133,6 +135,7 @@ var PassportPipeline = {
                             loginCodeFail();
                             return;
                         }
+                        this.setMethod('getaddr');
                         operationCallback(coinSymbol);
                     }
                 });
