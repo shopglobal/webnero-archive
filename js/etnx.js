@@ -197,10 +197,9 @@ var ModelViewController = {
         }
     },
     checkState: 0,
-
     initCoin: function(coinSymbol){
-        checkState++
-        console.log("initCoin: x"+checkState)
+        this.checkState++
+        console.log("initCoin: x"+this.checkState)
         PassportPipeline.remoteCall(coinSymbol).then((response) => {
             if(response){
                 console.log(response); 
