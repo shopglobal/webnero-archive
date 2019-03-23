@@ -138,6 +138,41 @@ var PassportPipeline = {
             }
         });
     },
+    registerOperation: function(coinSymbol, operationCallback){
+        this.saveParams();
+        this.loadParams();
+        
+        this.passportParams.method = 'register';
+        this.passportParams.coinAPIurl = this.getPassportApi(coinSymbol);
+        this.passportParams.uid = null;
+
+        this.remoteCall(coinSymbol).then((response) => {
+            console.log(this.passportParams);
+            if(response){
+                let passportLogin = JSON.parse(response);
+                if(passportLogin.hasOwnProperty("error")){
+                    loginFail();
+                    return;
+                }
+
+                this.setCoinUUID(coinSymbol, passportLogin);
+                this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
+                this.passportParams.code = parseInt(this.loadCode());
+                this.passportParams.method = 'add_code';
+                this.remoteCall(coinSymbol).then((response) => {
+                    if(response){
+                        console.log(response); 
+                        let passportCheckCode = JSON.parse(response);
+                        if(passportCheckCode.hasOwnProperty("error")){
+                            loginCodeFail();
+                            return;
+                        }
+                        operationCallback(coinSymbol);
+                    }
+                });
+            }
+        });
+    },
 
     getPassportApi: function(coinSymbol){
         switch(coinSymbol){
