@@ -148,28 +148,35 @@ var ModelViewController = {
 
     fillHistory: function(){
         var etnxData = this.getCoinData("etnx");
-        
         if(etnxData != null){
-            this.fillHistoryRows("ETNX", "Receive", etnxData.txs.in);
-            this.fillHistoryRows("ETNX", "Send", etnxData.txs.out);
+            if(etnxData.txs.in || etnxData.txs.out){
+                this.fillHistoryRows("ETNX", "Receive", etnxData.txs.in);
+                this.fillHistoryRows("ETNX", "Send", etnxData.txs.out);
+            }
         }
         
         var etnxpData = this.getCoinData("etnxp");
         if(etnxpData != null){
-            this.fillHistoryRows("ETNXP", "Receive", etnxpData.txs.in);
-            this.fillHistoryRows("ETNXP", "Send", etnxpData.txs.out);
+            if(etnxpData.txs.in || etnxpData.txs.out){
+                this.fillHistoryRows("ETNXP", "Receive", etnxpData.txs.in);
+                this.fillHistoryRows("ETNXP", "Send", etnxpData.txs.out);
+            }
         }
         
         var etnxcData = this.getCoinData("etnxc");
         if(etnxcData != null){
-            this.fillHistoryRows("ETNXC", "Receive", etnxcData.txs.in);
-            this.fillHistoryRows("ETNXC", "Send", etnxcData.txs.out);
+            if(etnxcData.txs.in || etnxcData.txs.out){
+                this.fillHistoryRows("ETNXC", "Receive", etnxcData.txs.in);
+                this.fillHistoryRows("ETNXC", "Send", etnxcData.txs.out);
+            }
         }
         
         var ltnxData = this.getCoinData("ltnx");
         if(ltnxData != null){
-            this.fillHistoryRows("LTNX", "Receive", ltnxData.txs.in);
-            this.fillHistoryRows("LTNX", "Send", ltnxData.txs.out);
+            if(ltnxData.txs.in || ltnxData.txs.out){
+                this.fillHistoryRows("LTNX", "Receive", ltnxData.txs.in);
+                this.fillHistoryRows("LTNX", "Send", ltnxData.txs.out);
+            }
         }
     },
     blockchainExplorerLink: function(block, height, txid, coin){
