@@ -1,15 +1,18 @@
 var PassportPipeline = {
 
-    passportParams: { method: '',
-                    timestamp: '',
-                    date: '',
-                    telegramID: '',
-                    telegramUsername: '',
+    passportParams: { 
+                    method: '',
                     username: '',
                     email: '',
                     password: '',
                     code: '',
                     uid: '',
+                    unlocked_balance: 0, 
+                    balance: 0,
+                    locked_balance: 0,
+                    coinAPIurl: "",
+                    timestamp: '',
+                    date: '',
                     name: '',
                     addr: '',
                     pid: '',
@@ -17,13 +20,11 @@ var PassportPipeline = {
                     txid: '',
                     link: '',
                     notes: '',
+                    telegramID: '',
+                    telegramUsername: '',
                     bounty_id: '',
                     address: '',  
-                    secret: '',
-                    unlocked_balance: 0, 
-                    balance: 0,
-                    locked_balance: 0,
-                    coinAPIurl: ""
+                    secret: ''
     },
 
     myCipher: Crypto.encryptData(Crypto.salt()),
