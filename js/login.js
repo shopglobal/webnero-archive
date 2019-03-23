@@ -23,7 +23,7 @@ $(document).on("click", "#pin-code", function(){
             ModelViewController.returnState();
             for (var k=0;k<coins.length;k++) {
                 const selectCoins = coins[k];
-                PassportPipeline.performOperation(selectCoins, setTimeout(ModelViewController.initCoin, 2000, selectCoins));
+                PassportPipeline.performOperation(selectCoins, ModelViewController.initCoin(selectCoins));
             };
         
     }
