@@ -196,16 +196,26 @@ var ModelViewController = {
                           "</tr>" );
         }
     },
-    checkState: 0,
+    
     initCoin: function(coinSymbol){
-        this.checkState = this.checkState+1;
-        console.log("initCoin: x"+this.checkState)
+        console.log("3");
+        console.log(PassportPipeline.passportParams);
+        PassportPipeline.setMethod('getaddr');
+        if(coinSymbol){
+                ModelViewController.coinState++
+            }
         PassportPipeline.remoteCall(coinSymbol).then((response) => {
             if(response){
                 console.log(response); 
-                ModelViewController.setCoinData(coinSymbol, response);
                 let passportBalance = JSON.parse(response);
-                console.log(passportBalance)
+                console.log(passportBalance);
+                if(passportBalance.hasOwnProperty("error")){
+                    PassportPipeline.performOperation(coinSymbol, setTimeout(ModelViewController.initCoin, 2000));
+                    return;
+                }
+                else if(!passportBalance.hasOwnProperty("error")) {
+                    ModelViewController.setCoinData(coinSymbol, passportBalance);
+                }
             }
 
             $.event.trigger({
