@@ -105,11 +105,8 @@ var PassportPipeline = {
         return this.myDecipher(sessionStorage.getItem(coinSymbol+"_uuid"));
     },
     performOperation: function(coinSymbol, operationCallback){
-        if(ModelViewController.coinState===0){
-            this.saveParams()
-        } else if(ModelViewController.coinState<=0){
-            this.loadParams()
-        }     
+        this.saveParams();
+        this.loadParams();    
         
         
         this.passportParams.method = 'login';
