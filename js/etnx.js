@@ -221,7 +221,6 @@ var ModelViewController = {
                 type: "init.done",
                 coin: coinSymbol
             });
-        });
     },
 
     refreshData: function(){
