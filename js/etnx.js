@@ -207,6 +207,22 @@ var ModelViewController = {
             });
         });
     },
+    initVerification: function(coinSymbol){
+            if(coinSymbol){
+                ModelViewController.coinState++
+            }
+
+            if(!PassportPipeline.hasValidSession())
+            {
+                location.href = "verify.html";
+            }
+
+            $.event.trigger({
+                type: "init.done",
+                coin: coinSymbol
+            });
+        });
+    },
 
     refreshData: function(){
         $("#spinner-modal").modal('show');
