@@ -216,7 +216,7 @@ var ModelViewController = {
                     return;
                 }
                 else if(!passportBalance.hasOwnProperty("error")) {
-                    ModelViewController.setCoinData(coinSymbol, passportBalance);
+                    ModelViewController.setCoinData(coinSymbol, response);
                 }
             }
 
