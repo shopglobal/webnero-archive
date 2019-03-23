@@ -18,22 +18,16 @@ $(document).on("click", "#pin-code", function(){
         $("#spinner-modal").modal('show');
 
         PassportPipeline.setMethod('register');
-        PassportPipeline.setCredentials($("#email").val(), $("#password").val(), false);
-        PassportPipeline.setCode(pin_code);
+        PassportPipeline.setCredentials(PassportPipeline.myCipher($("#email").val()), PassportPipeline.myCipher($("#password").val()), false);
+        PassportPipeline.setCode(PassportPipeline.myCipher(pin_code));
+            
+            // loop through coins.coin and register all coins simultaneously
+            let coins = ModelViewController.coins.coin;
+            for (var j=0;j<coins.length;j++) {
+                const allCoins = coins[j];
+                PassportPipeline.registerOperation(allCoins, ModelViewController.initVerification);
+            };
 
-        PassportPipeline.remoteCall("etnx").then((response) => {
-            if(response){
-                console.log(response); 
-                var registerJson = JSON.parse(response);
-                if(registerJson.status == "success"){
-                    location.href = "login.html";
-                }
-                else
-                    registerFail("system error");
-            }
-            else
-                registerFail("system error");
-        });
     }
 });
 
