@@ -22,6 +22,8 @@ $("body").keydown(function() {
 	    document.getElementById("pin-code").click();	    
 	    } else if(document.getElementById("pin-code")){
 		    document.getElementById("pin-code").click();
+	    } else if(document.getElementById("register")){
+		    document.getElementById("register").click();
 	    } else if (document.getElementById("send")){
 		       document.getElementById("send").click();
 		       }

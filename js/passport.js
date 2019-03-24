@@ -1,15 +1,18 @@
 var PassportPipeline = {
 
-    passportParams: { method: '',
-                    timestamp: '',
-                    date: '',
-                    telegramID: '',
-                    telegramUsername: '',
+    passportParams: { 
+                    method: '',
                     username: '',
                     email: '',
                     password: '',
                     code: '',
                     uid: '',
+                    unlocked_balance: 0, 
+                    balance: 0,
+                    locked_balance: 0,
+                    coinAPIurl: "",
+                    timestamp: '',
+                    date: '',
                     name: '',
                     addr: '',
                     pid: '',
@@ -17,13 +20,11 @@ var PassportPipeline = {
                     txid: '',
                     link: '',
                     notes: '',
+                    telegramID: '',
+                    telegramUsername: '',
                     bounty_id: '',
                     address: '',  
-                    secret: '',
-                    unlocked_balance: 0, 
-                    balance: 0,
-                    locked_balance: 0,
-                    coinAPIurl: ""
+                    secret: ''
     },
 
     myCipher: Crypto.encryptData(Crypto.salt()),
@@ -105,12 +106,15 @@ var PassportPipeline = {
         return this.myDecipher(sessionStorage.getItem(coinSymbol+"_uuid"));
     },
     performOperation: function(coinSymbol, operationCallback){
-        this.loadParams();
+        this.loadParams();    
+        
         
         this.passportParams.method = 'login';
+        this.setMethod('login');
         this.passportParams.coinAPIurl = this.getPassportApi(coinSymbol);
         this.passportParams.uid = null;
-
+        console.log("1");
+        console.log(this.passportParams);
         this.remoteCall(coinSymbol).then((response) => {
             console.log(this.passportParams);
             if(response){
@@ -124,6 +128,9 @@ var PassportPipeline = {
                 this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
                 this.passportParams.code = parseInt(this.loadCode());
                 this.passportParams.method = 'check_code';
+                this.setMethod('check_code');
+                console.log("2");
+                console.log(this.passportParams);
                 this.remoteCall(coinSymbol).then((response) => {
                     if(response){
                         console.log(response); 
@@ -132,6 +139,54 @@ var PassportPipeline = {
                             loginCodeFail();
                             return;
                         }
+                        if(ModelViewController.coinState){
+                            console.log("MVC.coinState:")
+                           console.log(ModelViewController.coinState)
+                           }
+                        console.log("3");
+                        console.log(this.passportParams);
+                        operationCallback(coinSymbol);
+                    }
+                });
+            }
+        });
+    },
+    registerOperation: function(coinSymbol, operationCallback){
+        this.loadParams();
+        
+        this.passportParams.method = 'register';
+        this.passportParams.coinAPIurl = this.getPassportApi(coinSymbol);
+        this.passportParams.uid = null;
+        console.log("1");
+        console.log(this.passportParams);
+        this.remoteCall(coinSymbol).then((response) => {
+            if(response){
+                let passportLogin = JSON.parse(response);
+                if(passportLogin.hasOwnProperty("error")){
+                    loginFail();
+                    return;
+                }
+
+                this.setCoinUUID(coinSymbol, passportLogin);
+                this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
+                this.passportParams.code = parseInt(this.loadCode());
+                this.passportParams.method = 'add_code';
+                console.log("2");
+                console.log(this.passportParams);
+                this.remoteCall(coinSymbol).then((response) => {
+                    if(response){
+                        console.log(response); 
+                        let passportCheckCode = JSON.parse(response);
+                        if(passportCheckCode.hasOwnProperty("error")){
+                            loginCodeFail();
+                            return;
+                        }
+                        ModelViewController.coinState++
+                        if(ModelViewController.coinState>=4){
+                           location.href = "verify.html";
+                           }
+                        console.log("3");
+                        console.log(this.passportParams);
                         operationCallback(coinSymbol);
                     }
                 });

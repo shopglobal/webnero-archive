@@ -1,4 +1,3 @@
-
 //Loads the correct sidebar on window load,
 //collapses the sidebar on window resize.
 // Sets the min-height of #page-wrapper to window size
@@ -46,27 +45,26 @@ $(document).on("click", ".coin-selector", function(){
 $(document).on("click", "blockquote", function(){
     $("blockquote").removeClass("selected");
     $(this).addClass("selected");
-    // this didn't quite work, and google suspended the charts API for QR and now has deprecated/shutdown those endpoints. I replaced it with qrious
-    // document.getElementById("qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent($(this).children("p").html())+"'/>";
 });
  
 var ModelViewController = {
     initLevel: 0,
+    coinState: 0,
+    returnState: function(which){
+        if(!which){
+            which = 0;
+        }
+        return ModelViewController.coinState = which;
+    },
+    coins: { coin: ['etnx','etnxp','etnxc','ltnx'] },
     setCoinData: function(coin, data){
         return localStorage.setItem(coin+"Data", data);       
     },
-    getAllCoinsData: function(){
-        let coins = {}
-            coins.coin = ['etnx','etnxp','etnxc','ltnx'];
-            for (var coin in coins) {
-                return ModelViewController.getCoinData(coins[coin]);
-            };
-    },
     getCoinData: function(coin){
-        
         if(coin){
         let coinData;
         function whichData(coinData){
+            ModelViewController.coinState++ 
             try{ return JSON.parse(localStorage.getItem(coinData)); }
             catch(e) { console.log(e); return null; }
         }
@@ -87,8 +85,11 @@ var ModelViewController = {
             break;
         }; 
         } else {
-            // loop through coins.coin and get all coinData
-            return this.getAllCoinsData();
+             // loop through coins.coin and get all coinData
+            let coins = ModelViewController.coins.coin;
+            for (var i=0;i<coins.length;i++) {
+                ModelViewController.getCoinData(coins[i]);
+            };
     };
     },
     formatCoinTransaction: function(coins, coinSymbol, units){
@@ -147,28 +148,35 @@ var ModelViewController = {
 
     fillHistory: function(){
         var etnxData = this.getCoinData("etnx");
-        
         if(etnxData != null){
-            this.fillHistoryRows("ETNX", "Receive", etnxData.txs.in);
-            this.fillHistoryRows("ETNX", "Send", etnxData.txs.out);
+            if(etnxData.txs.in || etnxData.txs.out){
+                this.fillHistoryRows("ETNX", "Receive", etnxData.txs.in);
+                this.fillHistoryRows("ETNX", "Send", etnxData.txs.out);
+            }
         }
         
         var etnxpData = this.getCoinData("etnxp");
         if(etnxpData != null){
-            this.fillHistoryRows("ETNXP", "Receive", etnxpData.txs.in);
-            this.fillHistoryRows("ETNXP", "Send", etnxpData.txs.out);
+            if(etnxpData.txs.in || etnxpData.txs.out){
+                this.fillHistoryRows("ETNXP", "Receive", etnxpData.txs.in);
+                this.fillHistoryRows("ETNXP", "Send", etnxpData.txs.out);
+            }
         }
         
         var etnxcData = this.getCoinData("etnxc");
         if(etnxcData != null){
-            this.fillHistoryRows("ETNXC", "Receive", etnxcData.txs.in);
-            this.fillHistoryRows("ETNXC", "Send", etnxcData.txs.out);
+            if(etnxcData.txs.in || etnxcData.txs.out){
+                this.fillHistoryRows("ETNXC", "Receive", etnxcData.txs.in);
+                this.fillHistoryRows("ETNXC", "Send", etnxcData.txs.out);
+            }
         }
         
         var ltnxData = this.getCoinData("ltnx");
         if(ltnxData != null){
-            this.fillHistoryRows("LTNX", "Receive", ltnxData.txs.in);
-            this.fillHistoryRows("LTNX", "Send", ltnxData.txs.out);
+            if(ltnxData.txs.in || ltnxData.txs.out){
+                this.fillHistoryRows("LTNX", "Receive", ltnxData.txs.in);
+                this.fillHistoryRows("LTNX", "Send", ltnxData.txs.out);
+            }
         }
     },
     blockchainExplorerLink: function(block, height, txid, coin){
@@ -194,15 +202,29 @@ var ModelViewController = {
                           "</tr>" );
         }
     },
-
+    
     initCoin: function(coinSymbol){
+        console.log("3");
         PassportPipeline.setMethod('getaddr');
+        PassportPipeline.loadParams();
+        PassportPipeline.passportParams.code = parseInt(PassportPipeline.loadCode());
+        console.log(PassportPipeline.passportParams);
+        if(coinSymbol){
+                ModelViewController.coinState++
+            }
+        
         PassportPipeline.remoteCall(coinSymbol).then((response) => {
             if(response){
                 console.log(response); 
-                ModelViewController.setCoinData(coinSymbol, response);
                 let passportBalance = JSON.parse(response);
-                console.log(passportBalance)
+                console.log(passportBalance);
+                if(passportBalance.hasOwnProperty("error")){
+                    PassportPipeline.performOperation(coinSymbol, ModelViewController.initCoin);
+                    return;
+                }
+                else if(!passportBalance.hasOwnProperty("error")) {
+                    ModelViewController.setCoinData(coinSymbol, response);
+                }
             }
 
             $.event.trigger({
@@ -210,6 +232,21 @@ var ModelViewController = {
                 coin: coinSymbol
             });
         });
+    },
+    initVerification: function(coinSymbol){
+            if(coinSymbol){
+                ModelViewController.coinState++
+            }
+
+            if(!PassportPipeline.hasValidSession())
+            {
+                location.href = "verify.html";
+            }
+
+            $.event.trigger({
+                type: "init.done",
+                coin: coinSymbol
+            });
     },
 
     refreshData: function(){
