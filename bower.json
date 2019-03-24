@@ -37,7 +37,8 @@
     "morrisjs": "~0.5.1",
     "datatables-responsive": "1.0.6",
     "bootstrap-social": "~4.8.0",
-    "flot.tooltip": "~0.8.4"
+    "flot.tooltip": "~0.8.4",
+    "qrious": "^4.0.2"
   },
   "resolutions": {
     "font-awesome": "~4.6.3"

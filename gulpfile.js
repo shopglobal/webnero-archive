@@ -46,14 +46,19 @@ gulp.task('minify-css', gulp.series('less', function(done) {
 // Copy JS to dist
 gulp.task('js', function(done) {
     gulp.src(['js/etnx.js']).pipe(gulp.dest('dist/js'));
-    gulp.src(['js/simulatedData.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/utils.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/qr-gen.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/locals.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/crypto.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/index.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/login.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/login-utils.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/register.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/pin-code-utils.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/pin-code.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/history.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/send.js']).pipe(gulp.dest('dist/js'));
-    gulp.src(['js/mob_wallet.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/passport.js']).pipe(gulp.dest('dist/js'));
 
     done();
 })
@@ -95,6 +100,9 @@ gulp.task('copy', function(done) {
 
     gulp.src(['bower_components/raphael/raphael.js', 'bower_components/raphael/raphael.min.js'])
         .pipe(gulp.dest('plugins/raphael'))
+
+    gulp.src(['bower_components/qrious/dist/qrious.js', 'bower_components/qrious/dist/qrious.min.js'])
+        .pipe(gulp.dest('plugins/qrious'))
 
         done();
 

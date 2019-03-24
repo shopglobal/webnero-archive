@@ -40,7 +40,7 @@
                             Login fail, please check email and password
                         </div>
                         <div class="alert alert-success" style="display: none">
-                            Login succesfull, retrieving data, please wait
+                            Login successful, retrieving data, please wait
                         </div>
                         <div role="form">
                             <fieldset>
@@ -67,16 +67,15 @@
                     </div>
                     <div class="panel-body">
                         <div class="alert alert-danger" style="display: none">
-                            Please provide 5 digits
                         </div>
                         <div role="form">
                             <fieldset>
-                                <div class="form-group" style="text-align: center">
-                                    <input id="digit-1" class="form-control" type="password" style="width: 34px; display: inline-block" disabled>
-                                    <input id="digit-2" class="form-control" type="password" style="width: 34px; display: inline-block" disabled>
-                                    <input id="digit-3" class="form-control" type="password" style="width: 34px; display: inline-block" disabled>
-                                    <input id="digit-4" class="form-control" type="password" style="width: 34px; display: inline-block" disabled>
-                                    <input id="digit-5" class="form-control" type="password" style="width: 34px; display: inline-block" disabled>
+                                <div id="pin-form" class="form-group inputTxt" style="text-align: center">
+                                    <input id="digit-1" class="form-control inputTxt" type="password" style="width: 34px; display: inline-block" disabled>
+                                    <input id="digit-2" class="form-control inputTxt" type="password" style="width: 34px; display: inline-block" disabled>
+                                    <input id="digit-3" class="form-control inputTxt" type="password" style="width: 34px; display: inline-block" disabled>
+                                    <input id="digit-4" class="form-control inputTxt" type="password" style="width: 34px; display: inline-block" disabled>
+                                    <input id="digit-5" class="form-control inputTxt" type="password" style="width: 34px; display: inline-block" disabled>
                                 </div>
                                 <div class="form-group" style="text-align: center">
                                     <button id="1" type="button" class="digit btn btn-lg btn-login btn-primary btn-circle">1</button>
@@ -129,11 +128,16 @@
         </div>
     </div>
 
-    <script src="../plugins/jquery/jquery.min.js"></script>
-    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../dist/js/etnx.js"></script>
-    <script src="../dist/js/mob_wallet.js"></script>
-    <script src="../dist/js/login.js"></script>
+    <script type="text/javascript" src="../plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+    
+    <script type="text/javascript" src="../dist/js/crypto.js"></script>
+    <script type="text/javascript" src="../dist/js/utils.js"></script>
+    <script type="text/javascript" src="../dist/js/login-utils.js"></script>
+    <script type="text/javascript" src="../dist/js/pin-code-utils.js"></script>
+    <script type="text/javascript" src="../dist/js/passport.js"></script>
+    <script type="text/javascript" src="../dist/js/etnx.js"></script>
+    <script type="text/javascript" src="../dist/js/login.js"></script>
 </body>
 
 </html>

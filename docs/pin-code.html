@@ -46,12 +46,12 @@
                         </div>
                         <div role="form">
                             <fieldset>
-                                <div class="form-group" style="text-align: center">
-                                    <input id="digit-1" class="form-control" type="password" style="width: 34px; display: inline-block" disabled>
-                                    <input id="digit-2" class="form-control" type="password" style="width: 34px; display: inline-block" disabled>
-                                    <input id="digit-3" class="form-control" type="password" style="width: 34px; display: inline-block" disabled>
-                                    <input id="digit-4" class="form-control" type="password" style="width: 34px; display: inline-block" disabled>
-                                    <input id="digit-5" class="form-control" type="password" style="width: 34px; display: inline-block" disabled>
+                                <div id="pin-form" class="form-group inputTxt" style="text-align: center">
+                                    <input id="digit-1" class="form-control inputTxt" type="password" style="width: 34px; display: inline-block" disabled>
+                                    <input id="digit-2" class="form-control inputTxt" type="password" style="width: 34px; display: inline-block" disabled>
+                                    <input id="digit-3" class="form-control inputTxt" type="password" style="width: 34px; display: inline-block" disabled>
+                                    <input id="digit-4" class="form-control inputTxt" type="password" style="width: 34px; display: inline-block" disabled>
+                                    <input id="digit-5" class="form-control inputTxt" type="password" style="width: 34px; display: inline-block" disabled>
                                 </div>
                                 <div class="form-group" style="text-align: center">
                                     <button id="1" type="button" class="digit btn btn-lg btn-login btn-primary btn-circle">1</button>
@@ -83,9 +83,14 @@
 
     <script src="../plugins/jquery/jquery.min.js"></script>
     <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../dist/js/etnx.js"></script>
     <!-- <script src="../dist/js/simulatedData.js"></script> -->
-    <script src="../dist/js/pin-code.js"></script>
+    
+    <script type="text/javascript" src="../dist/js/crypto.js"></script>
+    <script type="text/javascript" src="../dist/js/utils.js"></script>
+    <script type="text/javascript" src="../dist/js/passport.js"></script>
+    <script type="text/javascript" src="../dist/js/pin-code-utils.js"></script>
+    <script type="text/javascript" src="../dist/js/pin-code.js"></script>
+    <script type="text/javascript" src="../dist/js/etnx.js"></script>
 
 </body>
 

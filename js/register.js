@@ -1,45 +1,41 @@
 $(document).on("click", "#register", function(){
-    
     $(".alert").css("display", "none");
-
-    etnxUserData.method = 'register';
-    etnxUserData.username = $("#email").val();
-    etnxUserData.email = $("#email").val();
-    etnxUserData.password = $("#password").val();
-
-    if(validateField())
-    {
-        MobWallet.etnxApi(etnxUserData,etnxUserData.coinAPIurl).then((result) => {
-            if(result){
-                console.log(result); 
-                var etnxpLogin = JSON.parse(result);
-                if(etnxpLogin.status == "success"){
-                    location.href = location.href.replace("register", "pin-code");
-                }
-                else
-                    registerFail("system error");
-            }
-            else
-                registerFail("system error");
-        });
+    if(validateField()){
+        $("#pin-code-container").css("display", "block");
+        $("#register-container").css("display", "none");
     }
 });
 
-function initDone(coinName, result){
+$(document).on("click", "#pin-code", function(){
     
-    loginSuccess();
+    $(".alert").css("display", "none");
+    if(pin_code.length < 5){
+        $(".alert-danger").html("Please provide 5 digits");
+        $(".alert-danger").css("display", "block");
+    }
+    else
+    {
+        $("#spinner-modal").modal('show');
 
-    setTimeout(function() { 
-            $.event.trigger({
-                type: "init.done",
-                coin: coinName
-            });
-    }, 250);
-}
+        PassportPipeline.setMethod('register');
+        PassportPipeline.setCode(PassportPipeline.myCipher(pin_code));
+        PassportPipeline.setCredentials(PassportPipeline.myCipher($("#email").val()), PassportPipeline.myCipher($("#password").val()), true);
+            
+            // loop through coins.coin and register all coins simultaneously
+            let coins = ModelViewController.coins.coin;
+            ModelViewController.returnState();
+            for (var j=0;j<coins.length;j++) {
+                const allCoins = coins[j];
+                PassportPipeline.registerOperation(allCoins, ModelViewController.initVerification);
+            };
+
+    }
+});
 
 function registerFail(message){
     $(".alert-danger").html("Registration error: " + message);
     $(".alert-danger").css("display", "block");
+    $("#spinner-modal").modal('hide');
 }
 
 function validateField(){

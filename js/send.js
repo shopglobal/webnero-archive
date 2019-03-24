@@ -2,13 +2,10 @@ $(document).ready(function(){
     ModelViewController.fillData();
 });
 
-var pin_code = "";
-
 $(document).on("click", "#send-modal", function(){
     $('.form-group').removeClass("has-error");
-    if(checkMandatoryField("amount") &&
-        checkMandatoryField("receiver"))
-        openModal();
+    if(checkMandatoryField("amount") && checkMandatoryField("receiver"))
+        $("#send-code-modal").modal('show');
 });
 
 function checkMandatoryField(id){
@@ -20,9 +17,39 @@ function checkMandatoryField(id){
     return true;
 }
 
-function openModal(){
-    $("#send-code-modal").modal();
+function sendCallback(coinSymbol){
+
+    PassportPipeline.setMethod('send_transaction');
+    const coinAmount = $("#amount").val();
+    PassportPipeline.passportParams.amount = parseInt(ModelViewController.formatCoinTransaction(coinAmount, coinSymbol));
+    PassportPipeline.passportParams.receiver = $("#receiver").val();
+    PassportPipeline.passportParams.pid = $("#pid").val();
+   
+    const _uuid = PassportPipeline.myDecipher(sessionStorage.getItem(coinSymbol+"_uuid"));
+    const _email = PassportPipeline.myDecipher(sessionStorage.getItem("username"));
+    const _password = PassportPipeline.myDecipher(sessionStorage.getItem("password"));
+	if(_uuid){
+        // logs
+        console.log(_uuid);
+        console.log(_email);
+        console.log(_password);
+	}
+    console.log(PassportPipeline.passportParams)
+    
+    PassportPipeline.remoteCall(coinSymbol).then((response) => {
+        if(response){
+            console.log(response); 
+            var sendResult = JSON.parse(response);
+            if(sendResult.hasOwnProperty("error"))
+                sendFail("Transaction Fail");
+            else
+                sendSuccess();    
+        }
+        else
+            sendFail("System Fail");
+    });
 }
+
 
 $(document).on("click", "#send", function(){
     $(".alert").css("display", "none");
@@ -31,56 +58,42 @@ $(document).on("click", "#send", function(){
         sendFail("Provide 5 digits code");
     }
     else {
+        $("#spinner-modal").modal('show');
+        $("#send-code-modal").modal('hide');
+
+        sessionStorage.setItem("code", PassportPipeline.myCipher(pin_code));
         console.log(pin_code);
+        // check_code
+
         var coin_selected = $(".btn-selected").attr("id");
-
-        var operationData = etnxUserData;
-        var coinMethod = function (data, apiUrl) {};
-        coinMethod = MobWallet.etnxApi;
-
-        if(coin_selected == "etnxp-send"){
-            operationData = etnxpUserData;
-            coinMethod = MobWallet.etnxpApi;
-        }
-
-        operationData.method = 'send';
-        operationData.amount = $("#amount").val();
-        operationData.receiver = $("#receiver").val();
-        operationData.pid = $("#pid").val();
-        operationData.code = pin_code;
-
-        coinMethod(operationData, operationData.coinAPIurl).then((result) => {
-            if(result){
-                console.log(result); 
-                var sendResult = JSON.parse(result);
-                if(sendResult.status == "success")
-                    sendSuccess();
-                else
-                    sendFail("Transaction Fail");
-            }
-            else
-                sendFail("System Fail");
-        });
+        PassportPipeline.setCode(PassportPipeline.myCipher(pin_code));
+	    switch(coin_selected){
+		case 'etnx-send':
+		     return PassportPipeline.performOperation("etnx", sendCallback);
+	             break;
+		case 'etnxp-send':
+		     return PassportPipeline.performOperation("etnxp", sendCallback);
+	             break;
+		case 'etnxc-send':
+		     return PassportPipeline.performOperation("etnxc", sendCallback); 
+	             break;
+		case 'ltnx-send':
+		     return PassportPipeline.performOperation("ltnx", sendCallback); 
+	             break;
+                default:
+                     break;
+	    }
     }     
-});
-
-$(document).on("click", "#del", function(){
-    $("#digit-" + pin_code.length).val("");
-    pin_code = pin_code.substring(0, pin_code.length - 1);
-});
-
-$(document).on("click", ".digit", function(){
-    var digit = $(this).attr("id");
-    pin_code += digit;
-    $("#digit-" + pin_code.length).val(digit);
 });
 
 function sendSuccess(){
     $(".alert-success").css("display", "block");
+    $("#spinner-modal").modal('hide');
 }
 
 function sendFail(message){
     $(".alert-danger").html("Transfer error: " + message);
     $(".alert-danger").css("display", "block");
     $(".btn-code").css("display", "block");
+    $("#spinner-modal").modal('hide');
 }
