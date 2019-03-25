@@ -12,16 +12,16 @@ gulp.task('less', function(done) {
     gulp.src('less/etnx.less')
         .pipe(less())
         .pipe(gulp.dest('dist/css'))
-        .pipe(browserSync.reload({
-            stream: true
-        }));
+        .pipe(browserSync.reload({ stream: true }));
     gulp.src('less/spinner.less')
-            .pipe(less())
-            .pipe(gulp.dest('dist/css'))
-            .pipe(browserSync.reload({
-                stream: true
-        }));
-        done();
+        .pipe(less())
+        .pipe(gulp.dest('dist/css'))
+        .pipe(browserSync.reload({ stream: true }));
+    gulp.src('less/slider_button.less')
+        .pipe(less())
+        .pipe(gulp.dest('dist/css'))
+        .pipe(browserSync.reload({ stream: true }));
+    done();
 });
 
 // Minify compiled CSS
@@ -30,17 +30,13 @@ gulp.task('minify-css', gulp.series('less', function(done) {
         .pipe(cleanCSS({ compatibility: 'ie8' }))
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('dist/css'))
-        .pipe(browserSync.reload({
-            stream: true
-        }));
+        .pipe(browserSync.reload({ stream: true }));
     gulp.src('dist/css/spinner.css')
         .pipe(cleanCSS({ compatibility: 'ie8' }))
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('dist/css'))
-        .pipe(browserSync.reload({
-            stream: true
-        }))
-        done();
+        .pipe(browserSync.reload({ stream: true }));
+    done();
 }));
 
 // Copy JS to dist
@@ -59,6 +55,7 @@ gulp.task('js', function(done) {
     gulp.src(['js/history.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/send.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/passport.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/settings.js']).pipe(gulp.dest('dist/js'));
 
     done();
 })
