@@ -207,7 +207,7 @@ var ModelViewController = {
         console.log("3");
         PassportPipeline.setMethod('getaddr');
         PassportPipeline.loadParams();
-        PassportPipeline.passportParams.code = parseInt(PassportPipeline.loadCode());
+        
         console.log(PassportPipeline.passportParams);
         if(coinSymbol){
                 ModelViewController.coinState++
@@ -219,8 +219,8 @@ var ModelViewController = {
                 let passportBalance = JSON.parse(response);
                 console.log(passportBalance);
                 if(passportBalance.hasOwnProperty("error")){
-                    PassportPipeline.performOperation(coinSymbol, ModelViewController.initCoin);
-                    return;
+                    return PassportPipeline.performOperation(coinSymbol, ModelViewController.initCoin);
+                    break;
                 }
                 else if(!passportBalance.hasOwnProperty("error")) {
                     ModelViewController.setCoinData(coinSymbol, response);
