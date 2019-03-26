@@ -92,7 +92,9 @@
                         <div class="panel-body">
                             <img height="70px" width="70px" src="../img/etnx.png">
                             <label class="switch">
-                                <input type="checkbox">
+                                <input coin="etnx" type="checkbox"
+                                    msg-on="Please check email and verify coin account" 
+                                    msg-off="Are you sure you want to delete ETNX coin wallet?" >
                                 <span class="slider round"></span>
                             </label>
                         </div>
@@ -106,7 +108,9 @@
                         <div class="panel-body">
                             <img height="70px" width="70px" src="../img/etnxp.png">
                             <label class="switch">
-                                <input type="checkbox">
+                                <input coin="etnxp" type="checkbox"
+                                    msg-on="Please check email and verify coin account" 
+                                    msg-off="Are you sure you want to delete ETNXP coin wallet?" >
                                 <span class="slider round"></span>
                             </label>
                         </div>
@@ -120,7 +124,9 @@
                         <div class="panel-body">
                             <img height="70px" width="70px" src="../img/etnx.png">
                             <label class="switch">
-                                <input type="checkbox">
+                                <input coin="etnxc" type="checkbox"
+                                    msg-on="Please check email and verify coin account" 
+                                    msg-off="Are you sure you want to delete ETNXC coin wallet?" >
                                 <span class="slider round"></span>
                             </label>
                         </div>
@@ -134,7 +140,9 @@
                         <div class="panel-body">
                             <img height="70px" width="70px" src="../img/etnx.png">
                             <label class="switch">
-                                <input type="checkbox">
+                                <input coin="ltnx" type="checkbox"
+                                    msg-on="Please check email and verify coin account" 
+                                    msg-off="Are you sure you want to delete LTNX coin wallet?" >
                                 <span class="slider round"></span>
                             </label>
                         </div>
@@ -150,8 +158,10 @@
                         <div class="panel-body">
                             <i class="fa fa-lock" style="font-size: 70px; vertical-align: middle"></i>
                             <label class="switch">
-                                    <input type="checkbox">
-                                    <span class="slider round"></span>
+                                <input coin="2fa" type="checkbox"
+                                    msg-on="Scan this QR or Enter this code on Google Authenticator app to enable 2fa on your device" 
+                                    msg-off="Are you sure you want to disable 2FA on yours wallets ?" >
+                                <span class="slider round"></span>
                             </label>
                         </div>
                     </div>
@@ -159,18 +169,18 @@
                 <div class="col-lg-9">
                     <div class="panel panel-etnx panel-settings">
                         <div class="panel-heading">
-                            Passwor Reset
+                            Password Reset
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="form-group col-lg-4">
-                                    <input id="oldpass" class="form-control form-settings" placeholder="Old Password" name="oldpass" type="password" autofocus>
+                                    <input id="newpwd" class="form-control form-settings" placeholder="New Password" name="newpwd" type="password" autofocus>
                                 </div>
                                 <div class="form-group col-lg-4">
-                                    <input id="password" class="form-control form-settings" placeholder="Password" name="password" type="password" value="">
+                                    <input id="confirmpwd" class="form-control form-settings" placeholder="Confirm New Password" name="confirmpwd" type="password" value="">
                                 </div>
                                 <div class="form-group col-lg-4">
-                                        <button id="login" class="btn btn-lg btn-login btn-block btn-primary">Apply</button>
+                                    <button id="resetpwd" class="btn btn-lg btn-login btn-block btn-primary">Apply</button>
                                 </div>
                             </div>
                         </div>
@@ -208,13 +218,13 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="form-group col-lg-4">
-                                    <input id="oldcode" class="form-control form-settings" placeholder="Old Code" name="oldcode" type="password" autofocus>
+                                    <input id="newcode" class="form-control form-settings" placeholder="Add Code" name="newcode" type="password" autofocus>
                                 </div>
                                 <div class="form-group col-lg-4">
-                                    <input id="code" class="form-control form-settings" placeholder="Code" name="code" type="password" value="">
+                                    <input id="confirmcode" class="form-control form-settings" placeholder="Confirm Code" name="confirmcode" type="password" value="">
                                 </div>
                                 <div class="form-group col-lg-4">
-                                    <button id="save" class="btn btn-lg btn-login btn-block btn-primary">Apply</button>
+                                    <button id="resetcode" class="btn btn-lg btn-login btn-block btn-primary">Apply</button>
                                 </div>
                             </div>
                         </div>
@@ -230,11 +240,19 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
+                                <div class="form-group col-lg-4">
+                                    <input id="namebenef" class="form-control form-settings" placeholder="Name" name="namebenef" type="text" autofocus>
+                                </div>
                                 <div class="form-group col-lg-8">
-                                    <input id="beneneficiary" class="form-control form-settings" placeholder="Beneficiary" name="beneneficiary" type="text" autofocus>
+                                    <input id="emailbenef" class="form-control form-settings" placeholder="Email" name="emailbenef" type="text" autofocus>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-lg-8">
+                                    <input id="beneneficiary" class="form-control form-settings" placeholder="Address" name="beneneficiary" type="text" autofocus>
                                 </div>
                                 <div class="form-group col-lg-4">
-                                    <button id="add" class="btn btn-lg btn-login btn-block btn-primary">Add</button>
+                                    <button id="add" class="btn btn-lg btn-login btn-block btn-primary"><i class="fa fa-plus-circle"></i> Beneneficiary</button>
                                 </div>
                             </div>
                             <div class="panel panel-etnx">
@@ -275,6 +293,29 @@
                                     <div></div>
                                     <div></div>
                                     <div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="confirm-modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="panel panel-etnx" style="margin-bottom: 0;">
+                        <div class="panel-body" style="height: 200px">
+                            <div class="row" style="text-align: center;">
+                                <h1 id="confirm-msg"></h1>
+                            </div>
+                            <div class="row" style="margin-top: 20px">
+                                <div class="form-group col-lg-2">
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <button id="confirm-ok" class="btn btn-lg btn-login btn-block btn-primary">Ok</button>
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <button id="confirm-canc" class="btn btn-lg btn-login btn-block btn-primary">Cancel</button>
                                 </div>
                             </div>
                         </div>
