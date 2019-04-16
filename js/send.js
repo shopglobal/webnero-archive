@@ -69,19 +69,15 @@ $(document).on("click", "#send", function(){
         PassportPipeline.setCode(PassportPipeline.myCipher(pin_code));
 	    switch(coin_selected){
 		case 'etnx-send':
-		     return PassportPipeline.performOperation("etnx", sendCallback);
-	             break;
+		    return PassportPipeline.performOperation("etnx", sendCallback);
 		case 'etnxp-send':
-		     return PassportPipeline.performOperation("etnxp", sendCallback);
-	             break;
+		    return PassportPipeline.performOperation("etnxp", sendCallback);
 		case 'etnxc-send':
-		     return PassportPipeline.performOperation("etnxc", sendCallback); 
-	             break;
+		    return PassportPipeline.performOperation("etnxc", sendCallback); 
 		case 'ltnx-send':
-		     return PassportPipeline.performOperation("ltnx", sendCallback); 
-	             break;
-                default:
-                     break;
+		    return PassportPipeline.performOperation("ltnx", sendCallback); 
+        default:
+            break;
 	    }
     }     
 });

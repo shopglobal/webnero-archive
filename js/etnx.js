@@ -38,8 +38,10 @@ $(function() {
 });
 
 $(document).on("click", ".coin-selector", function(){
-    if(!$(this).hasClass("btn-selected"))
-        $(".coin-selector").toggleClass("btn-selected");
+    if(!$(this).hasClass("btn-selected")){
+        $(".coin-selector").removeClass("btn-selected");
+        $(this).addClass("btn-selected")
+    }
 });
 
 $(document).on("click", "blockquote", function(){
@@ -71,16 +73,12 @@ var ModelViewController = {
         switch (coin) {
         case 'etnx':
             return whichData("etnxData");
-            break;
         case 'etnxp':
             return whichData("etnxpData");
-            break;
         case 'etnxc':
             return whichData("etnxcData");
-            break;
         case 'ltnx':
             return whichData("ltnxData");
-            break;
         default:
             break;
         }; 
@@ -181,7 +179,7 @@ var ModelViewController = {
     },
     blockchainExplorerLink: function(block, height, txid, coin){
         const secureSocketLayer = 'https://';
-        const blockchainLink = coin==="etnx" ? 'blockexplorer.electronero.org' : coin==="etnxp" ? 'blockexplorer.electroneropulse.org' : '';
+        const blockchainLink = PassportPipeline.getBlockchainLink(coin);
         const txidURL = '/tx/' + txid;
         const heightURL = '/block/' + height;
         const operative = block===true ? heightURL : txidURL;
@@ -219,8 +217,8 @@ var ModelViewController = {
                 let passportBalance = JSON.parse(response);
                 console.log(passportBalance);
                 if(passportBalance.hasOwnProperty("error")){
-                    return PassportPipeline.performOperation(coinSymbol, ModelViewController.initCoin);
-                    break;
+                    PassportPipeline.performOperation(coinSymbol, ModelViewController.initCoin);
+                    return;
                 }
                 else if(!passportBalance.hasOwnProperty("error")) {
                     ModelViewController.setCoinData(coinSymbol, response);

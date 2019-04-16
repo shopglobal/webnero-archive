@@ -35,6 +35,11 @@ var PassportPipeline = {
     etnxcApi: 'https://pulse.electronero.org/etnxc-api/api.php',
     ltnxApi: 'https://pulse.electronero.org/ltnx-api/api.php',
 
+    etnxExpl: 'blockexplorer.electronero.org',
+    etnxpExpl: 'blockexplorer.electroneropulse.org',
+    etnxcExpl: 'blockexplorer.electroneroclassic.org',
+    ltnxExpl: 'blockexplorer.litenero.org',
+
     saveParams: function(){
         // Store Session
         sessionStorage.setItem("username", this.myCipher(this.passportParams.username));
@@ -62,18 +67,18 @@ var PassportPipeline = {
         this.passportParams.email = this.myDecipher(sessionStorage.username);
         this.passportParams.password = this.myDecipher(sessionStorage.password);
     },
-    remoteCall: function(coinSymbol){
+    /*remoteCall: function(coinSymbol){
         return $.ajax({
                     url: this.getPassportApi(coinSymbol),
                     type: 'POST',
                     cache: false,
                     data: this.passportParams
                 });
-    },
+    },*/
     
-     /*remoteCall: function(coinSymbol){
+     remoteCall: function(coinSymbol){
          return Passport.simulate(this.passportParams);
-     },*/
+     },
 
     setCredentials: function(email, password, save){
         // maybe cipher the data, but it's done elsewhere
@@ -198,16 +203,27 @@ var PassportPipeline = {
         switch(coinSymbol){
             case 'etnx':
                 return this.etnxApi;
-                break;
             case 'etnxp':
                 return this.etnxpApi;
-                break;
             case 'etnxc':
                 return this.etnxcApi;
-                break;
             case 'ltnx':
                 return this.ltnxApi;
+            default:
                 break;
+        };
+    },
+
+    getBlockchainLink: function(coinSymbol){
+        switch(coinSymbol){
+            case 'etnx':
+                return this.etnxExpl;
+            case 'etnxp':
+                return this.etnxpExpl;
+            case 'etnxc':
+                return this.etnxcExpl;
+            case 'ltnx':
+                return this.ltnxExpl;
             default:
                 break;
         };
