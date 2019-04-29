@@ -34,11 +34,13 @@ var PassportPipeline = {
     etnxpApi: 'https://pulse.electronero.org/etnxp-api/api.php',
     etnxcApi: 'https://pulse.electronero.org/etnxc-api/api.php',
     ltnxApi: 'https://pulse.electronero.org/ltnx-api/api.php',
+    gldxApi: 'https://pulse.electronero.org/gldx-api/api.php',
 
     etnxExpl: 'blockexplorer.electronero.org',
     etnxpExpl: 'blockexplorer.electroneropulse.org',
     etnxcExpl: 'blockexplorer.electroneroclassic.org',
     ltnxExpl: 'blockexplorer.litenero.org',
+    gldxExpl: 'blockexplorer.goldnero.org',
 
     saveParams: function(){
         // Store Session
@@ -209,6 +211,8 @@ var PassportPipeline = {
                 return this.etnxcApi;
             case 'ltnx':
                 return this.ltnxApi;
+            case 'gldx':
+                return this.gldxApi;
             default:
                 break;
         };
@@ -224,6 +228,8 @@ var PassportPipeline = {
                 return this.etnxcExpl;
             case 'ltnx':
                 return this.ltnxExpl;
+            case 'gldx':
+                return this.gldxExpl;
             default:
                 break;
         };

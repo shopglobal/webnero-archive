@@ -75,7 +75,9 @@ $(document).on("click", "#send", function(){
 		case 'etnxc-send':
 		    return PassportPipeline.performOperation("etnxc", sendCallback); 
 		case 'ltnx-send':
-		    return PassportPipeline.performOperation("ltnx", sendCallback); 
+            return PassportPipeline.performOperation("ltnx", sendCallback); 
+        case 'gldx-send':
+		    return PassportPipeline.performOperation("gldx", sendCallback); 
         default:
             break;
 	    }

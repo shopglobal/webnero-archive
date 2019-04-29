@@ -58,45 +58,46 @@ var ModelViewController = {
         }
         return ModelViewController.coinState = which;
     },
-    coins: { coin: ['etnx','etnxp','etnxc','ltnx'] },
+    coins: { coin: ['etnx','etnxp','etnxc','ltnx','gldx'] },
     setCoinData: function(coin, data){
         return localStorage.setItem(coin+"Data", data);       
     },
     getCoinData: function(coin){
         if(coin){
-        let coinData;
-        function whichData(coinData){
-            ModelViewController.coinState++ 
-            try{ return JSON.parse(localStorage.getItem(coinData)); }
-            catch(e) { console.log(e); return null; }
-        }
-        switch (coin) {
-        case 'etnx':
-            return whichData("etnxData");
-        case 'etnxp':
-            return whichData("etnxpData");
-        case 'etnxc':
-            return whichData("etnxcData");
-        case 'ltnx':
-            return whichData("ltnxData");
-        default:
-            break;
-        }; 
+            function whichData(coinData){
+                ModelViewController.coinState++ 
+                try{ return JSON.parse(localStorage.getItem(coinData)); }
+                catch(e) { console.log(e); return null; }
+            }
+            switch (coin) {
+                case 'etnx':
+                    return whichData("etnxData");
+                case 'etnxp':
+                    return whichData("etnxpData");
+                case 'etnxc':
+                    return whichData("etnxcData");
+                case 'ltnx':
+                    return whichData("ltnxData");
+                case 'gldx':
+                    return whichData("gldxData");
+                default:
+                    break;
+            }; 
         } else {
              // loop through coins.coin and get all coinData
             let coins = ModelViewController.coins.coin;
             for (var i=0;i<coins.length;i++) {
                 ModelViewController.getCoinData(coins[i]);
-            };
+        };
     };
     },
     formatCoinTransaction: function(coins, coinSymbol, units){
-    const coinUnits = coinSymbol==="etnx" ? 10000000000000000 : coinSymbol==="etnxp" ? 10000 : coinSymbol==="etnxc" ? 1 : coinSymbol==="ltnx" ? 1 : units;
+    const coinUnits = coinSymbol==="etnx" ? 10000000000000000 : coinSymbol==="etnxp" ? 10000 : coinSymbol==="etnxc" ? 1 : coinSymbol==="ltnx" ? 1 : coinSymbol==="gldx" ? 1 : units;
     var balancedCoins = coins * coinUnits; 
     return balancedCoins;
     },
     formatCoinUnits: function(coins, coinSymbol, units){
-    const coinUnits = coinSymbol==="etnx" ? 100000000 : coinSymbol==="etnxp" ? 100 : coinSymbol==="etnxc" ? 100 : coinSymbol==="ltnx" ? 100000000 : units;
+    const coinUnits = coinSymbol==="etnx" ? 100000000 : coinSymbol==="etnxp" ? 100 : coinSymbol==="etnxc" ? 100 : coinSymbol==="ltnx" ? 100000000 : coinSymbol==="gldx" ? 100000000 : units;
     var coinDecimalPlaces = coinUnits.toString().length - 1;
     var balancedCoins = (parseInt(coins || 0) / coinUnits).toFixed(units || coinDecimalPlaces);
     return balancedCoins;
@@ -142,6 +143,16 @@ var ModelViewController = {
             $("#ltnx-balance").html(ltnxLockedBalance);
             $("#ltnx-unlocked-balance").html(ltnxBalance);
         }
+
+        var gldxData = this.getCoinData("gldx");
+        if(gldxData != null){
+            const gldxLockedBalance = this.formatCoinUnits(gldxData.balances.balance, "gldx")
+            const gldxBalance = this.formatCoinUnits(gldxData.balances.unlocked_balance, "gldx")
+            $("#gldx-wallet").html(gldxData.address);
+            console.log(gldxData);
+            $("#gldx-balance").html(gldxLockedBalance);
+            $("#gldx-unlocked-balance").html(gldxBalance);
+        }
     },
 
     fillHistory: function(){
@@ -174,6 +185,14 @@ var ModelViewController = {
             if(ltnxData.txs.in || ltnxData.txs.out){
                 this.fillHistoryRows("LTNX", "Receive", ltnxData.txs.in);
                 this.fillHistoryRows("LTNX", "Send", ltnxData.txs.out);
+            }
+        }
+
+        var gldxData = this.getCoinData("gldx");
+        if(gldxData != null){
+            if(gldxData.txs.in || gldxData.txs.out){
+                this.fillHistoryRows("GLDX", "Receive", gldxData.txs.in);
+                this.fillHistoryRows("GLDX", "Send", gldxData.txs.out);
             }
         }
     },
