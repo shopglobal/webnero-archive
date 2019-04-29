@@ -58,7 +58,8 @@ var ModelViewController = {
         }
         return ModelViewController.coinState = which;
     },
-    coins: { coin: ['etnx','etnxp','etnxc','ltnx','gldx'] },
+    //coins: { coin: ['etnx','etnxp','etnxc','ltnx','gldx'] },
+    coins: { coin: ['etnx','etnxp','ltnx','gldx'] },
     setCoinData: function(coin, data){
         return localStorage.setItem(coin+"Data", data);       
     },
@@ -124,6 +125,7 @@ var ModelViewController = {
             $("#etnxp-unlocked-balance").html(etnxpBalance);
         }
         
+        /*
         var etnxcData = this.getCoinData("etnxc");
         if(etnxcData != null){
             const etnxcLockedBalance = this.formatCoinUnits(etnxcData.balances.balance, "etnxc")
@@ -132,7 +134,7 @@ var ModelViewController = {
             console.log(etnxcData);
             $("#etnxc-balance").html(etnxcLockedBalance);
             $("#etnxc-unlocked-balance").html(etnxcBalance);
-        }
+        }*/
         
         var ltnxData = this.getCoinData("ltnx");
         if(ltnxData != null){
@@ -172,13 +174,14 @@ var ModelViewController = {
             }
         }
         
+        /*
         var etnxcData = this.getCoinData("etnxc");
         if(etnxcData != null){
             if(etnxcData.txs.in || etnxcData.txs.out){
                 this.fillHistoryRows("ETNXC", "Receive", etnxcData.txs.in);
                 this.fillHistoryRows("ETNXC", "Send", etnxcData.txs.out);
             }
-        }
+        }*/
         
         var ltnxData = this.getCoinData("ltnx");
         if(ltnxData != null){
@@ -271,13 +274,15 @@ var ModelViewController = {
         PassportPipeline.loadCode();
         PassportPipeline.performOperation("etnx", ModelViewController.initCoin);
         PassportPipeline.performOperation("etnxp", ModelViewController.initCoin);
+        PassportPipeline.performOperation("ltnx", ModelViewController.initCoin);
+        PassportPipeline.performOperation("gldx", ModelViewController.initCoin);
     },
 };
 
 $(document).on("init.done", function(e){
     console.log(e.type + " - " + e.coin);
     ModelViewController.initLevel++;
-    if(ModelViewController.initLevel == 2){
+    if(ModelViewController.initLevel == 4){
         $("#spinner-modal").modal('hide');
         if(location.pathname.indexOf("login") > -1)
             location.href = location.href.replace("login", "index");
