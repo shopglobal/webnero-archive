@@ -9,10 +9,11 @@
     "url": "https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE"
   },
   "devDependencies": {
-    "browser-sync": "^2.26.3",
+    "browser-sync": "^2.26.5",
     "gulp-clean-css": "^2.4.0",
     "gulp-header": "^1.8.12",
     "gulp-less": "^4.0.1",
+    "gulp-nunjucks-render": "^2.2.3",
     "gulp-rename": "^1.4.0",
     "gulp-uglify": "^1.5.4"
   },

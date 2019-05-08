@@ -1,0 +1,137 @@
+<!-- index.njk -->
+{% extends "layout.njk" %}
+
+{% block content %}
+      <div id="wrapper">
+
+        {% include "../templates/navigation.njk" %}
+
+        <div id="page-wrapper">
+            <div class="row" style="margin-top: 30px">
+                <div class="col-lg-4 col-md-12 item">
+                    {% import "../templates/macros/card.njk" as etnx %}
+                    {{ etnx.draw('etnx') }}
+                </div>
+                <div class="col-lg-4 col-md-12 item">
+                    {% import "../templates/macros/card.njk" as etnxp %}
+                    {{ etnxp.draw('etnxp') }}
+                </div>
+                <div class="col-lg-4 col-md-12 item">
+                    {% import "../templates/macros/card.njk" as ltnx %}
+                    {{ ltnx.draw('ltnx') }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-12 item">
+                    {% import "../templates/macros/card.njk" as gldx %}
+                    {{ gldx.draw('gldx') }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-etnx">
+                        <div class="panel-heading">
+                            <i class="fa fa-clock-o fa-fw"></i> Your wallets
+                        </div>
+                       <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class="blockquote">ETNX Wallet</h4>
+                                    <blockquote class="selected">
+                                        <button style="background-color: white; color: black" onclick="copyToClipboard('#etnx-wallet')">
+                                    <p id="etnx-wallet" name="etnx-value"></p>
+                                    </button>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-lg-12">
+                                    <div id="etnx-qrimage">
+                                        <img id="qrious-etnx">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class="blockquote">ETNXP Wallet</h4>
+                                    <blockquote>
+                                        <button style="background-color: white; color: black" onclick="copyToClipboard('#etnxp-wallet')">
+                                    <p id="etnxp-wallet" name="etnxp-value"></p>
+                                    </button>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-lg-12">
+                                    <div id="etnxp-qrimage">
+                                        <img id="qrious-etnxp">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class="blockquote">LTNX Wallet</h4>
+                                    <blockquote>
+                                        <button style="background-color: white; color: black" onclick="copyToClipboard('#ltnx-wallet')">
+                                    <p id="ltnx-wallet" name="ltnx-value"></p>
+                                    </button>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-lg-12">
+                                    <div id="ltnx-qrimage">
+                                        <img id="qrious-ltnx">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class="blockquote">GLDX Wallet</h4>
+                                    <blockquote>
+                                        <button style="background-color: white; color: black" onclick="copyToClipboard('#gldx-wallet')">
+                                    <p id="gldx-wallet" name="gldx-value"></p>
+                                    </button>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-lg-12">
+                                    <div id="gldx-qrimage">
+                                        <img id="qrious-gldx">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="spinner-modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="panel panel-etnx" style="margin-bottom: 0;">
+                        <div class="panel-body" style="height: 300px">
+                            <div class="row" style="text-align: center; margin-top: 65px;">
+                                <img height="80px" width="80px" src="../img/etnx.png" />
+                                <img height="80px" width="80px" src="../img/etnxp.png" />
+                                <img height="80px" width="80px" src="../img/ltnx.png" />
+                                <img height="80px" width="80px" src="../img/gldx.png" />
+                            </div>
+                            <div class="row">
+                                <div class="cssload-loader">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

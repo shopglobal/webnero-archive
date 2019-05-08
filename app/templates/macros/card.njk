@@ -1,0 +1,22 @@
+{% macro draw(name) %}
+
+<div class="panel panel-{{ name }}">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-3">
+                <img height="70px" width="70px" src="../img/{{ name }}.png" />
+            </div>
+            <div class="col-xs-9 text-right">
+                <div id="{{ name }}-balance" class="huge"></div>
+                <div>Balance</div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <span class="pull-left">Unlocked Balance</span>
+        <span id="{{ name }}-unlocked-balance" class="pull-right"></span>
+        <div class="clearfix"></div>
+    </div>                       
+</div>
+
+{% endmacro %}
