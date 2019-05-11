@@ -1,6 +1,5 @@
-
 // global copyToClipboard
-    function copyToClipboard(element) {
+function copyToClipboard(element) {
   var $temp = $("<input>");
   $("body").append($temp);
   $temp.val($(element).text()).select();
@@ -74,3 +73,20 @@ $("body").keydown(function() {
             break;
     }
 });
+
+var Utils = {
+    isValidEmail: function(email){
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return regex.test(email);
+    },
+
+    isValidPassword: function(password){
+        var regex = /^(?=.*\d)(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+        return regex.test(password);
+    },
+
+    isValidCode: function(code){
+        var regex = /^(?=.*\d)(?=.*[0-9])[0-9]{5}$/;
+        return regex.test(code);
+    }
+}
