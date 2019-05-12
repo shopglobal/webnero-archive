@@ -17,19 +17,19 @@
             </div>
             <div class="row">
                 <div class="col-lg-3">
-                    {% import "../templates/macros/card_enable.njk" as etnx %}
+                    {% import "../templates/macros/coin_enable.njk" as etnx %}
                     {{ etnx.enable('etnx', 'Electronero') }}
                 </div>
                 <div class="col-lg-3">
-                    {% import "../templates/macros/card_enable.njk" as etnxp %}
+                    {% import "../templates/macros/coin_enable.njk" as etnxp %}
                     {{ etnxp.enable('etnxp', 'Electronero Pulse') }}
                 </div>
                 <div class="col-lg-3">
-                    {% import "../templates/macros/card_enable.njk" as ltnx %}
+                    {% import "../templates/macros/coin_enable.njk" as ltnx %}
                     {{ ltnx.enable('ltnx', 'Litenero') }}
                 </div>
                 <div class="col-lg-3">
-                    {% import "../templates/macros/card_enable.njk" as gldx %}
+                    {% import "../templates/macros/coin_enable.njk" as gldx %}
                     {{ gldx.enable('gldx', 'Goldnero') }}
                 </div>
             </div>
@@ -165,7 +165,8 @@
 
         {% include "../templates/modals/confirm.njk" %}
     </div>
-    
+{% endblock %}
+
 {% block scripts %} 
     <script type="text/javascript" src="../dist/js/settings.js"></script>
 {% endblock %}
