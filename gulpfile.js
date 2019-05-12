@@ -7,6 +7,7 @@ var rename = require("gulp-rename");
 var uglify = require('gulp-uglify');
 var pkg = require('./package.json');
 var nunjucksRender = require('gulp-nunjucks-render');
+var data = require('gulp-data');
 
 // Compile LESS files from /less into /css
 gulp.task('less', function(done) {
@@ -137,6 +138,10 @@ gulp.task('dev', gulp.series('browserSync', 'less', 'minify-css', 'js', function
 gulp.task('njk', function() {
     // Gets .html and .nunjucks files in pages
     return gulp.src('app/pages/**/*.+(html|njk)')
+    // Adding data to Nunjucks
+    .pipe(data(function() {
+        return require('./app/data.json')
+      }))
     // Renders template with nunjucks
     .pipe(nunjucksRender({
         path: ['app/templates']
