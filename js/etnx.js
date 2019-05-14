@@ -38,8 +38,10 @@ $(function() {
 });
 
 $(document).on("click", ".coin-selector", function(){
-    if(!$(this).hasClass("btn-selected"))
-        $(".coin-selector").toggleClass("btn-selected");
+    if(!$(this).hasClass("btn-selected")){
+        $(".coin-selector").removeClass("btn-selected");
+        $(this).addClass("btn-selected")
+    }
 });
 
 $(document).on("click", "blockquote", function(){
@@ -56,49 +58,47 @@ var ModelViewController = {
         }
         return ModelViewController.coinState = which;
     },
-    coins: { coin: ['etnx','etnxp','etnxc','ltnx'] },
+    //coins: { coin: ['etnx','etnxp','etnxc','ltnx','gldx'] },
+    coins: { coin: ['etnx','etnxp','ltnx','gldx'] },
     setCoinData: function(coin, data){
         return localStorage.setItem(coin+"Data", data);       
     },
     getCoinData: function(coin){
         if(coin){
-        let coinData;
-        function whichData(coinData){
-            ModelViewController.coinState++ 
-            try{ return JSON.parse(localStorage.getItem(coinData)); }
-            catch(e) { console.log(e); return null; }
-        }
-        switch (coin) {
-        case 'etnx':
-            return whichData("etnxData");
-            break;
-        case 'etnxp':
-            return whichData("etnxpData");
-            break;
-        case 'etnxc':
-            return whichData("etnxcData");
-            break;
-        case 'ltnx':
-            return whichData("ltnxData");
-            break;
-        default:
-            break;
-        }; 
+            function whichData(coinData){
+                ModelViewController.coinState++ 
+                try{ return JSON.parse(localStorage.getItem(coinData)); }
+                catch(e) { console.log(e); return null; }
+            }
+            switch (coin) {
+                case 'etnx':
+                    return whichData("etnxData");
+                case 'etnxp':
+                    return whichData("etnxpData");
+                case 'etnxc':
+                    return whichData("etnxcData");
+                case 'ltnx':
+                    return whichData("ltnxData");
+                case 'gldx':
+                    return whichData("gldxData");
+                default:
+                    break;
+            }; 
         } else {
              // loop through coins.coin and get all coinData
             let coins = ModelViewController.coins.coin;
             for (var i=0;i<coins.length;i++) {
                 ModelViewController.getCoinData(coins[i]);
-            };
+        };
     };
     },
     formatCoinTransaction: function(coins, coinSymbol, units){
-    const coinUnits = coinSymbol==="etnx" ? 10000000000000000 : coinSymbol==="etnxp" ? 10000 : coinSymbol==="etnxc" ? 1 : coinSymbol==="ltnx" ? 1 : units;
+    const coinUnits = coinSymbol==="etnx" ? 10000000000000000 : coinSymbol==="etnxp" ? 10000 : coinSymbol==="etnxc" ? 1 : coinSymbol==="ltnx" ? 1 : coinSymbol==="gldx" ? 1 : units;
     var balancedCoins = coins * coinUnits; 
     return balancedCoins;
     },
     formatCoinUnits: function(coins, coinSymbol, units){
-    const coinUnits = coinSymbol==="etnx" ? 100000000 : coinSymbol==="etnxp" ? 100 : coinSymbol==="etnxc" ? 100 : coinSymbol==="ltnx" ? 100000000 : units;
+    const coinUnits = coinSymbol==="etnx" ? 100000000 : coinSymbol==="etnxp" ? 100 : coinSymbol==="etnxc" ? 100 : coinSymbol==="ltnx" ? 100000000 : coinSymbol==="gldx" ? 1000000000000 : units;
     var coinDecimalPlaces = coinUnits.toString().length - 1;
     var balancedCoins = (parseInt(coins || 0) / coinUnits).toFixed(units || coinDecimalPlaces);
     return balancedCoins;
@@ -125,6 +125,7 @@ var ModelViewController = {
             $("#etnxp-unlocked-balance").html(etnxpBalance);
         }
         
+        /*
         var etnxcData = this.getCoinData("etnxc");
         if(etnxcData != null){
             const etnxcLockedBalance = this.formatCoinUnits(etnxcData.balances.balance, "etnxc")
@@ -133,7 +134,7 @@ var ModelViewController = {
             console.log(etnxcData);
             $("#etnxc-balance").html(etnxcLockedBalance);
             $("#etnxc-unlocked-balance").html(etnxcBalance);
-        }
+        }*/
         
         var ltnxData = this.getCoinData("ltnx");
         if(ltnxData != null){
@@ -143,6 +144,16 @@ var ModelViewController = {
             console.log(ltnxData);
             $("#ltnx-balance").html(ltnxLockedBalance);
             $("#ltnx-unlocked-balance").html(ltnxBalance);
+        }
+
+        var gldxData = this.getCoinData("gldx");
+        if(gldxData != null){
+            const gldxLockedBalance = this.formatCoinUnits(gldxData.balances.balance, "gldx")
+            const gldxBalance = this.formatCoinUnits(gldxData.balances.unlocked_balance, "gldx")
+            $("#gldx-wallet").html(gldxData.address);
+            console.log(gldxData);
+            $("#gldx-balance").html(gldxLockedBalance);
+            $("#gldx-unlocked-balance").html(gldxBalance);
         }
     },
 
@@ -163,13 +174,14 @@ var ModelViewController = {
             }
         }
         
+        /*
         var etnxcData = this.getCoinData("etnxc");
         if(etnxcData != null){
             if(etnxcData.txs.in || etnxcData.txs.out){
                 this.fillHistoryRows("ETNXC", "Receive", etnxcData.txs.in);
                 this.fillHistoryRows("ETNXC", "Send", etnxcData.txs.out);
             }
-        }
+        }*/
         
         var ltnxData = this.getCoinData("ltnx");
         if(ltnxData != null){
@@ -178,10 +190,18 @@ var ModelViewController = {
                 this.fillHistoryRows("LTNX", "Send", ltnxData.txs.out);
             }
         }
+
+        var gldxData = this.getCoinData("gldx");
+        if(gldxData != null){
+            if(gldxData.txs.in || gldxData.txs.out){
+                this.fillHistoryRows("GLDX", "Receive", gldxData.txs.in);
+                this.fillHistoryRows("GLDX", "Send", gldxData.txs.out);
+            }
+        }
     },
     blockchainExplorerLink: function(block, height, txid, coin){
         const secureSocketLayer = 'https://';
-        const blockchainLink = coin==="etnx" ? 'blockexplorer.electronero.org' : coin==="etnxp" ? 'blockexplorer.electroneropulse.org' : '';
+        const blockchainLink = PassportPipeline.getBlockchainLink(coin);
         const txidURL = '/tx/' + txid;
         const heightURL = '/block/' + height;
         const operative = block===true ? heightURL : txidURL;
@@ -207,7 +227,7 @@ var ModelViewController = {
         console.log("3");
         PassportPipeline.setMethod('getaddr');
         PassportPipeline.loadParams();
-        PassportPipeline.passportParams.code = parseInt(PassportPipeline.loadCode());
+        
         console.log(PassportPipeline.passportParams);
         if(coinSymbol){
                 ModelViewController.coinState++
@@ -254,13 +274,15 @@ var ModelViewController = {
         PassportPipeline.loadCode();
         PassportPipeline.performOperation("etnx", ModelViewController.initCoin);
         PassportPipeline.performOperation("etnxp", ModelViewController.initCoin);
+        PassportPipeline.performOperation("ltnx", ModelViewController.initCoin);
+        PassportPipeline.performOperation("gldx", ModelViewController.initCoin);
     },
 };
 
 $(document).on("init.done", function(e){
     console.log(e.type + " - " + e.coin);
     ModelViewController.initLevel++;
-    if(ModelViewController.initLevel == 2){
+    if(ModelViewController.initLevel == 4){
         $("#spinner-modal").modal('hide');
         if(location.pathname.indexOf("login") > -1)
             location.href = location.href.replace("login", "index");
