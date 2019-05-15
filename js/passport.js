@@ -34,6 +34,13 @@ var PassportPipeline = {
     etnxpApi: 'https://pulse.electronero.org/etnxp-api/api.php',
     etnxcApi: 'https://pulse.electronero.org/etnxc-api/api.php',
     ltnxApi: 'https://pulse.electronero.org/ltnx-api/api.php',
+    gldxApi: 'https://pulse.electronero.org/gldx-api/api.php',
+
+    etnxExpl: 'blockexplorer.electronero.org',
+    etnxpExpl: 'blockexplorer.electroneropulse.org',
+    etnxcExpl: 'blockexplorer.electroneroclassic.org',
+    ltnxExpl: 'blockexplorer.litenero.org',
+    gldxExpl: 'blockexplorer.goldnero.org',
 
     saveParams: function(){
         // Store Session
@@ -198,16 +205,31 @@ var PassportPipeline = {
         switch(coinSymbol){
             case 'etnx':
                 return this.etnxApi;
-                break;
             case 'etnxp':
                 return this.etnxpApi;
-                break;
             case 'etnxc':
                 return this.etnxcApi;
-                break;
             case 'ltnx':
                 return this.ltnxApi;
+            case 'gldx':
+                return this.gldxApi;
+            default:
                 break;
+        };
+    },
+
+    getBlockchainLink: function(coinSymbol){
+        switch(coinSymbol){
+            case 'etnx':
+                return this.etnxExpl;
+            case 'etnxp':
+                return this.etnxpExpl;
+            case 'etnxc':
+                return this.etnxcExpl;
+            case 'ltnx':
+                return this.ltnxExpl;
+            case 'gldx':
+                return this.gldxExpl;
             default:
                 break;
         };

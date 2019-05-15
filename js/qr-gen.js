@@ -51,5 +51,19 @@
         });
     })();
 }
+
+	// gldx
+	var gldxData = ModelViewController.getCoinData("gldx");
+	if (gldxData != null) {
+    (function() {
+        var $value_gldx = gldxData.address;
+
+        var qr2 = window.qr2 = new QRious({
+            element: document.getElementById('qrious-gldx'),
+            size: 250,
+            value: $value_gldx
+        });
+    })();
+}
 	//
 })();

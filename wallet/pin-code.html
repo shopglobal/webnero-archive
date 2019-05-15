@@ -11,9 +11,13 @@
 
     <title>Electronero & Pulse Login</title>
 
+    <!-- Bootstrap Core CSS -->
     <link href="../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
     <link href="../dist/css/etnx.css" rel="stylesheet">
-    <link href="../dist/css/spinner.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
     <link href="../plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -28,49 +32,17 @@
 <body>
 
     <div class="container">
-        <div id="login-container" class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="login-panel panel panel-etnx">
-                    <div class="panel-heading" style="text-align: center">
-                        <img height="40px" width="40px" src="../img/etnx.png" />
-                        <img height="40px" width="40px" src="../img/etnxp.png" />
-                        <img height="40px" width="40px" src="../img/ltnx.png" />
-                        <img height="40px" width="40px" src="../img/gldx.png" />
-                    </div>
-                    <div class="panel-body">
-                        <div class="alert alert-danger" style="display: none">
-                            Login fail, please check email and password
-                        </div>
-                        <div class="alert alert-success" style="display: none">
-                            Login successful, retrieving data, please wait
-                        </div>
-                        <div role="form">
-                            <fieldset>
-                                <div class="form-group">
-                                    <input id="email" class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
-                                </div>
-                                <div class="form-group">
-                                    <input id="password" class="form-control" placeholder="Password" name="password" type="password" value="">
-                                </div>
-                                <button id="login" class="btn btn-lg btn-login btn-block btn-primary">Login</button>
-                            </fieldset>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="pin-code-container" class="row" style="display: none">
+        <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-etnx">
                     <div class="panel-heading" style="text-align: center">
                         <!-- <h3 class="panel-title">Please Sign In</h3> -->
                         <img height="40px" width="40px" src="../img/etnx.png" />
                         <img height="40px" width="40px" src="../img/etnxp.png" />
-                        <img height="40px" width="40px" src="../img/ltnx.png" />
-                        <img height="40px" width="40px" src="../img/gldx.png" />
                     </div>
                     <div class="panel-body">
                         <div class="alert alert-danger" style="display: none">
+                            Please provide 5 digits
                         </div>
                         <div role="form">
                             <fieldset>
@@ -100,7 +72,7 @@
                                     <button id="0" type="button" class="digit btn btn-lg btn-login btn-primary btn-circle">0</button>
                                 </div>
                                 <button id="del" type="button" class="btn btn-lg btn-login btn-block btn-primary">Cancel</button>
-                                <button id="pin-code" type="button" class="btn btn-lg btn-login btn-block btn-primary">Login</button>
+                                <button id="pin-code" type="button" class="btn btn-lg btn-login btn-block btn-primary">Set Pin Code</button>
                             </fieldset>
                         </form>
                     </div>
@@ -108,42 +80,18 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="spinner-modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" style="display: none;">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="panel panel-etnx" style="margin-bottom: 0;">
-                    <div class="panel-body" style="height: 300px">
-                        <div class="row" style="text-align: center; margin-top: 65px;">
-                            <img height="80px" width="80px" src="../img/etnx.png" />
-                            <img height="80px" width="80px" src="../img/etnxp.png" />
-                            <img height="80px" width="80px" src="../img/ltnx.png" />
-                            <img height="80px" width="80px" src="../img/gldx.png" />
-                        </div>
-                        <div class="row">
-                            <div class="cssload-loader">
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <script type="text/javascript" src="../plugins/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- <script src="../dist/js/simulatedData.js"></script> -->
     
     <script type="text/javascript" src="../dist/js/crypto.js"></script>
     <script type="text/javascript" src="../dist/js/utils.js"></script>
-    <script type="text/javascript" src="../dist/js/login-utils.js"></script>
-    <script type="text/javascript" src="../dist/js/pin-code-utils.js"></script>
     <script type="text/javascript" src="../dist/js/passport.js"></script>
+    <script type="text/javascript" src="../dist/js/pin-code-utils.js"></script>
+    <script type="text/javascript" src="../dist/js/pin-code.js"></script>
     <script type="text/javascript" src="../dist/js/etnx.js"></script>
-    <script type="text/javascript" src="../dist/js/login.js"></script>
+
 </body>
 
 </html>
