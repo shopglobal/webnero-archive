@@ -1,5 +1,5 @@
 $(document).on("click", "#login", function(){
-    $(".inputDigit").val("");
+    cleanPinCode();
     $("#pin-code-container").css("display", "block");
     $("#login-container").css("display", "none");
 });
@@ -12,7 +12,6 @@ $(document).on("click", "#pin-code", function(){
     }
     else {
         $(".alert").css("display", "none");
-
         $("#spinner-modal").modal('show');
         
         PassportPipeline.setCode(PassportPipeline.myCipher(pin_code));
