@@ -53,7 +53,6 @@ gulp.task('js', function(done) {
     gulp.src(['js/login-utils.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/register.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/pin-code-utils.js']).pipe(gulp.dest('dist/js'));
-    gulp.src(['js/pin-code.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/history.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/send.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/passport.js']).pipe(gulp.dest('dist/js'));
@@ -118,23 +117,6 @@ gulp.task('browserSync', function(done) {
     done();
 })
 
-// Run everything
-gulp.task('default', gulp.series('less', 'minify-css', 'js', 'copy', function(done){
-	done();
-}));
-
-
-
-// Dev task with browserSync
-gulp.task('dev', gulp.series('browserSync', 'less', 'minify-css', 'js', function(done) {
-    gulp.watch('less/*.less', ['less']);
-    gulp.watch('dist/css/*.css', ['minify-css']);
-    // Reloads the browser whenever HTML or JS files change
-    gulp.watch('pages/*.html', browserSync.reload);
-    gulp.watch('dist/js/*.js', browserSync.reload);
-    done();
-}));
-
 gulp.task('njk', function() {
     // Gets .html and .nunjucks files in pages
     return gulp.src('app/pages/**/*.+(html|njk)')
@@ -147,5 +129,20 @@ gulp.task('njk', function() {
         path: ['app/templates']
       }))
     // output files in app folder
-    .pipe(gulp.dest('app'))
+    .pipe(gulp.dest('wallet'))
   });
+  
+// Run everything
+gulp.task('deploy', gulp.series('less', 'minify-css', 'js', 'copy','njk', function(done){
+	done();
+}));
+
+// Dev task with browserSync
+gulp.task('dev', gulp.series('browserSync', 'less', 'minify-css', 'js', function(done) {
+    gulp.watch('less/*.less', ['less']);
+    gulp.watch('dist/css/*.css', ['minify-css']);
+    // Reloads the browser whenever HTML or JS files change
+    gulp.watch('pages/*.html', browserSync.reload);
+    gulp.watch('dist/js/*.js', browserSync.reload);
+    done();
+}));
