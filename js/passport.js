@@ -292,6 +292,10 @@ var Passport = {
             return new Promise((resolve, reject) => {
                 setTimeout(function() { resolve(JSON.stringify(jsonGetAddr)); }, 250);
             });
+        else if(data.method == 'add_code')
+            return new Promise((resolve, reject) => {
+                setTimeout(function() { resolve(JSON.stringify(jsonGetAddr)); }, 250);
+            });
         else if(data.method == 'register')
             return new Promise((resolve, reject) => {
                 setTimeout(function() { resolve(JSON.stringify(jsonLogin)); }, 1000);

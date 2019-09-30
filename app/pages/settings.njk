@@ -1,76 +1,10 @@
+<!-- index.njk -->
+{% extends "layout.njk" %}
 
-<!-- layout.njk -->
-
-<!DOCTYPE html>
-<html lang="en">
-
-    <head>
-
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-
-        <title>Electronero & Pulse Web Wallet</title>
-
-        <link href="../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <link href="../plugins/metisMenu/metisMenu.min.css" rel="stylesheet" type="text/css">
-        <link href="../dist/css/etnx.css" rel="stylesheet" type="text/css">
-        <link href="../dist/css/spinner.css" rel="stylesheet" type="text/css">
-        <link href="../dist/css/slider_button.css" rel="stylesheet" type="text/css">
-        <link href="../plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
-    </head>
-
-    <body>
-        
-        
+{% block content %}
     <div id="wrapper">
 
-        <!-- navigation.njk -->
-<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="index.html">Electronero & Pulse Web Wallet</a>
-    </div>
-    
-    <div class="navbar-default sidebar" role="navigation">
-        <div class="sidebar-nav navbar-collapse">
-            <ul class="nav" id="side-menu">
-                <li>
-                    <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                </li>
-                <li>
-                    <a href="send.html"><i class="fa fa-share-square"></i> Send</a>
-                </li>
-                <li>
-                    <a href="history.html"><i class="fa fa-share-square"></i> History</a>
-                </li>
-                <!--
-                <li>
-                    <a href="settings.html"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                </li>
-                -->
-                <li>
-                    <a id="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+        {% include "../templates/navigation.njk" %}
 
         <div id="page-wrapper">
             <div class="row">
@@ -83,90 +17,20 @@
             </div>
             <div class="row">
                 <div class="col-lg-3">
-
-                    
-                    
-
-<div class="panel panel-etnx panel-settings">
-    <div class="panel-heading">
-        Electronero
-    </div>
-    <div class="panel-body">
-        <img height="70px" width="70px" src="../img/etnx.png">
-        <label class="switch">
-            <input coin="etnx" type="checkbox"
-                msg-on="Please check email and verify coin account" 
-                msg-off="Are you sure you want to delete ETNX coin wallet?" >
-            <span class="slider round"></span>
-        </label>
-    </div>
-</div>
-
-
+                    {% import "../templates/macros/coin_enable.njk" as etnx %}
+                    {{ etnx.enable('etnx', 'Electronero') }}
                 </div>
                 <div class="col-lg-3">
-                    
-                    
-
-<div class="panel panel-etnx panel-settings">
-    <div class="panel-heading">
-        Electronero Pulse
-    </div>
-    <div class="panel-body">
-        <img height="70px" width="70px" src="../img/etnxp.png">
-        <label class="switch">
-            <input coin="etnxp" type="checkbox"
-                msg-on="Please check email and verify coin account" 
-                msg-off="Are you sure you want to delete ETNXP coin wallet?" >
-            <span class="slider round"></span>
-        </label>
-    </div>
-</div>
-
-
+                    {% import "../templates/macros/coin_enable.njk" as etnxp %}
+                    {{ etnxp.enable('etnxp', 'Electronero Pulse') }}
                 </div>
                 <div class="col-lg-3">
-                    
-                    
-
-<div class="panel panel-etnx panel-settings">
-    <div class="panel-heading">
-        Litenero
-    </div>
-    <div class="panel-body">
-        <img height="70px" width="70px" src="../img/ltnx.png">
-        <label class="switch">
-            <input coin="ltnx" type="checkbox"
-                msg-on="Please check email and verify coin account" 
-                msg-off="Are you sure you want to delete LTNX coin wallet?" >
-            <span class="slider round"></span>
-        </label>
-    </div>
-</div>
-
-
+                    {% import "../templates/macros/coin_enable.njk" as ltnx %}
+                    {{ ltnx.enable('ltnx', 'Litenero') }}
                 </div>
                 <div class="col-lg-3">
-                    
-                    
-
-<div class="panel panel-etnx panel-settings">
-    <div class="panel-heading">
-        Goldnero
-    </div>
-    <div class="panel-body">
-        <img height="70px" width="70px" src="../img/gldx.png">
-        <label class="switch">
-            <input coin="gldx" type="checkbox"
-                msg-on="Please check email and verify coin account" 
-                msg-off="Are you sure you want to delete GLDX coin wallet?" >
-            <span class="slider round"></span>
-        </label>
-    </div>
-</div>
-
-
-
+                    {% import "../templates/macros/coin_enable.njk" as gldx %}
+                    {{ gldx.enable('gldx', 'Goldnero') }}
                 </div>
             </div>
             <div class="row">
@@ -297,81 +161,12 @@
             </div>
         </div>
 
-        <div class="modal fade" id="spinner-modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" style="display: none;">
+        {% include "../templates/modals/spinner.njk" %}
 
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="panel panel-etnx" style="margin-bottom: 0;">
-                <div class="panel-body" style="height: 300px">
-                    <div class="row" style="text-align: center; margin-top: 65px;">
-                        
-                            <img height="80px" width="80px" src="../img/etnx.png" />
-                        
-                            <img height="80px" width="80px" src="../img/etnxp.png" />
-                        
-                            <img height="80px" width="80px" src="../img/ltnx.png" />
-                        
-                            <img height="80px" width="80px" src="../img/gldx.png" />
-                        
-                    </div>
-                    <div class="row">
-                        <div class="cssload-loader">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        {% include "../templates/modals/confirm.njk" %}
     </div>
-</div>
+{% endblock %}
 
-        <div class="modal fade" id="confirm-modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="panel panel-etnx" style="margin-bottom: 0;">
-                <div class="panel-body" style="height: 200px">
-                    <div class="row" style="text-align: center;">
-                        <h1 id="confirm-msg"></h1>
-                    </div>
-                    <div class="row" style="margin-top: 20px">
-                        <div class="form-group col-lg-2">
-                        </div>
-                        <div class="form-group col-lg-4">
-                            <button id="confirm-ok" class="btn btn-lg btn-login btn-block btn-primary">Ok</button>
-                        </div>
-                        <div class="form-group col-lg-4">
-                            <button id="confirm-canc" class="btn btn-lg btn-login btn-block btn-primary">Cancel</button>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-    </div>
-
-
-        <script type="text/javascript" src="../plugins/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="../plugins/bootstrap/js/bootstrap.min.js"></script>
-        
-        <script type="text/javascript" src="../dist/js/crypto.js"></script>
-        <script type="text/javascript" src="../dist/js/utils.js"></script>
-        <script type="text/javascript" src="../dist/js/passport.js"></script>
-        <script type="text/javascript" src="../dist/js/etnx.js"></script>
-        
-         
+{% block scripts %} 
     <script type="text/javascript" src="../dist/js/settings.js"></script>
-
-
-    </body>
-
-
-</html>
+{% endblock %}
