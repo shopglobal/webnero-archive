@@ -98,7 +98,7 @@ var ModelViewController = {
     return balancedCoins;
     },
     formatCoinUnits: function(coins, coinSymbol, units){
-    const coinUnits = coinSymbol==="etnx" ? 100000000 : coinSymbol==="etnxp" ? 100 : coinSymbol==="etnxc" ? 100 : coinSymbol==="ltnx" ? 100000000 : coinSymbol==="gldx" ? 100000000 : units;
+    const coinUnits = coinSymbol==="etnx" ? 100000000 : coinSymbol==="etnxp" ? 100 : coinSymbol==="etnxc" ? 100 : coinSymbol==="ltnx" ? 100000000 : coinSymbol==="gldx" ? 1000000000000 : units;
     var coinDecimalPlaces = coinUnits.toString().length - 1;
     var balancedCoins = (parseInt(coins || 0) / coinUnits).toFixed(units || coinDecimalPlaces);
     return balancedCoins;
