@@ -44,7 +44,7 @@ body {
 
 .navbar-default {
     background-color: @blue-logic;
-    border-color: yellow;
+    border: 0;
     .navbar-brand{
         color: @blue-label;
     }
@@ -128,7 +128,10 @@ body {
 }
 
 .sidebar ul li {
-    border-bottom: 1px solid darken(yellow, 6.5%);
+    border-bottom: 1px solid yellow;
+    &.side-menu-first {
+        border-top: 1px solid yellow;
+    }
     a {
         &.active {
             background-color: @gray-lighter;
@@ -336,6 +339,14 @@ table.dataTable thead .sorting:after {
 
 .row_ETNXP {
     color: #59b857;
+}
+
+.row_LTNX {
+    color: gray;
+}
+
+.row_GLDX {
+    color: yellow;
 }
 
 .table-bordered {
