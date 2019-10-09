@@ -2,7 +2,7 @@
 {% extends "layout.njk" %}
 
 {% block content %}
-
+<div class="login-root">
     <div class="container">
         <div id="login-container" class="row">
             <div class="col-md-4 col-md-offset-4">
@@ -37,6 +37,7 @@
         {% include "../templates/pin-code.njk" %}
     </div>
     {% include "../templates/modals/spinner.njk" %}
+</div>
 {% endblock %}
 
 {% block scripts %} 

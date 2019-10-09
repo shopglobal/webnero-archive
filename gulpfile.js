@@ -15,6 +15,10 @@ gulp.task('less', function(done) {
         .pipe(less())
         .pipe(gulp.dest('dist/css'))
         .pipe(browserSync.reload({ stream: true }));
+    gulp.src('less/light.less')
+        .pipe(less())
+        .pipe(gulp.dest('dist/css'))
+        .pipe(browserSync.reload({ stream: true }));
     gulp.src('less/spinner.less')
         .pipe(less())
         .pipe(gulp.dest('dist/css'))

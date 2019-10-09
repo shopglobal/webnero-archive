@@ -69,18 +69,18 @@ var PassportPipeline = {
         this.passportParams.email = this.myDecipher(sessionStorage.username);
         this.passportParams.password = this.myDecipher(sessionStorage.password);
     },
-    remoteCall: function(coinSymbol){
+    /*remoteCall: function(coinSymbol){
         return $.ajax({
                     url: this.getPassportApi(coinSymbol),
                     type: 'POST',
                     cache: false,
                     data: this.passportParams
                 });
-    },
+    },*/
     
-     /*remoteCall: function(coinSymbol){
+     remoteCall: function(coinSymbol){
          return Passport.simulate(this.passportParams);
-     },*/
+     },
 
     setCredentials: function(email, password, save){
         // maybe cipher the data, but it's done elsewhere
