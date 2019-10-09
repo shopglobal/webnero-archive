@@ -292,7 +292,9 @@ $(document).on("init.done", function(e){
 });
 
 $(document).on("click", "#logout", function(){
+    let lightMode =  sessionStorage.getItem("light-mode");
     sessionStorage.clear();
+    sessionStorage.setItem("light-mode", lightMode);
     localStorage.clear();
     location.href = "login.html";
 });
@@ -302,12 +304,7 @@ $(document).on("click", "#light-mode", function(){
     $("body").addClass("light");
 });
 
-$(document).ready(function(){
-    if(sessionStorage.getItem("light-mode") != null)
-        $("body").addClass("light");
-});
-
 $(document).on("click", "#dark-mode", function(){
-    sessionStorage.removeItem("light-mode");
+    sessionStorage.setItem("light-mode", false);
     $("body").removeClass("light");
 });
