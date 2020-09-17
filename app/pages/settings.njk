@@ -16,21 +16,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3">
-                    {% import "../templates/macros/coin_enable.njk" as etnx %}
-                    {{ etnx.enable('etnx', 'Electronero') }}
-                </div>
-                <div class="col-lg-3">
-                    {% import "../templates/macros/coin_enable.njk" as etnxp %}
-                    {{ etnxp.enable('etnxp', 'Electronero Pulse') }}
-                </div>
-                <div class="col-lg-3">
-                    {% import "../templates/macros/coin_enable.njk" as ltnx %}
-                    {{ ltnx.enable('ltnx', 'Litenero') }}
-                </div>
-                <div class="col-lg-3">
-                    {% import "../templates/macros/coin_enable.njk" as gldx %}
-                    {{ gldx.enable('gldx', 'Goldnero') }}
+                <div class="col-lg-12">
+                    {% import "../templates/macros/coin_enable.njk" as crfi %}
+                    {{ crfi.enable('crfi', 'Crystaleum') }}
                 </div>
             </div>
             <div class="row">
@@ -148,9 +136,8 @@
                                 <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                                     <div class="panel-body">
                                         <ul class="list-unstyled">
-                                            <li>Interchained - f4VR74XR616Tw2wAMMfaLV1vmYBSBBbmWXBUtaV8YDb6DHsfKRoYkFaCvhPhsGDDfm1afhzLNuf5XGFmNrvodPoQ6m4qMD8nU1G5euv4i4zZs</li>
-                                            <li>Crepuscolo - f4VR74XR616Tw2wAMMfaLV1vmYBSBBbmWXBUtaV8YDb6DHsfKRoYkFaCvhPhsGDDfm1afhzLNuf5XGFmNrvodPoQ6m4qMD8nU1G5euv4i4zZs</li>
-                                            <li>Triskell - f4VR74XR616Tw2wAMMfaLV1vmYBSBBbmWXBUtaV8YDb6DHsfKRoYkFaCvhPhsGDDfm1afhzLNuf5XGFmNrvodPoQ6m4qMD8nU1G5euv4i4zZs</li>
+                                            <li>Interchained - cX4VR74XR616Tw2wAMMfaLV1vmYBSBBbmWXBUtaV8YDb6DHsfKRoYkFaCvhPhsGDDfm1afhzLNuf5XGFmNrvodPoQ6m4qMD8nU1G5euv4i4zZs</li>
+                                            <li>Crystaleum Core - cX4VR74XR616Tw2wAMMfaLV1vmYBSBBbmWXBUtaV8YDb6DHsfKRoYkFaCvhPhsGDDfm1afhzLNuf5XGFmNrvodPoQ6m4qMD8nU1G5euv4i4zZs</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -168,5 +155,5 @@
 {% endblock %}
 
 {% block scripts %} 
-    <script type="text/javascript" src="../dist/js/settings.js"></script>
+    <script type="text/javascript" src="dist/js/settings.js"></script>
 {% endblock %}

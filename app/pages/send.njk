@@ -9,22 +9,8 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-4 col-md-12 item">
-                    {% import "../templates/macros/coin_card.njk" as etnx %}
-                    {{ etnx.card('etnx') }}
-                </div>
-                <div class="col-lg-4 col-md-12 item">
-                    {% import "../templates/macros/coin_card.njk" as etnxp %}
-                    {{ etnxp.card('etnxp') }}
-                </div>
-                <div class="col-lg-4 col-md-12 item">
-                    {% import "../templates/macros/coin_card.njk" as ltnx %}
-                    {{ ltnx.card('ltnx') }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-12 item">
-                    {% import "../templates/macros/coin_card.njk" as gldx %}
-                    {{ gldx.card('gldx') }}
+                    {% import "../templates/macros/coin_card.njk" as crfi %}
+                    {{ crfi.card('crfi') }}
                 </div>
             </div>
             <div class="row">
@@ -37,8 +23,8 @@
                             <div class="row">
                                 <div class="form-group" style="text-align: center">
                                     {% for coin in coins %}
-                                        <button id="{{coin}}-send" class="btn btn-lg btn-login coin-selector {{ "btn-selected" if coin === 'etnx' }}">
-                                            <img height="70px" width="70px" src="../img/{{coin}}.png" />
+                                        <button id="{{coin}}-send" class="btn btn-lg btn-login coin-selector {{ "btn-selected" if coin === 'crfi' }}">
+                                            <img height="70px" width="70px" src="img/{{coin}}.png" />
                                         </button>
                                     {% endfor %}
                                 </div>
@@ -53,7 +39,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Address</label>
-                                            <input id="receiver" class="form-control" placeholder="etnx...">
+                                            <input id="receiver" class="form-control" placeholder="crfi...">
                                         </div>
                                     </div>
                                 </div>
@@ -94,7 +80,7 @@
 {% endblock %}
 
 {% block scripts %} 
-    <script type="text/javascript" src="../plugins/metisMenu/metisMenu.min.js"></script>
-    <script type="text/javascript" src="../dist/js/pin-code-utils.js"></script>
-    <script type="text/javascript" src="../dist/js/send.js"></script>
+    <script type="text/javascript" src="plugins/metisMenu/metisMenu.min.js"></script>
+    <script type="text/javascript" src="dist/js/pin-code-utils.js"></script>
+    <script type="text/javascript" src="dist/js/send.js"></script>
 {% endblock %}
