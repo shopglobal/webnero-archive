@@ -1,6 +1,6 @@
 let lightMode =  sessionStorage.getItem("light-mode");
 if(lightMode == null){
-    lightMode = true;
+    lightMode = false;
     sessionStorage.setItem("light-mode", lightMode);
 }
 
