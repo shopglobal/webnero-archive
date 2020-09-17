@@ -11,13 +11,13 @@ body {
 
 #wrapper {
     width: 100%;
-    background-color: @blue-logic;
+    background-color: @crfi-pink;
 }
 
 #page-wrapper {
     padding: 0 15px;
     min-height: 568px;
-    background-color: @blue-logic;
+    background-color: @crfi-pink;
 }
 
 @media(min-width:768px) {
@@ -43,7 +43,7 @@ body {
 // --Topbar
 
 .navbar-default {
-    background-color: @blue-logic;
+    background-color: @crfi-pink;
     border: 0;
     .navbar-brand{
         color: @blue-label;
@@ -230,7 +230,7 @@ blockquote {
 
 .btn-login {
     border-color: yellow;
-    background-color: @blue-logic;
+    background-color: @crfi-pink;
     color: @blue-label;
     font-weight: bold;
     &:hover{
@@ -333,6 +333,10 @@ table.dataTable thead .sorting:after {
     background-color: @blue-label
 }
 
+.row_CRFI {
+    color: #27c0ff;
+}
+
 .row_ETNX {
     color: yellow;
 }
@@ -406,23 +410,43 @@ table.dataTable thead .sorting:after {
     font-size: 40px;
 }
 
+.panel-crfi {
+    border-color: #27c0ff;
+    border-width: 2px;
+    > .panel-heading {
+        border-color: #27c0ff;
+        color: white;
+        background-color: @crfi-pink;
+    }
+    .panel-body  {
+        border-color: #27c0ff;
+        color: white;
+        background-color: @crfi-pink;
+    }
+    > .panel-footer {
+        border-color: #27c0ff;
+        color: white;
+        background-color: @crfi-pink;
+    }
+}
+
 .panel-etnx {
     border-color: yellow;
     border-width: 2px;
     > .panel-heading {
         border-color: yellow;
         color: white;
-        background-color: @blue-logic;
+        background-color: @crfi-pink;
     }
     .panel-body  {
         border-color: yellow;
         color: white;
-        background-color: @blue-logic;
+        background-color: @crfi-pink;
     }
     > .panel-footer {
         border-color: yellow;
         color: white;
-        background-color: @blue-logic;
+        background-color: @crfi-pink;
     }
 }
 
@@ -436,17 +460,17 @@ table.dataTable thead .sorting:after {
     > .panel-heading {
         border-color: grey;
         color: white;
-        background-color: @blue-logic;
+        background-color: @crfi-pink;
     }
     .panel-body  {
         border-color: grey;
         color: white;
-        background-color: @blue-logic;
+        background-color: @crfi-pink;
     }
     > .panel-footer {
         border-color: grey;
         color: white;
-        background-color: @blue-logic;
+        background-color: @crfi-pink;
     }
 }
 
@@ -465,20 +489,20 @@ table.dataTable thead .sorting:after {
 }
 
 .panel-etnx-gray {
-    border-color: @blue-logic;
+    border-color: @crfi-pink;
     border-width: 2px;
     > .panel-heading {
-        border-color: @blue-logic;
+        border-color: @crfi-pink;
         color: white;
         background-color: @panel-gray;
     }
     > .panel-body  {
-        border-color: @blue-logic;
+        border-color: @crfi-pink;
         color: white;
         background-color: @panel-gray;
     }
     > .panel-footer {
-        border-color: @blue-logic;
+        border-color: @crfi-pink;
         color: white;
         background-color: @panel-gray;
     }
