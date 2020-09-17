@@ -8,16 +8,16 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-etnx">
                     <div class="panel-heading" style="text-align: center">
-                        {% for coin in coins %}
-                            <img height="40px" width="40px" src="img/{{coin}}.png" />
-                        {% endfor %}
+                        
+                            <img height="40px" width="40px" src="img/{{crfi}}.png" />
+                        
                     </div>
                     <div class="panel-body">
                         <div class="alert alert-danger" style="display: none">
                             Login fail, please check email and password
                         </div>
                         <div class="alert alert-success" style="display: none">
-                            Login successful, retrieving data, please wait
+                            Login successful, retrieving data from {{coin}} blockchain, please wait
                         </div>
                         <div role="form">
                             <fieldset>
