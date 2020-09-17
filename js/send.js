@@ -68,9 +68,11 @@ $(document).on("click", "#send", function(){
         var coin_selected = $(".btn-selected").attr("id");
         PassportPipeline.setCode(PassportPipeline.myCipher(pin_code));
 	    switch(coin_selected){
-		case 'etnx-send':
-		    return PassportPipeline.performOperation("etnx", sendCallback);
-		case 'etnxp-send':
+		case 'crfi-send':
+            return PassportPipeline.performOperation("crfi", sendCallback);
+        case 'etnx-send':
+            return PassportPipeline.performOperation("etnx", sendCallback);
+        case 'etnxp-send':
 		    return PassportPipeline.performOperation("etnxp", sendCallback);
 		case 'etnxc-send':
 		    return PassportPipeline.performOperation("etnxc", sendCallback); 

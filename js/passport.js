@@ -30,12 +30,14 @@ var PassportPipeline = {
     myCipher: Crypto.encryptData(Crypto.salt()),
     myDecipher: Crypto.decryptData(Crypto.salt()),
 
+    crfiApi: 'https://pulse.electronero.org/api-crfi/api.php',
     etnxApi: 'https://pulse.electronero.org/api-etnx/api.php',
     etnxpApi: 'https://pulse.electronero.org/etnxp-api/api.php',
     etnxcApi: 'https://pulse.electronero.org/etnxc-api/api.php',
     ltnxApi: 'https://pulse.electronero.org/ltnx-api/api.php',
     gldxApi: 'https://pulse.electronero.org/gldx-api/api.php',
 
+    crfiExpl: 'blockexplorer.crystaleum.org',
     etnxExpl: 'blockexplorer.electronero.org',
     etnxpExpl: 'blockexplorer.electroneropulse.org',
     etnxcExpl: 'blockexplorer.electroneroclassic.org',
@@ -203,6 +205,8 @@ var PassportPipeline = {
 
     getPassportApi: function(coinSymbol){
         switch(coinSymbol){
+            case 'crfi':
+                return this.etnxApi;
             case 'etnx':
                 return this.etnxApi;
             case 'etnxp':
@@ -220,6 +224,8 @@ var PassportPipeline = {
 
     getBlockchainLink: function(coinSymbol){
         switch(coinSymbol){
+            case 'crfi':
+                return this.etnxExpl;
             case 'etnx':
                 return this.etnxExpl;
             case 'etnxp':
