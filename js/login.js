@@ -1,10 +1,4 @@
-$( document ).ready(function() {
-    console.log( "ready!" );
-    if(!coin || !coins){
-    coin = 'crfi';
-    // fix coins 
-    };
-});
+
 $(document).on("click", "#login", function(){
     cleanPinCode();
     $("#pin-code-container").css("display", "block");

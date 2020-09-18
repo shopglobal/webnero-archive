@@ -1,3 +1,9 @@
+$( document ).ready(function() {
+    console.log( "ready!" );
+    if(!coin){
+    coin = 'crfi';
+    };
+});
 function loginFail(){
     $("#pin-code-container").css("display", "none");
     $("#login-container").css("display", "block");

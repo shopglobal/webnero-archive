@@ -209,7 +209,7 @@ var PassportPipeline = {
         }
         switch(coinSymbol){
             case 'crfi':
-                return this.etnxApi;
+                return this.crfiApi;
             case 'etnx':
                 return this.etnxApi;
             case 'etnxp':
@@ -231,7 +231,7 @@ var PassportPipeline = {
         }
         switch(coinSymbol){
             case 'crfi':
-                return this.etnxExpl;
+                return this.crfiExpl;
             case 'etnx':
                 return this.etnxExpl;
             case 'etnxp':
