@@ -4,20 +4,20 @@
 // Global Styles
 
 body {
-    background-color: @crfi-primary;
+    background-color: @gray-lightest;
 }
 
 // Wrappers
 
 #wrapper {
     width: 100%;
-    background-color: @crfi-pink;
+    background-color: @crfi-primary;
 }
 
 #page-wrapper {
     padding: 0 15px;
     min-height: 568px;
-    background-color: @crfi-pink;
+    background-color: @crfi-primary;
 }
 
 @media(min-width:768px) {
@@ -30,11 +30,11 @@ body {
 }
 
 .page-header{
-    color: @crfi-primary;
+    color: @blue-label;
     border-bottom-color: yellow;
     margin-top: 0px;
     .item {
-    margin-top: 25px;
+        margin-top: 25px;
     }
 }
 
@@ -43,10 +43,10 @@ body {
 // --Topbar
 
 .navbar-default {
-    background-color: @crfi-pink;
+    background-color: @blue-logic;
     border: 0;
     .navbar-brand{
-        color: @crfi-primary;
+        color: @blue-label;
     }
     .navbar-collapse{
         border-color: yellow;
@@ -180,13 +180,13 @@ body {
 }
 
 .blockquote {
-    color: @crfi-primary;
+    color: @blue-label;
 }
 
 blockquote {
     cursor: pointer;
     word-break: break-all;
-    border-left-color: @crfi-primary;
+    border-left-color: @blue-label;
     &.selected{
         color: yellow;
     }
@@ -201,7 +201,7 @@ blockquote {
 }
 
 .btn-primary.btn-outline {
-    color: @crfi-primary;
+    color: @brand-primary;
 }
 
 .btn-success.btn-outline {
@@ -230,8 +230,8 @@ blockquote {
 
 .btn-login {
     border-color: yellow;
-    background-color: @crfi-pink;
-    color: @crfi-primary;
+    background-color: @blue-logic;
+    color: @blue-label;
     font-weight: bold;
     &:hover{
         color: yellow;
@@ -330,11 +330,7 @@ table.dataTable thead .sorting:after {
 }
 
 .table-striped>tbody>tr:nth-of-type(odd) {
-    background-color: @crfi-primary
-}
-
-.row_CRFI {
-    color: #27c0ff;
+    background-color: @blue-label
 }
 
 .row_ETNX {
@@ -410,43 +406,43 @@ table.dataTable thead .sorting:after {
     font-size: 40px;
 }
 
-.panel-crfi {
-    border-color: #27c0ff;
-    border-width: 2px;
-    > .panel-heading {
-        border-color: #27c0ff;
-        color: white;
-        background-color: @crfi-pink;
-    }
-    .panel-body  {
-        border-color: #27c0ff;
-        color: white;
-        background-color: @crfi-pink;
-    }
-    > .panel-footer {
-        border-color: #27c0ff;
-        color: white;
-        background-color: @crfi-pink;
-    }
-}
-
 .panel-etnx {
     border-color: yellow;
     border-width: 2px;
     > .panel-heading {
         border-color: yellow;
         color: white;
-        background-color: @crfi-pink;
+        background-color: @blue-logic;
     }
     .panel-body  {
         border-color: yellow;
         color: white;
-        background-color: @crfi-pink;
+        background-color: @blue-logic;
     }
     > .panel-footer {
         border-color: yellow;
         color: white;
-        background-color: @crfi-pink;
+        background-color: @blue-logic;
+    }
+}
+
+.panel-crfi {
+    border-color: @crfi-primary;
+    border-width: 2px;
+    > .panel-heading {
+        border-color: @crfi-pink;
+        color: white;
+        background-color: @crfi-primary;
+    }
+    .panel-body  {
+        border-color: @crfi-pink;
+        color: white;
+        background-color: @crfi-primary;
+    }
+    > .panel-footer {
+        border-color: @crfi-pink;
+        color: white;
+        background-color: @crfi-primary;
     }
 }
 
@@ -460,17 +456,17 @@ table.dataTable thead .sorting:after {
     > .panel-heading {
         border-color: grey;
         color: white;
-        background-color: @crfi-pink;
+        background-color: @blue-logic;
     }
     .panel-body  {
         border-color: grey;
         color: white;
-        background-color: @crfi-pink;
+        background-color: @blue-logic;
     }
     > .panel-footer {
         border-color: grey;
         color: white;
-        background-color: @crfi-pink;
+        background-color: @blue-logic;
     }
 }
 
@@ -489,20 +485,40 @@ table.dataTable thead .sorting:after {
 }
 
 .panel-etnx-gray {
-    border-color: @crfi-pink;
+    border-color: @blue-logic;
     border-width: 2px;
     > .panel-heading {
-        border-color: @crfi-pink;
+        border-color: @blue-logic;
         color: white;
         background-color: @panel-gray;
     }
     > .panel-body  {
-        border-color: @crfi-pink;
+        border-color: @blue-logic;
         color: white;
         background-color: @panel-gray;
     }
     > .panel-footer {
-        border-color: @crfi-pink;
+        border-color: @blue-logic;
+        color: white;
+        background-color: @panel-gray;
+    }
+}
+
+.panel-crfi-gray {
+    border-color: @crfi-primary;
+    border-width: 2px;
+    > .panel-heading {
+        border-color: @crfi-primary;
+        color: white;
+        background-color: @panel-gray;
+    }
+    > .panel-body  {
+        border-color: @crfi-primary;
+        color: white;
+        background-color: @panel-gray;
+    }
+    > .panel-footer {
+        border-color: @crfi-primary;
         color: white;
         background-color: @panel-gray;
     }

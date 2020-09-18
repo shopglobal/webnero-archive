@@ -58,7 +58,6 @@ var ModelViewController = {
         }
         return ModelViewController.coinState = which;
     },
-    //coins: { coin: ['etnx','etnxp','etnxc','ltnx','gldx'] },
     coins: { coin: ['crfi', 'etnx','etnxp','ltnx','gldx'] },
     setCoinData: function(coin, data){
         return localStorage.setItem(coin+"Data", data);       
@@ -156,7 +155,6 @@ var ModelViewController = {
             $("#gldx-unlocked-balance").html(gldxBalance);
         }
     },
-
     fillHistory: function(){
         var etnxData = this.getCoinData("etnx");
         if(etnxData != null){
@@ -217,7 +215,6 @@ var ModelViewController = {
                           "</tr>" );
         }
     },
-    
     initCoin: function(coinSymbol){
         console.log("3");
         PassportPipeline.setMethod('getaddr');
@@ -263,7 +260,6 @@ var ModelViewController = {
                 coin: coinSymbol
             });
     },
-
     refreshData: function(){
         $("#spinner-modal").modal('show');
         PassportPipeline.loadCode();
