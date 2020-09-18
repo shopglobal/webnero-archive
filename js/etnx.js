@@ -126,18 +126,6 @@ var ModelViewController = {
             $("#etnxp-balance").html(etnxpLockedBalance);
             $("#etnxp-unlocked-balance").html(etnxpBalance);
         }
-        
-        /*
-        var etnxcData = this.getCoinData("etnxc");
-        if(etnxcData != null){
-            const etnxcLockedBalance = this.formatCoinUnits(etnxcData.balances.balance, "etnxc")
-            const etnxcBalance = this.formatCoinUnits(etnxcData.balances.unlocked_balance, "etnxc")
-            $("#etnxc-wallet").html(etnxcData.address);
-            console.log(etnxcData);
-            $("#etnxc-balance").html(etnxcLockedBalance);
-            $("#etnxc-unlocked-balance").html(etnxcBalance);
-        }*/
-        
         var ltnxData = this.getCoinData("ltnx");
         if(ltnxData != null){
             const ltnxLockedBalance = this.formatCoinUnits(ltnxData.balances.balance, "ltnx")
@@ -147,7 +135,6 @@ var ModelViewController = {
             $("#ltnx-balance").html(ltnxLockedBalance);
             $("#ltnx-unlocked-balance").html(ltnxBalance);
         }
-
         var gldxData = this.getCoinData("gldx");
         if(gldxData != null){
             const gldxLockedBalance = this.formatCoinUnits(gldxData.balances.balance, "gldx")
@@ -157,7 +144,6 @@ var ModelViewController = {
             $("#gldx-balance").html(gldxLockedBalance);
             $("#gldx-unlocked-balance").html(gldxBalance);
         }
-
         var crfiData = this.getCoinData("crfi");
         if(crfiData != null){
             const crfiLockedBalance = this.formatCoinUnits(gldxData.balances.balance, "crfi")
@@ -241,7 +227,6 @@ var ModelViewController = {
                           "</tr>" );
         }
     },
-    
     initCoin: function(coinSymbol){
         console.log("3");
         PassportPipeline.setMethod('getaddr');
@@ -287,10 +272,10 @@ var ModelViewController = {
                 coin: coinSymbol
             });
     },
-
     refreshData: function(){
         $("#spinner-modal").modal('show');
         PassportPipeline.loadCode();
+        PassportPipeline.performOperation("crfi", ModelViewController.initCoin);
         PassportPipeline.performOperation("etnx", ModelViewController.initCoin);
         PassportPipeline.performOperation("etnxp", ModelViewController.initCoin);
         PassportPipeline.performOperation("ltnx", ModelViewController.initCoin);
