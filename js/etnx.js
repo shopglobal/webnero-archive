@@ -156,6 +156,7 @@ var ModelViewController = {
             console.log(gldxData);
             $("#gldx-balance").html(gldxLockedBalance);
             $("#gldx-unlocked-balance").html(gldxBalance);
+        }
 
         var crfiData = this.getCoinData("crfi");
         if(crfiData != null){
