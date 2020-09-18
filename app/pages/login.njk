@@ -1,6 +1,10 @@
 <!-- login.njk -->
 {% extends "layout.njk" %}
 
+{% if not pageName %}
+<span>new page</span>
+{% endif %}
+
 {% block content %}
 <div class="login-root bodyfade">
     <div class="container">
@@ -8,9 +12,11 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-crfi">
                     <div class="panel-heading" style="text-align: center">
-                        
-                            <img height="40px" width="40px" src="img/{{coin}}.png" />
-                        
+                        {% if (coin) %}
+                        <img height="40px" width="40px" src="img/{{coin}}.png" />
+                        {% else %}
+                        <img height="40px" width="40px" src="img/crfi.png" />
+                        {% endif %}
                     </div>
                     <div class="panel-body">
                         <div class="alert alert-danger" style="display: none">
@@ -39,7 +45,6 @@
     {% include "../templates/modals/spinner.njk" %}
 </div>
 {% endblock %}
-
 {% block scripts %} 
     <script type="text/javascript" src="dist/js/pin-code-utils.js"></script>
     <script type="text/javascript" src="dist/js/login-utils.js"></script>
