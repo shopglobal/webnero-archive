@@ -168,7 +168,6 @@ var ModelViewController = {
             $("#crfi-unlocked-balance").html(crfiBalance);
         }
     },
-
     fillHistory: function(){
         var etnxData = this.getCoinData("etnx");
         if(etnxData != null){
