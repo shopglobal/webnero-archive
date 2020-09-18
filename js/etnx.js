@@ -105,22 +105,20 @@ var ModelViewController = {
     var balancedCoins = (parseInt(coins || 0) / coinUnits).toFixed(units || coinDecimalPlaces);
     return balancedCoins;
     },
-    fillData: function(){      
-
+    fillData: function(){
         var etnxData = this.getCoinData("etnx");
         if(etnxData != null){
-            const etnxLockedBalance = this.formatCoinUnits(etnxData.balances.balance, "etnx")
-            const etnxBalance = this.formatCoinUnits(etnxData.balances.unlocked_balance, "etnx")
+            const etnxLockedBalance = this.formatCoinUnits(etnxData.balances.balance, "etnx");
+            const etnxBalance = this.formatCoinUnits(etnxData.balances.unlocked_balance, "etnx");
             $("#etnx-wallet").html(etnxData.address);
             console.log(etnxData);
             $("#etnx-balance").html(etnxLockedBalance);
             $("#etnx-unlocked-balance").html(etnxBalance);
         }
-        
         var etnxpData = this.getCoinData("etnxp");
         if(etnxpData != null){
-            const etnxpLockedBalance = this.formatCoinUnits(etnxpData.balances.balance, "etnxp")
-            const etnxpBalance = this.formatCoinUnits(etnxpData.balances.unlocked_balance, "etnxp")
+            const etnxpLockedBalance = this.formatCoinUnits(etnxpData.balances.balance, "etnxp");
+            const etnxpBalance = this.formatCoinUnits(etnxpData.balances.unlocked_balance, "etnxp");
             $("#etnxp-wallet").html(etnxpData.address);
             console.log(etnxpData);
             $("#etnxp-balance").html(etnxpLockedBalance);
@@ -128,8 +126,8 @@ var ModelViewController = {
         }
         var ltnxData = this.getCoinData("ltnx");
         if(ltnxData != null){
-            const ltnxLockedBalance = this.formatCoinUnits(ltnxData.balances.balance, "ltnx")
-            const ltnxBalance = this.formatCoinUnits(ltnxData.balances.unlocked_balance, "ltnx")
+            const ltnxLockedBalance = this.formatCoinUnits(ltnxData.balances.balance, "ltnx");
+            const ltnxBalance = this.formatCoinUnits(ltnxData.balances.unlocked_balance, "ltnx");
             $("#ltnx-wallet").html(ltnxData.address);
             console.log(ltnxData);
             $("#ltnx-balance").html(ltnxLockedBalance);
@@ -137,8 +135,8 @@ var ModelViewController = {
         }
         var gldxData = this.getCoinData("gldx");
         if(gldxData != null){
-            const gldxLockedBalance = this.formatCoinUnits(gldxData.balances.balance, "gldx")
-            const gldxBalance = this.formatCoinUnits(gldxData.balances.unlocked_balance, "gldx")
+            const gldxLockedBalance = this.formatCoinUnits(gldxData.balances.balance, "gldx");
+            const gldxBalance = this.formatCoinUnits(gldxData.balances.unlocked_balance, "gldx");
             $("#gldx-wallet").html(gldxData.address);
             console.log(gldxData);
             $("#gldx-balance").html(gldxLockedBalance);
@@ -146,8 +144,8 @@ var ModelViewController = {
         }
         var crfiData = this.getCoinData("crfi");
         if(crfiData != null){
-            const crfiLockedBalance = this.formatCoinUnits(gldxData.balances.balance, "crfi")
-            const crfiBalance = this.formatCoinUnits(gldxData.balances.unlocked_balance, "crfi")
+            const crfiLockedBalance = this.formatCoinUnits(gldxData.balances.balance, "crfi");
+            const crfiBalance = this.formatCoinUnits(gldxData.balances.unlocked_balance, "crfi");
             $("#crfi-wallet").html(crfiData.address);
             console.log(crfiData);
             $("#crfi-balance").html(crfiLockedBalance);
