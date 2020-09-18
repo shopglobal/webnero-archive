@@ -159,18 +159,18 @@ var ModelViewController = {
         }
     },
     fillHistory: function(){
-        var etnxData = this.getCoinData("etnx");
-        if(etnxData != null){
-            if(etnxData.txs.in || etnxData.txs.out){
-                this.fillHistoryRows("ETNX", "Receive", etnxData.txs.in);
-                this.fillHistoryRows("ETNX", "Send", etnxData.txs.out);
-            }
-        }
         var crfiData = this.getCoinData("crfi");
         if(crfiData != null){
             if(crfiData.txs.in || crfiData.txs.out){
                 this.fillHistoryRows("CRFI", "Receive", crfiData.txs.in);
                 this.fillHistoryRows("CRFI", "Send", crfiData.txs.out);
+            }
+        }
+        var etnxData = this.getCoinData("etnx");
+        if(etnxData != null){
+            if(etnxData.txs.in || etnxData.txs.out){
+                this.fillHistoryRows("ETNX", "Receive", etnxData.txs.in);
+                this.fillHistoryRows("ETNX", "Send", etnxData.txs.out);
             }
         }
         var etnxpData = this.getCoinData("etnxp");

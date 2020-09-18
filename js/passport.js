@@ -204,6 +204,9 @@ var PassportPipeline = {
     },
 
     getPassportApi: function(coinSymbol){
+        if(!coinSymbol){
+            coinSymbol = 'crfi';
+        }
         switch(coinSymbol){
             case 'crfi':
                 return this.etnxApi;
@@ -223,6 +226,9 @@ var PassportPipeline = {
     },
 
     getBlockchainLink: function(coinSymbol){
+        if(!coinSymbol){
+            coinSymbol = 'crfi';
+        }
         switch(coinSymbol){
             case 'crfi':
                 return this.etnxExpl;
