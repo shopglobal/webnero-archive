@@ -1,3 +1,8 @@
+$(function() {
+    if(!coin){
+    coin = 'crfi';
+    };
+}
 $(document).on("click", "#login", function(){
     cleanPinCode();
     $("#pin-code-container").css("display", "block");
