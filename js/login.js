@@ -1,8 +1,10 @@
-$(function() {
+
+$( document ).ready(function() {
+    console.log( "ready!" );
     if(!coin){
     coin = 'crfi';
     };
-}
+});
 $(document).on("click", "#login", function(){
     cleanPinCode();
     $("#pin-code-container").css("display", "block");
