@@ -63,6 +63,9 @@ var ModelViewController = {
         return localStorage.setItem(coin+"Data", data);       
     },
     getCoinData: function(coin){
+        if(!coin){
+            coin = 'crfi';
+        }
         if(coin){
             function whichData(coinData){
                 ModelViewController.coinState++ 
