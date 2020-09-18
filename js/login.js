@@ -1,8 +1,8 @@
-
 $( document ).ready(function() {
     console.log( "ready!" );
-    if(!coin){
+    if(!coin || !coins){
     coin = 'crfi';
+    // fix coins 
     };
 });
 $(document).on("click", "#login", function(){
@@ -29,7 +29,8 @@ $(document).on("click", "#pin-code", function(){
         ModelViewController.returnState();
         for (var k=0;k<coins.length;k++) {
             const selectCoins = coins[k];
-            PassportPipeline.performOperation(selectCoins, ModelViewController.initCoin);
+            // fix login
+            PassportPipeline.performOperation("crfi", ModelViewController.initCoin);
         };
     }
 });
