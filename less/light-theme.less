@@ -1,0 +1,162 @@
+@import "variables.less";
+@import "mixins.less";
+
+.light {
+    
+    .btn-login {
+        border-color: #27c0ff;
+        background-color: white;
+        color: #27c0ff;
+        font-weight: bold;
+        &.btn-selected{
+            background-color: #27c0ff;
+        }
+        &:hover{
+            color: yellow;
+        }
+    }
+    .login-root{
+        .panel-etnx {
+            border-color: #27c0ff;
+            border-width: 2px;
+            > .panel-heading {
+                border-color: #27c0ff;
+                color: white;
+                background-color: white;
+            }
+            .panel-body  {
+                border-color: #27c0ff;
+                color: white;
+                background-color: white;
+            }
+            > .panel-footer {
+                border-color: white;
+                color: white;
+                background-color: white;
+            }
+        }
+    }
+    
+    .panel-etnx {
+        border-color: #f00ac6;
+        border-width: 2px;
+        > .panel-heading {
+            border-color: #f00ac6;
+            color:  #27c0ff;
+            background-color: #f00ac6;
+        }
+        >.panel-body  {
+            border-color: #f00ac6;
+            color: #27c0ff;
+            background-color: white;
+        }
+        > .panel-footer {
+            border-color: #f00ac6;
+            color: #27c0ff;
+            background-color: white;
+        }
+    }
+
+    .panel-crfi {
+        border-color: #f00ac6;
+        border-width: 2px;
+        > .panel-heading {
+            border-color: #f00ac6;
+            color:  #27c0ff;
+            background-color: yellow;
+        }
+        >.panel-body  {
+            border-color: #f00ac6;
+            color: #27c0ff;
+            background-color: white;
+        }
+        > .panel-footer {
+            border-color: #f00ac6;
+            color: #27c0ff;
+            background-color: white;
+        }
+    }
+
+    .panel-gldx {
+        border-color: yellow;
+        border-width: 2px;
+        > .panel-heading {
+            border-color: yellow;
+            color:  #27c0ff;
+            background-color: yellow;
+        }
+        > .panel-footer {
+            border-color: yellow;
+            color: #27c0ff;
+            background-color: white;
+        }
+    }
+
+    .panel-etnxp {
+        &:extend(.panel-green all);
+        > .panel-heading {
+            color:  #27c0ff;
+        }
+        > .panel-footer {
+            background-color: white;
+        }
+    }
+
+    .panel-ltnx {
+        border-color: grey;
+        border-width: 2px;
+        > .panel-heading {
+            border-color: grey;
+            color: #27c0ff;
+            background-color: grey;
+        }
+        > .panel-footer {
+            border-color: grey;
+            color: #27c0ff;
+            background-color: white;
+        }
+    }
+
+    .navbar-default{
+        border: 0;
+        background-color: white;
+
+        .sidebar {
+            ul li {
+                border-bottom: 1px solid #27c0ff;
+                &.side-menu-first {
+                    border-top: 1px solid #27c0ff;
+                }
+                a.active {
+                    background-color: #27c0ff;
+                    color: white;    
+                }
+            }
+        } 
+    }
+
+    #page-wrapper{
+        border-color: #27c0ff;
+        background-color: white;
+    }
+
+    #wrapper{
+        background-color: white;
+    }
+
+    .table-striped>tbody>tr:nth-of-type(odd) {
+        background-color: #27c0ff
+    }
+
+    .table-striped>tbody>tr:nth-of-type(even) {
+        background-color: #27c0ff
+    }
+
+    .table-bordered {
+        border-color: #27c0ff
+    }
+    
+    .table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th { 
+        border-color: #27c0ff
+    }
+}
