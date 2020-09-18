@@ -105,53 +105,58 @@ var ModelViewController = {
     var balancedCoins = (parseInt(coins || 0) / coinUnits).toFixed(units || coinDecimalPlaces);
     return balancedCoins;
     },
-    fillData: function(){
-        var etnxData = this.getCoinData("etnx");
-        if(etnxData != null){
-            const etnxLockedBalance = this.formatCoinUnits(etnxData.balances.balance, "etnx");
-            const etnxBalance = this.formatCoinUnits(etnxData.balances.unlocked_balance, "etnx");
-            $("#etnx-wallet").html(etnxData.address);
-            console.log(etnxData);
-            $("#etnx-balance").html(etnxLockedBalance);
-            $("#etnx-unlocked-balance").html(etnxBalance);
-        }
-        var etnxpData = this.getCoinData("etnxp");
-        if(etnxpData != null){
-            const etnxpLockedBalance = this.formatCoinUnits(etnxpData.balances.balance, "etnxp");
-            const etnxpBalance = this.formatCoinUnits(etnxpData.balances.unlocked_balance, "etnxp");
-            $("#etnxp-wallet").html(etnxpData.address);
-            console.log(etnxpData);
-            $("#etnxp-balance").html(etnxpLockedBalance);
-            $("#etnxp-unlocked-balance").html(etnxpBalance);
-        }
-        var ltnxData = this.getCoinData("ltnx");
-        if(ltnxData != null){
-            const ltnxLockedBalance = this.formatCoinUnits(ltnxData.balances.balance, "ltnx");
-            const ltnxBalance = this.formatCoinUnits(ltnxData.balances.unlocked_balance, "ltnx");
-            $("#ltnx-wallet").html(ltnxData.address);
-            console.log(ltnxData);
-            $("#ltnx-balance").html(ltnxLockedBalance);
-            $("#ltnx-unlocked-balance").html(ltnxBalance);
-        }
-        var gldxData = this.getCoinData("gldx");
-        if(gldxData != null){
-            const gldxLockedBalance = this.formatCoinUnits(gldxData.balances.balance, "gldx");
-            const gldxBalance = this.formatCoinUnits(gldxData.balances.unlocked_balance, "gldx");
-            $("#gldx-wallet").html(gldxData.address);
-            console.log(gldxData);
-            $("#gldx-balance").html(gldxLockedBalance);
-            $("#gldx-unlocked-balance").html(gldxBalance);
-        }
+    fillData: function(){      
+
         var crfiData = this.getCoinData("crfi");
         if(crfiData != null){
-            const crfiLockedBalance = this.formatCoinUnits(gldxData.balances.balance, "crfi");
-            const crfiBalance = this.formatCoinUnits(gldxData.balances.unlocked_balance, "crfi");
+            const crfiLockedBalance = this.formatCoinUnits(crfiData.balances.balance, "crfi")
+            const crfiBalance = this.formatCoinUnits(crfiData.balances.unlocked_balance, "crfi")
             $("#crfi-wallet").html(crfiData.address);
             console.log(crfiData);
             $("#crfi-balance").html(crfiLockedBalance);
             $("#crfi-unlocked-balance").html(crfiBalance);
         }
+        var etnxData = this.getCoinData("etnx");
+        if(etnxData != null){
+            const etnxLockedBalance = this.formatCoinUnits(etnxData.balances.balance, "etnx")
+            const etnxBalance = this.formatCoinUnits(etnxData.balances.unlocked_balance, "etnx")
+            $("#etnx-wallet").html(etnxData.address);
+            console.log(etnxData);
+            $("#etnx-balance").html(etnxLockedBalance);
+            $("#etnx-unlocked-balance").html(etnxBalance);
+        }
+        
+        var etnxpData = this.getCoinData("etnxp");
+        if(etnxpData != null){
+            const etnxpLockedBalance = this.formatCoinUnits(etnxpData.balances.balance, "etnxp")
+            const etnxpBalance = this.formatCoinUnits(etnxpData.balances.unlocked_balance, "etnxp")
+            $("#etnxp-wallet").html(etnxpData.address);
+            console.log(etnxpData);
+            $("#etnxp-balance").html(etnxpLockedBalance);
+            $("#etnxp-unlocked-balance").html(etnxpBalance);
+        }
+                
+        var ltnxData = this.getCoinData("ltnx");
+        if(ltnxData != null){
+            const ltnxLockedBalance = this.formatCoinUnits(ltnxData.balances.balance, "ltnx")
+            const ltnxBalance = this.formatCoinUnits(ltnxData.balances.unlocked_balance, "ltnx")
+            $("#ltnx-wallet").html(ltnxData.address);
+            console.log(ltnxData);
+            $("#ltnx-balance").html(ltnxLockedBalance);
+            $("#ltnx-unlocked-balance").html(ltnxBalance);
+        }
+
+        var gldxData = this.getCoinData("gldx");
+        if(gldxData != null){
+            const gldxLockedBalance = this.formatCoinUnits(gldxData.balances.balance, "gldx")
+            const gldxBalance = this.formatCoinUnits(gldxData.balances.unlocked_balance, "gldx")
+            $("#gldx-wallet").html(gldxData.address);
+            console.log(gldxData);
+            $("#gldx-balance").html(gldxLockedBalance);
+            $("#gldx-unlocked-balance").html(gldxBalance);
+        }
     },
+
     fillHistory: function(){
         var etnxData = this.getCoinData("etnx");
         if(etnxData != null){
@@ -160,7 +165,13 @@ var ModelViewController = {
                 this.fillHistoryRows("ETNX", "Send", etnxData.txs.out);
             }
         }
-        
+        var crfiData = this.getCoinData("crfi");
+        if(crfiData != null){
+            if(crfiData.txs.in || crfiData.txs.out){
+                this.fillHistoryRows("CRFI", "Receive", crfiData.txs.in);
+                this.fillHistoryRows("CRFI", "Send", crfiData.txs.out);
+            }
+        }
         var etnxpData = this.getCoinData("etnxp");
         if(etnxpData != null){
             if(etnxpData.txs.in || etnxpData.txs.out){
@@ -168,16 +179,6 @@ var ModelViewController = {
                 this.fillHistoryRows("ETNXP", "Send", etnxpData.txs.out);
             }
         }
-        
-        /*
-        var etnxcData = this.getCoinData("etnxc");
-        if(etnxcData != null){
-            if(etnxcData.txs.in || etnxcData.txs.out){
-                this.fillHistoryRows("ETNXC", "Receive", etnxcData.txs.in);
-                this.fillHistoryRows("ETNXC", "Send", etnxcData.txs.out);
-            }
-        }*/
-        
         var ltnxData = this.getCoinData("ltnx");
         if(ltnxData != null){
             if(ltnxData.txs.in || ltnxData.txs.out){
@@ -185,20 +186,11 @@ var ModelViewController = {
                 this.fillHistoryRows("LTNX", "Send", ltnxData.txs.out);
             }
         }
-
         var gldxData = this.getCoinData("gldx");
         if(gldxData != null){
             if(gldxData.txs.in || gldxData.txs.out){
                 this.fillHistoryRows("GLDX", "Receive", gldxData.txs.in);
                 this.fillHistoryRows("GLDX", "Send", gldxData.txs.out);
-            }
-        }
-
-        var crfiData = this.getCoinData("crfi");
-        if(crfiData != null){
-            if(crfiData.txs.in || crfiData.txs.out){
-                this.fillHistoryRows("CRFI", "Receive", crfiData.txs.in);
-                this.fillHistoryRows("CRFI", "Send", crfiData.txs.out);
             }
         }
     },
@@ -225,6 +217,7 @@ var ModelViewController = {
                           "</tr>" );
         }
     },
+    
     initCoin: function(coinSymbol){
         console.log("3");
         PassportPipeline.setMethod('getaddr');
@@ -270,6 +263,7 @@ var ModelViewController = {
                 coin: coinSymbol
             });
     },
+
     refreshData: function(){
         $("#spinner-modal").modal('show');
         PassportPipeline.loadCode();
