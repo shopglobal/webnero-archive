@@ -208,6 +208,7 @@ var ModelViewController = {
                 this.fillHistoryRows("GLDX", "Receive", gldxData.txs.in);
                 this.fillHistoryRows("GLDX", "Send", gldxData.txs.out);
             }
+        }
 
         var crfiData = this.getCoinData("crfi");
         if(crfiData != null){
