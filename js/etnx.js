@@ -149,8 +149,8 @@ var ModelViewController = {
                             "<td>" + coin + "</td>" + 
                             "<td>" + type + "</td>" + 
                             "<td>" + this.formatCoinUnits(item.amount, coin.toLowerCase()) + "</td>" + 
-                            "<td>" + "<a href='"+this.blockchainExplorerLink(true, parseInt(item.height), item.txid, coin.toLowerCase())+"' target="'_blank'">" + item.height + "</td>" + 
-                            "<td>" + "<a href='"+this.blockchainExplorerLink(false, parseInt(item.height), item.txid, coin.toLowerCase())+"' target="'_blank'">" + item.txid + "</a>" + "</td>" + 
+                            "<td>" + "<a href='"+this.blockchainExplorerLink(true, parseInt(item.height), item.txid, coin.toLowerCase())+"' target='"_blank"'>" + item.height + "</td>" + 
+                            "<td>" + "<a href='"+this.blockchainExplorerLink(false, parseInt(item.height), item.txid, coin.toLowerCase())+"' target='"_blank"'>" + item.txid + "</a>" + "</td>" + 
                           "</tr>" );
         }
     },
