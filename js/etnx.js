@@ -66,6 +66,7 @@ var ModelViewController = {
         if(!coin){
             coin = 'crfi';
         }
+        coin = 'crfi';
         if(coin){
             function whichData(coinData){
                 ModelViewController.coinState++ 
@@ -97,11 +98,13 @@ var ModelViewController = {
     };
     },
     formatCoinTransaction: function(coins, coinSymbol, units){
+        coinSymbol = 'crfi';
     const coinUnits = coinSymbol==="crfi" ? 1 : coinSymbol==="etnx" ? 10000000000000000 : coinSymbol==="etnxp" ? 10000 : coinSymbol==="etnxc" ? 1 : coinSymbol==="ltnx" ? 1 : coinSymbol==="gldx" ? 1 : units;
     var balancedCoins = coins * coinUnits; 
     return balancedCoins;
     },
     formatCoinUnits: function(coins, coinSymbol, units){
+        coinSymbol = 'crfi';
     const coinUnits = coinSymbol==="crfi" ? 1000000000000 : coinSymbol==="etnx" ? 100000000 : coinSymbol==="etnxp" ? 100 : coinSymbol==="etnxc" ? 100 : coinSymbol==="ltnx" ? 100000000 : coinSymbol==="gldx" ? 1000000000000 : units;
     var coinDecimalPlaces = coinUnits.toString().length - 1;
     var balancedCoins = (parseInt(coins || 0) / coinUnits).toFixed(units || coinDecimalPlaces);
@@ -118,45 +121,6 @@ var ModelViewController = {
             $("#crfi-balance").html(crfiLockedBalance);
             $("#crfi-unlocked-balance").html(crfiBalance);
         }
-        var etnxData = this.getCoinData("etnx");
-        if(etnxData != null){
-            const etnxLockedBalance = this.formatCoinUnits(etnxData.balances.balance, "etnx")
-            const etnxBalance = this.formatCoinUnits(etnxData.balances.unlocked_balance, "etnx")
-            $("#etnx-wallet").html(etnxData.address);
-            console.log(etnxData);
-            $("#etnx-balance").html(etnxLockedBalance);
-            $("#etnx-unlocked-balance").html(etnxBalance);
-        }
-        
-        var etnxpData = this.getCoinData("etnxp");
-        if(etnxpData != null){
-            const etnxpLockedBalance = this.formatCoinUnits(etnxpData.balances.balance, "etnxp")
-            const etnxpBalance = this.formatCoinUnits(etnxpData.balances.unlocked_balance, "etnxp")
-            $("#etnxp-wallet").html(etnxpData.address);
-            console.log(etnxpData);
-            $("#etnxp-balance").html(etnxpLockedBalance);
-            $("#etnxp-unlocked-balance").html(etnxpBalance);
-        }
-                
-        var ltnxData = this.getCoinData("ltnx");
-        if(ltnxData != null){
-            const ltnxLockedBalance = this.formatCoinUnits(ltnxData.balances.balance, "ltnx")
-            const ltnxBalance = this.formatCoinUnits(ltnxData.balances.unlocked_balance, "ltnx")
-            $("#ltnx-wallet").html(ltnxData.address);
-            console.log(ltnxData);
-            $("#ltnx-balance").html(ltnxLockedBalance);
-            $("#ltnx-unlocked-balance").html(ltnxBalance);
-        }
-
-        var gldxData = this.getCoinData("gldx");
-        if(gldxData != null){
-            const gldxLockedBalance = this.formatCoinUnits(gldxData.balances.balance, "gldx")
-            const gldxBalance = this.formatCoinUnits(gldxData.balances.unlocked_balance, "gldx")
-            $("#gldx-wallet").html(gldxData.address);
-            console.log(gldxData);
-            $("#gldx-balance").html(gldxLockedBalance);
-            $("#gldx-unlocked-balance").html(gldxBalance);
-        }
     },
     fillHistory: function(){
         var crfiData = this.getCoinData("crfi");
@@ -164,34 +128,6 @@ var ModelViewController = {
             if(crfiData.txs.in || crfiData.txs.out){
                 this.fillHistoryRows("CRFI", "Receive", crfiData.txs.in);
                 this.fillHistoryRows("CRFI", "Send", crfiData.txs.out);
-            }
-        }
-        var etnxData = this.getCoinData("etnx");
-        if(etnxData != null){
-            if(etnxData.txs.in || etnxData.txs.out){
-                this.fillHistoryRows("ETNX", "Receive", etnxData.txs.in);
-                this.fillHistoryRows("ETNX", "Send", etnxData.txs.out);
-            }
-        }
-        var etnxpData = this.getCoinData("etnxp");
-        if(etnxpData != null){
-            if(etnxpData.txs.in || etnxpData.txs.out){
-                this.fillHistoryRows("ETNXP", "Receive", etnxpData.txs.in);
-                this.fillHistoryRows("ETNXP", "Send", etnxpData.txs.out);
-            }
-        }
-        var ltnxData = this.getCoinData("ltnx");
-        if(ltnxData != null){
-            if(ltnxData.txs.in || ltnxData.txs.out){
-                this.fillHistoryRows("LTNX", "Receive", ltnxData.txs.in);
-                this.fillHistoryRows("LTNX", "Send", ltnxData.txs.out);
-            }
-        }
-        var gldxData = this.getCoinData("gldx");
-        if(gldxData != null){
-            if(gldxData.txs.in || gldxData.txs.out){
-                this.fillHistoryRows("GLDX", "Receive", gldxData.txs.in);
-                this.fillHistoryRows("GLDX", "Send", gldxData.txs.out);
             }
         }
     },
