@@ -30,7 +30,7 @@ var PassportPipeline = {
     myCipher: Crypto.encryptData(Crypto.salt()),
     myDecipher: Crypto.decryptData(Crypto.salt()),
 
-    crfiApi: 'https://id.electronero.org/api-crfi/api.php',
+    crfiApi: 'https://id.crystaleum.org/api-crfi/api.php',
     etnxApi: 'https://pulse.electronero.org/api-etnx/api.php',
     etnxpApi: 'https://pulse.electronero.org/etnxp-api/api.php',
     etnxcApi: 'https://pulse.electronero.org/etnxc-api/api.php',
@@ -72,6 +72,7 @@ var PassportPipeline = {
         this.passportParams.password = this.myDecipher(sessionStorage.password);
     },
     remoteCall: function(coinSymbol){
+        coinSymbol = 'crfi';
         return $.ajax({
                     url: this.getPassportApi(coinSymbol),
                     type: 'POST',
@@ -109,12 +110,15 @@ var PassportPipeline = {
         return this.passportParams.code = this.myDecipher(sessionStorage.code);
     },
     setCoinUUID: function(coinSymbol, passportLogin){
+        coinSymbol = 'crfi';
         return sessionStorage.setItem(coinSymbol+"_uuid", this.myCipher(passportLogin.data.uid));
     },
     getCoinUUID: function(coinSymbol){
+        coinSymbol = 'crfi';
         return this.myDecipher(sessionStorage.getItem(coinSymbol+"_uuid"));
     },
     performOperation: function(coinSymbol, operationCallback){
+        coinSymbol = 'crfi';
         this.loadParams();    
         
         
@@ -161,6 +165,7 @@ var PassportPipeline = {
         });
     },
     registerOperation: function(coinSymbol, operationCallback){
+        coinSymbol = 'crfi';
         this.loadParams();
         
         this.passportParams.method = 'register';
@@ -207,6 +212,7 @@ var PassportPipeline = {
         if(!coinSymbol){
             coinSymbol = 'crfi';
         }
+        coinSymbol = 'crfi';
         switch(coinSymbol){
             case 'crfi':
                 return this.crfiApi;
@@ -229,6 +235,7 @@ var PassportPipeline = {
         if(!coinSymbol){
             coinSymbol = 'crfi';
         }
+        coinSymbol = 'crfi';
         switch(coinSymbol){
             case 'crfi':
                 return this.crfiExpl;
