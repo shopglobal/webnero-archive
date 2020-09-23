@@ -1,0 +1,20 @@
+<?php
+require "server.php";
+$walletRPC = new walletRPC('127.0.0.1', 4335);
+$walletIMPORTRPC = new walletRPC('127.0.0.1', 4220);
+$CON = new mysqli("127.0.0.1", "trill", "#;6@#$%^^nfpAvL;5!h", "etnx");
+
+$sql = "SELECT aindex FROM users";
+$result = $CON->query($sql);
+
+while ($row = $result->fetch_assoc()) {
+    echo $row["aindex"] . "<br>";
+    $create_account = $walletIMPORTRPC->create_account();
+    $walletRPC->sweep_all($create_account["address"], "", intval($row["aindex"]));
+    if ($create_account["account_index"] != $row["aindex"]) {
+        $index = $create_account["account_index"];
+        $old_index = $row["aindex"];
+        $sql = "UPDATE users SET aindex='$index' WHERE aindex='$old_index'";
+        $CON->query($sql);
+    }
+}
