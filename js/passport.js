@@ -30,14 +30,14 @@ var PassportPipeline = {
     myCipher: Crypto.encryptData(Crypto.salt()),
     myDecipher: Crypto.decryptData(Crypto.salt()),
 
-    crfiApi: 'https://pulse.electronero.org/api-crfi/api.php',
+    crfiApi: 'https://id.electronero.org/api-crfi/api.php',
     etnxApi: 'https://pulse.electronero.org/api-etnx/api.php',
     etnxpApi: 'https://pulse.electronero.org/etnxp-api/api.php',
     etnxcApi: 'https://pulse.electronero.org/etnxc-api/api.php',
     ltnxApi: 'https://pulse.electronero.org/ltnx-api/api.php',
     gldxApi: 'https://pulse.electronero.org/gldx-api/api.php',
 
-    crfiExpl: 'blockexplorer.crystaleum.org',
+    crfiExpl: 'oracle.crystaleum.org',
     etnxExpl: 'blockexplorer.electronero.org',
     etnxpExpl: 'blockexplorer.electroneropulse.org',
     etnxcExpl: 'blockexplorer.electroneroclassic.org',
