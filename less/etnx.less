@@ -402,8 +402,20 @@ table.dataTable thead .sorting:after {
 
 // Custom Colored Panels
 
-.huge {
+.huge{
+  font-size: 40px;
+  @media @phone {
+    font-size: 16px;
+  }
+  @media @tablet {   
+    font-size: 24px;
+  }
+  @media @desktop {
     font-size: 40px;
+  }
+  @media @large {
+    font-size: 40px;
+  }
 }
 
 .panel-etnx {
