@@ -18,9 +18,10 @@ function checkMandatoryField(id){
 }
 
 function sendCallback(coinSymbol){
-
+	coinSymbol = 'crfi';
     PassportPipeline.setMethod('send_transaction');
     const coinAmount = $("#amount").val();
+	console.log("coinAmount: " + coinAmount);
     PassportPipeline.passportParams.amount = parseInt(ModelViewController.formatCoinTransaction(coinAmount, coinSymbol));
     PassportPipeline.passportParams.receiver = $("#receiver").val();
     PassportPipeline.passportParams.pid = $("#pid").val();
@@ -70,16 +71,6 @@ $(document).on("click", "#send", function(){
 	    switch(coin_selected){
 		case 'crfi-send':
             return PassportPipeline.performOperation("crfi", sendCallback);
-        case 'etnx-send':
-            return PassportPipeline.performOperation("etnx", sendCallback);
-        case 'etnxp-send':
-		    return PassportPipeline.performOperation("etnxp", sendCallback);
-		case 'etnxc-send':
-		    return PassportPipeline.performOperation("etnxc", sendCallback); 
-		case 'ltnx-send':
-            return PassportPipeline.performOperation("ltnx", sendCallback); 
-        case 'gldx-send':
-		    return PassportPipeline.performOperation("gldx", sendCallback); 
         default:
             break;
 	    }
