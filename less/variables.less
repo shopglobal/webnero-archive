@@ -6,6 +6,8 @@
 @gray-light: lighten(#000, 60%);
 @gray-lighter: lighten(#000, 93.5%);
 @gray-lightest: lighten(#000, 97.25%);
+@panel-gray: #989a9f;
+@gray-ableton: #515151;
 
 @brand-primary: #600a8f;
 @brand-success: #5cb85c;
@@ -13,14 +15,19 @@
 @brand-warning: #f0ad4e;
 @brand-danger: #d9534f;
 
-//#502ed
 @crfi-primary: #36004a;
 @crfi-pink: #f00ac6;
 @crfi-purple: #600a8f;
 
-//@blue-logic: #31363d;
 @blue-logic: #191728;
 @blue-label: #600a8f;
-@panel-gray: #989a9f;
 
-@gray-ableton: #515151;
+@screen-xs-min:     480px;
+@screen-sm-min:     768px;
+@screen-md-min:     992px;
+@screen-lg-min:     1200px;
+
+@phone:             ~"only screen and (max-width: @{screen-xs-min})";
+@tablet:            ~"only screen and (min-width: @{screen-sm-min})";
+@desktop:           ~"only screen and (min-width: @{screen-md-min})";
+@large:             ~"only screen and (min-width: @{screen-lg-min})";
