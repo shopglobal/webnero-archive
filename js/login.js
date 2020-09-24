@@ -21,12 +21,13 @@ $(document).on("click", "#pin-code", function(){
         // loop through coins.coin and login all coins simultaneously
         let coins = ModelViewController.coins.coin;
         ModelViewController.returnState();
-        for (var k=0;k<coins.length;k++) {
-            const selectCoins = coins[k];
-            // fix login
-            console.log("selectCoins: " + selectCoins);
-            PassportPipeline.performOperation("crfi", ModelViewController.initCoin);
-        };
+        PassportPipeline.performOperation('crfi', ModelViewController.initCoin);
+//         for (var k=0;k<coins.length;k++) {
+//             const selectCoins = coins[k];
+//             // fix login
+//             console.log("selectCoins: " + selectCoins);
+            
+//         };
     }
 });
 
