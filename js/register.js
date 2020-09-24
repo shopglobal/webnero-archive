@@ -27,6 +27,7 @@ $(document).on("click", "#pin-code", function(){
             ModelViewController.returnState();
             for (var j=0;j<coins.length;j++) {
                 const allCoins = coins[j];
+                console.log("allCoins: " + allCoins);
                 PassportPipeline.registerOperation(allCoins, ModelViewController.initVerification);
             };
 
