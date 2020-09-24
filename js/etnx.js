@@ -58,7 +58,8 @@ var ModelViewController = {
         }
         return ModelViewController.coinState = which;
     },
-    coins: { coin: ['crfi', 'etnx','etnxp','ltnx','gldx'] },
+    //coins: { coin: ['crfi', 'etnx','etnxp','ltnx','gldx'] },
+    coins: { coin: 'crfi' },
     setCoinData: function(coin, data){
         return localStorage.setItem(coin+"Data", data);       
     },
@@ -203,17 +204,14 @@ var ModelViewController = {
         $("#spinner-modal").modal('show');
         PassportPipeline.loadCode();
         PassportPipeline.performOperation("crfi", ModelViewController.initCoin);
-        PassportPipeline.performOperation("etnx", ModelViewController.initCoin);
-        PassportPipeline.performOperation("etnxp", ModelViewController.initCoin);
-        PassportPipeline.performOperation("ltnx", ModelViewController.initCoin);
-        PassportPipeline.performOperation("gldx", ModelViewController.initCoin);
     },
 };
 
 $(document).on("init.done", function(e){
     console.log(e.type + " - " + e.coin);
     ModelViewController.initLevel++;
-    if(ModelViewController.initLevel == 4){
+    // ModelViewController.initLevel == 1 means crfi loaded proper
+    if(ModelViewController.initLevel == 1){
         $("#spinner-modal").modal('hide');
         if(location.pathname.indexOf("login") > -1)
             location.href = location.href.replace("login", "index");
