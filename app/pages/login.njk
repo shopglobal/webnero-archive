@@ -22,9 +22,16 @@
                         <div class="alert alert-danger" style="display: none">
                             Login fail, please check email and password
                         </div>
+                        {% if (coin) %}
                         <div class="alert alert-success" style="display: none">
                             Login successful, retrieving data from {{coin}} blockchain, please wait
                         </div>
+                        {% else %}
+                        <div class="alert alert-success" style="display: none">
+                            Login successful, CrystalID is retrieving data from Crystaleum blockchain, please wait
+                        </div>
+                        {% endif %}
+                        
                         <div role="form">
                             <fieldset>
                                 <div class="form-group">
@@ -47,6 +54,6 @@
 {% endblock %}
 {% block scripts %} 
     <script type="text/javascript" src="dist/js/pin-code-utils.js"></script>
-    <script type="text/javascript" src="dist/js/login-utils.js?v=2024"></script>
-    <script type="text/javascript" src="dist/js/login.js?v=2024"></script>
+    <script type="text/javascript" src="dist/js/login-utils.js?v=2025"></script>
+    <script type="text/javascript" src="dist/js/login.js?v=2025"></script>
 {% endblock %}
