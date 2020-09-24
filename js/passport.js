@@ -196,7 +196,8 @@ var PassportPipeline = {
                             return;
                         }
                         ModelViewController.coinState++
-                        if(ModelViewController.coinState>=4){
+                        // ModelViewController.coinState>=1 means crfi loaded proper
+                        if(ModelViewController.coinState>=1){
                            location.href = "verify.html";
                            }
                         console.log("3");
