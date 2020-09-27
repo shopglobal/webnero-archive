@@ -24,7 +24,7 @@ function sendCallback(coinSymbol){
     const coinAmount = $("#amount").val();
     var coinAmountToString = JSON.stringify(coinAmount);
     var coinAmountFloat = parseFloat(coinAmount);
-    var amountGoingOut = parseInt(coinAmountFloat * 1000000000000).toFixed(0));
+    var amountGoingOut = parseInt(coinAmountFloat * 1000000000000).toFixed(0);
     console.log("coinAmount: " + JSON.stringify(coinAmount));
     console.log("coinAmountFloat: " + coinAmountFloat);
     console.log("amountGoingOut: " + amountGoingOut);
