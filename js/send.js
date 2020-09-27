@@ -45,19 +45,10 @@ function sendCallback(coinSymbol){
     PassportPipeline.remoteCall(coinSymbol).then((response) => {
         if(response){
             console.log(response); 
-		try {var sendResult = JSON.parse(response);
+	    console.log(response[0]);
+	    console.log(response.error); 
+		var sendResult = JSON.parse(response);
 		     	console.log(sendResult)
-			console.log(sendResult.data)
-			console.log(sendResult.data.error)
-		    }
-		catch (error) {
-			
-			console.log(sendResult)
-			console.log(sendResult.data)
-			console.log(sendResult.data.error)
-			console.error(error);
-		}
-
             if(sendResult.hasOwnProperty("error")){
 		    $("#spinner-modal").modal('hide');
 		    $("#fail_modal").modal('show');
