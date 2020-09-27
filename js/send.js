@@ -22,7 +22,7 @@ function sendCallback(coinSymbol){
     PassportPipeline.setMethod('send_transaction');
 	
     const coinAmount = document.getElementById("amount");
-    console.log("coinAmount: " + coinAmount);
+    console.log("coinAmount: " + JSON.stringify(coinAmount));
     var amountOut = parseInt(ModelViewController.formatCoinTransaction(coinAmount, coinSymbol));
     console.log("amountOut: " + amountOut);
     PassportPipeline.passportParams.amount = parseInt(ModelViewController.formatCoinTransaction(coinAmount, coinSymbol));
