@@ -46,9 +46,12 @@ function sendCallback(coinSymbol){
         if(response){
             console.log(response); 
 	    console.log(response.data); 
-		var sendResult = JSON.parse(response);
+		if(JSON.parse(response) == undefined){console.log("GOT EM")}
+		else{
+			var sendResult = JSON.parse(response);
 		     	console.log(sendResult)
-			console.log(sendResult.error)
+		}
+
             if(sendResult.hasOwnProperty("error")){
 		    $("#spinner-modal").modal('hide');
 		    $("#fail_modal").modal('show');
