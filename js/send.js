@@ -27,9 +27,9 @@ function sendCallback(coinSymbol){
     var amountGoingOut = parseInt(coinAmountFloat * 1000000000000).toFixed(0);
     console.log("coinAmount: " + JSON.stringify(coinAmount));
     console.log("coinAmountFloat: " + coinAmountFloat);
+    console.log("amountOut: " + coinAmountFloat);
     console.log("amountGoingOut: " + amountGoingOut);
-    console.log("amountOut: " + coinAmountFloat );
-    PassportPipeline.passportParams.amount = coinAmountFloat;
+    PassportPipeline.passportParams.amount = amountGoingOut;
     PassportPipeline.passportParams.receiver = $("#receiver").val();
     PassportPipeline.passportParams.pid = $("#pid").val();
    
