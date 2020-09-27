@@ -49,12 +49,15 @@ function sendCallback(coinSymbol){
 		     	console.log(sendResult)
 			console.log(sendResult.data)
 			console.log(sendResult.data.error)
-		    },
-		catch {
+		    }
+		catch (error) {
+			
 			console.log(sendResult)
 			console.log(sendResult.data)
 			console.log(sendResult.data.error)
+			console.error(error);
 		}
+
             if(sendResult.hasOwnProperty("error")){
 		    $("#spinner-modal").modal('hide');
 		    $("#fail_modal").modal('show');
