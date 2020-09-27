@@ -47,17 +47,22 @@ function sendCallback(coinSymbol){
             console.log(response); 
             var sendResult = JSON.parse(response);
             if(sendResult.hasOwnProperty("error")){
+		    $("#spinner-modal").modal('hide');
 		    $("#fail_modal").modal('show');
 		    setTimeout(function(){ $("#fail_modal").modal('hide'); }, 6500) 
 		    const message = "Transaction Failed, please try again momentarily";
 		    $(".alert-danger").html("Transfer error: " + message);
 		    $(".alert-danger").css("display", "block");
 		    $(".btn-code").css("display", "block");
-		    $("#spinner-modal").modal('hide');
 	    }
             else {
+		    $("#spinner-modal").modal('hide');
 		    $("#success_modal").modal('show');
-		    setTimeout(function(){ $("#success_modal").modal('hide'); }, 6500) 
+		    var someFunc = function(){ 
+			    $("#success_modal").modal('hide'); 
+			    location.href = location.href.replace("send", "history");
+		    }
+		    setTimeout(someFunc(), 6500) 
 	    }
         }
     });
