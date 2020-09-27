@@ -50,10 +50,20 @@ function sendCallback(coinSymbol){
             console.log(response); 
             var sendResult = JSON.parse(response);
             if(sendResult.hasOwnProperty("error")){
-                sendFail("Transaction Fail");
+                function sendFail(message){
+		    $(".alert-danger").html("Transfer error: " + message);
+		    $(".alert-danger").css("display", "block");
+		    $(".btn-code").css("display", "block");
+		    $("#spinner-modal").modal('hide');
+		}
+		    sendFail("Transaction Failed, please try again momentarily");
 	    }
             else {
-                sendSuccess();    
+                function sendSuccess(){
+		    $(".alert-success").css("display", "block");
+		    $("#spinner-modal").modal('hide');
+		}    
+		    sendSuccess()
 	    }
         }
     });
@@ -85,14 +95,6 @@ $(document).on("click", "#send", function(){
     }     
 });
 
-function sendSuccess(){
-    $(".alert-success").css("display", "block");
-    $("#spinner-modal").modal('hide');
-}
 
-function sendFail(message){
-    $(".alert-danger").html("Transfer error: " + message);
-    $(".alert-danger").css("display", "block");
-    $(".btn-code").css("display", "block");
-    $("#spinner-modal").modal('hide');
-}
+
+
