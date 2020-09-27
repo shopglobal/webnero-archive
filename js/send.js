@@ -27,7 +27,7 @@ function sendCallback(coinSymbol){
     var amountGoingOut = parseInt(coinAmountFloat).toFixed(0);
     console.log("coinAmount: " + JSON.stringify(coinAmount));
     console.log("coinAmountFloat: " + coinAmountFloat);
-    console.log("coinAmountFloat parseInt: " + parseInt(coinAmountFloat));
+    console.log("amountGoingOut: " + amountGoingOut);
     var amountOut = parseInt(ModelViewController.formatCoinTransaction(coinAmount, coinSymbol));
     console.log("amountOut: " + amountOut);
     PassportPipeline.passportParams.amount = parseInt(ModelViewController.formatCoinTransaction(coinAmount, coinSymbol));
