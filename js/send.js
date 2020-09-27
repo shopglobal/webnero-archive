@@ -59,11 +59,9 @@ function sendCallback(coinSymbol){
 		    sendFail("Transaction Failed, please try again momentarily");
 	    }
             else {
-                function sendSuccess(){
+		    $("#success_modal").modal('show');
 		    $(".alert-success").css("display", "block");
-		    $("#spinner-modal").modal('hide');
-		}    
-		    sendSuccess()
+		    $("#spinner-modal").modal('hide');   
 	    }
         }
     });
