@@ -22,9 +22,10 @@ function sendCallback(coinSymbol){
     PassportPipeline.setMethod('send_transaction');
 	
     const coinAmount = $("#amount").val();
-    var coinAmountToString = JSON.stringify(coinAmount);
-    var coinAmountFloat = parseFloat(coinAmount);
-    var amountGoingOut = parseInt(coinAmountFloat * 1000000000000).toFixed(0);
+    const coinAmountToString = JSON.stringify(coinAmount);
+    const coinAmountFloat = parseFloat(coinAmount);
+    const formatCRFIout = 1000000000000;
+    const amountGoingOut = parseInt(coinAmountFloat * formatCRFIout).toFixed(0);
     console.log("coinAmount: " + JSON.stringify(coinAmount));
     console.log("coinAmountFloat: " + coinAmountFloat);
     console.log("amountOut: " + coinAmountFloat);
@@ -48,13 +49,13 @@ function sendCallback(coinSymbol){
         if(response){
             console.log(response); 
             var sendResult = JSON.parse(response);
-            if(sendResult.hasOwnProperty("error"))
+            if(sendResult.hasOwnProperty("error")){
                 sendFail("Transaction Fail");
-            else
+	    }
+            else {
                 sendSuccess();    
+	    }
         }
-        else
-            sendFail("System Fail");
     });
 }
 
