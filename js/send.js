@@ -24,11 +24,11 @@ function sendCallback(coinSymbol){
     const coinAmount = $("#amount").val();
     var coinAmountToString = JSON.stringify(coinAmount);
     var coinAmountFloat = parseFloat(coinAmount);
-    var amountGoingOut = parseInt(coinAmountFloat).toFixed(0);
+    var amountGoingOut = parseInt(ModelViewController.formatCoinTransaction(coinAmountFloat, coinSymbol).toFixed(0);
     console.log("coinAmount: " + JSON.stringify(coinAmount));
     console.log("coinAmountFloat: " + coinAmountFloat);
     console.log("amountGoingOut: " + amountGoingOut);
-    var amountOut = parseInt(ModelViewController.formatCoinTransaction(coinAmount, coinSymbol));
+    var amountOut = parseInt(ModelViewController.formatCoinTransaction(amountGoingOut, coinSymbol));
     console.log("amountOut: " + amountOut);
     PassportPipeline.passportParams.amount = parseInt(ModelViewController.formatCoinTransaction(coinAmount, coinSymbol));
     PassportPipeline.passportParams.receiver = $("#receiver").val();
