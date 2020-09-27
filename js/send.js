@@ -46,6 +46,9 @@ function sendCallback(coinSymbol){
         if(response){
             console.log(response); 
             var sendResult = JSON.parse(response);
+		console.log(sendResult)
+		console.log(sendResult.data)
+		console.log(sendResult.data.error)
             if(sendResult.hasOwnProperty("error")){
 		    $("#spinner-modal").modal('hide');
 		    $("#fail_modal").modal('show');
@@ -58,11 +61,11 @@ function sendCallback(coinSymbol){
             else {
 		    $("#spinner-modal").modal('hide');
 		    $("#success_modal").modal('show');
-		    var someFunc = function(){ 
+		    var successDoesFollow = function(){ 
 			    $("#success_modal").modal('hide'); 
 			    location.href = location.href.replace("send", "history");
 		    }
-		    setTimeout(someFunc(), 6500) 
+		    setTimeout(successDoesFollow(), 6500) 
 	    }
         }
     });
