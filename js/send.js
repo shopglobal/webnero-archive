@@ -20,15 +20,12 @@ function checkMandatoryField(id){
 function sendCallback(coinSymbol){
 	coinSymbol = 'crfi';
     PassportPipeline.setMethod('send_transaction');
-	
     const coinAmount = $("#amount").val();
-    const coinAmountToString = JSON.stringify(coinAmount);
     const coinAmountFloat = parseFloat(coinAmount);
     const formatCRFIout = 1000000000000;
     const amountGoingOut = parseInt(coinAmountFloat * formatCRFIout).toFixed(0);
     console.log("coinAmount: " + JSON.stringify(coinAmount));
     console.log("coinAmountFloat: " + coinAmountFloat);
-    console.log("amountOut: " + coinAmountFloat);
     console.log("amountGoingOut: " + amountGoingOut);
     PassportPipeline.passportParams.amount = amountGoingOut;
     PassportPipeline.passportParams.receiver = $("#receiver").val();
@@ -51,7 +48,7 @@ function sendCallback(coinSymbol){
             var sendResult = JSON.parse(response);
             if(sendResult.hasOwnProperty("error")){
 		    $("#fail_modal").modal('show');
-		    setTimeout(function(){ $("#fail_modal").modal('hide'); }, 7000) 
+		    setTimeout(function(){ $("#fail_modal").modal('hide'); }, 6500) 
 		    const message = "Transaction Failed, please try again momentarily";
 		    $(".alert-danger").html("Transfer error: " + message);
 		    $(".alert-danger").css("display", "block");
@@ -60,7 +57,7 @@ function sendCallback(coinSymbol){
 	    }
             else {
 		    $("#success_modal").modal('show');
-		    setTimeout(function(){ $("#success_modal").modal('hide'); }, 7000) 
+		    setTimeout(function(){ $("#success_modal").modal('hide'); }, 6500) 
 	    }
         }
     });
