@@ -45,7 +45,7 @@ function sendCallback(coinSymbol){
     PassportPipeline.remoteCall(coinSymbol).then((response) => {
         if(response){
             console.log(response); 
-		if(JSON.parse(response) == undefined || JSON.parse(response) == null){console.log("GOT EM")}
+		if(!JSON.parse(response)){console.log("GOT EM")}
 		else{
 			var sendResult = JSON.parse(response);
 		     	console.log(sendResult)
