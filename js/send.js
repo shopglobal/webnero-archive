@@ -23,10 +23,8 @@ function sendCallback(coinSymbol){
 	
     const coinAmount = $("#amount").val();
     var coinAmountToString = JSON.stringify(coinAmount);
-    var coinAmountFloat = parseFloat(coinAmountToString);
+    var coinAmountFloat = parseFloat(coinAmount);
     console.log("coinAmount: " + JSON.stringify(coinAmount));
-    console.log("coinAmountToString: " + coinAmountToString);
-	
     console.log("coinAmountFloat: " + coinAmountFloat);
     var amountOut = parseInt(ModelViewController.formatCoinTransaction(coinAmount, coinSymbol));
     console.log("amountOut: " + amountOut);
