@@ -25,7 +25,7 @@ function sendCallback(coinSymbol){
     var coinAmountToString = JSON.stringify(coinAmount);
     var coinAmountFloat = parseFloat(coinAmount).toFixed(0);
     var amountGoingOut = parseInt(coinAmountFloat);
-    console.log("coinAmount: " + JSON.stringify(coinAmount));final
+    console.log("coinAmount: " + JSON.stringify(coinAmount));
     console.log("coinAmountFloat: " + coinAmountFloat);
     console.log("coinAmountFloat parseInt: " + parseInt(coinAmountFloat));
     var amountOut = parseInt(ModelViewController.formatCoinTransaction(coinAmount, coinSymbol));
