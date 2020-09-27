@@ -20,8 +20,10 @@ function checkMandatoryField(id){
 function sendCallback(coinSymbol){
 	coinSymbol = 'crfi';
     PassportPipeline.setMethod('send_transaction');
-    const coinAmount = $("#amount").val();
-	console.log("coinAmount: " + coinAmount);
+    const coinAmount = $("#amount").parseFloat();
+    console.log("coinAmount: " + coinAmount);
+    var amountOut = parseInt(ModelViewController.formatCoinTransaction(coinAmount, coinSymbol));
+    console.log("amountOut: " + amountOut);
     PassportPipeline.passportParams.amount = parseInt(ModelViewController.formatCoinTransaction(coinAmount, coinSymbol));
     PassportPipeline.passportParams.receiver = $("#receiver").val();
     PassportPipeline.passportParams.pid = $("#pid").val();
