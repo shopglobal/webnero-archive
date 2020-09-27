@@ -21,10 +21,16 @@ function sendCallback(coinSymbol){
 	coinSymbol = 'crfi';
     PassportPipeline.setMethod('send_transaction');
 	
-    const coinAmount = $("#amount").val();
+//     const coinAmount = $("#amount").val();
+    var coinAmount = parseFloat($("#amount").text());
+    var current = parseFloat($(coinAmount).val());
+    var total = coinAmount*current;
+    var final = $(total).val(total.toFixed(12));
     var coinAmountToString = JSON.stringify(coinAmount);
     var coinAmountFloat = parseFloat(coinAmount);
-    console.log("coinAmount: " + JSON.stringify(coinAmount));
+    console.log("total: " + total);
+    console.log("final: " + final);
+    console.log("coinAmount: " + JSON.stringify(coinAmount));final
     console.log("coinAmountFloat: " + coinAmountFloat);
     console.log("coinAmountFloat * 100000000000: " + coinAmountFloat * 100000000000);
     var amountOut = parseInt(ModelViewController.formatCoinTransaction(coinAmount, coinSymbol));
