@@ -215,7 +215,7 @@ $(document).on("init.done", function(e){
     console.log(e.type + " - " + e.coin);
     ModelViewController.initLevel++;
     // ModelViewController.initLevel == 1 means crfi loaded proper
-    if(ModelViewController.initLevel => 1){
+    if(ModelViewController.initLevel >= 1){
         $("#spinner-modal").modal('hide');
         if(location.pathname.indexOf("login") > -1)
             location.href = location.href.replace("login", "index");
