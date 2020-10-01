@@ -8,7 +8,7 @@ $(document).ready(function(){
     } else if(sessionStorage.fromLogin == "true"){
         sessionStorage.setItem("fromLogin", false);
         ModelViewController.fillData();
-        setInterval(ModelViewController.refreshData, 7500);
+        setInterval(ModelViewController.refreshData, 15000);
     } else {
         ModelViewController.refreshData();
     }
