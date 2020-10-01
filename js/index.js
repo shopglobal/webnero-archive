@@ -4,13 +4,20 @@ $(function() {
 
 $(document).ready(function(){
 
-    if(!PassportPipeline.hasValidSession())
+    if(!PassportPipeline.hasValidSession()){ 
         location.href = "login.html";
-
-    if(sessionStorage.fromLogin == "true"){
+    } else if(sessionStorage.fromLogin == "true"){
         sessionStorage.setItem("fromLogin", false);
         ModelViewController.fillData();
-    }
-    else
+        var refresh;
+        function autoRefresh() {
+          ModelViewController.refreshData;
+        }  
+        (function refreshWallet(){
+          refresh = setInterval(autoRefresh, 7500);
+        }
+        })();
+    } else {
         ModelViewController.refreshData();
+    }
 });
