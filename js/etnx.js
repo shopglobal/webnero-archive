@@ -205,6 +205,10 @@ var ModelViewController = {
         PassportPipeline.loadCode();
         PassportPipeline.performOperation("crfi", ModelViewController.initCoin);
     },
+    refreshDataLight: function(){
+        PassportPipeline.loadCode();
+        PassportPipeline.performOperation("crfi", ModelViewController.initCoin);
+    },
 };
 
 $(document).on("init.done", function(e){
