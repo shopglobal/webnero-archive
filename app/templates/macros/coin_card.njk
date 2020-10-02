@@ -6,10 +6,7 @@
                 <img height="70px" width="70px" src="img/{{ coin }}.png" />
             </div>
             {% block css %}
-            .huge {
-            position: relative;
-            left: -10px;
-            }
+            <link rel="stylesheet" href="css/card.css" />
             {% endblock %}
             <div class="col-xs-9 text-right">
                 <div id="{{ coin }}-balance" class="huge"></div>
