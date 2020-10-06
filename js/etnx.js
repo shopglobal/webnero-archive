@@ -124,11 +124,12 @@ var ModelViewController = {
         }
     },
     fillHistory: function(){
-        var crfiData = this.getCoinData("crfi");
+        var crfiData = ModelViewController.getCoinData("crfi");
         if(crfiData != null){
             if(crfiData.txs.in || crfiData.txs.out){
-                this.fillHistoryRows("CRFI", "Receive", crfiData.txs.in);
-                this.fillHistoryRows("CRFI", "Send", crfiData.txs.out);
+                ModelViewController.fillHistoryRows("CRFI", "Receive", crfiData.txs.in);
+                ModelViewController.fillHistoryRows("CRFI", "Send", crfiData.txs.out);
+                console.log(crfiData);
             }
         }
     },
