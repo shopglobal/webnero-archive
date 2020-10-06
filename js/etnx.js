@@ -53,11 +53,11 @@ var ModelViewController = {
     initLevel: 0,
     coinState: 0,
     thisIs: 0,
-    thisIs1: 1,
-    thisIs2: 2,
-    thisIs3: 3,
-    thisIs4: 4,
-    thisIs5: 5,
+    thisIs1: null,
+    thisIs2: null,
+    thisIs3: null,
+    thisIs4: null,
+    thisIs5: null,
     returnState: function(which){
         if(!which){
             which = 0;
@@ -152,25 +152,38 @@ var ModelViewController = {
     fillHistoryRows: function(coin, type, items){
         var tbody = $("#transaction-history").find('tbody');
         var thisIsVar = ModelViewController.thisIs;
-        //$("#transaction-history").find('tbody').empty();
+        tbody.empty();
         for(var i = 0; i < items.length; i++) {
             var item = items[i];
             ModelViewController.thisIs++;
             console.log("item.height: " + item.height);
             console.log("thisIsVar: " + thisIsVar);
-            if(items[4] != null || items[4] != undefined){
+            if(items[4] != undefined){
+                if (ModelViewController.thisIs1 == null){
             ModelViewController.thisIs1 = items[0].height;
             console.log(ModelViewController.thisIs1);
+                }
+                if (ModelViewController.thisIs2 == null){
             ModelViewController.thisIs2 = items[1].height;
             console.log(ModelViewController.thisIs2);
+                }
+                if (ModelViewController.thisIs3 == null){
             ModelViewController.thisIs3 = items[2].height;
             console.log(ModelViewController.thisIs3);
+                }
+                if (ModelViewController.thisIs4 == null){
             ModelViewController.thisIs4 = items[3].height;
             console.log(ModelViewController.thisIs4);
+                }
+                if (ModelViewController.thisIs5 == null){
             ModelViewController.thisIs5 = items[4].height;
             console.log(ModelViewController.thisIs5);
-        }
-            tbody.replaceWith( "<tr class='row_" + coin +"'>" +
+                }
+        } else if(ModelViewController.thisIs1 != items[0].height && items[0] != undefined){
+            toastr.info('New transaction inbound!');
+        } else {
+        };
+            tbody.append( "<tr class='row_" + coin +"'>" +
                             "<td>" + coin + "</td>" + 
                             "<td>" + type + "</td>" + 
                             "<td>" + this.formatCoinUnits(item.amount, coin.toLowerCase()) + "</td>" + 
