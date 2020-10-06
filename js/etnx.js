@@ -160,7 +160,7 @@ var ModelViewController = {
             ModelViewController.thisIs++;
             console.log("item.height: " + item.height);
             console.log("thisIsVar: " + thisIsVar);
-            if(items[4] != undefined){
+        if(items[4] != undefined){
                 if (ModelViewController.thisIs1 == null){
             ModelViewController.thisIs1 = items[0].height;
             console.log(ModelViewController.thisIs1);
@@ -181,10 +181,12 @@ var ModelViewController = {
             ModelViewController.thisIs5 = items[4].height;
             console.log(ModelViewController.thisIs5);
                 }
-        } else if(ModelViewController.thisIs1 != items[2].height && items[0] != undefined){
+        };
+        if(ModelViewController.thisIs1 != items[2].height && items[0] != undefined){
             //test ifnot()
             toastr.info('New transaction inbound!');
         } else {
+            console.log("No new transactions");
         };
             tbody.append( "<tr class='row_" + coin +"'>" +
                             "<td>" + coin + "</td>" + 
