@@ -170,7 +170,7 @@ var ModelViewController = {
                 default:
                     break;
             }; 
-            tbody.empty.append( "<tr class='row_" + coin +"'>" +
+            tbody.empty().append( "<tr class='row_" + coin +"'>" +
                             "<td>" + coin + "</td>" + 
                             "<td>" + type + "</td>" + 
                             "<td>" + this.formatCoinUnits(item.amount, coin.toLowerCase()) + "</td>" + 
