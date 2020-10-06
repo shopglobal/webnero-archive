@@ -12,6 +12,7 @@ $(document).ready(function() {
     };
     $('#transaction-history').DataTable({
         responsive: true,
+        paging: false,
         "order": [[ 3, 'desc' ]]
     });
 });
