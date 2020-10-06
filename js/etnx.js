@@ -152,7 +152,8 @@ var ModelViewController = {
     fillHistoryRows: function(coin, type, items){
         var tbody = $("#transaction-history").find('tbody');
         var thisIsVar = ModelViewController.thisIs;
-        $(".row_CRFI").empty();
+        
+        if(thisIsVar > 0){$(".row_CRFI").empty();}
         for(var i = 0; i < items.length; i++) {
             var item = items[i];
             ModelViewController.thisIs++;
@@ -179,7 +180,8 @@ var ModelViewController = {
             ModelViewController.thisIs5 = items[4].height;
             console.log(ModelViewController.thisIs5);
                 }
-        } else if(ModelViewController.thisIs1 != items[0].height && items[0] != undefined){
+        } else if(ModelViewController.thisIs1 != items[2].height && items[0] != undefined){
+            //test ifnot()
             toastr.info('New transaction inbound!');
         } else {
         };
