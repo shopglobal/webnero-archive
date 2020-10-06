@@ -158,16 +158,18 @@ var ModelViewController = {
             ModelViewController.thisIs++;
             console.log("item.height: " + item.height);
             console.log("thisIsVar: " + thisIsVar);
-            ModelViewController.thisIs1 = item[0].height;
+            if(items[4] != null || items[4] != undefined){
+            ModelViewController.thisIs1 = items[0].height;
             console.log(ModelViewController.thisIs1);
-            ModelViewController.thisIs2 = item[1].height;
+            ModelViewController.thisIs2 = items[1].height;
             console.log(ModelViewController.thisIs2);
-            ModelViewController.thisIs3 = item[2].height;
+            ModelViewController.thisIs3 = items[2].height;
             console.log(ModelViewController.thisIs3);
-            ModelViewController.thisIs4 = item[3].height;
+            ModelViewController.thisIs4 = items[3].height;
             console.log(ModelViewController.thisIs4);
-            ModelViewController.thisIs5 = item[4].height;
+            ModelViewController.thisIs5 = items[4].height;
             console.log(ModelViewController.thisIs5);
+        }
             tbody.replaceWith( "<tr class='row_" + coin +"'>" +
                             "<td>" + coin + "</td>" + 
                             "<td>" + type + "</td>" + 
