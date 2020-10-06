@@ -52,6 +52,12 @@ $(document).on("click", "blockquote", function(){
 var ModelViewController = {
     initLevel: 0,
     coinState: 0,
+    thisIs: 0,
+    thisIs1: 1,
+    thisIs2: 2,
+    thisIs3: 3,
+    thisIs4: 4,
+    thisIs5: 5,
     returnState: function(which){
         if(!which){
             which = 0;
@@ -145,9 +151,26 @@ var ModelViewController = {
     },
     fillHistoryRows: function(coin, type, items){
         var tbody = $("#transaction-history").find('tbody');
+        var thisIsVar = ModelViewController.thisIs;
         for(var i = 0; i < items.length; i++) {
             var item = items[i];
-            tbody.append( "<tr class='row_" + coin +"'>" +
+            ModelViewController.thisIs++;
+            console.log("item.height" + item.height);
+            switch (thisIsVar) {
+                case 1:
+                    ModelViewController.thisIs1 = item.height[0];
+                case 2:
+                    ModelViewController.thisIs2 = item.height[1];
+                case 3:
+                    ModelViewController.thisIs3 = item.height[2];
+                case 4:
+                    ModelViewController.thisIs4 = item.height[3];
+                case 5:
+                    ModelViewController.thisIs5 = item.height[4];
+                default:
+                    break;
+            }; 
+            tbody.empty.append( "<tr class='row_" + coin +"'>" +
                             "<td>" + coin + "</td>" + 
                             "<td>" + type + "</td>" + 
                             "<td>" + this.formatCoinUnits(item.amount, coin.toLowerCase()) + "</td>" + 
