@@ -3,9 +3,13 @@ $(function() {
 });
 
 $(document).ready(function() {
-
-    ModelViewController.fillHistory();
-
+    if(!PassportPipeline.hasValidSession()){ 
+        location.href = "login.html";
+    } else {
+        sessionStorage.setItem("fromLogin", false);
+        ModelViewController.fillHistory();
+        setInterval(ModelViewController.fillHistory, 15000);
+    };
     $('#transaction-history').DataTable({
         responsive: true,
         "order": [[ 3, 'desc' ]]
