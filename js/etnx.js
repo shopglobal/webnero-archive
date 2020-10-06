@@ -152,23 +152,23 @@ var ModelViewController = {
     fillHistoryRows: function(coin, type, items){
         var tbody = $("#transaction-history").find('tbody');
         var thisIsVar = ModelViewController.thisIs;
-        $("#transaction-history").find('tbody').empty();
+        //$("#transaction-history").find('tbody').empty();
         for(var i = 0; i < items.length; i++) {
             var item = items[i];
             ModelViewController.thisIs++;
             console.log("item.height: " + item.height);
             console.log("thisIsVar: " + thisIsVar);
-            ModelViewController.thisIs1 = item.height[0];
+            ModelViewController.thisIs1 = item[0].height;
             console.log(ModelViewController.thisIs1);
-            ModelViewController.thisIs2 = item.height[1];
+            ModelViewController.thisIs2 = item[1].height;
             console.log(ModelViewController.thisIs2);
-            ModelViewController.thisIs3 = item.height[2];
+            ModelViewController.thisIs3 = item[2].height;
             console.log(ModelViewController.thisIs3);
-            ModelViewController.thisIs4 = item.height[3];
+            ModelViewController.thisIs4 = item[3].height;
             console.log(ModelViewController.thisIs4);
-            ModelViewController.thisIs5 = item.height[4];
+            ModelViewController.thisIs5 = item[4].height;
             console.log(ModelViewController.thisIs5);
-            tbody.append( "<tr class='row_" + coin +"'>" +
+            tbody.replaceWith( "<tr class='row_" + coin +"'>" +
                             "<td>" + coin + "</td>" + 
                             "<td>" + type + "</td>" + 
                             "<td>" + this.formatCoinUnits(item.amount, coin.toLowerCase()) + "</td>" + 
