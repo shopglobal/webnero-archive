@@ -182,7 +182,7 @@ var ModelViewController = {
             console.log(ModelViewController.thisIs5);
                 }
         };
-        if(ModelViewController.thisIs1 != items[2].height && items[0] != undefined){
+        if(ModelViewController.thisIs1 != items[1].height && items[0] != undefined){
             //test ifnot()
             toastr.info('New transaction inbound!');
         } else {
