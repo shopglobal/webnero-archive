@@ -9,10 +9,11 @@ $(document).ready(function() {
         sessionStorage.setItem("fromLogin", false);
         ModelViewController.fillHistory();
         setInterval(ModelViewController.fillHistory, 15000);
-    };
-    $('#transaction-history').DataTable({
+        $('#transaction-history').DataTable({
         responsive: true,
         paging: false,
         "order": [[ 3, 'desc' ]]
     });
+    };
+
 });
