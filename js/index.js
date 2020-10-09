@@ -11,6 +11,7 @@ $(document).ready(function(){
         setInterval(ModelViewController.refreshData, 15000);
         
     } else {
+        ModelViewController.fillData();
         setInterval(ModelViewController.refreshData, 15000);
     }
 });
