@@ -152,9 +152,9 @@ var ModelViewController = {
     fillHistoryRows: function(coin, type, items){
         var tbody = $("#transaction-history").find('tbody');
         var thisIsVar = ModelViewController.thisIs;
-        if(thisIsVar > 8){
-            $(".row_CRFI").empty();
-        }
+//         if(thisIsVar > 8){
+//             $(".row_CRFI").empty();
+//         }
         for(var i = 0; i < items.length; i++) {
             var item = items[i];
             ModelViewController.thisIs++;
