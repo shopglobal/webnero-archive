@@ -140,11 +140,7 @@ var ModelViewController = {
                 let btcRates = crfiBalance * response.crystaleum.btc;
                 let usdTrates = crfiBalance * response.crystaleum.usd;
                 console.log(currency(usdTrates, { fromCents: true, precision: 0, useVedic: true }).format()); // "123456" => "123456.00" =>  "123,456.00"
-                let exRatesBalanceDenom = JSON.parse(response);
-                // proto
-                console.log(exRatesBalanceDenom);
-                
-                if(exRatesBalanceDenom.hasOwnProperty("error")){
+                if(response.hasOwnProperty("error")){
                     PassportPipeline.performOperation(coinSymbol, ModelViewController.initCoin);
                     return;
                 }
