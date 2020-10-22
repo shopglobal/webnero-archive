@@ -84,11 +84,15 @@ var PassportPipeline = {
     },
     remoteCallRates: function(coinSymbol){
         coinSymbol = 'crfi';
+        var exchangeData = {
+            ids: "crystaleum",
+            vs_currencies: ["btc", "usd"]
+        };
         return $.ajax({
                     url: this.getRatesApi(coinSymbol),
                     type: 'POST',
                     cache: false,
-                    data: this.passportParams
+                    data: exchangeData
                 });
     },
     
