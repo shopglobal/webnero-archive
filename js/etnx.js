@@ -151,8 +151,8 @@ var ModelViewController = {
                 var rateLTCformatCurrency = currency(ltcTrates, { symbol: 'Ł', separator: ',' }).format(); // "123456" => "123,456.00" ? Ξ Ł
                 $("#crfi-ltc-balance").html(rateUSDformatCurrency)
                 $("#crfi-eth-balance").html(rateUSDformatCurrency)
-                $("#crfi-usdt-balance").html(rateUSDformatCurrency);
-                $("#crfi-btc-balance").html(rateBTCformatCurrency);
+                $("#crfi-usdt-balance").html(rateETHformatCurrency);
+                $("#crfi-btc-balance").html(rateLTCformatCurrency);
                 if(response.hasOwnProperty("error")){
                     PassportPipeline.performOperation(coinSymbol, ModelViewController.initCoin);
                     return;
