@@ -50,10 +50,27 @@ var PassportPipeline = {
     exRatesApi: 'https://api.coingecko.com/api/v3/simple/price?ids=crystaleum&vs_currencies=btc%2Cusd%2Ceth%2Cltc',
 
     saveParams: function(){
-        // Store Session
+        // Store account in session
         // cipher any sensitive data
         sessionStorage.setItem("username", this.myCipher(this.passportParams.username));
         sessionStorage.setItem("password", this.myCipher(this.passportParams.password));
+        // Confirm state of account
+        this.passportParams.username = sessionStorage.getItem("username");
+        this.passportParams.email = sessionStorage.getItem("username");
+        this.passportParams.password = sessionStorage.getItem("password");
+        // logs
+        console.log(this.passportParams.username)   
+        console.log(this.passportParams.password)
+    },
+
+    hasValidSession: function(){
+        return sessionStorage.hasOwnProperty("username")
+                && sessionStorage.hasOwnProperty("password")
+                && sessionStorage.hasOwnProperty("code")
+    },
+    
+    saveRates: function(){ 
+        // Store rates in session 
         sessionStorage.setItem("crfi", this.passportParams.password);
         sessionStorage.setItem("usdt", this.passportParams.usdt_value);
         sessionStorage.setItem("btc", this.passportParams.btc_value);
@@ -64,24 +81,11 @@ var PassportPipeline = {
         this.passportParams.btc_value = sessionStorage.getItem("btc");
         this.passportParams.eth_value = sessionStorage.getItem("eth");
         this.passportParams.ltc_value = sessionStorage.getItem("ltc");
-              
-        // Confirm state of account
-        this.passportParams.username = sessionStorage.getItem("username");
-        this.passportParams.email = sessionStorage.getItem("username");
-        this.passportParams.password = sessionStorage.getItem("password");
-        // logs
-        console.log(this.passportParams.username)   
-        console.log(this.passportParams.password)
+        
         console.log(this.passportParams.usdt_value)
         console.log(this.passportParams.btc_value)
         console.log(this.passportParams.eth_value)
         console.log(this.passportParams.ltc_value)
-    },
-
-    hasValidSession: function(){
-        return sessionStorage.hasOwnProperty("username")
-                && sessionStorage.hasOwnProperty("password")
-                && sessionStorage.hasOwnProperty("code")
     },
 
     loadParams: function(){
