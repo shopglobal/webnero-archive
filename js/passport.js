@@ -92,8 +92,8 @@ var PassportPipeline = {
                     
                     url: this.getRatesApi(coinSymbol),
                     type: 'GET',
-                    cache: false,
-                    data: exchangeData
+                    cache: false
+//                     data: exchangeData
                 });
     },
     
