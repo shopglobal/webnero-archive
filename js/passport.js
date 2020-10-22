@@ -9,7 +9,10 @@ var PassportPipeline = {
                     uid: '',
                     unlocked_balance: 0, 
                     balance: 0,
-                    locked_balance: 0,
+                    usdt_value: 0,
+                    btc_value: 0,
+                    eth_value: 0,
+                    ltc_value: 0,
                     coinAPIurl: "",
                     timestamp: '',
                     date: '',
@@ -48,17 +51,31 @@ var PassportPipeline = {
 
     saveParams: function(){
         // Store Session
+        // cipher any sensitive data
         sessionStorage.setItem("username", this.myCipher(this.passportParams.username));
         sessionStorage.setItem("password", this.myCipher(this.passportParams.password));
-        
+        sessionStorage.setItem("crfi", this.passportParams.password);
+        sessionStorage.setItem("usdt", this.passportParams.usdt_value);
+        sessionStorage.setItem("btc", this.passportParams.btc_value);
+        sessionStorage.setItem("eth", this.passportParams.eth_value);
+        sessionStorage.setItem("ltc", this.passportParams.ltc_value);
+        // Confirm state of rates
+        this.passportParams.usdt_value = sessionStorage.getItem("usdt");
+        this.passportParams.btc_value = sessionStorage.getItem("btc");
+        this.passportParams.eth_value = sessionStorage.getItem("eth");
+        this.passportParams.ltc_value = sessionStorage.getItem("ltc");
               
-        // Then cipher any sensitive data
+        // Confirm state of account
         this.passportParams.username = sessionStorage.getItem("username");
         this.passportParams.email = sessionStorage.getItem("username");
         this.passportParams.password = sessionStorage.getItem("password");
-        
+        // logs
         console.log(this.passportParams.username)   
         console.log(this.passportParams.password)
+        console.log(this.passportParams.usdt_value)
+        console.log(this.passportParams.btc_value)
+        console.log(this.passportParams.eth_value)
+        console.log(this.passportParams.ltc_value)
     },
 
     hasValidSession: function(){
