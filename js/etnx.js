@@ -149,6 +149,7 @@ var ModelViewController = {
                 }
             }
         }
+    }
     },
     fillHistory: function(){
         var crfiData = ModelViewController.getCoinData("crfi");
