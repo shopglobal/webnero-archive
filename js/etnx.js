@@ -146,7 +146,9 @@ var ModelViewController = {
                 let ltcTrates = crfiBalance * response.crystaleum.ltc;
                 console.log(currency(usdTrates, { fromCents: true, precision: 0, separator: ',' }).format()); // "123456" => "123456.00" =>  "123,456.00"
                 var rateUSDformatCurrency = currency(usdTrates, { symbol: '₮', fromCents: true, precision: 0, separator: ',' }).format(); // "123456" => "123456.00" =>  "123,456.00"
-                var rateBTCformatCurrency = currency(btcRates, { symbol: '₿', separator: ',' }).format(); // "123456" => "123,456.00" ?
+                var rateBTCformatCurrency = currency(btcRates, { symbol: '₿', separator: ',' }).format(); // "123456" => "123,456.00" ? Ξ Ł
+                var rateETHformatCurrency = currency(ethTrates, { symbol: 'Ξ', separator: ',' }).format(); // "123456" => "123,456.00" ? Ξ Ł
+                var rateLTCformatCurrency = currency(ltcTrates, { symbol: 'Ł', separator: ',' }).format(); // "123456" => "123,456.00" ? Ξ Ł
                 $("#crfi-ltc-balance").html(rateUSDformatCurrency)
                 $("#crfi-eth-balance").html(rateUSDformatCurrency)
                 $("#crfi-usdt-balance").html(rateUSDformatCurrency);
