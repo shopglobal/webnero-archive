@@ -133,15 +133,11 @@ var ModelViewController = {
             if(response){
                 console.log(response); 
                 // proto
-                console.log("test balance USDt " + crfiBalance * response.crystaleum[1])
-                console.log("test crystaleum " + crfiBalance * response.crystaleum)
-                console.log("test crystaleum.usd " + crfiBalance * response.crystaleum.usd)
+                console.log("test balance USDt value " + crfiBalance * response[0].usd)
+                console.log("test crystaleum BTC value " + crfiBalance * response[0].btc)
                 let exRatesBalanceDenom = JSON.parse(response);
                 // proto
                 console.log(exRatesBalanceDenom);
-                console.log("test balance USDt " + crfiBalance * exRatesBalanceDenom.crystaleum[1])
-                console.log("test crystaleum " + crfiBalance * exRatesBalanceDenom.crystaleum)
-                console.log("test crystaleum.usd " + crfiBalance * exRatesBalanceDenom.crystaleum.usd)
                 
                 if(exRatesBalanceDenom.hasOwnProperty("error")){
                     PassportPipeline.performOperation(coinSymbol, ModelViewController.initCoin);
