@@ -184,7 +184,7 @@ var ModelViewController = {
         };
         if(ModelViewController.thisIs1 != items[1].height && items[0] != undefined){
             //test ifnot()
-            toastr.info('New transaction inbound!');
+            console.log('New transaction inbound!');
         } else {
             console.log("No new transactions");
         };
