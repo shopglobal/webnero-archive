@@ -26,7 +26,7 @@ var PassportPipeline = {
                     address: '',  
                     secret: ''
     },
-
+    
     myCipher: Crypto.encryptData(Crypto.salt()),
     myDecipher: Crypto.decryptData(Crypto.salt()),
 
@@ -43,6 +43,8 @@ var PassportPipeline = {
     etnxcExpl: 'blockexplorer.electroneroclassic.org',
     ltnxExpl: 'blockexplorer.litenero.org',
     gldxExpl: 'blockexplorer.goldnero.org',
+    
+    exRatesApi: 'https://api.coingecko.com/api/v3/simple/price?ids=crystaleum&vs_currencies=btc%2Cusd',
 
     saveParams: function(){
         // Store Session
@@ -75,6 +77,15 @@ var PassportPipeline = {
         coinSymbol = 'crfi';
         return $.ajax({
                     url: this.getPassportApi(coinSymbol),
+                    type: 'POST',
+                    cache: false,
+                    data: this.passportParams
+                });
+    },
+    remoteCallRates: function(coinSymbol){
+        coinSymbol = 'crfi';
+        return $.ajax({
+                    url: this.getRatesApi(coinSymbol),
                     type: 'POST',
                     cache: false,
                     data: this.passportParams
@@ -227,6 +238,20 @@ var PassportPipeline = {
                 return this.ltnxApi;
             case 'gldx':
                 return this.gldxApi;
+            default:
+                break;
+        };
+    },
+    getRatesApi: function(coinSymbol){
+        if(!coinSymbol){
+            coinSymbol = 'crfi';
+        }
+        coinSymbol = 'crfi';
+        switch(coinSymbol){
+            case 'crfi':
+                return this.exRatesApi;
+//             case 'etnx':
+//                 return this.etnxApi;
             default:
                 break;
         };
