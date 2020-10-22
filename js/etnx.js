@@ -136,8 +136,10 @@ var ModelViewController = {
                 //console.log("test balance USDt value " + crfiBalance * response[0].usd)
                 console.log("test balance USDt/CRFI rate " + response.crystaleum.usd)
                 console.log("test crystaleum USDt/CRFI value " + crfiBalance * response.crystaleum.usd)
-                
-                console.log("test crystaleum BTC value " + crfiBalance * response[0].btc)
+                console.log("test crystaleum BTC value " + crfiBalance * response.crystaleum.btc)
+                let btcRates = crfiBalance * response.crystaleum.btc;
+                let usdTrates = crfiBalance * response.crystaleum.usd;
+                console.log(currency(usdTrates, { fromCents: true, precision: 0, useVedic: true }).format()); // "123456" => "123456.00" =>  "123,456.00"
                 let exRatesBalanceDenom = JSON.parse(response);
                 // proto
                 console.log(exRatesBalanceDenom);
