@@ -148,7 +148,7 @@ var ModelViewController = {
                     return;
                 }
             }
-        }
+        });
     }
     },
     fillHistory: function(){
