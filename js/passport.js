@@ -89,8 +89,9 @@ var PassportPipeline = {
             vs_currencies: ["btc", "usd"]
         };
         return $.ajax({
+                    
                     url: this.getRatesApi(coinSymbol),
-                    type: 'POST',
+                    type: 'GET',
                     cache: false,
                     data: exchangeData
                 });
