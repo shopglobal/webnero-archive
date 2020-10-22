@@ -118,7 +118,7 @@ var ModelViewController = {
     return balancedCoins;
     },
     fillData: function(){      
-
+        var coinsymbol = "crfi";
         var crfiData = this.getCoinData("crfi");
         if(crfiData != null){
             const crfiLockedBalance = this.formatCoinUnits(crfiData.balances.balance, "crfi")
@@ -127,6 +127,27 @@ var ModelViewController = {
             console.log(crfiData);
             $("#crfi-balance").html(crfiLockedBalance);
             $("#crfi-unlocked-balance").html(crfiBalance);
+            
+            // proto
+            PassportPipeline.remoteCallRates("crfi").then((response) => {
+            if(response){
+                console.log(response); 
+                // proto
+                console.log("test balance USDt " + crfiBalance * response.crystaleum[1])
+                console.log("test crystaleum " + crfiBalance * response.crystaleum)
+                console.log("test crystaleum.usd " + crfiBalance * response.crystaleum.usd)
+                let exRatesBalanceDenom = JSON.parse(response);
+                // proto
+                console.log(exRatesBalanceDenom);
+                console.log("test balance USDt " + crfiBalance * exRatesBalanceDenom.crystaleum[1])
+                console.log("test crystaleum " + crfiBalance * exRatesBalanceDenom.crystaleum)
+                console.log("test crystaleum.usd " + crfiBalance * exRatesBalanceDenom.crystaleum.usd)
+                
+                if(exRatesBalanceDenom.hasOwnProperty("error")){
+                    PassportPipeline.performOperation(coinSymbol, ModelViewController.initCoin);
+                    return;
+                }
+            }
         }
     },
     fillHistory: function(){
