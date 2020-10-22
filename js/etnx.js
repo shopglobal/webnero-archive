@@ -133,7 +133,10 @@ var ModelViewController = {
             if(response){
                 console.log(response); 
                 // proto
-                console.log("test balance USDt value " + crfiBalance * response[0].usd)
+                //console.log("test balance USDt value " + crfiBalance * response[0].usd)
+                console.log("test balance USDt/CRFI rate " + response.crystaleum.usd)
+                console.log("test crystaleum " + crfiBalance * response.crystaleum)
+                
                 console.log("test crystaleum BTC value " + crfiBalance * response[0].btc)
                 let exRatesBalanceDenom = JSON.parse(response);
                 // proto
