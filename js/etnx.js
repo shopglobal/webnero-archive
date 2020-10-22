@@ -143,7 +143,7 @@ var ModelViewController = {
                 var rateUSDformatCurrency = currency(usdTrates, { fromCents: true, precision: 0, separator: ',' }).format(); // "123456" => "123456.00" =>  "123,456.00"
                 //var rateBTCformatCurrency = currency(btcRates, { precision: 0, separator: ',' }).format(); // "123456" => "123456.00" =>  "$123,456.00" =>  "123,456.00"
                 $("#crfi-usdt-balance").html(rateUSDformatCurrency);
-                $("#crfi-btc-balance").html(rateBTCformatCurrency);
+                $("#crfi-btc-balance").html(btcRates);
                 if(response.hasOwnProperty("error")){
                     PassportPipeline.performOperation(coinSymbol, ModelViewController.initCoin);
                     return;
