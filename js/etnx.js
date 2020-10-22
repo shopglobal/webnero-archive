@@ -182,12 +182,12 @@ var ModelViewController = {
             console.log(ModelViewController.thisIs5);
                 }
         };
-        if(ModelViewController.thisIs1 != items[1].height && items[0] != undefined){
-            //test ifnot()
-            console.log('New transaction inbound!');
-        } else {
-            console.log("No new transactions");
-        };
+//         if(ModelViewController.thisIs1 != items[1].height && items[0] != undefined){
+//             //test ifnot()
+//             console.log('New transaction inbound!');
+//         } else {
+//             console.log("No new transactions");
+//         };
             tbody.append( "<tr class='row_" + coin +"'>" +
                             "<td>" + coin + "</td>" + 
                             "<td>" + type + "</td>" + 
