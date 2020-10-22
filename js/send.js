@@ -1,5 +1,6 @@
 $(document).ready(function(){
     ModelViewController.fillData();
+    document.getElementById('crfi-send').click();
 });
 
 $(document).on("click", "#send-modal", function(){
