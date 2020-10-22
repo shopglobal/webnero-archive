@@ -153,6 +153,7 @@ var ModelViewController = {
                 $("#crfi-usdt-balance").html(rateUSDformatCurrency)
                 $("#crfi-eth-balance").html(rateETHformatCurrency);
                 $("#crfi-ltc-balance").html(rateLTCformatCurrency);
+                PassportPipeline.saveRates();
                 if(response.hasOwnProperty("error")){
                     PassportPipeline.performOperation(coinSymbol, ModelViewController.initCoin);
                     return;
