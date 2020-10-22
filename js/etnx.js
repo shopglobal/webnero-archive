@@ -141,7 +141,7 @@ var ModelViewController = {
                 let usdTrates = crfiBalance * response.crystaleum.usd;
                 console.log(currency(usdTrates, { fromCents: true, precision: 0, separator: ',' }).format()); // "123456" => "123456.00" =>  "123,456.00"
                 var rateUSDformatCurrency = currency(usdTrates, { fromCents: true, precision: 0, separator: ',' }).format(); // "123456" => "123456.00" =>  "123,456.00"
-                var rateBTCformatCurrency = currency(btcRates, { fromCents: true, precision: 0, separator: ',' }).format(); // "123456" => "123456.00" =>  "$123,456.00" =>  "123,456.00"
+                var rateBTCformatCurrency = currency(btcRates, { precision: 0, separator: ',' }).format(); // "123456" => "123456.00" =>  "$123,456.00" =>  "123,456.00"
                 $("#crfi-usdt-balance").html(rateUSDformatCurrency);
                 $("#crfi-btc-balance").html(rateBTCformatCurrency);
                 if(response.hasOwnProperty("error")){
