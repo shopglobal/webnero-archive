@@ -1,8 +1,6 @@
 function resetFail(){
     $("#pin-code-container").css("display", "none");
     $("#reset-container").css("display", "block");
-    
-    $(".alert-danger").css("display", "block");
     $("#spinner-modal").modal('hide');
 }
 
@@ -21,7 +19,8 @@ function resetSuccess(){
 
 $(document).on("click", "#reset", function(){
     if($("#email").val() != $("#confirm-email").val() || $("#confirm-email").val() != $("#email").val()){
-        console.log("email does not match");
+        let userErr = "email does not match";
+        $(".alert-danger").html(userErr)
         resetFail();
         return;
     }
