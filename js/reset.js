@@ -13,7 +13,10 @@ function resetCodeFail(){
 }
 
 function resetSuccess(){
+    $("#pin-code-container").css("display", "none");
+    $("#reset-container").css("display", "block");
     $(".alert-success").css("display", "block");
+    $("#spinner-modal").modal('hide');
 }
 
 $(document).on("click", "#reset", function(){
