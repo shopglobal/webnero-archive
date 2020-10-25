@@ -100,7 +100,7 @@ $(document).on("click", "#send", function(){
 	console.log(tXfee);
 	console.log(txCost);
     const messageFailNotEnough = "Transaction failed to reach the blockchain because your balance: " + balance + " CRFI, is too low to cover the transaction: " + coinAmount + " CRFI, and additionally the network fees: " + tXfee + " CRFI. The total cost of this transaction would be: " + txCost + " CRFI. Please try a smaller amount. Thank you.";
-    const messageFailNotMinWithdrawal = "Transaction failed to reach the blockchain because your balance: " + balance + " CRFI, is too low to cover the minimum withdrawal: " + minWithdrawal + " CRFI, and additionally the network fees: " + tXfee + " CRFI. Please top-up your CrystalID folio to process this transfer. Thank you.";
+    const messageFailNotMinWithdrawal = "Transaction failed to reach the blockchain because you attempted to send: " + coinAmountFloat + " CRFI, which is too low to cover the minimum withdrawal: " + minWithdrawal + " CRFI, and additionally the network fees: " + tXfee + " CRFI. Please top-up your CrystalID folio, or stake your CRFI. Thank you.";
     if(balance < txCost){
     	//txFail()
 	$("#transaction-fail").html("Transfer error: " + messageFailNotEnough);
