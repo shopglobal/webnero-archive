@@ -80,7 +80,10 @@ var PassportPipeline = {
                 console.log(this.passportParams);
                 if(response){
                     let passportReset = JSON.parse(response);
+                    
                     if(passportReset.hasOwnProperty("error")){
+                        let resetError = passportReset.error;
+                        $(".alert-danger").html(resetError);
                         console.log(passportReset);
                         resetFail();
                         return;
