@@ -113,7 +113,7 @@ var PassportPipeline = {
                     url: this.getRatesApi(coinSymbol),
                     type: 'GET',
                     cache: false
-//                     data: exchangeData
+                    // data: exchangeData
                 });
     },
     
