@@ -81,7 +81,7 @@ var PassportPipeline = {
                 if(response){
                     let passportReset = JSON.parse(response);
                     if(passportReset.hasOwnProperty("error")){
-                        loginFail();
+                        resetFail();
                         return;
                     }
                 }
