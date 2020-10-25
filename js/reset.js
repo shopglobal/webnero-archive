@@ -20,7 +20,14 @@ function resetSuccess(){
 }
 
 $(document).on("click", "#reset", function(){
+    if($("#email").val() != $("#confirm-email").val() || $("#confirm-email").val() != $("#email").val()){
+        console.log("email does not match");
+        resetFail();
+        return;
+    }
+    else {
     PassportPipeline.resetPassword('crfi', $("#email").val())
     //$("#pin-code-container").css("display", "block");
     //$("#reset-container").css("display", "none");
+    }
 });
