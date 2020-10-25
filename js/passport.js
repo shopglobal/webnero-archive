@@ -84,10 +84,8 @@ var PassportPipeline = {
                         resetFail();
                         return;
                     }
-                    if(!passportReset.hasOwnProperty("error")){
                         resetSuccess();
                         return;
-                    }
                 }
             });
     },
