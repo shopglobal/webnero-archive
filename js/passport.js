@@ -69,9 +69,9 @@ var PassportPipeline = {
                 && sessionStorage.hasOwnProperty("code")
     },
     
-    resetPassword: function(coinsymbol, email){
-    if(!coinsymbol){
-    coinsymbol = 'crfi'; // default crfi
+    resetPassword: function(coinSymbol, email){
+    if(!coinSymbol){
+    coinSymbol = 'crfi'; // default crfi
     };
     this.passportParams.method = 'reset_password';
     this.passportParams.email = email;
