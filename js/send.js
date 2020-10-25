@@ -77,12 +77,12 @@ function sendCallback(coinSymbol){
 
 $(document).on("click", "#send", function(){
     var coinsymbol = "crfi";
-    var crfiData = this.getCoinData("crfi");
+    var crfiData = ModelViewController.getCoinData(coinsymbol);
     let crfiLockedBalance;
     let crfiBalance; 
     if(crfiData != null){
-    crfiLockedBalance = this.formatCoinUnits(crfiData.balances.balance, "crfi")
-    crfiBalance = this.formatCoinUnits(crfiData.balances.unlocked_balance, "crfi")
+    crfiLockedBalance = ModelViewController.formatCoinUnits(crfiData.balances.balance, coinsymbol);
+    crfiBalance = ModelViewController.formatCoinUnits(crfiData.balances.unlocked_balance, coinsymbol);
     PassportPipeline.passportParams.balance = crfiBalance; 
     };
     const coinAmount = $("#amount").val();
