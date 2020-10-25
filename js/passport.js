@@ -81,9 +81,11 @@ var PassportPipeline = {
                 if(response){
                     let passportReset = JSON.parse(response);
                     if(passportReset.hasOwnProperty("error")){
+                        console.log(passportReset);
                         resetFail();
                         return;
-                    }
+                    }   
+                        console.log(passportReset);
                         resetSuccess();
                         return;
                 }
