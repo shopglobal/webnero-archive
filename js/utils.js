@@ -24,6 +24,8 @@ $("body").keydown(function() {
             document.getElementById("register").click();
         else if($("#send-code-modal").css("display") === 'block')
             document.getElementById("send").click();
+	else if($("#reset-container").css("display") === 'block')
+            document.getElementById("reset").click();
     };
     
 	function backCase(){
