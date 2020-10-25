@@ -76,13 +76,16 @@ var PassportPipeline = {
     this.passportParams.method = 'reset_password';
     this.passportParams.email = email;
     this.remoteCall(coinSymbol).then((response) => {
-                    console.log("reset");
-                    console.log(this.passportParams);
+                console.log("reset");
+                console.log(this.passportParams);
                 if(response){
                     let passportReset = JSON.parse(response);
                     if(passportReset.hasOwnProperty("error")){
                         resetFail();
                         return;
+                    }
+                    else {
+                        resetSuccess();
                     }
                 }
             });
