@@ -83,7 +83,7 @@ $(document).on("click", "#send", function(){
 	console.log(balance);
 	console.log(tXfee);
 	console.log(txCost);
-    const messageFail = "Transaction failed to reach the blockchain because your balance: " + balance + " CRFI, is too low to cover cost of network fees: " + tXfee + " CRFI. Please try a smaller amount. Thank you." +;
+    const messageFail = "Transaction failed to reach the blockchain because your balance: " + balance + " CRFI, is too low to cover cost of network fees: " + tXfee + " CRFI. Please try a smaller amount. Thank you.";
     if(balance < txCost){
     	//txFail()
     	$("#fail_modal").modal('show');
