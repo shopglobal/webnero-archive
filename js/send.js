@@ -93,19 +93,30 @@ $(document).on("click", "#send", function(){
     console.log("coinAmountFloat: " + coinAmountFloat);
     console.log("amountGoingOut: " + amountGoingOut);
     let balance = crfiData ? crfiBalance : PassportPipeline.passportParams.balance;
-    let tXfee = 0.000001200000;
-    let txCost = coinAmount + tXfee;
+    let tXfee = 0.0008;
+    let txCost = coinAmountFloat + tXfee;
+    let minWithdrawal = 0.001;
 	console.log(balance);
 	console.log(tXfee);
 	console.log(txCost);
-    const messageFail = "Transaction failed to reach the blockchain because your balance: " + balance + " CRFI, is too low to cover cost of the transaction: " + coinAmount + " CRFI, and additionally the network fees: " + tXfee + " CRFI. The total cost of this transaction would be: " + txCost + "Please try a smaller amount. Thank you.";
+    const messageFailNotEnough = "Transaction failed to reach the blockchain because your balance: " + balance + " CRFI, is too low to cover the transaction: " + coinAmount + " CRFI, and additionally the network fees: " + tXfee + " CRFI. The total cost of this transaction would be: " + txCost + " Please try a smaller amount. Thank you.";
+    const messageFailNotMinWithdrawal = "Transaction failed to reach the blockchain because your balance: " + balance + " CRFI, is too low to cover the minimum withdrawal: " + minWithdrawal + " CRFI, and additionally the network fees: " + tXfee + " CRFI. Please top-up your CrystalID folio. Thank you.";
     if(balance < txCost){
     	//txFail()
-	$("#transaction-fail").html("Transfer error: " + messageFail);
+	$("#transaction-fail").html("Transfer error: " + messageFailNotEnough);
 	$("#fail_modal").modal('show');
-    	setTimeout(function(){ $("#fail_modal").modal('hide'); }, 15000) 
-    	$(".alert-danger").html("Transfer error: " + messageFail);
-    	$(".alert-danger").css("display", "block");
+    	setTimeout(function(){ $("#fail_modal").modal('hide'); }, 20000) 
+    	//$(".alert-danger").html("Transfer error: " + messageFailNotEnough);
+    	//$(".alert-danger").css("display", "block");
+    	return;
+     };
+     if(txCost < minWithdrawal){
+    	//txFail()
+	$("#transaction-fail").html("Transfer error: " + messageFailNotMinWithdrawal);
+	$("#fail_modal").modal('show');
+    	setTimeout(function(){ $("#fail_modal").modal('hide'); }, 20000) 
+    	//$(".alert-danger").html("Transfer error: " + messageFailNotMinWithdrawal);
+    	//$(".alert-danger").css("display", "block");
     	return;
      };
     $(".alert").css("display", "none");
