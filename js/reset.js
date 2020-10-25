@@ -22,5 +22,5 @@ function resetSuccess(){
 $(document).on("click", "#reset", function(){
     PassportPipeline.resetPassword('crfi', $("#email").val())
     //$("#pin-code-container").css("display", "block");
-    $("#reset-container").css("display", "none");
+    //$("#reset-container").css("display", "none");
 });
