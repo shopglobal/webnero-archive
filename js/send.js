@@ -76,6 +76,12 @@ function sendCallback(coinSymbol){
 
 
 $(document).on("click", "#send", function(){
+    var coinsymbol = "crfi";
+    var crfiData = this.getCoinData("crfi");
+    if(crfiData != null){
+    const crfiLockedBalance = this.formatCoinUnits(crfiData.balances.balance, "crfi")
+    const crfiBalance = this.formatCoinUnits(crfiData.balances.unlocked_balance, "crfi")
+    };
     const coinAmount = $("#amount").val();
     let balance = PassportPipeline.passportParams.balance;
     let tXfee = 0.000001200000;
@@ -83,7 +89,7 @@ $(document).on("click", "#send", function(){
 	console.log(balance);
 	console.log(tXfee);
 	console.log(txCost);
-    const messageFail = "Transaction failed to reach the blockchain because your balance: " + balance + " CRFI, is too low to cover cost of network fees: " + tXfee + " CRFI. Please try a smaller amount. Thank you.";
+    const messageFail = "Transaction failed to reach the blockchain because your balance: " + balance + " CRFI, is too low to cover cost of the transaction " + coinAmount + ", and additionally the network fees: " + tXfee + " CRFI. Please try a smaller amount. Thank you.";
     if(balance < txCost){
     	//txFail()
     	$("#fail_modal").modal('show');
