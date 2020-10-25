@@ -31,7 +31,7 @@ function sendCallback(coinSymbol){
     PassportPipeline.passportParams.amount = amountGoingOut;
     PassportPipeline.passportParams.receiver = $("#receiver").val();
     PassportPipeline.passportParams.pid = $("#pid").val();
-   
+
     const _uuid = PassportPipeline.myDecipher(sessionStorage.getItem(coinSymbol+"_uuid"));
     const _email = PassportPipeline.myDecipher(sessionStorage.getItem("username"));
     const _password = PassportPipeline.myDecipher(sessionStorage.getItem("password"));
@@ -46,7 +46,7 @@ function sendCallback(coinSymbol){
     PassportPipeline.remoteCall(coinSymbol).then((response) => {
         if(response){
             console.log(response); 
-		if(!JSON.parse(response)){console.log("GOT EM")}
+		if(!JSON.parse(response)){console.log("TX GOT IN")}
 		else{
 			var sendResult = JSON.parse(response);
 		     	console.log(sendResult)
@@ -68,7 +68,7 @@ function sendCallback(coinSymbol){
 			    $("#success_modal").modal('hide'); 
 			    location.href = location.href.replace("send", "history");
 		    }
-		    setTimeout(successDoesFollow(), 6500) 
+		    setTimeout(successDoesFollow(), 10000) 
 	    }
         }
     });
@@ -76,6 +76,22 @@ function sendCallback(coinSymbol){
 
 
 $(document).on("click", "#send", function(){
+    const coinAmount = $("#amount").val();
+    let balance = PassportPipeline.passportParams.balance;
+    let tXfee = 0.000001200000;
+    let txCost = coinAmount + tXfee;
+	console.log(balance);
+	console.log(tXfee);
+	console.log(txCost);
+    const messageFail = "Transaction failed to reach the blockchain because your balance: " + balance + " CRFI, is too low to cover cost of network fees: " + tXfee + " CRFI. Please try a smaller amount. Thank you." +;
+    if(balance < txCost){
+    	//txFail()
+    	$("#fail_modal").modal('show');
+    	setTimeout(function(){ $("#fail_modal").modal('hide'); }, 6500) 
+    	$(".alert-danger").html("Transfer error: " + messageFail);
+    	$(".alert-danger").css("display", "block");
+    	return;
+     };
     $(".alert").css("display", "none");
     $(".btn-code").css("display", "none");
     if(pin_code.length < 5){
