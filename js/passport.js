@@ -236,11 +236,6 @@ var PassportPipeline = {
         this.remoteCall(coinSymbol).then((response) => {
             if(response){
                 let passportLogin = JSON.parse(response);
-                if(passportLogin.hasOwnProperty("error")){
-                    loginFail();
-                    return;
-                }
-                
                 let passportRegister = JSON.parse(response);
                 if(passportRegister.hasOwnProperty("error")){
                     let resetError = passportRegister.error;
