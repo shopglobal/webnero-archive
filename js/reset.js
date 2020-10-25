@@ -2,6 +2,7 @@ function resetFail(){
     $("#pin-code-container").css("display", "none");
     $("#reset-container").css("display", "block");
     $("#spinner-modal").modal('hide');
+    $(".alert-danger").css("display", "block");
 }
 
 function resetCodeFail(){
