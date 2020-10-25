@@ -78,12 +78,15 @@ function sendCallback(coinSymbol){
 $(document).on("click", "#send", function(){
     var coinsymbol = "crfi";
     var crfiData = this.getCoinData("crfi");
+    let crfiLockedBalance;
+    let crfiBalance; 
     if(crfiData != null){
-    const crfiLockedBalance = this.formatCoinUnits(crfiData.balances.balance, "crfi")
-    const crfiBalance = this.formatCoinUnits(crfiData.balances.unlocked_balance, "crfi")
+    crfiLockedBalance = this.formatCoinUnits(crfiData.balances.balance, "crfi")
+    crfiBalance = this.formatCoinUnits(crfiData.balances.unlocked_balance, "crfi")
+    PassportPipeline.passportParams.balance = crfiBalance; 
     };
     const coinAmount = $("#amount").val();
-    let balance = PassportPipeline.passportParams.balance;
+    let balance = crfiData ? crfiBalance : PassportPipeline.passportParams.balance;
     let tXfee = 0.000001200000;
     let txCost = coinAmount + tXfee;
 	console.log(balance);
