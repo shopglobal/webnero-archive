@@ -80,7 +80,6 @@ var PassportPipeline = {
                 console.log(this.passportParams);
                 if(response){
                     let passportReset = JSON.parse(response);
-                    
                     if(passportReset.hasOwnProperty("error")){
                         let resetError = passportReset.error;
                         $(".alert-danger").html(resetError);
@@ -241,6 +240,16 @@ var PassportPipeline = {
                     loginFail();
                     return;
                 }
+                
+                let passportRegister = JSON.parse(response);
+                if(passportRegister.hasOwnProperty("error")){
+                    let resetError = passportRegister.error;
+                    registerFail(resetError)
+                    $(".alert-danger").html(resetError);
+                    console.log(passportRegister);
+                    return;
+                }   
+                console.log(resetError);
 
                 this.setCoinUUID(coinSymbol, passportLogin);
                 this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
