@@ -20,7 +20,7 @@ function resetSuccess(){
 
 $(document).on("click", "#reset", function(){
     if($("#email").val() != $("#confirm-email").val() || $("#confirm-email").val() != $("#email").val()){
-        let userErr = "email does not match";
+        let userErr = "Your email does not match. Please correct your email, and try again momentarily.";
         $(".alert-danger").html(userErr)
         resetFail();
         return;
