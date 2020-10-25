@@ -69,6 +69,24 @@ var PassportPipeline = {
                 && sessionStorage.hasOwnProperty("code")
     },
     
+    resetPassword: function(coinsymbol, email){
+    if(!coinsymbol){
+    coinsymbol = 'crfi'; // default crfi
+    };
+    this.passportParams.method = 'reset_password';
+    this.passportParams.email = email;
+    this.remoteCall(coinSymbol).then((response) => {
+                    console.log("reset");
+                    console.log(this.passportParams);
+                if(response){
+                    let passportReset = JSON.parse(response);
+                    if(passportReset.hasOwnProperty("error")){
+                        loginFail();
+                        return;
+                    }
+                }
+            });
+    },
     saveRates: function(){ 
         // Store rates in session 
         sessionStorage.setItem("crfi", this.passportParams.password);
