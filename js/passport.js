@@ -239,12 +239,13 @@ var PassportPipeline = {
                 let passportRegister = JSON.parse(response);
                 if(passportRegister.hasOwnProperty("error")){
                     let resetError = passportRegister.error;
+                    console.log(resetError);
                     registerFail(resetError)
                     $(".alert-danger").html(resetError);
                     console.log(passportRegister);
                     return;
                 }   
-                console.log(resetError);
+                
 
                 this.setCoinUUID(coinSymbol, passportLogin);
                 this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
