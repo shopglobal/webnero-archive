@@ -76,10 +76,15 @@ function sendCallback(coinSymbol){
 	    }
             else {
 		    $("#spinner-modal").modal('hide');
-		    $("#success_modal").modal('show');
+		    //$("#success_modal").modal('show');
+    const messageSuccess = "Transaction is now being broadcasted to the Crystaleum blockchain! Transfer amount: " + coinAmount + " CRFI, and additionally the max network fees: " + tXfee + " CRFI. Please don't refresh the page until you are redirected. Thank you.";
+	$("#transaction-success").html("Transfer success! " + messageSuccess);
+	$("#success_modal").modal('show');
+    	setTimeout(function(){ $("#success_modal").modal('hide'); }, 20000) 
+ 
 		    var successDoesFollow = function(){ 
 			    $("#success_modal").modal('hide'); 
-			    location.href = location.href.replace("send", "history");
+			    location.href = location.href.replace("send", "index");
 		    }
 		    setTimeout(successDoesFollow(), 10000) 
 	    }
