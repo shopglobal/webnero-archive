@@ -20,7 +20,7 @@ function checkMandatoryField(id){
 
 function sendCallback(coinSymbol){
 	coinSymbol = 'crfi';
-    PassportPipeline.setMethod('send_transaction');
+    PassportPipeline.setMethod('send_transaction_split');
     const coinAmount = $("#amount").val();
     const coinAmountFloat = parseFloat(coinAmount);
     const formatCRFIout = 1000000000000;
