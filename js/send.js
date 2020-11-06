@@ -29,7 +29,8 @@ document.getElementById('send-all').addEventListener("click", function() {
     var crfiBalance = ModelViewController.formatCoinUnits(crfiData.balances.unlocked_balance, coinsymbol);
     PassportPipeline.passportParams.balance = crfiBalance; 
     var balance = crfiBalance;
-    $("#amount").html(balance);
+	var input = $('#amount');
+        input.val(balance)
    console.log("sendAll: " + sendAll);
 });
 function sendCallback(coinSymbol){
