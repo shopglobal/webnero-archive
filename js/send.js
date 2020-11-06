@@ -37,7 +37,7 @@ function sendCallback(coinSymbol){
 	coinSymbol = 'crfi';
 	console.log("sendAll: " + sendAll);
     if(sendAll == true){
-	    PassportPipeline.setMethod('sweep_all');
+	    PassportPipeline.setMethod('sweep');
     } else {
 	    PassportPipeline.setMethod('send_transaction_split');
     }
