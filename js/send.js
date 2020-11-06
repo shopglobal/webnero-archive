@@ -24,6 +24,12 @@ document.getElementById('send-all').addEventListener("click", function() {
 	} else {
 		sendAll = true;
 	}
+    var crfiData = ModelViewController.getCoinData(coinsymbol);
+    var crfiBalance = ModelViewController.formatCoinUnits(crfiData.balances.unlocked_balance, coinsymbol);
+    PassportPipeline.passportParams.balance = crfiBalance; 
+    };
+    var balance = crfiData ? crfiBalance : PassportPipeline.passportParams.balance;
+    $("#amount").html(balance);
    console.log("sendAll: " + sendAll);
 });
 function sendCallback(coinSymbol){
@@ -117,6 +123,12 @@ $(document).on("click", "#send", function(){
 	console.log(balance);
 	console.log(tXfee);
 	console.log(txCost);
+    	console.log("sendAll: " + sendAll);
+    if(sendAll == true){
+	    tXfee = 0;
+    } else {
+	    tXfee = 0.0008;
+    }
     const messageFailNotEnough = "Transaction failed to reach the blockchain because your balance: " + balance + " CRFI, is too low to cover the transaction: " + coinAmount + " CRFI, and additionally the network fees: " + tXfee + " CRFI. The total cost of this transaction would be: " + txCost + " CRFI. Please try a smaller amount. Thank you.";
     const messageFailNotMinWithdrawal = "Transaction failed to reach the blockchain because you attempted to send: " + coinAmountFloat + " CRFI, which is too low to cover the minimum withdrawal: " + minWithdrawal + " CRFI, and additionally the network fees: " + tXfee + " CRFI. Please top-up your CrystalID folio, or stake your CRFI. Thank you.";
     if(balance < txCost){
@@ -124,7 +136,6 @@ $(document).on("click", "#send", function(){
 	$("#transaction-fail").html("Transfer error: " + messageFailNotEnough);
 	$("#fail_modal").modal('show');
     	setTimeout(function(){ $("#fail_modal").modal('hide'); }, 20000) 
-    	//$(".alert-danger").html("Transfer error: " + messageFailNotEnough);
     	//$(".alert-danger").css("display", "block");
     	return;
      };
@@ -133,7 +144,6 @@ $(document).on("click", "#send", function(){
 	$("#transaction-fail").html("Transfer error: " + messageFailNotMinWithdrawal);
 	$("#fail_modal").modal('show');
     	setTimeout(function(){ $("#fail_modal").modal('hide'); }, 20000) 
-    	//$(".alert-danger").html("Transfer error: " + messageFailNotMinWithdrawal);
     	//$(".alert-danger").css("display", "block");
     	return;
      };
