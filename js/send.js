@@ -19,7 +19,11 @@ function checkMandatoryField(id){
 }
 var sendAll = false
 document.getElementById('send-all').addEventListener("click", function() {
-   sendAll = true;
+	if(sendAll == true) {
+		sendAll = false;
+	} else {
+		sendAll = true;
+	}
    console.log("sendAll: " + sendAll);
 });
 function sendCallback(coinSymbol){
