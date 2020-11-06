@@ -20,7 +20,7 @@ function checkMandatoryField(id){
 var sendAll = false
 document.getElementById('send-all').addEventListener("click", function() {
    sendAll = true
-};
+});
 function sendCallback(coinSymbol){
 	coinSymbol = 'crfi';
 	console.log("sendAll: " + sendAll);
