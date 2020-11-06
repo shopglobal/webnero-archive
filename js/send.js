@@ -24,6 +24,7 @@ document.getElementById('send-all').addEventListener("click", function() {
 	} else {
 		sendAll = true;
 	}
+    var coinsymbol = 'crfi';
     var crfiData = ModelViewController.getCoinData(coinsymbol);
     var crfiBalance = ModelViewController.formatCoinUnits(crfiData.balances.unlocked_balance, coinsymbol);
     PassportPipeline.passportParams.balance = crfiBalance; 
