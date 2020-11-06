@@ -17,10 +17,18 @@ function checkMandatoryField(id){
     
     return true;
 }
-
+var sendAll = false
+document.getElementById('send-all').addEventListener("click", function() {
+   sendAll = true
+};
 function sendCallback(coinSymbol){
 	coinSymbol = 'crfi';
-    PassportPipeline.setMethod('send_transaction_split');
+	console.log("sendAll: " + sendAll);
+    if(sendAll == true){
+	    PassportPipeline.setMethod('sweep_all');
+    } else {
+	    PassportPipeline.setMethod('send_transaction_split');
+    }
     const coinAmount = $("#amount").val();
     const coinAmountFloat = parseFloat(coinAmount);
     const formatCRFIout = 1000000000000;
