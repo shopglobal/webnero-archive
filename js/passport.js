@@ -209,6 +209,8 @@ var PassportPipeline = {
                         console.log(response); 
                         let passportCheckCode = JSON.parse(response);
                         if(passportCheckCode.hasOwnProperty("error")){
+                            let checkError = passportCheckCode.hasOwnProperty("error");
+                            console.log(checkError);
                             loginCodeFail();
                             return;
                         }
