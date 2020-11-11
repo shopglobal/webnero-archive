@@ -277,7 +277,14 @@ var ModelViewController = {
 $(document).on("init.done", function(e){
     console.log(e.type + " - " + e.coin);
     ModelViewController.initLevel++;
-    if(ModelViewController.initLevel == 4){
+    // iniLevel 1 == etnx loaded
+    setTimeout(myFunction, 3000);
+    let myChecker = false;
+    var myFunction = function (){
+        myChecker = true;
+        console.log("myChecker: " + myChecker);
+    }
+    if(ModelViewController.initLevel == 4 || myChecker == true){
         $("#spinner-modal").modal('hide');
         if(location.pathname.indexOf("login") > -1)
             location.href = location.href.replace("login", "index");
