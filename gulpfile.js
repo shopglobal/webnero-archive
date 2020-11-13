@@ -64,6 +64,9 @@ gulp.task('js', function(done) {
     gulp.src(['js/passport.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/settings.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/theme.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/farm.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/stake.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/cdp.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/reset.js']).pipe(gulp.dest('dist/js'));
     done();
 })
