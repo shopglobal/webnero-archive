@@ -127,7 +127,6 @@ var ModelViewController = {
             console.log(crfiData);
             $("#crfi-balance").html(crfiLockedBalance);
             $("#crfi-unlocked-balance").html(crfiBalance);
-            $("#crfi-unlocked-farm").html(crfiBalance);
             $(".claims").html(crfiBalance);
             
             // proto
