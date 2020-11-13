@@ -23,7 +23,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-crfi">
                         <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> Your wallets
+                            <i class="fa fa-clock-o fa-fw"></i> Mint CRFI with ETH, BTC, USDT, USDC
                         </div>
                        <div class="panel-body">
                             {% import "../templates/macros/coin_addrqr.njk" as crfi %}
@@ -37,6 +37,41 @@
 
         {% include "../templates/modals/spinner.njk" %}
     </div>
+            <div class="row">
+            <div class="col-lg-4">
+                          <div class="card border-success mb-3" style="max-width: 18rem;">
+                          <div class="card-header bg-transparent border-success">Header</div>
+                          <div class="card-body text-success">
+                            <h5 class="card-title">CDP 3 months</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          </div>
+                          <div class="card-footer bg-transparent border-success">Footer</div>
+                        </div>
+        {% include "../templates/modals/spinner.njk" %}
+           </div>
+           <div class="col-lg-4">
+                          <div class="card border-success mb-3" style="max-width: 18rem;">
+                          <div class="card-header bg-transparent border-success">Header</div>
+                          <div class="card-body text-success">
+                            <h5 class="card-title">CDP 6 months</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          </div>
+                          <div class="card-footer bg-transparent border-success">Footer</div>
+                        </div>
+        {% include "../templates/modals/spinner.njk" %}
+           </div>
+           <div class="col-lg-4">
+                          <div class="card border-success mb-3" style="max-width: 18rem;">
+                          <div class="card-header bg-transparent border-success">Header</div>
+                          <div class="card-body text-success">
+                            <h5 class="card-title">CDP 1 year</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          </div>
+                          <div class="card-footer bg-transparent border-success">Footer</div>
+                        </div>
+        {% include "../templates/modals/spinner.njk" %}
+           </div>
+      </div>
 
 
 {% endblock %}
@@ -46,4 +81,5 @@
     <script type="text/javascript" src="plugins/qrious/qrious.js"></script>
     <script type="text/javascript" src="dist/js/qr-gen.js"></script>
     <script type="text/javascript" src="dist/js/index.js?v=1990"></script>
+    <script type="text/javascript" src="dist/js/cdp.js"></script>
 {% endblock %}
