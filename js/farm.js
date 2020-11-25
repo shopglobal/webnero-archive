@@ -4,7 +4,7 @@ var x = document.getElementById("claim");
 function farm() {
   var x = document.getElementById("farm");
   var y = document.getElementById("claim");
-  if (x.style.display === "none") {
+  if (x.style.display === "none" && y.style.display === "block") {
     y.style.display = "none";
     x.style.display = "block";    
   } else {
