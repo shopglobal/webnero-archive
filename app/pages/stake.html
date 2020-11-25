@@ -13,61 +13,66 @@
                     {{ crfi.card('crfi') }}
                 </div>
             </div>
-
+              
             <div class="row">
-            <div class="col-lg-12">
-        <script src="https://widgets.coingecko.com/coingecko-coin-converter-widget.js"></script>
-<coingecko-coin-converter-widget  coin-id="crystaleum" currency="usd" background-color="#ffffff" font-color="#4c4c4c" locale="en"></coingecko-coin-converter-widget>
-        <span align="center">CryptoCurrency Conversion Powered in part by <a href="https://www.coingecko.com/en/coins/crystaleum">CoinGecko</a></span>
-        </div>
                 <div class="col-lg-12">
-                    <div class="panel panel-crfi">
+                    <div class="stake-panel stake panel panel-crfi">
                         <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> Your wallets
+                            <i class="fa fa-clock-o fa-fw"></i> Stake coin
                         </div>
-                       <div class="panel-body">
-                            {% import "../templates/macros/coin_addrqr.njk" as crfi %}
-                            {{ crfi.addrqr('crfi') }}
-                            
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="form-group" style="text-align: center">
+                                    
+                                        <button id="crfi-stake" class="btn btn-lg btn-login coin-selector {{ "btn-selected" if coin === 'crfi' }}">
+                                            <img height="70px" width="70px" src="img/crfi.png" />
+                                        </button>
+                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div role="form">
+                                        <label>Stake Amount</label>
+                                        <div class="form-group input-group">
+                                            <input id="amount" type="number" class="form-control">
+                                            <span class="input-group-addon" id="stake-all">
+                                            All</span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Stake Reward Address</label>
+                                            <input id="receiver" class="form-control" placeholder="CRFI address...">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Stake Interval</label>
+                                        <select id="interval" class="form-control">
+                                          <option value="3">Quarterly (3 months)</option>
+                                          <option value="6">Bi-Annual (6 months)</option>
+                                          <option value="12">Annual (12 months)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Payment ID (optional)</label>
+                                        <input id="pid" class="form-control" placeholder="16 or 64 hexadecimal characters">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group" style="text-align: center">
+                                    <button id="stake-modal" class="btn btn-lg btn-login btn-primary" style="width: 100px"> Stake </button>
+                                    <button class="btn btn-lg btn-login btn-primary" style="width: 100px"> Cancel </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-            <div class="row">
-            <div class="col-lg-4">
-                          <div class="card border-success mb-3" style="max-width: 18rem;">
-                          <div class="card-header bg-transparent border-success">Header</div>
-                          <div class="card-body text-success">
-                            <h5 class="card-title">CDP 3 months</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          </div>
-                          <div class="card-footer bg-transparent border-success">Footer</div>
-                        </div>
-        {% include "../templates/modals/spinner.njk" %}
-           </div>
-           <div class="col-lg-4">
-                          <div class="card border-success mb-3" style="max-width: 18rem;">
-                          <div class="card-header bg-transparent border-success">Header</div>
-                          <div class="card-body text-success">
-                            <h5 class="card-title">CDP 6 months</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          </div>
-                          <div class="card-footer bg-transparent border-success">Footer</div>
-                        </div>
-        {% include "../templates/modals/spinner.njk" %}
-           </div>
-           <div class="col-lg-4">
-                          <div class="card border-success mb-3" style="max-width: 18rem;">
-                          <div class="card-header bg-transparent border-success">Header</div>
-                          <div class="card-body text-success">
-                            <h5 class="card-title">CDP 1 year</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          </div>
-                          <div class="card-footer bg-transparent border-success">Footer</div>
-                        </div>
-           </div>
-      </div>
+                  
+
+        </div> 
+
 
         {% include "../templates/modals/spinner.njk" %}
     </div>
