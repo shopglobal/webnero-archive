@@ -155,10 +155,6 @@ var ModelViewController = {
                 $("#crfi-eth-balance").html(rateETHformatCurrency);
                 $("#crfi-ltc-balance").html(rateLTCformatCurrency);
                 // Confirm state of rates
-                this.passportParams.usdt_value = sessionStorage.getItem("usdt");
-                this.passportParams.btc_value = sessionStorage.getItem("btc");
-                this.passportParams.eth_value = sessionStorage.getItem("eth");
-                this.passportParams.ltc_value = sessionStorage.getItem("ltc");
                 PassportPipeline.saveRates(usdTrates, btcRates, ethTrates, ltcTrates, crfiBalance, "crfi");
                 if(response.hasOwnProperty("error")){
                     PassportPipeline.performOperation(coinSymbol, ModelViewController.initCoin);
