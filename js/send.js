@@ -5,8 +5,10 @@ $(document).ready(function(){
 
 $(document).on("click", "#send-modal", function(){
     $('.form-group').removeClass("has-error");
-    if(checkMandatoryField("amount") && checkMandatoryField("receiver"))
-        $("#send-code-modal").modal('show');
+	cleanPinCode();
+    if(checkMandatoryField("amount") && checkMandatoryField("receiver")){
+	    $("#send-code-modal").modal('show');
+    }
 });
 
 function checkMandatoryField(id){
