@@ -93,14 +93,26 @@ var PassportPipeline = {
                 }
             });
     },
-    saveRates: function(){ 
+    saveRates: function(usdt, btc, eth, ltc, crfi, coin){ 
+        if (coin != null && coin != undefined){
+            console.log("coin not null, using defined coin");
+        }
+        else {
+            coin = "crfi";
+        }
         // Store rates in session 
-        sessionStorage.setItem("crfi", this.passportParams.password);
-        sessionStorage.setItem("usdt", this.passportParams.usdt_value);
-        sessionStorage.setItem("btc", this.passportParams.btc_value);
-        sessionStorage.setItem("eth", this.passportParams.eth_value);
-        sessionStorage.setItem("ltc", this.passportParams.ltc_value);
-        
+        sessionStorage.setItem("crfi", crfi);
+        sessionStorage.setItem("usdt", usdt);
+        sessionStorage.setItem("btc", btc);
+        sessionStorage.setItem("eth", eth);
+        sessionStorage.setItem("ltc", ltc);
+        // Confirm state of rates
+        this.passportParams.usdt_value = sessionStorage.getItem("usdt");
+        this.passportParams.btc_value = sessionStorage.getItem("btc");
+        this.passportParams.eth_value = sessionStorage.getItem("eth");
+        this.passportParams.ltc_value = sessionStorage.getItem("ltc");
+        // Log it out to the console
+        console.log(this.passportParams.crfi_value)
         console.log(this.passportParams.usdt_value)
         console.log(this.passportParams.btc_value)
         console.log(this.passportParams.eth_value)
