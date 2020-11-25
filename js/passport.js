@@ -100,11 +100,6 @@ var PassportPipeline = {
         sessionStorage.setItem("btc", this.passportParams.btc_value);
         sessionStorage.setItem("eth", this.passportParams.eth_value);
         sessionStorage.setItem("ltc", this.passportParams.ltc_value);
-        // Confirm state of rates
-        this.passportParams.usdt_value = sessionStorage.getItem("usdt");
-        this.passportParams.btc_value = sessionStorage.getItem("btc");
-        this.passportParams.eth_value = sessionStorage.getItem("eth");
-        this.passportParams.ltc_value = sessionStorage.getItem("ltc");
         
         console.log(this.passportParams.usdt_value)
         console.log(this.passportParams.btc_value)
