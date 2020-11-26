@@ -7,7 +7,7 @@ $(document).ready(function(){
     var parking_interval;
     var default_interval = 25.0;
     document.getElementById("interval").value = default_interval;
-    setTimeout(document.getElementById('default_oven').click(), 1000)
+    document.getElementById('default_oven').click()
 });
 
 function checkMandatoryField(id){
