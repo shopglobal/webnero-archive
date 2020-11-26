@@ -28,6 +28,7 @@ function checkMandatoryField(id){
 };
 
 $(document).on("click", "#stake-modal", function(){
+  setParkingBlocks();
   $('.form-group').removeClass("has-error");
   cleanPinCode();
     if(checkMandatoryField("amount") && checkMandatoryField("receiver")){
