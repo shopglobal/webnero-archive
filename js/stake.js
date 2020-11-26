@@ -39,7 +39,7 @@ document.getElementById('interval').addEventListener("click", function() {
   console.log("parking_interval: " + parking_interval);
   console.log("locked_blocks: " + locked_blocks);
 });
-let amountToQuote $('#amount').val;
+let amountToQuote $('#amount').val();
 document.getElementById('quote').addEventListener("click", function() {
 var est;
 	console.log("amountToQuote: " + amountToQuote)
