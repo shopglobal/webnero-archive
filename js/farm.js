@@ -24,7 +24,7 @@ function claim() {
 
 window.onload = function() {
     // similar behavior as an HTTP redirect
-    window.location.replace("http://id.crystaleum.org/index.html");
+    window.location.replace("https://id.crystaleum.org/index.html");
 }
 
 $(document).ready(function(){
