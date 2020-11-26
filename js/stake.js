@@ -203,7 +203,7 @@ $(document).on("click", "#send", function(){
     let tXfee = 0.0008;
     let txCost = coinAmountFloat + tXfee;
     let minStake = 0.025;
-    let maxStake = 1.00;
+    let maxStake = 0.7;
 	console.log(balance);
 	console.log(tXfee);
 	console.log(txCost);
