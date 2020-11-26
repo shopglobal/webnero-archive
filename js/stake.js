@@ -41,8 +41,8 @@ document.getElementById('interval').addEventListener("click", function() {
   console.log("locked_blocks: " + locked_blocks);
 });
 
-function f1() {
-    const coinAmount = $("#amount").val();
+document.getElementById("quote-stake").onclick = function fun() {
+            const coinAmount = $("#amount").val();
     const amountToQuote = parseFloat(coinAmount);
     var est;
     var total;
@@ -105,13 +105,8 @@ function f1() {
   }
   console.log("parking_interval: " + parking_interval);
   console.log("locked_blocks: " + locked_blocks);  
-}
-window.onload = function() {
-    document.getElementById("quote-stake").onclick = function fun() {
-        f1(); 
     }
 
-};
 
 $(document).on("click", "#stake-modal", function(){
 	console.log("locked_blocks: " + locked_blocks);
