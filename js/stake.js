@@ -64,9 +64,16 @@ document.getElementById('stake-all').addEventListener("click", function() {
     var crfiBalance = ModelViewController.formatCoinUnits(crfiData.balances.unlocked_balance, coinsymbol);
     PassportPipeline.passportParams.balance = crfiBalance; 
     var balance = crfiBalance;
-	var input = $('#amount');
-        input.val(balance)
-   console.log("sendAll: " + sendAll);
+    var input = $('#amount');
+    input.val(balance)
+    console.log("sendAll: " + sendAll);
+});
+
+var sendSome = 25; // send 25% by default
+document.getElementById('percentOfCoins').addEventListener("click", function() {
+    var coinsymbol = 'crfi';
+    var percent = document.getElementById("percentOfCoins").value;
+    console.log("percent: " + percent);
 });
 
 function sendCallback(coinSymbol){
@@ -158,7 +165,8 @@ $(document).on("click", "#send", function(){
     let balance = crfiData ? crfiBalance : PassportPipeline.passportParams.balance;
     let tXfee = 0.0008;
     let txCost = coinAmountFloat + tXfee;
-    let minStake = 0.01;
+    let minStake = 0.025;
+    let maxStake = 1.00;
 	console.log(balance);
 	console.log(tXfee);
 	console.log(txCost);
@@ -170,9 +178,17 @@ $(document).on("click", "#send", function(){
     }
     const messageFailNotEnough = "Transaction failed to reach the blockchain because your balance: " + balance + " CRFI, is too low to cover the cost of the transaction: " + coinAmount + " CRFI, and additionally the network fees: " + tXfee + " CRFI. The total cost of this transaction would be: " + txCost + " CRFI. Please try a smaller amount. Thank you.";
     const messageFailNotMinStake = "Transaction failed to reach the blockchain because you attempted to send: " + coinAmountFloat + " CRFI, which is too low to cover the minimum stake amount: " + minStake + " CRFI, and additionally the network fees: " + tXfee + " CRFI. Please top-up your CrystalID folio to stake your CRFI. Thank you.";
+    const messageFailMaxStake = "Transaction failed to reach the blockchain because you attempted to send: " + coinAmountFloat + " CRFI, which exceeds the current maximum stake amount: " + maxStake + " CRFI, including the network fees: " + tXfee + " CRFI. Please reduce your stake amount. Thank you.";
     if(balance < txCost && sendAll == false){
     	//txFail()
 	$("#transaction-fail").html("Transfer error: " + messageFailNotEnough);
+	$("#fail_modal").modal('show');
+    	setTimeout(function(){ $("#fail_modal").modal('hide'); }, 20000) 
+    	return;
+     };
+     if(balance < maxStake){
+    	//txFail()
+	$("#transaction-fail").html("Transfer error: " + messageFailMaxStake);
 	$("#fail_modal").modal('show');
     	setTimeout(function(){ $("#fail_modal").modal('hide'); }, 20000) 
     	return;
