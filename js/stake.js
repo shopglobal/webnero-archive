@@ -20,7 +20,7 @@ function checkMandatoryField(id){
 
 var parking_interval;
 var locked_blocks;
-function setParkingBlocks() {
+document.getElementById('interval').addEventListener("click", function() {
   parking_interval = document.getElementById("interval").value;
   //document.getElementById("parking_interval").innerHTML = parking_interval;
   if (parking_interval == 3) {
@@ -32,7 +32,7 @@ function setParkingBlocks() {
   }
   console.log("parking_interval: " + parking_interval);
   console.log("locked_blocks: " + locked_blocks);
-};
+});
 
 $(document).on("click", "#stake-modal", function(){
   setParkingBlocks();
