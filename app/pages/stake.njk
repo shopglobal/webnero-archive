@@ -22,7 +22,37 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
+                            <div class="col-lg-12">
                                 <div class="form-group" style="text-align: center">
+                                        <button id="crfi-stake" class="btn btn-lg btn-login coin-selector {{ "btn-selected" if coin === 'crfi' }}">
+                                            <img height="70px" width="70px" src="img/crfi.png" />
+                                        </button>
+                                   
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                <div class="col-lg-12">
+                    <div class="stake-panel stake panel panel-crfi">
+                        <div class="panel-heading">
+                            <i class="fa fa-clock-o fa-fw"></i> Bake Crystaleum
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="staking-type false active" data-stakekey="bake_tezos">
+                                        <h4 style="margin-bottom: var(--space);">Bake CRFI</h4>
+                                        <section class="stake-stat"><span class="name">Annual Reward: </span><span class="annual_value"></span></section>
+                                        <section class="stake-stat"><span class="name">Adj. Reward: </span><span class="est_reward_value" data-negative="false"></span></section>
+                                        <section class="stake-stat"><span class="name">Required collateral:</span><span class="collateral_value"></span></section>
+                                        <section class="stake-stat"><span class="name">Lock-Up Period: </span><span class="lock_value"></span></section>
+                                        <section class="stake-stat">
+                                        <span class="name">Complexity Rating: </span><span class="complexity_value"></span></section>
+                                        <section class="stake-stat"><span class="name">Risk Rating: </span><span class="risk_value"></span></section></div>
+                                </div>
+                                <div class="form-group col-lg-6" style="text-align: center">
                                     
                                         <button id="crfi-stake" class="btn btn-lg btn-login coin-selector {{ "btn-selected" if coin === 'crfi' }}">
                                             <img height="70px" width="70px" src="img/crfi.png" />
@@ -34,10 +64,14 @@
                     </div>
                 </div>
             </div>
+            
+                    </div>
+                </div>
+            </div>
                             <div class="row">
                               <div role="form">
                                 <div class="col-lg-3">
-                                        <label>Stake Amount</label>
+                                        <label>Baking Supply</label>
                                       <div class="form-group input-group">
                                           <input id="amount" type="number" class="form-control" placeholder="0.001">
                                           <span class="input-group-addon" id="stake-all">
@@ -45,7 +79,7 @@
                                       </div>
                                 </div>
                                 <div class="col-lg-3">
-                                        <label>Stake Percentage</label>
+                                        <label>Bake Percentage</label>
                                         </br>
                                         <button id="25_percent" type="button" class="btn btn-default" value="25">25%</button>
                                         <button id="50_percent" type="button" class="btn btn-default" value="50">50%</button>
@@ -53,11 +87,13 @@
                                         <button id="100_percent" type="button" class="btn btn-default" value="100">100%</button>
                                 </div>
                                 <div class="col-lg-6">
-                                        <label>Stake Interval</label>
+                                        <label>Bake Time</label>
                                         <select id="interval" class="form-control">
-                                          <option value="3">Quarterly (3 months)</option>
-                                          <option value="6">Bi-Annual (6 months)</option>
-                                          <option value="12">Annual (12 months)</option>
+                                          <option value="3">Quarterly (1 day) x0.05% daily yield</option>
+                                          <option value="3">Quarterly (1 months) x0.5% daily yield</option>
+                                          <option value="3">Quarterly (3 months) x5% daily yield</option>
+                                          <option value="6">Bi-Annual (6 months) x10% daily yield</option>
+                                          <option value="12">Annual (12 months) x25% daily yield</option>
                                         </select>
                                     </div>
                                 </div> 
