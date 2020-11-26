@@ -62,7 +62,6 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  quoteFee = total * 0.0005;
 	  quoteMinusFee = total - quoteFee;
 	  collateral_value = amountToQuote;
-    	  lock_value = document.getElementById("est_performance_value").value;
 	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
@@ -75,7 +74,6 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  quoteFee = total * 0.001;
 	  quoteMinusFee = total - quoteFee;
 	  collateral_value = amountToQuote;
-    	  lock_value;
 	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
@@ -88,7 +86,6 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  quoteFee = total * 0.002;
 	  quoteMinusFee = total - quoteFee;
 	  collateral_value = amountToQuote;
-    	  lock_value;
 	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
@@ -101,7 +98,6 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  quoteFee = total * 0.005;
 	  quoteMinusFee = total - quoteFee;
 	  collateral_value = amountToQuote;
-    	  lock_value;
 	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
@@ -114,7 +110,6 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  quoteFee = total * 0.01;
 	  quoteMinusFee = total - quoteFee;
 	  collateral_value = amountToQuote;
-    	  lock_value;
 	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
@@ -127,7 +122,6 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  quoteFee = total * 0.025;
 	  quoteMinusFee = total - quoteFee;
 	  collateral_value = amountToQuote;
-    	  lock_value;
 	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
