@@ -46,25 +46,30 @@ document.getElementById('interval').addEventListener("click", function() {
 
 function f1() {
     var est;
-	console.log("amountToQuote: " + amountToQuote)
   if (parking_interval == 0.05) {
 	  const varRateA = 0.05;
 	  est = amountToQuote * varRateA;
+	  console.log("amountToQuote: " + amountToQuote)
   } else if (parking_interval == 1.0) {
 	  const varRateB = 1.0;
 	  est = amountToQuote * varRateB;
+	  console.log("amountToQuote: " + amountToQuote)
   } else if (parking_interval == 2.0) {
 	  const varRateC = 2.0;
 	  est = amountToQuote * varRateC;
+	  console.log("amountToQuote: " + amountToQuote)
   } else if (parking_interval == 5.0) {
 	  const varRateD = 5.0;
 	  est = amountToQuote * varRateD;
+	  console.log("amountToQuote: " + amountToQuote)
   } else if (parking_interval == 10.0) {
 	  const varRateE = 10.0;
 	  est = amountToQuote * varRateE;
+	  console.log("amountToQuote: " + amountToQuote)
   } else if (parking_interval == 25.0) {
 	  const varRateF = 25.0;
 	  est = amountToQuote * varRateF;
+	  console.log("amountToQuote: " + amountToQuote)
   }
   console.log("parking_interval: " + parking_interval);
   console.log("locked_blocks: " + locked_blocks);  
