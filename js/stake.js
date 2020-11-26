@@ -22,11 +22,10 @@ function checkMandatoryField(id){
 
 
 
-
-document.getElementById('interval').addEventListener("click", function() {
-  let amountToQuote = $('#amount').val();
   var parking_interval;
   var locked_blocks;
+document.getElementById('interval').addEventListener("click", function() {
+  var amountToQuote = $('#amount').val();
   parking_interval = document.getElementById("interval").value;
   amountToQuote = $('#amount').val();
   //document.getElementById("parking_interval").innerHTML = parking_interval;
