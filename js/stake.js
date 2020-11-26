@@ -127,9 +127,10 @@ document.getElementById("stake-modal").addEventListener("click", function() {
   $('.form-group').removeClass("has-error");
   cleanPinCode();
     if(checkMandatoryField("amount") && checkMandatoryField("receiver")){
-	    $("#send-code-modal").modal('show');
-	    var crfi_stake_reward_address = document.getElementById("receiver");
+	    
+	    var crfi_stake_reward_address = document.getElementById("receiver").value;
         if(crfi_stake_reward_address != null && crfi_stake_reward_address != undefined){
+		$("#send-code-modal").modal('show');
             console.log("crfi_stake_reward_address: " + crfi_stake_reward_address);
            }    
 	var crfiData = ModelViewController.getCoinData("crfi");
