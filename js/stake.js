@@ -48,6 +48,8 @@ document.getElementById("quote-stake").addEventListener("click", function() {
     var total;
     var quoteMinusFee;
     var quoteFee;
+	if(checkMandatoryField("amount") && checkMandatoryField("receiver")){
+		
   if (parking_interval == 0.05) {
 	  const varRateA = 0.005;
 	  est = amountToQuote * varRateA;
@@ -115,6 +117,7 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
   }
+	}
   console.log("parking_interval: " + parking_interval);
   console.log("locked_blocks: " + locked_blocks);  
  });
