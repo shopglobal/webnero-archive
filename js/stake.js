@@ -54,6 +54,8 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  total = est + amountToQuote;
 	  quoteFee = total * 0.0005;
 	  quoteMinusFee = total - quoteFee;
+	  
+	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
@@ -63,6 +65,8 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  total = est + amountToQuote;
 	  quoteFee = total * 0.001;
 	  quoteMinusFee = total - quoteFee;
+	  
+	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
@@ -72,6 +76,8 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  total = est + amountToQuote;
 	  quoteFee = total * 0.002;
 	  quoteMinusFee = total - quoteFee;
+	  
+	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
@@ -81,6 +87,8 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  total = est + amountToQuote;
 	  quoteFee = total * 0.005;
 	  quoteMinusFee = total - quoteFee;
+	  
+	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
@@ -90,6 +98,8 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  total = est + amountToQuote;
 	  quoteFee = total * 0.01;
 	  quoteMinusFee = total - quoteFee;
+	  
+	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
@@ -99,6 +109,8 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  total = est + amountToQuote;
 	  quoteFee = total * 0.025;
 	  quoteMinusFee = total - quoteFee;
+	  
+	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
