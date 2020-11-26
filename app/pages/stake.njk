@@ -34,11 +34,22 @@
                                 <div class="col-lg-6">
                                     <div role="form">
                                         <label>Stake Amount</label>
-                                        <div class="form-group input-group">
-                                            <input id="amount" type="number" class="form-control">
-                                            <span class="input-group-addon" id="stake-all">
-                                            All</span>
+                                      <div class="form-group input-group">
+                                          <input id="amount" type="number" class="form-control">
+                                          <span class="input-group-addon" id="stake-all">
+                                          All</span>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="percentOfCoins" style="color: 5bc0de;">Amount</label>
+                                        <input type="text" class="form-control" id="percentOfCoins" placeholder="0.001">
+                                      </div>
+                                        <div>
+                                        <button id="25_percent" type="button" class="btn btn-default">25%</button>
+                                          <button id="50_percent" type="button" class="btn btn-default">50%</button>
+                                          <button id="75_percent" type="button" class="btn btn-default">75%</button>
+                                          <button id="100_percent" type="button" class="btn btn-default">100%</button>
                                         </div>
+                                        </br>
                                         <div class="form-group">
                                             <label>CRFI Stake Reward Address</label>
                                             <input id="receiver" class="form-control" placeholder="CRFI address...">
