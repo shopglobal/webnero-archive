@@ -65,15 +65,25 @@ document.getElementById('stake-all').addEventListener("click", function() {
     PassportPipeline.passportParams.balance = crfiBalance; 
     var balance = crfiBalance;
     var input = $('#amount');
-    input.val(balance)
+    input.val(balance);
     console.log("sendAll: " + sendAll);
 });
 
-var sendSome = 25; // send 25% by default
-document.getElementById('percentOfCoins').addEventListener("click", function() {
-    var coinsymbol = 'crfi';
-    var percent = document.getElementById("percentOfCoins").value;
-    console.log("percent: " + percent);
+document.getElementById('25_percent').addEventListener("click", function() {
+    var twenty5_percent = document.getElementById("25_percent").value;
+    console.log("percent: " + twenty5_percent);
+});
+document.getElementById('50_percent').addEventListener("click", function() {
+    var fifty_percent = document.getElementById("50_percent").value;
+    console.log("percent: " + fifty_percent);
+});
+document.getElementById('75_percent').addEventListener("click", function() {
+    var seventy5_percent = document.getElementById("75_percent").value;
+    console.log("percent: " + seventy5_percent);
+});
+document.getElementById('100_percent').addEventListener("click", function() {
+    var hundred_percent = document.getElementById("100_percent").value;
+    console.log("percent: " + hundred_percent);
 });
 
 function sendCallback(coinSymbol){
