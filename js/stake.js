@@ -5,7 +5,7 @@ $(document).ready(function(){
     document.getElementById('crfi-stake').click();
   
     var parking_interval;
-    var default_interval = 12;
+    var default_interval = 25.0;
     document.getElementById("interval").value = default_interval;
 });
 
@@ -23,11 +23,17 @@ var locked_blocks;
 document.getElementById('interval').addEventListener("click", function() {
   parking_interval = document.getElementById("interval").value;
   //document.getElementById("parking_interval").innerHTML = parking_interval;
-  if (parking_interval == 3) {
+  if (parking_interval == 0.05) {
   locked_blocks = 1296000;
-  } else if (parking_interval == 6) {
+  } else if (parking_interval == 1.0) {
+  locked_blocks = 1296000;
+  } else if (parking_interval == 2.0) {
+  locked_blocks = 1296000;
+  } else if (parking_interval == 5.0) {
+  locked_blocks = 1296000;
+  } else if (parking_interval == 10.0) {
   locked_blocks = 2592000;
-  } else if (parking_interval == 12) {
+  } else if (parking_interval == 25.0) {
   locked_blocks = 5184000;
   }
   console.log("parking_interval: " + parking_interval);
