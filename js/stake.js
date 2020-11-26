@@ -4,6 +4,7 @@ $(document).ready(function(){
     ModelViewController.fillData();
     document.getElementById('crfi-stake').click();
     document.getElementById("default_oven").click();
+    document.getElementById("stake-modal").style.visibility = "hidden";
 });
 
 function checkMandatoryField(id){
