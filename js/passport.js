@@ -54,9 +54,31 @@ var PassportPipeline = {
     etnxcExpl: 'blockexplorer.electroneroclassic.org',
     ltnxExpl: 'blockexplorer.litenero.org',
     gldxExpl: 'blockexplorer.goldnero.org',
-    
+//     initRatesDates: null,
+//     oraceleRatesApiNodeA: 'https://api.coingecko.com/api/v3/coins/crystaleum/history?date='+initRatesDates+'&localization=en',
     exRatesApi: 'https://api.coingecko.com/api/v3/simple/price?ids=crystaleum&vs_currencies=btc%2Cusd%2Ceth%2Cltc',
-
+//     callDateTime: function(){
+//       var d = new Date();
+//       var a = d.getDate()
+//       var b = d.getMonth()
+//       var c = d.getDay();
+//       var d = d.getFullYear();
+//       var weekly = c + 7; // weekly
+//       var monthly = c + 30; // monthly
+//       var quarterly = f * 3; // quarterly
+//       var annual = g * 4; // annual
+//       var dayDate = c + b + d;
+//       var weekOfDates = for(i=0; i < weekly; i++){
+//           console.log(weekly);
+//       }
+//       var monthOfDates = c + b + d;
+//       var quartersOfDates = c + b + d;
+//       var annualDates = c + b + d;
+//         initRatesDates = monthDayDate;
+//         for(i=0;i<dayOfRates.length){
+//         }
+//         console.log(monthDayDate);
+//     },
     saveParams: function(){
         // Store account in session
         // cipher any sensitive data
