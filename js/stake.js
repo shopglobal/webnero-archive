@@ -20,22 +20,25 @@ function checkMandatoryField(id){
   var parking_interval;
   var locked_blocks;
 document.getElementById('interval').addEventListener("click", function() {
-  var amountToQuote = $('#amount').val();
   parking_interval = document.getElementById("interval").value;
-  amountToQuote = $('#amount').val();
-  //document.getElementById("parking_interval").innerHTML = parking_interval;
   if (parking_interval == 0.05) {
   locked_blocks = 14440;
+  document.getElementById("lock_value").innerHTML = "Daily (1 day) x0.05% daily yield";
   } else if (parking_interval == 1.0) {
   locked_blocks = 101080;
+  document.getElementById("lock_value").innerHTML = "Weekly (1 week) x1.00% daily yield";
   } else if (parking_interval == 2.0) {
   locked_blocks = 404320;
+  document.getElementById("lock_value").innerHTML = "Monthly (1 month) x2.0% daily yield";
   } else if (parking_interval == 5.0) {
   locked_blocks = 1212960;
+  document.getElementById("lock_value").innerHTML = "Quarterly (3 months) x5% daily yield";
   } else if (parking_interval == 10.0) {
   locked_blocks = 2592000;
+  document.getElementById("lock_value").innerHTML = "Bi-Annual (6 months) x10% daily yield";
   } else if (parking_interval == 25.0) {
   locked_blocks = 5184000;
+  document.getElementById("lock_value").innerHTML = "Annual (12 months) x25% annual yield";
   }
   console.log("parking_interval: " + parking_interval);
   console.log("locked_blocks: " + locked_blocks);
@@ -47,6 +50,8 @@ document.getElementById("quote-stake").addEventListener("click", function() {
     var est;
     var total;
     var quoteMinusFee;
+    var collateral_value;
+    var lock_value;
     var quoteFee;
 	if(checkMandatoryField("amount") && checkMandatoryField("receiver")){
 		
@@ -56,10 +61,12 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  total = est + amountToQuote;
 	  quoteFee = total * 0.0005;
 	  quoteMinusFee = total - quoteFee;
-	  
+	  collateral_value = amountToQuote;
+    	  lock_value = document.getElementById("est_performance_value").value;
 	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
+	  document.getElementById("collateral_value").innerHTML = collateral_value + " CRFI";
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
   } else if (parking_interval == 1.0) {
 	  const varRateB = 0.01;
@@ -67,10 +74,12 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  total = est + amountToQuote;
 	  quoteFee = total * 0.001;
 	  quoteMinusFee = total - quoteFee;
-	  
+	  collateral_value = amountToQuote;
+    	  lock_value;
 	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
+	  document.getElementById("collateral_value").innerHTML = collateral_value + " CRFI";
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
   } else if (parking_interval == 2.0) {
 	  const varRateC = 0.02;
@@ -78,10 +87,12 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  total = est + amountToQuote;
 	  quoteFee = total * 0.002;
 	  quoteMinusFee = total - quoteFee;
-	  
+	  collateral_value = amountToQuote;
+    	  lock_value;
 	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
+	  document.getElementById("collateral_value").innerHTML = collateral_value + " CRFI";
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
   } else if (parking_interval == 5.0) {
 	  const varRateD = 0.05;
@@ -89,10 +100,12 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  total = est + amountToQuote;
 	  quoteFee = total * 0.005;
 	  quoteMinusFee = total - quoteFee;
-	  
+	  collateral_value = amountToQuote;
+    	  lock_value;
 	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
+	  document.getElementById("collateral_value").innerHTML = collateral_value + " CRFI";
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
   } else if (parking_interval == 10.0) {
 	  const varRateE = 0.10;
@@ -100,10 +113,12 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  total = est + amountToQuote;
 	  quoteFee = total * 0.01;
 	  quoteMinusFee = total - quoteFee;
-	  
+	  collateral_value = amountToQuote;
+    	  lock_value;
 	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
+	  document.getElementById("collateral_value").innerHTML = collateral_value + " CRFI";
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
   } else if (parking_interval == 25.0) {
 	  const varRateF = 0.25;
@@ -111,10 +126,12 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  total = est + amountToQuote;
 	  quoteFee = total * 0.025;
 	  quoteMinusFee = total - quoteFee;
-	  
+	  collateral_value = amountToQuote;
+    	  lock_value;
 	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
+	  document.getElementById("collateral_value").innerHTML = collateral_value + " CRFI
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
   }
 	}
