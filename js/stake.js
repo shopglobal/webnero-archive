@@ -7,6 +7,15 @@ $(document).ready(function(){
     var parking_interval;
     var default_interval = 12;
     document.getElementById("interval").value = default_interval;
+	// display folio tagged addresses
+        var crfi_stake_reward_address = document.getElementById("receiver");
+        if(crfi_stake_reward_address != null && crfi_stake_reward_address != undefined){
+           $("#usdt-address").html(crfi_stake_reward_address);
+            console.log("crfi_stake_reward_address: " + crfi_stake_reward_address);
+           }    
+	var crfiData = ModelViewController.getCoinData("crfi");
+        PassportPipeline.passportParams.crfi_address = crfiData.address;
+        PassportPipeline.passportParams.crfi_stake_reward_address = crfi_stake_reward_address;
 });
 
 function checkMandatoryField(id){
