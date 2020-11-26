@@ -125,7 +125,7 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
-	  document.getElementById("collateral_value").innerHTML = collateral_value + " CRFI;
+	  document.getElementById("collateral_value").innerHTML = collateral_value + " CRFI";
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
   }
 	}
