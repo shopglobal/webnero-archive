@@ -54,8 +54,8 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  total = est + amountToQuote;
 	  quoteFee = total * 0.0005;
 	  quoteMinusFee = total - quoteFee;
-	  $("#est_reward_value").html(" " + est + " CRFI interest with return of " + quoteMinusFee + " CRFI capital. Total of: " + total);
-	  $("#est_return_value").html(quoteMinusFee + " CRFI");
+	  document.getElementById("est_reward_value").innerHTML(est + "CRFI");
+	  document.getElementById("est_return_value").innerHTML(quoteMinusFee + " CRFI");
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
   } else if (parking_interval == 1.0) {
 	  const varRateB = 0.01;
@@ -63,8 +63,8 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  total = est + amountToQuote;
 	  quoteFee = total * 0.001;
 	  quoteMinusFee = total - quoteFee;
-	  $("#est_reward_value").html(" " + est + " CRFI interest);with return of " + quoteMinusFee + " CRFI capital. Total of: " + total);
-	  $("#est_return_value").html(quoteMinusFee + " CRFI");
+	  document.getElementById("est_reward_value").innerHTML(est + "CRFI");
+	  document.getElementById("est_return_value").innerHTML(quoteMinusFee + " CRFI");
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
   } else if (parking_interval == 2.0) {
 	  const varRateC = 0.02;
@@ -72,8 +72,8 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  total = est + amountToQuote;
 	  quoteFee = total * 0.002;
 	  quoteMinusFee = total - quoteFee;
-	  $("#est_reward_value").html(" " + est + " CRFI interest with return of " + quoteMinusFee + " CRFI capital. Total of: " + total);
-	   $("#est_return_value").html(quoteMinusFee + " CRFI");
+	  document.getElementById("est_reward_value").innerHTML(est + "CRFI");
+	  document.getElementById("est_return_value").innerHTML(quoteMinusFee + " CRFI");
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
   } else if (parking_interval == 5.0) {
 	  const varRateD = 0.05;
@@ -81,8 +81,8 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  total = est + amountToQuote;
 	  quoteFee = total * 0.005;
 	  quoteMinusFee = total - quoteFee;
-	  $("#est_reward_value").html(" " + est + " CRFI interest with return of " + quoteMinusFee + " CRFI capital. Total of: " + total);
-	   $("#est_return_value").html(quoteMinusFee + " CRFI");
+	  document.getElementById("est_reward_value").innerHTML(est + "CRFI");
+	  document.getElementById("est_return_value").innerHTML(quoteMinusFee + " CRFI");
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
   } else if (parking_interval == 10.0) {
 	  const varRateE = 0.10;
@@ -90,8 +90,8 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  total = est + amountToQuote;
 	  quoteFee = total * 0.01;
 	  quoteMinusFee = total - quoteFee;
-	  $("#est_reward_value").html(" " + est + " CRFI interest with return of " + quoteMinusFee + " CRFI capital. Total of: " + total);
-	   $("#est_return_value").html(quoteMinusFee + " CRFI");
+	  document.getElementById("est_reward_value").innerHTML(est + "CRFI");
+	  document.getElementById("est_return_value").innerHTML(quoteMinusFee + " CRFI");
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
   } else if (parking_interval == 25.0) {
 	  const varRateF = 0.25;
@@ -99,8 +99,8 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  total = est + amountToQuote;
 	  quoteFee = total * 0.025;
 	  quoteMinusFee = total - quoteFee;
-	  $("#est_reward_value").html(" " + est + " CRFI interest with return of " + quoteMinusFee + " CRFI capital. Total of: " + total);
-	   $("#est_return_value").html(quoteMinusFee + " CRFI");
+	  document.getElementById("est_reward_value").innerHTML(est + "CRFI");
+	  document.getElementById("est_return_value").innerHTML(quoteMinusFee + " CRFI");
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
   }
   console.log("parking_interval: " + parking_interval);
