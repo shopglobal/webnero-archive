@@ -20,8 +20,10 @@ function checkMandatoryField(id){
 
 var parking_interval;
 var locked_blocks;
+let amountToQuote = $('#amount').val();
 document.getElementById('interval').addEventListener("click", function() {
   parking_interval = document.getElementById("interval").value;
+  amountToQuote = $('#amount').val();
   //document.getElementById("parking_interval").innerHTML = parking_interval;
   if (parking_interval == 0.05) {
   locked_blocks = 14440;
@@ -39,8 +41,8 @@ document.getElementById('interval').addEventListener("click", function() {
   console.log("parking_interval: " + parking_interval);
   console.log("locked_blocks: " + locked_blocks);
 });
-let amountToQuote = $('#amount').val();
-document.getElementById('quote').addEventListener("click", function() {
+
+document.getElementById('quote-stake').addEventListener("click", function() {
 var est;
 	console.log("amountToQuote: " + amountToQuote)
   if (parking_interval == 0.05) {
