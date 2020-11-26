@@ -20,10 +20,13 @@ function checkMandatoryField(id){
     return true;
 };
 
-var parking_interval;
-var locked_blocks;
-let amountToQuote = $('#amount').val();
+
+
+
 document.getElementById('interval').addEventListener("click", function() {
+  let amountToQuote = $('#amount').val();
+  var parking_interval;
+  var locked_blocks;
   parking_interval = document.getElementById("interval").value;
   amountToQuote = $('#amount').val();
   //document.getElementById("parking_interval").innerHTML = parking_interval;
@@ -45,6 +48,7 @@ document.getElementById('interval').addEventListener("click", function() {
 });
 
 function f1() {
+    var amountToQuote = $('#amount').val();
     var est;
     var total;
     var quoteMinusFee;
