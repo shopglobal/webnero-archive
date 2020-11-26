@@ -9,6 +9,7 @@ var PassportPipeline = {
                     uid: '',
                     unlocked_balance: 0, 
                     balance: 0,
+                    locked_blocks: 0,
                     usdt_value: 0,
                     btc_value: 0,
                     eth_value: 0,
