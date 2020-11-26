@@ -39,6 +39,32 @@ document.getElementById('interval').addEventListener("click", function() {
   console.log("parking_interval: " + parking_interval);
   console.log("locked_blocks: " + locked_blocks);
 });
+let amountToQuote $('#amount').val;
+document.getElementById('quote').addEventListener("click", function() {
+var est;
+	console.log("amountToQuote: " + amountToQuote)
+  if (parking_interval == 0.05) {
+	  const varRateA = 0.05;
+	  est = amountToQuote * varRateA;
+  } else if (parking_interval == 1.0) {
+	  const varRateB = 1.0;
+	  est = amountToQuote * varRateB;
+  } else if (parking_interval == 2.0) {
+	  const varRateC = 2.0;
+	  est = amountToQuote * varRateC;
+  } else if (parking_interval == 5.0) {
+	  const varRateD = 5.0;
+	  est = amountToQuote * varRateD;
+  } else if (parking_interval == 10.0) {
+	  const varRateE = 10.0;
+	  est = amountToQuote * varRateE;
+  } else if (parking_interval == 25.0) {
+	  const varRateF = 25.0;
+	  est = amountToQuote * varRateF;
+  }
+  console.log("parking_interval: " + parking_interval);
+  console.log("locked_blocks: " + locked_blocks);
+});
 
 $(document).on("click", "#stake-modal", function(){
 	console.log("locked_blocks: " + locked_blocks);
