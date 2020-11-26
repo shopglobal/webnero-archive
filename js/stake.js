@@ -130,7 +130,6 @@ document.getElementById("stake-modal").addEventListener("click", function() {
 	    $("#send-code-modal").modal('show');
 	    var crfi_stake_reward_address = document.getElementById("receiver");
         if(crfi_stake_reward_address != null && crfi_stake_reward_address != undefined){
-           $("#usdt-address").html(crfi_stake_reward_address);
             console.log("crfi_stake_reward_address: " + crfi_stake_reward_address);
            }    
 	var crfiData = ModelViewController.getCoinData("crfi");
