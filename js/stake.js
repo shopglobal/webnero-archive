@@ -41,7 +41,7 @@ document.getElementById('interval').addEventListener("click", function() {
 });
 
 $(document).on("click", "#stake-modal", function(){
-  setParkingBlocks();
+	console.log("locked_blocks: " + locked_blocks);
   $('.form-group').removeClass("has-error");
   cleanPinCode();
     if(checkMandatoryField("amount") && checkMandatoryField("receiver")){
