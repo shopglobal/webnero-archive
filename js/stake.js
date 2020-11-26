@@ -7,15 +7,6 @@ $(document).ready(function(){
     var parking_interval;
     var default_interval = 12;
     document.getElementById("interval").value = default_interval;
-	// display folio tagged addresses
-        var crfi_stake_reward_address = document.getElementById("receiver");
-        if(crfi_stake_reward_address != null && crfi_stake_reward_address != undefined){
-           $("#usdt-address").html(crfi_stake_reward_address);
-            console.log("crfi_stake_reward_address: " + crfi_stake_reward_address);
-           }    
-	var crfiData = ModelViewController.getCoinData("crfi");
-        PassportPipeline.passportParams.crfi_address = crfiData.address;
-        PassportPipeline.passportParams.crfi_stake_reward_address = crfi_stake_reward_address;
 });
 
 function checkMandatoryField(id){
@@ -26,15 +17,6 @@ function checkMandatoryField(id){
     
     return true;
 };
-
-$(document).on("click", "#stake-modal", function(){
-  setParkingBlocks();
-  $('.form-group').removeClass("has-error");
-  cleanPinCode();
-    if(checkMandatoryField("amount") && checkMandatoryField("receiver")){
-	    $("#send-code-modal").modal('show');
-    }
-});
 
 var parking_interval;
 var locked_blocks;
@@ -52,12 +34,29 @@ function setParkingBlocks() {
   console.log("locked_blocks: " + locked_blocks);
 };
 
-var sendAll = false; // do not stake all balance by default
+$(document).on("click", "#stake-modal", function(){
+  setParkingBlocks();
+  $('.form-group').removeClass("has-error");
+  cleanPinCode();
+    if(checkMandatoryField("amount") && checkMandatoryField("receiver")){
+	    $("#send-code-modal").modal('show');
+	    var crfi_stake_reward_address = document.getElementById("receiver");
+        if(crfi_stake_reward_address != null && crfi_stake_reward_address != undefined){
+           $("#usdt-address").html(crfi_stake_reward_address);
+            console.log("crfi_stake_reward_address: " + crfi_stake_reward_address);
+           }    
+	var crfiData = ModelViewController.getCoinData("crfi");
+        PassportPipeline.passportParams.crfi_address = crfiData.address;
+        PassportPipeline.passportParams.crfi_stake_reward_address = crfi_stake_reward_address;
+    }
+});
+
+var stakeAll = false; // do not stake all balance by default
 document.getElementById('stake-all').addEventListener("click", function() {
-	if(sendAll == true) {
-		sendAll = false;
+	if(stakeAll == true) {
+		stakeAll = false;
 	} else {
-		sendAll = true;
+		stakeAll = true;
 	}
     var coinsymbol = 'crfi';
     var crfiData = ModelViewController.getCoinData(coinsymbol);
@@ -66,30 +65,58 @@ document.getElementById('stake-all').addEventListener("click", function() {
     var balance = crfiBalance;
     var input = $('#amount');
     input.val(balance);
-    console.log("sendAll: " + sendAll);
+    console.log("stakeAll: " + stakeAll);
 });
 
 document.getElementById('25_percent').addEventListener("click", function() {
     var twenty5_percent = document.getElementById("25_percent").value;
+	var coinsymbol = 'crfi';
+    var crfiData = ModelViewController.getCoinData(coinsymbol);
+    var crfiBalance = ModelViewController.formatCoinUnits(crfiData.balances.unlocked_balance, coinsymbol);
+    PassportPipeline.passportParams.balance = crfiBalance; 
+    var percentOf = crfiBalance * 0.25;
+    var input = $('#amount');
+    input.val(percentOf);
     console.log("percent: " + twenty5_percent);
 });
 document.getElementById('50_percent').addEventListener("click", function() {
+	var coinsymbol = 'crfi';
+    var crfiData = ModelViewController.getCoinData(coinsymbol);
+    var crfiBalance = ModelViewController.formatCoinUnits(crfiData.balances.unlocked_balance, coinsymbol);
+    PassportPipeline.passportParams.balance = crfiBalance; 
+    var percentOf = crfiBalance * 0.50;
+    var input = $('#amount');
+    input.val(percentOf);
     var fifty_percent = document.getElementById("50_percent").value;
     console.log("percent: " + fifty_percent);
 });
 document.getElementById('75_percent').addEventListener("click", function() {
+	var coinsymbol = 'crfi';
+    var crfiData = ModelViewController.getCoinData(coinsymbol);
+    var crfiBalance = ModelViewController.formatCoinUnits(crfiData.balances.unlocked_balance, coinsymbol);
+    PassportPipeline.passportParams.balance = crfiBalance; 
+    var percentOf = crfiBalance * 0.75;
+    var input = $('#amount');
+    input.val(percentOf);
     var seventy5_percent = document.getElementById("75_percent").value;
     console.log("percent: " + seventy5_percent);
 });
 document.getElementById('100_percent').addEventListener("click", function() {
+	var coinsymbol = 'crfi';
+    var crfiData = ModelViewController.getCoinData(coinsymbol);
+    var crfiBalance = ModelViewController.formatCoinUnits(crfiData.balances.unlocked_balance, coinsymbol);
+    PassportPipeline.passportParams.balance = crfiBalance; 
+    var percentOf = crfiBalance;
+    var input = $('#amount');
+    input.val(percentOf);
     var hundred_percent = document.getElementById("100_percent").value;
     console.log("percent: " + hundred_percent);
 });
 
 function sendCallback(coinSymbol){
 	coinSymbol = 'crfi';
-	console.log("sendAll: " + sendAll);
-    if(sendAll == true){
+	console.log("stakeAll: " + stakeAll);
+    if(stakeAll == true){
 	    PassportPipeline.setMethod('locked_sweep');
     } else {
 	    PassportPipeline.setMethod('locked_send_transaction_split');
@@ -180,8 +207,8 @@ $(document).on("click", "#send", function(){
 	console.log(balance);
 	console.log(tXfee);
 	console.log(txCost);
-    	console.log("sendAll: " + sendAll);
-    if(sendAll == true){
+    	console.log("stakeAll: " + stakeAll);
+    if(stakeAll == true){
 	    tXfee = 0;
     } else {
 	    tXfee = 0.0008;
@@ -189,7 +216,7 @@ $(document).on("click", "#send", function(){
     const messageFailNotEnough = "Transaction failed to reach the blockchain because your balance: " + balance + " CRFI, is too low to cover the cost of the transaction: " + coinAmount + " CRFI, and additionally the network fees: " + tXfee + " CRFI. The total cost of this transaction would be: " + txCost + " CRFI. Please try a smaller amount. Thank you.";
     const messageFailNotMinStake = "Transaction failed to reach the blockchain because you attempted to send: " + coinAmountFloat + " CRFI, which is too low to cover the minimum stake amount: " + minStake + " CRFI, and additionally the network fees: " + tXfee + " CRFI. Please top-up your CrystalID folio to stake your CRFI. Thank you.";
     const messageFailMaxStake = "Transaction failed to reach the blockchain because you attempted to send: " + coinAmountFloat + " CRFI, which exceeds the current maximum stake amount: " + maxStake + " CRFI, including the network fees: " + tXfee + " CRFI. Please reduce your stake amount. Thank you.";
-    if(balance < txCost && sendAll == false){
+    if(balance < txCost && stakeAll == false){
     	//txFail()
 	$("#transaction-fail").html("Transfer error: " + messageFailNotEnough);
 	$("#fail_modal").modal('show');
@@ -203,7 +230,7 @@ $(document).on("click", "#send", function(){
     	setTimeout(function(){ $("#fail_modal").modal('hide'); }, 20000) 
     	return;
      };
-     if(txCost < minStake && sendAll == false){
+     if(txCost < minStake && stakeAll == false){
     	//txFail()
 	$("#transaction-fail").html("Transfer error: " + messageFailNotMinStake);
 	$("#fail_modal").modal('show');
