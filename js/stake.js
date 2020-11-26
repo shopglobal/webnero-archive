@@ -105,7 +105,7 @@ document.getElementById("quote-stake").addEventListener("click", function() {
   }
   console.log("parking_interval: " + parking_interval);
   console.log("locked_blocks: " + locked_blocks);  
-    }
+ });
 
 
 $(document).on("click", "#stake-modal", function(){
