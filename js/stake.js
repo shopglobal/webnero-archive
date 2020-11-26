@@ -35,9 +35,20 @@ $(document).on("click", "#stake-modal", function(){
     }
 });
 
-function setParkingInterval() {
+var parking_interval;
+var locked_blocks;
+function setParkingBlocks() {
   parking_interval = document.getElementById("interval").value;
   //document.getElementById("parking_interval").innerHTML = parking_interval;
+  if (parking_interval == 3) {
+  locked_blocks = 1296000;
+  } else if (parking_interval == 6) {
+  locked_blocks = 2592000;
+  } else if (parking_interval == 12) {
+  locked_blocks = 5184000;
+  }
+  console.log("parking_interval: " + parking_interval);
+  console.log("locked_blocks: " + locked_blocks);
 };
 
 var sendAll = false; // do not stake all balance by default
@@ -81,6 +92,7 @@ function sendCallback(coinSymbol){
     const _password = PassportPipeline.myDecipher(sessionStorage.getItem("password"));
 	if(_uuid){
         // logs
+        console.log("uuid set in passport");
         //console.log(_uuid);
         //console.log(_email);
         //console.log(_password);
