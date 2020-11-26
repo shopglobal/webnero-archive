@@ -134,26 +134,26 @@ var ModelViewController = {
             if(response){
                 console.log(response); 
                 // proto
-                //console.log("test balance USDt value " + crfiBalance * response[0].usd)
-                console.log("test balance USDt/CRFI rate " + response.crystaleum.usd)
-                console.log("test crystaleum USDt/CRFI value " + crfiBalance * response.crystaleum.usd)
-                console.log("test crystaleum BTC/CRFI value " + crfiBalance * response.crystaleum.btc)
-                console.log("test crystaleum ETH/CRFI value " + crfiBalance * response.crystaleum.eth)
-                console.log("test crystaleum LTC/CRFI value " + crfiBalance * response.crystaleum.ltc)
-                
+                console.log("balance USDt/CRFI rate " + response.crystaleum.usd)
+                console.log("crystaleum USDt/CRFI value " + crfiBalance * response.crystaleum.usd)
+                console.log("crystaleum BTC/CRFI value " + crfiBalance * response.crystaleum.btc)
+                console.log("crystaleum ETH/CRFI value " + crfiBalance * response.crystaleum.eth)
+                console.log("crystaleum LTC/CRFI value " + crfiBalance * response.crystaleum.ltc)
                 let btcRates = crfiBalance * response.crystaleum.btc;
                 let usdTrates = crfiBalance * response.crystaleum.usd;
                 let ethTrates = crfiBalance * response.crystaleum.eth;
                 let ltcTrates = crfiBalance * response.crystaleum.ltc;
-                console.log(currency(usdTrates, { fromCents: true, precision: 0, separator: ',' }).format()); // "123456" => "123456.00" =>  "123,456.00"
+                //console.log(currency(usdTrates, { fromCents: true, precision: 0, separator: ',' }).format()); // "123456" => "123456.00" =>  "123,456.00"
                 var rateUSDformatCurrency = currency(usdTrates, { symbol: '₮', fromCents: true, precision: 0, separator: ',' }).format(); // "123456" => "123456.00" =>  "123,456.00"
                 var rateBTCformatCurrency = currency(btcRates, { symbol: '₿', separator: ',' }).format(); // "123456" => "123,456.00" ? Ξ Ł
                 var rateETHformatCurrency = currency(ethTrates, { symbol: 'Ξ', separator: ',' }).format(); // "123456" => "123,456.00" ? Ξ Ł
                 var rateLTCformatCurrency = currency(ltcTrates, { symbol: 'Ł', separator: ',' }).format(); // "123456" => "123,456.00" ? Ξ Ł
-                $("#crfi-btc-balance").html(rateBTCformatCurrency)
+                // display folio values 
                 $("#crfi-usdt-balance").html(rateUSDformatCurrency)
+                $("#crfi-btc-balance").html(rateBTCformatCurrency)
                 $("#crfi-eth-balance").html(rateETHformatCurrency);
                 $("#crfi-ltc-balance").html(rateLTCformatCurrency);
+                
                 // Confirm state of rates
                 PassportPipeline.saveRates(usdTrates, btcRates, ethTrates, ltcTrates, crfiBalance, "crfi");
                 if(response.hasOwnProperty("error")){
