@@ -3,12 +3,10 @@
 $(document).ready(function(){
     ModelViewController.fillData();
     document.getElementById('crfi-stake').click();
-  
-    var parking_interval;
-    var default_interval = 25.0;
-    document.getElementById("interval").value = default_interval;
-    var temp = 25.0; 
-    $("#default_oven").val(temp);
+//     var default_interval = 25.0;
+//     document.getElementById("interval").value = default_interval;
+
+    document.getElementById("default_oven").click();
 });
 
 function checkMandatoryField(id){
