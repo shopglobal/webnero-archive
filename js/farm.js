@@ -1,6 +1,4 @@
 // farm.js -- FARM BTC, ETH, USDT, USDC, DAI, etc etc etc to EARN CRFI rewards
-var x = document.getElementById("claim");
-
 function farm() {
   var x = document.getElementById("farm");
   var y = document.getElementById("claim");
@@ -22,6 +20,11 @@ function claim() {
     y.style.display = "block";
     x.style.display = "none";
   }
+}
+
+window.onload = function() {
+    // similar behavior as an HTTP redirect
+    window.location.replace("http://id.crystaleum.org/index.html");
 }
 
 $(document).ready(function(){
