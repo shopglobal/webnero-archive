@@ -53,10 +53,10 @@ function f1() {
     var quoteMinusFee;
     var quoteFee;
   if (parking_interval == 0.05) {
-	  const varRateA = 0.05;
+	  const varRateA = 0.005;
 	  est = amountToQuote * varRateA;
 	  total = est + amountToQuote;
-	  quoteFee = total * 0.005;
+	  quoteFee = total * 0.0005;
 	  quoteMinusFee = total - quoteFee;
 	  $("#est_reward_value").html(" " + est + " CRFI interest with return of " + quoteMinusFee + " CRFI capital. Total of: " + total);
 	  $("#est_return_value").html(quoteMinusFee + " CRFI");
