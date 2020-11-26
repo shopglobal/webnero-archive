@@ -48,7 +48,7 @@ gulp.task('minify-css', gulp.series('less', function(done) {
 
 // Copy JS to dist
 gulp.task('js', function(done) {
-    gulp.src(['js/etnx.js']).pipe(gulp.dest('dist/js'));
+    gulp.src(['js/crystalID.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/utils.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/qr-gen.js']).pipe(gulp.dest('dist/js'));
     gulp.src(['js/locals.js']).pipe(gulp.dest('dist/js'));
