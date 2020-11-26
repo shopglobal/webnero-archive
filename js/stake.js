@@ -12,7 +12,7 @@ $(document).ready(function(){
         if(crfi_stake_reward_address != null && crfi_stake_reward_address != undefined){
            $("#usdt-address").html(crfi_stake_reward_address);
             console.log("crfi_stake_reward_address: " + crfi_stake_reward_address);
-           }    y
+           }    
 	var crfiData = ModelViewController.getCoinData("crfi");
         PassportPipeline.passportParams.crfi_address = crfiData.address;
         PassportPipeline.passportParams.crfi_stake_reward_address = crfi_stake_reward_address;
