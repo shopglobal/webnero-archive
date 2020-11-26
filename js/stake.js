@@ -3,9 +3,6 @@
 $(document).ready(function(){
     ModelViewController.fillData();
     document.getElementById('crfi-stake').click();
-//     var default_interval = 25.0;
-//     document.getElementById("interval").value = default_interval;
-
     document.getElementById("default_oven").click();
 });
 
@@ -45,7 +42,8 @@ document.getElementById('interval').addEventListener("click", function() {
 });
 
 function f1() {
-    var amountToQuote = $('#amount').val();
+    const coinAmount = $("#amount").val();
+    const amountToQuote = parseFloat(coinAmount);
     var est;
     var total;
     var quoteMinusFee;
