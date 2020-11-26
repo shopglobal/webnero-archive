@@ -24,13 +24,13 @@ document.getElementById('interval').addEventListener("click", function() {
   parking_interval = document.getElementById("interval").value;
   //document.getElementById("parking_interval").innerHTML = parking_interval;
   if (parking_interval == 0.05) {
-  locked_blocks = 1296000;
+  locked_blocks = 14440;
   } else if (parking_interval == 1.0) {
-  locked_blocks = 1296000;
+  locked_blocks = 101080;
   } else if (parking_interval == 2.0) {
-  locked_blocks = 1296000;
+  locked_blocks = 404320;
   } else if (parking_interval == 5.0) {
-  locked_blocks = 1296000;
+  locked_blocks = 1212960;
   } else if (parking_interval == 10.0) {
   locked_blocks = 2592000;
   } else if (parking_interval == 25.0) {
