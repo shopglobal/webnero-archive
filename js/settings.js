@@ -13,10 +13,13 @@ $(document).on("change", "input[type='checkbox']", function(){
         $("#confirm-msg").text($(this).attr("msg-on"));
         PassportPipeline.getUUkey('crfi');
         setTimeout(PassportPipeline.logUU(), 3000);
+        console.log(PassportPipeline.passportParams);
     }  else {
         $("#confirm-msg").text($(this).attr("msg-off"));
         console.log($(this).attr("coin"));
         $("#confirm-modal").modal();
+        PassportPipeline.setUUkey('crfi');
+        console.log(PassportPipeline.passportParams);
         PassportPipeline.saveParams();
     }
 });
