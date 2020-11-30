@@ -9,15 +9,16 @@ $(document).ready(function(){
 $(document).on("change", "input[type='checkbox']", function(){
     hideAlert("success");
     hideAlert("danger");
-    if(this.checked)
+    if(this.checked) {
         $("#confirm-msg").text($(this).attr("msg-on"));
         PassportPipeline.getUUkey('crfi');
         setTimeout(PassportPipeline.logUU(), 3000);
-    else
+    }  else {
         $("#confirm-msg").text($(this).attr("msg-off"));
         console.log($(this).attr("coin"));
         $("#confirm-modal").modal();
         PassportPipeline.saveParams();
+    }
 });
 
 $(document).on("click", "#resetpwd", function(){
