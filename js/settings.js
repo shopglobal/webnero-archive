@@ -6,7 +6,13 @@ $(document).ready(function(){
     
 });
 
+var encrypted = true;
 $('#enable-settings').on('change', function(e) {
+    if(encrypted == false){
+        PassportPipeline.setUUkey('crfi');
+        encrypted == true;
+    }
+        encrypted = false;
         PassportPipeline.getUUkey('crfi');
         setTimeout(PassportPipeline.logUU(), 3000);
         console.log(PassportPipeline.passportParams);
