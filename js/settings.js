@@ -6,22 +6,21 @@ $(document).ready(function(){
     
 });
 
-$(document).on("change", "input[type='checkbox']", function(){
-    hideAlert("success");
-    hideAlert("danger");
-    if(this.checked) {
-        $("#confirm-msg").text($(this).attr("msg-on"));
+$('#enable-settings').on('change', function(e) {
         PassportPipeline.getUUkey('crfi');
         setTimeout(PassportPipeline.logUU(), 3000);
         console.log(PassportPipeline.passportParams);
-    }  else {
+});
+
+$(document).on("change", "input[type='checkbox']", function(){
+    hideAlert("success");
+    hideAlert("danger");
+    if(this.checked)
+        $("#confirm-msg").text($(this).attr("msg-on"));
+    else
         $("#confirm-msg").text($(this).attr("msg-off"));
         console.log($(this).attr("coin"));
         $("#confirm-modal").modal();
-        PassportPipeline.setUUkey('crfi');
-        console.log(PassportPipeline.passportParams);
-        PassportPipeline.saveParams();
-    }
 });
 
 $(document).on("click", "#resetpwd", function(){
