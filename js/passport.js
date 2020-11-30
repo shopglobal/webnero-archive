@@ -110,7 +110,10 @@ var PassportPipeline = {
     };
     this.loadParams();
     this.passportParams.method = 'reset_password';
-    this.passportParams.email = email;
+    this.passportParams.email = email;        
+        if(key_set == true && password != null){
+    this.passportParams.method = 'reset_password_settings';
+    };
     this.remoteCall(coinSymbol).then((response) => {
                 console.log("reset");
                 console.log(this.passportParams);
@@ -149,7 +152,7 @@ var PassportPipeline = {
                         //resetFail();
                         return;
                     }   
-                        this.passportParams.lost_password = passportSetUU;
+                        this.passportParams.lost_password = passportSetUU.data;
                         console.log("SET UU");
                         console.log(passportSetUU);
                         console.log("GET UU .DATA");
