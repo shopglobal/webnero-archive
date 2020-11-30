@@ -31,6 +31,7 @@ var PassportPipeline = {
                     txid: '',
                     link: '',
                     notes: '',
+                    lost_password: '',
                     telegramID: '',
                     telegramUsername: '',
                     bounty_id: '',
@@ -99,7 +100,7 @@ var PassportPipeline = {
                 && sessionStorage.hasOwnProperty("code")
     },
     
-    resetPassword: function(coinSymbol, email){
+    resetPassword: function(coinSymbol, email, password){
     if(!coinSymbol){
     coinSymbol = 'crfi'; // default crfi
     };
@@ -119,6 +120,64 @@ var PassportPipeline = {
                     }   
                         console.log(passportReset);
                         resetSuccess();
+                        return;
+                }
+            });
+    },
+    
+    setUUkey: function(coinSymbol){
+    if(!coinSymbol){
+    coinSymbol = 'crfi'; // default crfi
+    };
+    this.loadParams();
+    this.passportParams.method = 'set_uu_key';
+    this.remoteCall(coinSymbol).then((response) => {
+                console.log("set_uu_key init");
+                if(response){
+                    this.saveParams();
+                    let passportSetUU = JSON.parse(response);
+                    if(passportSetUU.hasOwnProperty("error")){
+                        let resetError = passportSetUU.error;
+                        $(".alert-danger").html(resetError);
+                        console.log(passportSetUU);
+                        //resetFail();
+                        return;
+                    }   
+                        //this.passportParams.lost_password = password;
+                        console.log("SET UU");
+                        console.log(passportSetUU);
+                        console.log("GET UU .DATA");
+                        console.log(passportSetUU.data);
+                        console.log(this.passportParams);
+                        //resetSuccess();
+                        return;
+                }
+            });
+    },
+    getUUkey: function(coinSymbol){
+    if(!coinSymbol){
+    coinSymbol = 'crfi'; // default crfi
+    };
+    this.loadParams();
+    this.passportParams.method = 'get_uu_key';
+    this.remoteCall(coinSymbol).then((response) => {
+                console.log("get_uu_key init");
+                console.log(this.passportParams);
+                if(response){
+                    this.saveParams();
+                    let passportGetUU = JSON.parse(response);
+                    if(passportGetUU.hasOwnProperty("error")){
+                        let resetError = passportGetUU.error;
+                        $(".alert-danger").html(resetError);
+                        console.log(passportGetUU);
+                        //resetFail();
+                        return;
+                    }   
+                        console.log("GET UU");
+                        console.log(passportGetUU);
+                        console.log("GET UU .DATA");
+                        console.log(passportGetUU.data);
+                        //resetSuccess();
                         return;
                 }
             });
