@@ -182,6 +182,7 @@ var PassportPipeline = {
                         return;
                     }   
                         this.passportParams.code = passportResetCode.data;
+                        this.setCode();
                         this.saveParams();
                         console.log(passportResetCode);
                         resetSuccess();
