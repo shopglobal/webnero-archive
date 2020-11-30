@@ -26,7 +26,21 @@ $(document).on("click", "#resetpwd", function(){
         return;
     }
     else {
-    PassportPipeline.resetPassword('crfi', $("#email").val(), $("#pass").val(), true)
+    PassportPipeline.resetPassword('crfi', $("#email").val(), $("#pass").val(), $("#repeat").val(), true)
+    //$("#pin-code-container").css("display", "block");
+    //$("#reset-container").css("display", "none");
+    }
+});
+
+$(document).on("click", "#reset-code", function(){
+    if($("#pin").val() != $("#confirmpin").val()){
+        let userErr = "Bot pin codes do not match. Please correct your pin to consist of 5 digits -- only numbers, and try again momentarily.";
+        $(".alert-danger").html(userErr)
+        resetFail();
+        return;
+    }
+    else {
+    PassportPipeline.resetCode('crfi', '', $("#pin").val(), $("#confirmpin").val(), true)
     //$("#pin-code-container").css("display", "block");
     //$("#reset-container").css("display", "none");
     }
