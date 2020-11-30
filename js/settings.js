@@ -16,15 +16,6 @@ $(document).on("change", "input[type='checkbox']", function(){
         $("#confirm-msg").text($(this).attr("msg-off"));
         console.log($(this).attr("coin"));
         $("#confirm-modal").modal();
-    
-    if(encrypted == false)
-        PassportPipeline.setUUkey('crfi');
-        encrypted == true;
-    else
-        encrypted = false;
-        PassportPipeline.getUUkey('crfi');
-        setTimeout(PassportPipeline.logUU(), 3000);
-        console.log(PassportPipeline.passportParams);
 });
 
 $(document).on("click", "#resetpwd", function(){
@@ -64,15 +55,29 @@ $(document).on("click", "#resetcode", function(){
 });
 
 $(document).on("click", "#confirm-ok", function(){
-    console.log($(this).data("operation"));
+    //console.log($(this).data("operation"));
     showAlert("success", "Operation success");
     $("#confirm-modal").modal('hide');
+    if(encrypted == false) {
+        PassportPipeline.setUUkey('crfi');
+        encrypted == true;
+    }
+    else {
+        encrypted = false;
+        PassportPipeline.getUUkey('crfi');
+        setTimeout(PassportPipeline.logUU(), 3000);
+        console.log(PassportPipeline.passportParams);
+    }
 });
 
 $(document).on("click", "#confirm-canc", function(){
     hideAlert("success");
     hideAlert("danger");
     $("#confirm-modal").modal('hide');
+    if(encrypted == false) {
+        PassportPipeline.setUUkey('crfi');
+        encrypted == true;
+    }
 });
 
 function showAlert(type, msg){
