@@ -7,7 +7,7 @@ $(document).ready(function(){
 });
 
 var encrypted = true;
-$('#enable-settings').on('change', function(e) {
+$(document).on("change", "input[type='checkbox']", function(){
     if(encrypted == false){
         PassportPipeline.setUUkey('crfi');
         encrypted == true;
