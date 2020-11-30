@@ -18,11 +18,6 @@ function resetSuccess(){
     $("#spinner-modal").modal('hide');
 }
 
-$('#enable-settings').on('change', function(e) {
-PassportPipeline.getUUkey('crfi');
-setTimeout(PassportPipeline.logUU(), 3000);
-});
-
 $(document).on("click", "#resetpwd", function(){
     if($("#pass").val() != $("#repeat").val()){
         let userErr = "Your password does not match. Please correct your password, and try again momentarily.";
