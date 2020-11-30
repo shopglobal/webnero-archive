@@ -139,6 +139,7 @@ var PassportPipeline = {
                         resetFail();
                         return;
                     }   
+                        this.saveParams();
                         console.log(passportReset);
                         resetSuccess();
                         return;
