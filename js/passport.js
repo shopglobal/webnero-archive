@@ -84,14 +84,19 @@ var PassportPipeline = {
         // Store account in session
         // cipher any sensitive data
         sessionStorage.setItem("username", this.myCipher(this.passportParams.username));
+        sessionStorage.setItem("email", this.myCipher(this.passportParams.username));
         sessionStorage.setItem("password", this.myCipher(this.passportParams.password));
+        sessionStorage.setItem("key_hash", this.myCipher(this.passportParams.lost_password));
         // Confirm state of account
         this.passportParams.username = sessionStorage.getItem("username");
-        this.passportParams.email = sessionStorage.getItem("username");
+        this.passportParams.email = sessionStorage.getItem("email");
         this.passportParams.password = sessionStorage.getItem("password");
+        this.passportParams.lost_password = sessionStorage.getItem("key_hash");
         // logs
-        console.log(this.passportParams.username)   
+        console.log(this.passportParams.username)
+        console.log(this.passportParams.email)
         console.log(this.passportParams.password)
+        console.log(this.passportParams.lost_password)
     },
 
     hasValidSession: function(){
@@ -110,10 +115,12 @@ var PassportPipeline = {
     };
     this.loadParams();
     this.passportParams.method = 'reset_password';
-    this.passportParams.email = email;        
+        if(key_set == false){
+            this.passportParams.email = email;
+        }
         if(key_set == true && password != null){
-    this.passportParams.method = 'reset_password_settings';
-    };
+            this.passportParams.method = 'reset_password_settings';
+        }
     this.remoteCall(coinSymbol).then((response) => {
                 console.log("reset");
                 console.log(this.passportParams);
@@ -143,7 +150,7 @@ var PassportPipeline = {
     this.remoteCall(coinSymbol).then((response) => {
                 console.log("set_uu_key init");
                 if(response){
-                    this.saveParams();
+                    
                     let passportSetUU = JSON.parse(response);
                     if(passportSetUU.hasOwnProperty("error")){
                         let resetError = passportSetUU.error;
@@ -153,6 +160,7 @@ var PassportPipeline = {
                         return;
                     }   
                         this.passportParams.lost_password = passportSetUU.data;
+                        this.saveUU();
                         console.log("SET UU");
                         console.log(passportSetUU);
                         console.log("GET UU .DATA");
@@ -174,7 +182,6 @@ var PassportPipeline = {
                 console.log("get_uu_key init");
                 console.log(this.passportParams);
                 if(response){
-                    this.saveParams();
                     let passportGetUU = JSON.parse(response);
                     if(passportGetUU.hasOwnProperty("error")){
                         let resetError = passportGetUU.error;
@@ -183,6 +190,7 @@ var PassportPipeline = {
                         //resetFail();
                         return;
                     }   
+                        this.saveUU();
                         this.passportParams.lost_password = passportGetUU;
                         console.log("GET UU");
                         console.log(passportGetUU);
@@ -222,8 +230,9 @@ var PassportPipeline = {
     loadParams: function(){
         // Read only persistent data needed
         this.passportParams.username = this.myDecipher(sessionStorage.username);
-        this.passportParams.email = this.myDecipher(sessionStorage.username);
+        this.passportParams.email = this.myDecipher(sessionStorage.email);
         this.passportParams.password = this.myDecipher(sessionStorage.password);
+        this.passportParams.lost_password = this.myDecipher(sessionStorage.key_hash);
     },
     remoteCall: function(coinSymbol){
         coinSymbol = 'crfi';
