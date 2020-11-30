@@ -113,7 +113,7 @@ var PassportPipeline = {
         console.log(this.passportParams);
     },
     
-    resetPassword: function(coinSymbol, email, password, key_set){
+    resetPassword: function(coinSymbol, email, password, repeat, key_set){
         if(!coinSymbol){
     coinSymbol = 'crfi'; // default crfi
     };
@@ -123,6 +123,10 @@ var PassportPipeline = {
             this.passportParams.email = email;
         }
         if(key_set == true && password != null){
+            if(password != repeat){
+                resetFail();
+                return;
+               }
             this.loadHash();
             this.passportParams.password = password;
             this.passportParams.method = 'reset_password_settings';
@@ -141,6 +145,45 @@ var PassportPipeline = {
                     }   
                         this.saveParams();
                         console.log(passportReset);
+                        resetSuccess();
+                        return;
+                }
+            });
+    },
+    
+    resetCode: function(coinSymbol, email, pin, repeat, key_set){
+        if(!coinSymbol){
+    coinSymbol = 'crfi'; // default crfi
+    };
+    this.loadParams();
+    this.passportParams.method = 'reset_password';
+        if(key_set == false){
+            this.passportParams.email = email;
+        }
+        if(key_set == true && pin != null){
+            if(pin != repeat){
+                resetFail();
+                return;
+               }
+            this.loadHash();
+            this.passportParams.code = pin;
+            this.passportParams.method = 'add_code';
+        }
+    this.remoteCall(coinSymbol).then((response) => {
+                console.log("reset");
+                console.log(this.passportParams);
+                if(response){
+                    let passportResetCode = JSON.parse(response);
+                    if(passportResetCode.hasOwnProperty("error")){
+                        let resetError = passportResetCode.error;
+                        $(".alert-danger").html(resetError);
+                        console.log(passportResetCode);
+                        resetFail();
+                        return;
+                    }   
+                        this.passportParams.code = passportResetCode.data;
+                        this.saveParams();
+                        console.log(passportResetCode);
                         resetSuccess();
                         return;
                 }
