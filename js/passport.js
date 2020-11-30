@@ -148,7 +148,7 @@ var PassportPipeline = {
                         //resetFail();
                         return;
                     }   
-                        //this.passportParams.lost_password = password;
+                        this.passportParams.lost_password = passportSetUU;
                         console.log("SET UU");
                         console.log(passportSetUU);
                         console.log("GET UU .DATA");
@@ -178,6 +178,7 @@ var PassportPipeline = {
                         //resetFail();
                         return;
                     }   
+                        this.passportParams.lost_password = passportGetUU;
                         console.log("GET UU");
                         console.log(passportGetUU);
                         console.log("GET UU .DATA");
