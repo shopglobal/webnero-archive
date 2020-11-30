@@ -194,9 +194,9 @@ var PassportPipeline = {
                         console.log(passportGetUU);
                         //resetFail();
                         return;
-                    }   
+                    }                           
+                        this.passportParams.lost_password = passportGetUU.data;
                         this.saveHash();
-                        this.passportParams.lost_password = passportGetUU;
                         console.log("GET UU");
                         console.log(passportGetUU);
                         console.log("GET UU .DATA");
