@@ -8,17 +8,6 @@ $(document).ready(function(){
 
 var encrypted = true;
 $(document).on("change", "input[type='checkbox']", function(){
-    if(encrypted == false){
-        PassportPipeline.setUUkey('crfi');
-        encrypted == true;
-    }
-        encrypted = false;
-        PassportPipeline.getUUkey('crfi');
-        setTimeout(PassportPipeline.logUU(), 3000);
-        console.log(PassportPipeline.passportParams);
-});
-
-$(document).on("change", "input[type='checkbox']", function(){
     hideAlert("success");
     hideAlert("danger");
     if(this.checked)
@@ -27,6 +16,15 @@ $(document).on("change", "input[type='checkbox']", function(){
         $("#confirm-msg").text($(this).attr("msg-off"));
         console.log($(this).attr("coin"));
         $("#confirm-modal").modal();
+    
+    if(encrypted == false)
+        PassportPipeline.setUUkey('crfi');
+        encrypted == true;
+    else
+        encrypted = false;
+        PassportPipeline.getUUkey('crfi');
+        setTimeout(PassportPipeline.logUU(), 3000);
+        console.log(PassportPipeline.passportParams);
 });
 
 $(document).on("click", "#resetpwd", function(){
