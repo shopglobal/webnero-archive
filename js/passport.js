@@ -124,6 +124,7 @@ var PassportPipeline = {
         }
         if(key_set == true && password != null){
             this.loadHash();
+            this.passportParams.password = password;
             this.passportParams.method = 'reset_password_settings';
         }
     this.remoteCall(coinSymbol).then((response) => {
