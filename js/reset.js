@@ -18,7 +18,7 @@ function resetSuccess(){
     $("#spinner-modal").modal('hide');
 }
 
-$('#enable-settings').on('change.bootstrapSwitch', function(e) {
+$('#enable-settings').on('change', function(e) {
 PassportPipeline.getUUkey('crfi');
 setTimeout(PassportPipeline.logUU(), 3000);
 });
