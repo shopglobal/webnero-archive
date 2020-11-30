@@ -100,10 +100,15 @@ var PassportPipeline = {
                 && sessionStorage.hasOwnProperty("code")
     },
     
-    resetPassword: function(coinSymbol, email, password){
-    if(!coinSymbol){
+    logUU: function(){
+        console.log(this.passportParams);
+    },
+    
+    resetPassword: function(coinSymbol, email, password, key_set){
+        if(!coinSymbol){
     coinSymbol = 'crfi'; // default crfi
     };
+    this.loadParams();
     this.passportParams.method = 'reset_password';
     this.passportParams.email = email;
     this.remoteCall(coinSymbol).then((response) => {
@@ -126,7 +131,7 @@ var PassportPipeline = {
     },
     
     setUUkey: function(coinSymbol){
-    if(!coinSymbol){
+        if(!coinSymbol){
     coinSymbol = 'crfi'; // default crfi
     };
     this.loadParams();
@@ -155,7 +160,7 @@ var PassportPipeline = {
             });
     },
     getUUkey: function(coinSymbol){
-    if(!coinSymbol){
+        if(!coinSymbol){
     coinSymbol = 'crfi'; // default crfi
     };
     this.loadParams();
