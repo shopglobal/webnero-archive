@@ -11,10 +11,6 @@ $(document).ready(function() {
     };
     
     // set the wallet index for various functions
-    var aindexSecuredByUID = PassportPipeline.passportParams.uid;
-    var aindexSecuredByPASS = PassportPipeline.passportParams.password;
-    console.log("aindexSecuredByUID: " + aindexSecuredByUID);
-    console.log("aindexSecuredByPASS: " + aindexSecuredByPASS);
     PassportPipeline.getWalletAindex("crfi");
 });
 var encrypted;
@@ -62,8 +58,8 @@ $(document).on("click", "#add-beneficiary", function(){
     console.log("newBene_address: " + newBene_address);
     // get the wallet index for various functions
     //PassportPipeline.getWalletAindex("crfi", PassportPipeline.passportParams.email, PassportPipeline.passportParams.password);
-    PassportPipeline.setBeneficiary("crfi", PassportPipeline.passportParams.email, PassportPipeline.passportParams.password, $("#beneficiary-name").val(), $("#beneficiary-email").val(), $("#beneficiary-address").val());
-    console.log("aindex on settings.js: " + PassportPipeline.passportParams.aindex);
+    PassportPipeline.setBeneficiary("crfi", $("#beneficiary-name").val(), $("#beneficiary-email").val(), $("#beneficiary-address").val());
+    console.log("aindex on settings.js: " + parseFloat(PassportPipeline.passportParams.aindex));
 });
 
 $(document).on("click", "#resetpwd", function(){
