@@ -118,15 +118,13 @@ var PassportPipeline = {
         return(this.passportParams.aindex);
     },
     
-    getWalletAindex: function(coinSymbol, uid, password){
+    getWalletAindex: function(coinSymbol){
         console.log("getWalletAindex");
         if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
         };
     this.loadParams();
     this.passportParams.method = 'get_wallet_aindex';
-    this.passportParams.uid = uid;
-    this.passportParams.password = password;
     this.remoteCall(coinSymbol).then((response) => {
                 console.log("getWalletAindex init");
                 console.log(this.passportParams);
