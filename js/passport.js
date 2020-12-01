@@ -85,6 +85,7 @@ var PassportPipeline = {
 //         }
 //         console.log(monthDayDate);
 //     },
+
     saveParams: function(){
         console.log("saveParams");
         // Store account in session
@@ -103,7 +104,7 @@ var PassportPipeline = {
         console.log(this.passportParams.password)
     },
     
-    getWalletAindex: function(coinSymbol){ 
+    setWalletAindex: function(coinSymbol){ 
         console.log("setWalletAindex");
         if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
@@ -117,7 +118,7 @@ var PassportPipeline = {
         return(this.passportParams.aindex);
     },
     
-    setWalletAindex: function(coinSymbol, email, password){
+    getWalletAindex: function(coinSymbol, email, password){
         console.log("getWalletAindex");
         if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
