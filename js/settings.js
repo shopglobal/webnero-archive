@@ -10,14 +10,14 @@ $(document).ready(function() {
         sessionStorage.setItem("fromLogin", false);
     };
 });
-
-var encryptCheck = function() {
 var encrypted;
+function encryptCheck() {
 if(PassportPipeline.passportParmas.lost_password != null || PassportPipeline.passportParmas.lost_password != undefined){
     encrypted = true;
     console.log("encrypted: " + encrypted);
    }
 }
+
 $(document).on("change", "input[type='checkbox']", function(){
     hideAlert("success");
     hideAlert("danger");
