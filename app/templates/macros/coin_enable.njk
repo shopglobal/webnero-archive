@@ -5,11 +5,12 @@
         {{ label }}
     </div>
     <div class="panel-body">
+    <div>Toggle Crystaleum settings OTP encryption. The switch generates a OTP (one-time-password) for use to authenticate with settings updates.</div>
         <img height="70px" width="70px" src="img/{{ coin }}.png">
         <label class="switch">
             <input id="enable-coin" coin="{{ coin }}" type="checkbox"
-                msg-on="Enabled CRFI settings panel, you may now edit your encrypted account settings." 
-                msg-off="Are you sure you want to encrypt {{ coin | upper }} coin account settings?" >
+                msg-on="Enable CRFI settings panel?" 
+                msg-off="Are you sure you want to encrypt {{ coin | upper }} settings?" >
             <span class="slider round"></span>
         </label>
     </div>
