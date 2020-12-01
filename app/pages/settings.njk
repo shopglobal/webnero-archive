@@ -45,6 +45,24 @@
                 </div>
             </div>
             <div class="row">
+                
+                <div class="col-lg-6">
+                    <div class="panel panel-crfi panel-settings">
+                        <div class="panel-heading">
+                            2 Factor Authentication
+                        </div>
+                        <div class="panel-body">
+                            <i class="fa fa-lock" style="font-size: 70px; vertical-align: middle"></i>
+                            <label class="switch">
+                            <input type='hidden' name='key' id="2fa_key">
+                                <input coin="2fa" type="checkbox"
+                                    msg-on="Scan this QR or Enter this code on Google Authenticator app to enable 2fa on your device" 
+                                    msg-off="coin you want to disable 2FA on yours wallets ?" >
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-6">
                     <div class="panel panel-crfi panel-settings">
                         <div class="panel-heading">
@@ -62,23 +80,6 @@
                                     <button id="save" class="btn btn-lg btn-login btn-block btn-primary">Save</button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="panel panel-crfi panel-settings">
-                        <div class="panel-heading">
-                            2 Factor Authentication
-                        </div>
-                        <div class="panel-body">
-                            <i class="fa fa-lock" style="font-size: 70px; vertical-align: middle"></i>
-                            <label class="switch">
-                            <input type='hidden' name='key' id="2fa_key">
-                                <input coin="2fa" type="checkbox"
-                                    msg-on="Scan this QR or Enter this code on Google Authenticator app to enable 2fa on your device" 
-                                    msg-off="coin you want to disable 2FA on yours wallets ?" >
-                                <span class="slider round"></span>
-                            </label>
                         </div>
                     </div>
                 </div>
