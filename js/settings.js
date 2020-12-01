@@ -12,6 +12,10 @@ $(document).ready(function() {
 });
 var encrypted;
 var encryption_engine = 0;
+var encryption_engine_1 = 0;
+var encryption_engine_2 = 0;
+var encryption_engine_3 = 0;
+var encryption_engine_4 = 0;
 function encryptCheck() {
 if(PassportPipeline.passportParams.lost_password != null || PassportPipeline.passportParams.lost_password != undefined){
     encrypted = true;
