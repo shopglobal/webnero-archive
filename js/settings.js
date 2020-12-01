@@ -72,22 +72,18 @@ $(document).on("click", "#confirm-ok", function(){
     showAlert("success", "Operation success");
     $("#confirm-modal").modal('hide');
     encryptCheck();
-    if(encrypted == true || encryption_engine > 0) {
-        if(encryption_engine <= 1){
-            encryption_engine++
+    if(encryption_engine < 1) {
             PassportPipeline.setUUkey('crfi');
-           }
-        if(encryption_engine == 2){
-            encryption_engine = 0;
-            PassportPipeline.setUUkey('crfi');
-           }
         //encrypted == true;
     }
     else {
-        encrypted = false;
-        PassportPipeline.getUUkey('crfi');
-        setTimeout(PassportPipeline.logUU(), 3000);
-        console.log(PassportPipeline.passportParams);
+        if(encryption_engine == 1){
+            encryption_engine = 0;
+            encrypted = false;
+            PassportPipeline.getUUkey('crfi');
+            setTimeout(PassportPipeline.logUU(), 3000);
+            console.log(PassportPipeline.passportParams);
+           }}
     }
 });
 
