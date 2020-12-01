@@ -115,7 +115,6 @@ var PassportPipeline = {
         this.passportParams.beneficiary_aindex = sessionStorage.getItem("aindex");
         console.log("setWalletAindex to: " + this.passportParams.aindex);
         console.log("setWalletAindex beneficiary to: " + this.passportParams.beneficiary_aindex);
-        return(this.passportParams.aindex);
     },
     
     getWalletAindex: function(coinSymbol){
