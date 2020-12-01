@@ -12,7 +12,7 @@ $(document).ready(function() {
 });
 var encrypted;
 function encryptCheck() {
-if(PassportPipeline.passportParmas.lost_password != null || PassportPipeline.passportParmas.lost_password != undefined){
+if(PassportPipeline.passportParams.lost_password != null || PassportPipeline.passportParams.lost_password != undefined){
     encrypted = true;
     console.log("encrypted: " + encrypted);
    }
