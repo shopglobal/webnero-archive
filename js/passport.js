@@ -146,7 +146,7 @@ var PassportPipeline = {
             });
     },
     
-    setBeneficiary: function(coinSymbol, email, password, bene_name, bene_email, bene_address){
+    setBeneficiary: function(coinSymbol, bene_name, bene_email, bene_address){
         console.log("setBeneficiary");
         if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
@@ -155,12 +155,11 @@ var PassportPipeline = {
             return;
         } 
     this.loadParams();
-    this.passportParams.aindex = parseFloat(this.passportParams.aindex);
     //this.getWalletAindex(coinSymbol);
     this.passportParams.method = 'add_beneficiary';
-    this.passportParams.email = email;
-    this.passportParams.password = password;
     this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
+    this.passportParams.aindex = parseFloat(this.passportParams.aindex);
+    this.passportParams.beneficiary_index = parseFloat(this.passportParams.beneficiary_index);
     this.passportParams.beneficiary_name = bene_name;
     this.passportParams.beneficiary_email = bene_email;
     this.passportParams.beneficiary_address = bene_address;
