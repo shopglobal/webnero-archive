@@ -294,13 +294,7 @@ $(document).on("init.done", function(e){
     // ModelViewController.initLevel == 1 means crfi loaded proper
     if(ModelViewController.initLevel >= 1){
         $("#spinner-modal").modal('hide');
-         // set the wallet index for various functions
-        var aindexSecuredByUID = PassportPipeline.passportParams.uid;
-        var aindexSecuredByPASS = PassportPipeline.passportParams.password;
-        console.log("aindexSecuredByUID: " + aindexSecuredByUID);
-        console.log("aindexSecuredByPASS: " + aindexSecuredByPASS);
-         PassportPipeline.getWalletAindex("crfi", aindexSecuredByUID, aindexSecuredByPASS)
-         PassportPipeline.setWalletAindex("crfi");
+         
         if(location.pathname.indexOf("login") > -1)
             location.href = location.href.replace("login", "index");
         else
