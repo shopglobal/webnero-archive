@@ -9,6 +9,14 @@ $(document).ready(function() {
     } else {
         sessionStorage.setItem("fromLogin", false);
     };
+    
+    // set the wallet index for various functions
+    var aindexSecuredByUID = PassportPipeline.passportParams.uid;
+    var aindexSecuredByPASS = PassportPipeline.passportParams.password;
+    console.log("aindexSecuredByUID: " + aindexSecuredByUID);
+    console.log("aindexSecuredByPASS: " + aindexSecuredByPASS);
+    PassportPipeline.getWalletAindex("crfi", aindexSecuredByUID, aindexSecuredByPASS)
+    PassportPipeline.setWalletAindex("crfi");
 });
 var encrypted;
 var encryption_engine = 0;
@@ -17,17 +25,6 @@ if(PassportPipeline.passportParams.lost_password != null || PassportPipeline.pas
     encrypted = true;
     console.log("encrypted: " + encrypted);
    }
-}
-
-function setAindex(){
-    // set the wallet index for various functions
-    var aindexSecuredByUID = PassportPipeline.passportParams.uid;
-    var aindexSecuredByPASS = PassportPipeline.passportParams.password;
-    console.log("aindexSecuredByUID: " + aindexSecuredByUID);
-    console.log("aindexSecuredByPASS: " + aindexSecuredByPASS);
-    PassportPipeline.getWalletAindex("crfi", aindexSecuredByUID, aindexSecuredByPASS)
-    PassportPipeline.setWalletAindex("crfi");
-    //return(PassportPipeline.setWalletAindex("crfi"););
 }
 
 $(document).on("change", "input[type='checkbox']", function(){
@@ -109,7 +106,6 @@ $(document).on("click", "#resetcode", function(){
 
 $(document).on("click", "#confirm-ok", function(){
     
-    setAindex();
     //console.log($(this).data("operation"));
     showAlert("success", "Operation success");
     $("#confirm-modal").modal('hide');
