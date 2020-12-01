@@ -253,8 +253,8 @@ var ModelViewController = {
                 }
                 else if(!passportBalance.hasOwnProperty("error")) {
                     ModelViewController.setCoinData(coinSymbol, response);
-                    // get && set the wallet index for various functions
-                    PassportPipeline.getWalletAindex("crfi", PassportPipeline.passportParams.email, PassportPipeline.passportParams.password);
+                    // set the wallet index for various functions
+                    PassportPipeline.setWalletAindex("crfi", PassportPipeline.passportParams.email, PassportPipeline.passportParams.password);
                 }
             }
 
