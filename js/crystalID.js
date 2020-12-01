@@ -299,7 +299,8 @@ $(document).on("init.done", function(e){
         var aindexSecuredByPASS = PassportPipeline.passportParams.password;
         console.log("aindexSecuredByUID: " + aindexSecuredByUID);
         console.log("aindexSecuredByPASS: " + aindexSecuredByPASS);
-         PassportPipeline.setWalletAindex("crfi", aindexSecuredByUID, aindexSecuredByPASS);
+         PassportPipeline.getWalletAindex("crfi", aindexSecuredByUID, aindexSecuredByPASS)
+         PassportPipeline.setWalletAindex("crfi");
         if(location.pathname.indexOf("login") > -1)
             location.href = location.href.replace("login", "index");
         else
