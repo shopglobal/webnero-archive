@@ -109,12 +109,12 @@ var PassportPipeline = {
         if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
         };
-        sessionStorage.setItem("aindex", aindex);
-        sessionStorage.setItem("beneficiary_aindex", aindex);
+        sessionStorage.setItem("aindex", parseFloat(aindex));
+        sessionStorage.setItem("beneficiary_aindex", parseFloat(aindex));
         this.passportParams.aindex = sessionStorage.getItem("aindex");
         this.passportParams.beneficiary_aindex = sessionStorage.getItem("aindex");
-        console.log("setWalletAindex to: " + this.passportParams.aindex);
-        console.log("setWalletAindex beneficiary to: " + this.passportParams.beneficiary_aindex);
+        console.log("setWalletAindex to: " + parseFloat(this.passportParams.aindex));
+        console.log("setWalletAindex beneficiary to: " + parseFloat(this.passportParams.beneficiary_aindex));
     },
     
     getWalletAindex: function(coinSymbol){
