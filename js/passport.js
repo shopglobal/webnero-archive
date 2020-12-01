@@ -151,7 +151,7 @@ var PassportPipeline = {
         if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
         };
-        if(!email || !password){
+        if(!bene_name || !bene_email || !bene_address){
             return;
         } 
     this.loadParams();
