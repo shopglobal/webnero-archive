@@ -71,9 +71,10 @@ $(document).on("click", "#confirm-ok", function(){
     showAlert("success", "Operation success");
     $("#confirm-modal").modal('hide');
     encryptCheck();
-    encryption_engine++
+    
     console.log("encryption_engine: " + encryption_engine);
     if(encryption_engine <= 1) {
+        encryption_engine++
         PassportPipeline.setUUkey('crfi');
         //encrypted == true;
     }
