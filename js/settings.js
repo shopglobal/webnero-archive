@@ -41,10 +41,6 @@ $(document).on("click", "#add-beneficiary", function(){
        return;
        }
     //var newBene_aindex = $("#beneficiary-address").val();
-
-    $("#confirm-msg").text("Are you sure you want to updated your beneficiary?");
-    $("#confirm-ok").data("operation", "password");
-    $("#confirm-modal").modal();
 });
 
 $(document).on("click", "#resetpwd", function(){
