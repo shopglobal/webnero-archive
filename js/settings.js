@@ -73,14 +73,14 @@ $(document).on("click", "#confirm-ok", function(){
     encryptCheck();
     
     console.log("encryption_engine: " + encryption_engine);
-    if(encryption_engine == 0) {
+    if(encryption_engine >= 1) {
+        encryption_engine = 0;
         encryption_engine++
         PassportPipeline.setUUkey('crfi');
         //encrypted == true;
     }
     else {
-        if(encryption_engine >= 1){
-            encryption_engine = 0;
+        if(encryption_engine == 0){
             encrypted = false;
             PassportPipeline.getUUkey('crfi');
             setTimeout(PassportPipeline.logUU(), 3000);
