@@ -146,6 +146,35 @@ var PassportPipeline = {
             });
     },
     
+    getBeneficiary: function(coinSymbol){
+        console.log("getBeneficiary");
+        if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        };
+    this.loadParams();
+    this.passportParams.method = 'add_beneficiary';
+    this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
+    this.remoteCall(coinSymbol).then((response) => {
+                console.log("getBeneficiary init");
+                console.log(this.passportParams);
+                if(response){
+                    let passportGetBeneficiary = JSON.parse(response);
+                    if(passportGetBeneficiary.hasOwnProperty("error")){
+                        let aindexError = passportGetBeneficiary.error;
+                        $(".alert-danger").html(aindexError);
+                        console.log(passportGetBeneficiary);
+                        return;
+                    }   
+                        const aindex = passportGetBeneficiary.data;
+                        //this.passportParams.aindex = aindex;
+                        //this.setWalletAindex("crfi", aindex);
+                        console.log(passportGetBeneficiary);
+                        console.log(passportGetBeneficiary.data);
+                        return;
+                }
+            });
+    },
+    
     setBeneficiary: function(coinSymbol, bene_name, bene_email, bene_address){
         console.log("setBeneficiary");
         if(!coinSymbol){
