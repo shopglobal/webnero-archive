@@ -2,9 +2,15 @@ $(function() {
     $('#side-menu').metisMenu();
 });
 
-$(document).ready(function(){
-    
+
+$(document).ready(function() {
+    if(!PassportPipeline.hasValidSession()){ 
+        location.href = "login.html";
+    } else {
+        sessionStorage.setItem("fromLogin", false);
+    };
 });
+
 
 var encrypted = true;
 $(document).on("change", "input[type='checkbox']", function(){
