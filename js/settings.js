@@ -19,6 +19,7 @@ var encryption_engine_4 = 0;
 function encryptCheck() {
 if(PassportPipeline.passportParams.lost_password != null || PassportPipeline.passportParams.lost_password != undefined){
     encrypted = true;
+    PassportPipeline.passportParams.method = 'get_uu_key';
     encryption_engine++
     console.log("encrypted: " + encrypted);
    }
