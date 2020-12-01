@@ -104,13 +104,13 @@ var PassportPipeline = {
         console.log(this.passportParams.password)
     },
     
-    setWalletAindex: function(coinSymbol){ 
+    setWalletAindex: function(coinSymbol, aindex){ 
         console.log("setWalletAindex");
         if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
         };
-        sessionStorage.setItem("aindex", this.passportParams.aindex);
-        sessionStorage.setItem("beneficiary_aindex", this.passportParams.aindex);
+        sessionStorage.setItem("aindex", aindex);
+        sessionStorage.setItem("beneficiary_aindex", aindex);
         this.passportParams.aindex = sessionStorage.getItem("aindex");
         this.passportParams.beneficiary_aindex = sessionStorage.getItem("aindex");
         console.log("setWalletAindex: " + this.passportParams.aindex);
