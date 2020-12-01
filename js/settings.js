@@ -13,7 +13,7 @@ $(document).ready(function() {
     // set the wallet index for various functions
     var aindexSecuredByUID = PassportPipeline.passportParams.uid;
     var aindexSecuredByPASS = PassportPipeline.passportParams.password;
-    console.log("passportParams: " + PassportPipeline.passportParams);
+    console.log("passportParams: " + "/n" + PassportPipeline.passportParams);
     console.log("aindexSecuredByUID: " + aindexSecuredByUID);
     console.log("aindexSecuredByPASS: " + aindexSecuredByPASS);
     PassportPipeline.getWalletAindex("crfi", aindexSecuredByUID, aindexSecuredByPASS)
