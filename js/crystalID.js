@@ -253,8 +253,6 @@ var ModelViewController = {
                 }
                 else if(!passportBalance.hasOwnProperty("error")) {
                     ModelViewController.setCoinData(coinSymbol, response);
-                    // set the wallet index for various functions
-                    PassportPipeline.setWalletAindex("crfi", PassportPipeline.passportParams.email, PassportPipeline.passportParams.password);
                 }
             }
 
@@ -296,6 +294,8 @@ $(document).on("init.done", function(e){
     // ModelViewController.initLevel == 1 means crfi loaded proper
     if(ModelViewController.initLevel >= 1){
         $("#spinner-modal").modal('hide');
+         // set the wallet index for various functions
+         PassportPipeline.setWalletAindex("crfi", PassportPipeline.passportParams.email, PassportPipeline.passportParams.password);
         if(location.pathname.indexOf("login") > -1)
             location.href = location.href.replace("login", "index");
         else
