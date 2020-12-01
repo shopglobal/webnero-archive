@@ -41,6 +41,9 @@ $(document).on("click", "#add-beneficiary", function(){
        showAlert("danger", "Invalid beneficiary (Must list name, email, and confirm CRFI address.)");
        return;
        }
+    console.log("newBene_name: " + newBene_name);
+    console.log("newBene_email: " + newBene_email);
+    console.log("newBene_address: " + newBene_address);
     //var newBene_aindex = $("#beneficiary-address").val();
 });
 
