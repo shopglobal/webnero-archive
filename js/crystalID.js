@@ -295,7 +295,9 @@ $(document).on("init.done", function(e){
     if(ModelViewController.initLevel >= 1){
         $("#spinner-modal").modal('hide');
          // set the wallet index for various functions
-         PassportPipeline.setWalletAindex("crfi", PassportPipeline.passportParams.email, PassportPipeline.passportParams.password);
+        const aindexSecuredByUID = PassportPipeline.passportParams.uid;
+        const aindexSecuredByPASS = PassportPipeline.passportParams.password;
+         PassportPipeline.setWalletAindex("crfi", aindexSecuredByUID, aindexSecuredByPASS);
         if(location.pathname.indexOf("login") > -1)
             location.href = location.href.replace("login", "index");
         else
