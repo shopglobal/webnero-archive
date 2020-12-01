@@ -53,6 +53,9 @@ $(document).on("click", "#add-beneficiary", function(){
     console.log("newBene_name: " + newBene_name);
     console.log("newBene_email: " + newBene_email);
     console.log("newBene_address: " + newBene_address);
+    // get the wallet index for various functions
+    PassportPipeline.getWalletAindex("crfi", PassportPipeline.passportParams.email, PassportPipeline.passportParams.password);
+    console.log("aindex on settings.js: " + PassportPipeline.passportParams.aindex)
     //var newBene_aindex = $("#beneficiary-address").val();
 });
 
