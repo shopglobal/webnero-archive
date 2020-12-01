@@ -16,7 +16,7 @@ $(document).ready(function() {
     console.log("aindexSecuredByUID: " + aindexSecuredByUID);
     console.log("aindexSecuredByPASS: " + aindexSecuredByPASS);
     PassportPipeline.getWalletAindex("crfi")
-    PassportPipeline.setWalletAindex("crfi");
+    //PassportPipeline.setWalletAindex("crfi");
 });
 var encrypted;
 var encryption_engine = 0;
