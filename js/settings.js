@@ -83,7 +83,7 @@ $(document).on("click", "#confirm-ok", function(){
             PassportPipeline.getUUkey('crfi');
             setTimeout(PassportPipeline.logUU(), 3000);
             console.log(PassportPipeline.passportParams);
-           }}
+           }
     }
 });
 
