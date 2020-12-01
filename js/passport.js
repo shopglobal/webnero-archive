@@ -181,8 +181,9 @@ var PassportPipeline = {
                         resetFail();
                         return;
                     }   
+                        secure_code = PassportPipeline.myCipher(this.passportParams.code);
                         this.passportParams.code = passportResetCode.data;
-                        this.setCode();
+                        this.setCode(secure_code);
                         this.saveParams();
                         console.log(passportResetCode);
                         resetSuccess();
