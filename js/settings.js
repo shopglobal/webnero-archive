@@ -37,14 +37,14 @@ $(document).on("click", "#add-beneficiary", function(){
     var newBene_name = $("#beneficiary-name").val();
     var newBene_email = $("#beneficiary-email").val();
     var newBene_address = $("#beneficiary-address").val();
-    if(newBene_name == undefined || newBene_name == '' || newBene_address == null){
-        showAlert("danger", "Invalid beneficiary (Must list name, email, and confirm CRFI address.)");
+    if(newBene_name == undefined || newBene_email == '' || newBene_address == null){
+        showAlert("danger", "Invalid beneficiary! Missing or improperly formatted name. (Must list name, email, and confirm CRFI address.)");
     }
     if(newBene_name == undefined || newBene_email == '' || newBene_address == null){
-        showAlert("danger", "Invalid beneficiary (Must list name, email, and confirm CRFI address.)");
+        showAlert("danger", "Invalid beneficiary! Missing or improperly formatted Email! (Must list name, email, and confirm CRFI address.)");
     }
     if(newBene_name == undefined || newBene_email == '' || newBene_address == null){
-        showAlert("danger", "Invalid beneficiary (Must list name, email, and confirm CRFI address.)");
+        showAlert("danger", "Invalid beneficiary! or improperly formatted Address! (Must list name, email, and confirm CRFI address.)");
     }
     console.log("newBene_name: " + newBene_name);
     console.log("newBene_email: " + newBene_email);
