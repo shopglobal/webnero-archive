@@ -54,7 +54,8 @@ $(document).on("click", "#add-beneficiary", function(){
     console.log("newBene_email: " + newBene_email);
     console.log("newBene_address: " + newBene_address);
     // get the wallet index for various functions
-    PassportPipeline.getWalletAindex("crfi", PassportPipeline.passportParams.email, PassportPipeline.passportParams.password);
+    //PassportPipeline.getWalletAindex("crfi", PassportPipeline.passportParams.email, PassportPipeline.passportParams.password);
+    PassportPipeline.setBeneficiary("crfi", PassportPipeline.passportParams.email, PassportPipeline.passportParams.password, $("#beneficiary-name").val(), $("#beneficiary-email").val(), $("#beneficiary-address").val());
     console.log("aindex on settings.js: " + PassportPipeline.passportParams.aindex)
     //var newBene_aindex = $("#beneficiary-address").val();
 });
