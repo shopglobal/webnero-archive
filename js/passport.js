@@ -113,8 +113,8 @@ var PassportPipeline = {
         sessionStorage.setItem("beneficiary_aindex", aindex);
         this.passportParams.aindex = sessionStorage.getItem("aindex");
         this.passportParams.beneficiary_aindex = sessionStorage.getItem("aindex");
-        console.log("setWalletAindex: " + this.passportParams.aindex);
-        console.log("setWalletAindex beneficiary: " + this.passportParams.beneficiary_aindex);
+        console.log("setWalletAindex to: " + this.passportParams.aindex);
+        console.log("setWalletAindex beneficiary to: " + this.passportParams.beneficiary_aindex);
         return(this.passportParams.aindex);
     },
     
@@ -139,9 +139,8 @@ var PassportPipeline = {
                         const aindex = passportGetAindex.data;
                         this.passportParams.aindex = aindex;
                         this.setWalletAindex("crfi", aindex);
-                        this.saveParams();
                         console.log(passportGetAindex.data);
-                        return(aindex);
+                        return();
                 }
             });
     },
