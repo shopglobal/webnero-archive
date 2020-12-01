@@ -124,6 +124,7 @@ var PassportPipeline = {
         };
     this.loadParams();
     this.passportParams.method = 'get_wallet_aindex';
+    this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
     this.remoteCall(coinSymbol).then((response) => {
                 console.log("getWalletAindex init");
                 console.log(this.passportParams);
@@ -157,6 +158,7 @@ var PassportPipeline = {
     this.passportParams.method = 'add_beneficiary';
     this.passportParams.email = email;
     this.passportParams.password = password;
+    this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
     this.passportParams.beneficiary_name = bene_name;
     this.passportParams.beneficiary_email = bene_email;
     this.passportParams.beneficiary_address = bene_address;
