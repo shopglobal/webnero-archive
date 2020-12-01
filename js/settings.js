@@ -72,8 +72,9 @@ $(document).on("click", "#confirm-ok", function(){
     showAlert("success", "Operation success");
     $("#confirm-modal").modal('hide');
     encryptCheck();
+    console.log("encryption_engine: " + encryption_engine);
     if(encryption_engine < 1) {
-            PassportPipeline.setUUkey('crfi');
+        PassportPipeline.setUUkey('crfi');
         //encrypted == true;
     }
     else {
@@ -91,10 +92,7 @@ $(document).on("click", "#confirm-canc", function(){
     hideAlert("success");
     hideAlert("danger");
     $("#confirm-modal").modal('hide');
-    if(encrypted == false) {
         PassportPipeline.setUUkey('crfi');
-        encrypted == true;
-    }
 });
 
 function showAlert(type, msg){
