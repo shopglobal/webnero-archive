@@ -12,14 +12,9 @@ $(document).ready(function() {
 });
 var encrypted;
 var encryption_engine = 0;
-var encryption_engine_1 = 0;
-var encryption_engine_2 = 0;
-var encryption_engine_3 = 0;
-var encryption_engine_4 = 0;
 function encryptCheck() {
 if(PassportPipeline.passportParams.lost_password != null || PassportPipeline.passportParams.lost_password != undefined){
     encrypted = true;
-    PassportPipeline.passportParams.method = 'get_uu_key';
     encryption_engine++
     console.log("encrypted: " + encrypted);
    }
@@ -77,24 +72,13 @@ $(document).on("click", "#confirm-ok", function(){
     showAlert("success", "Operation success");
     $("#confirm-modal").modal('hide');
     encryptCheck();
-    if(encrypted == false || encryption_engine > 0) {
-        if(encryption_engine > 0){
-            encryption_engine_1++
+    if(encrypted == true || encryption_engine > 0) {
+        if(encryption_engine <= 1){
+            encryption_engine++
             PassportPipeline.setUUkey('crfi');
            }
-        if(encryption_engine_1 == 1){
-            encryption_engine_2++
-            PassportPipeline.setUUkey('crfi');
-           }
-        if(encryption_engine_2 == 1){
-            encryption_engine_3++
-            PassportPipeline.setUUkey('crfi');
-           }
-        if(encryption_engine_3 == 1){
-            encryption_engine_4++
-            PassportPipeline.setUUkey('crfi');
-           }
-        if(encryption_engine_4 == 1){
+        if(encryption_engine == 2){
+            encryption_engine = 0;
             PassportPipeline.setUUkey('crfi');
            }
         //encrypted == true;
