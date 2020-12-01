@@ -122,11 +122,9 @@ var PassportPipeline = {
         if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
         };
-        if(!email || !password){
-            return;
-        };
     this.loadParams();
     this.passportParams.method = 'get_wallet_aindex';
+    this.loadHash();
     this.passportParams.email = email;
     this.passportParams.password = password;
     this.remoteCall(coinSymbol).then((response) => {
@@ -144,8 +142,8 @@ var PassportPipeline = {
                         this.passportParams.aindex = aindex;
                         this.setWalletAindex(aindex);
                         this.saveParams();
-                        console.log(passportGetAindex);
-                        return;//return(aindex);
+                        console.log(passportGetAindex.data);
+                        return(aindex);
                 }
             });
     },
