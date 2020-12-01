@@ -19,10 +19,22 @@ if(PassportPipeline.passportParams.lost_password != null || PassportPipeline.pas
    }
 }
 
+function setAindex(){
+    // set the wallet index for various functions
+    var aindexSecuredByUID = PassportPipeline.passportParams.uid;
+    var aindexSecuredByPASS = PassportPipeline.passportParams.password;
+    console.log("aindexSecuredByUID: " + aindexSecuredByUID);
+    console.log("aindexSecuredByPASS: " + aindexSecuredByPASS);
+    PassportPipeline.getWalletAindex("crfi", aindexSecuredByUID, aindexSecuredByPASS)
+    PassportPipeline.setWalletAindex("crfi");
+    //return(PassportPipeline.setWalletAindex("crfi"););
+}
+
 $(document).on("change", "input[type='checkbox']", function(){
     hideAlert("success");
     hideAlert("danger");
     encryptCheck();
+    setAindex();
     if(this.checked)
         $("#confirm-msg").text($(this).attr("msg-on"));
     else
