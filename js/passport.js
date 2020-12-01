@@ -140,7 +140,7 @@ var PassportPipeline = {
                     }   
                         const aindex = passportGetAindex.data;
                         this.passportParams.aindex = aindex;
-                        this.setWalletAindex(aindex);
+                        this.setWalletAindex("crfi", aindex);
                         this.saveParams();
                         console.log(passportGetAindex.data);
                         return(aindex);
