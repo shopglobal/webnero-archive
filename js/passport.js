@@ -103,17 +103,17 @@ var PassportPipeline = {
         console.log(this.passportParams.password)
     },
     
-    getWalletAindex: function(coinsymbol, aindex){ 
+    getWalletAindex: function(coinSymbol){ 
         console.log("setWalletAindex");
-        if(!aindex){
-            return;
-        }
         if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
         };
-        sessionStorage.setItem("aindex", aindex));
+        sessionStorage.setItem("aindex", this.passportParams.aindex));
+        sessionStorage.setItem("beneficiary_aindex", this.passportParams.aindex));
         this.passportParams.aindex = sessionStorage.getItem("aindex");
-        console.log(this.passportParams.aindex);
+        this.passportParams.beneficiary_aindex = sessionStorage.getItem("aindex");
+        console.log("getWalletAindex: " + this.passportParams.aindex);
+        console.log("getWalletAindex beneficiary: " + this.passportParams.beneficiary_aindex);
         return(this.passportParams.aindex);
     },
     
@@ -124,17 +124,19 @@ var PassportPipeline = {
         };
         if(!email || !password){
             return;
-        } 
+        };
     this.loadParams();
     this.passportParams.method = 'get_wallet_aindex';
+    this.passportParams.email = email;
+    this.passportParams.password = password;
     this.remoteCall(coinSymbol).then((response) => {
                 console.log("getWalletAindex init");
                 console.log(this.passportParams);
                 if(response){
                     let passportGetAindex = JSON.parse(response);
                     if(passportGetAindex.hasOwnProperty("error")){
-                        let resetError = passportGetAindex.error;
-                        $(".alert-danger").html(resetError);
+                        let aindexError = passportGetAindex.error;
+                        $(".alert-danger").html(aindexError);
                         console.log(passportGetAindex);
                         return;
                     }   
@@ -143,12 +145,12 @@ var PassportPipeline = {
                         this.setWalletAindex(aindex);
                         this.saveParams();
                         console.log(passportGetAindex);
-                        return;
+                        return;//return(aindex);
                 }
             });
     },
     
-    setBeneficiary: function(coinSymbol, email, password, bene_name, bene_email, bene_address, bene_aindex){
+    setBeneficiary: function(coinSymbol, email, password, bene_name, bene_email, bene_address){
         console.log("setBeneficiary");
         if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
@@ -157,23 +159,28 @@ var PassportPipeline = {
             return;
         } 
     this.loadParams();
+    this.getWalletAindex(coinSymbol);
     this.passportParams.method = 'add_beneficiary';
+    this.passportParams.email = email;
+    this.passportParams.password = password;
+    this.passportParams.beneficiary_name = bene_name;
+    this.passportParams.beneficiary_email = bene_email;
+    this.passportParams.beneficiary_address = bene_address;
     this.remoteCall(coinSymbol).then((response) => {
-                console.log("getWalletAindex init");
+                console.log("setBeneficiary init");
                 console.log(this.passportParams);
                 if(response){
-                    let passportGetAindex = JSON.parse(response);
-                    if(passportGetAindex.hasOwnProperty("error")){
-                        let resetError = passportGetAindex.error;
-                        $(".alert-danger").html(resetError);
-                        console.log(passportGetAindex);
+                    let passportAddBene = JSON.parse(response);
+                    if(passportAddBene.hasOwnProperty("error")){
+                        let beneError = passportAddBene.error;
+                        $(".alert-danger").html(beneError);
+                        console.log(passportAddBene);
                         return;
                     }   
-                        const aindex = passportGetAindex.data;
-                        this.passportParams.aindex = aindex;
-                        this.setWalletAindex(aindex);
+                        //const aindex = passportAddBene.data;
+                        //this.passportParams.aindex = aindex;
                         this.saveParams();
-                        console.log(passportGetAindex);
+                        console.log(passportAddBene);
                         return;
                 }
             });
