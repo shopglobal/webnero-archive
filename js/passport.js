@@ -155,6 +155,7 @@ var PassportPipeline = {
             return;
         } 
     this.loadParams();
+    this.passportParams.aindex = parseFloat(this.passportParams.aindex);
     //this.getWalletAindex(coinSymbol);
     this.passportParams.method = 'add_beneficiary';
     this.passportParams.email = email;
