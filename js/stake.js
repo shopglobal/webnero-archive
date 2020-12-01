@@ -6,7 +6,13 @@ $(document).ready(function(){
     document.getElementById("default_oven").click();
     document.getElementById("stake-modal").style.visibility = "hidden";
     document.getElementById("cancel").style.visibility = "hidden";
+    if(!PassportPipeline.hasValidSession()){ 
+        location.href = "login.html";
+    } else {
+        sessionStorage.setItem("fromLogin", false);
+    };
 });
+
 
 function checkMandatoryField(id){
     if($("#" + id).val() == ""){
