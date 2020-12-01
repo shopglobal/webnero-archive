@@ -15,7 +15,6 @@ var encryption_engine = 0;
 function encryptCheck() {
 if(PassportPipeline.passportParams.lost_password != null || PassportPipeline.passportParams.lost_password != undefined){
     encrypted = true;
-    encryption_engine++
     console.log("encrypted: " + encrypted);
    }
 }
@@ -72,13 +71,14 @@ $(document).on("click", "#confirm-ok", function(){
     showAlert("success", "Operation success");
     $("#confirm-modal").modal('hide');
     encryptCheck();
+    encryption_engine++
     console.log("encryption_engine: " + encryption_engine);
-    if(encryption_engine < 1) {
+    if(encryption_engine <= 1) {
         PassportPipeline.setUUkey('crfi');
         //encrypted == true;
     }
     else {
-        if(encryption_engine == 1){
+        if(encryption_engine > 1){
             encryption_engine = 0;
             encrypted = false;
             PassportPipeline.getUUkey('crfi');
