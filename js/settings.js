@@ -11,8 +11,13 @@ $(document).ready(function() {
     };
 });
 
-
-var encrypted = true;
+var encryptCheck = function() {
+var encrypted;
+if(PassportPipeline.passportParmas.lost_password != null || PassportPipeline.passportParmas.lost_password != undefined){
+    encrypted = true;
+    console.log("encrypted: " + encrypted);
+   }
+}
 $(document).on("change", "input[type='checkbox']", function(){
     hideAlert("success");
     hideAlert("danger");
@@ -64,12 +69,13 @@ $(document).on("click", "#confirm-ok", function(){
     //console.log($(this).data("operation"));
     showAlert("success", "Operation success");
     $("#confirm-modal").modal('hide');
+    encryptCheck();
     if(encrypted == false) {
         PassportPipeline.setUUkey('crfi');
-        encrypted == true;
+        //encrypted == true;
     }
     else {
-        encrypted = false;
+        //encrypted = false;
         PassportPipeline.getUUkey('crfi');
         setTimeout(PassportPipeline.logUU(), 3000);
         console.log(PassportPipeline.passportParams);
