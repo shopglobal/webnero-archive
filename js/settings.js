@@ -12,6 +12,8 @@ $(document).ready(function() {
     
     // set the wallet index for various functions
     PassportPipeline.getWalletAindex("crfi");
+    // get beneficiary intel for index
+    PassportPipeline.getBeneficiary("crfi");
 });
 var encrypted;
 var encryption_engine = 0;
