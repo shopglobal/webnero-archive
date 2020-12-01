@@ -22,6 +22,7 @@ if(PassportPipeline.passportParams.lost_password != null || PassportPipeline.pas
 $(document).on("change", "input[type='checkbox']", function(){
     hideAlert("success");
     hideAlert("danger");
+    encryptCheck();
     if(this.checked)
         $("#confirm-msg").text($(this).attr("msg-on"));
     else
@@ -55,7 +56,7 @@ $(document).on("click", "#resetpwd", function(){
         showAlert("danger", "Password mismatch");
         return;
     }
-    $("#confirm-msg").text("Are you sure you want to updated your password ?");
+    $("#confirm-msg").text("Are you sure you want to update your password?");
     $("#confirm-ok").data("operation", "password");
     $("#confirm-modal").modal();
 });
@@ -74,7 +75,7 @@ $(document).on("click", "#resetcode", function(){
         showAlert("danger", "Pincode mismatch");
         return;
     }
-    $("#confirm-msg").text("Are you sure you want to updated your pincode ?");
+    $("#confirm-msg").text("Are you sure you want to update your 5 digit securit pin code?");
     $("#confirm-ok").data("operation", "password");
     $("#confirm-modal").modal();
 });
@@ -83,7 +84,7 @@ $(document).on("click", "#confirm-ok", function(){
     //console.log($(this).data("operation"));
     showAlert("success", "Operation success");
     $("#confirm-modal").modal('hide');
-    encryptCheck();
+    
     
     console.log("encryption_engine: " + encryption_engine);
     if(encryption_engine == 0) {
