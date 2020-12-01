@@ -30,6 +30,23 @@ $(document).on("change", "input[type='checkbox']", function(){
         $("#confirm-modal").modal();
 });
 
+$(document).on("click", "#add-beneficiary", function(){
+    hideAlert("success");
+    hideAlert("danger");
+    var newBene_name = $("#beneficiary-name").val();
+    var newBene_email = $("#beneficiary-email").val();
+    var newBene_address = $("#beneficiary-address").val();
+    if(newBene_name == null || newBene_email == null || newBene_address == null || newBene_name == undefined || newBene_email == undefined || newBene_address == undefined){
+       showAlert("danger", "Invalid beneficiary (Must list name, email, and confirm CRFI address.)");
+       return;
+       }
+    //var newBene_aindex = $("#beneficiary-address").val();
+
+    $("#confirm-msg").text("Are you sure you want to updated your beneficiary?");
+    $("#confirm-ok").data("operation", "password");
+    $("#confirm-modal").modal();
+});
+
 $(document).on("click", "#resetpwd", function(){
     hideAlert("success");
     hideAlert("danger");
