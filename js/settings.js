@@ -9,7 +9,6 @@ $(document).ready(function() {
     } else {
         sessionStorage.setItem("fromLogin", false);
     };
-    $('input').attr('required', true);  
 });
 var encrypted;
 var encryption_engine = 0;
@@ -38,15 +37,14 @@ $(document).on("click", "#add-beneficiary", function(){
     var newBene_name = $("#beneficiary-name").val();
     var newBene_email = $("#beneficiary-email").val();
     var newBene_address = $("#beneficiary-address").val();
-    function alertOnNull(){
-       showAlert("danger", "Invalid beneficiary (Must list name, email, and confirm CRFI address.)");
-       return;
+    if(newBene_name == undefined || newBene_name == '' || newBene_address == null){
+        showAlert("danger", "Invalid beneficiary (Must list name, email, and confirm CRFI address.)");
     }
-    if(newBene_name == undefined || newBene_email == undefined || newBene_address == undefined){
+    if(newBene_name == undefined || newBene_email == '' || newBene_address == null){
+        showAlert("danger", "Invalid beneficiary (Must list name, email, and confirm CRFI address.)");
     }
-    if(newBene_name == "" || newBene_email == "" || newBene_address == ""){
-    }
-    if(newBene_name == null || newBene_email == null || newBene_address == null){
+    if(newBene_name == undefined || newBene_email == '' || newBene_address == null){
+        showAlert("danger", "Invalid beneficiary (Must list name, email, and confirm CRFI address.)");
     }
     console.log("newBene_name: " + newBene_name);
     console.log("newBene_email: " + newBene_email);
