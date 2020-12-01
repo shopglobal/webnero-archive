@@ -33,17 +33,24 @@ $(document).on("click", "#resetpwd", function(){
 });
 
 $(document).on("click", "#reset-code", function(){
-    if($("#pin").val() != $("#confirmpin").val()){
-        let userErr = "Bot pin codes do not match. Please correct your pin to consist of 5 digits -- only numbers, and try again momentarily.";
-        $(".alert-danger").html(userErr)
-        resetFail();
+    
+    hideAlert("success");
+    hideAlert("danger");
+    var newPin = $("#pin").val();
+
+    if(!Utils.isValidCode(newPin)){
+        showAlert("danger", "Please correct your pin to consist of only 5 digits");
         return;
     }
-    else {
-    PassportPipeline.resetCode('crfi', '', $("#pin").val(), $("#confirmpin").val(), true)
-    //$("#pin-code-container").css("display", "block");
-    //$("#reset-container").css("display", "none");
+
+    if($("#confirmpin").val() !== newPin){
+        showAlert("danger", "Pincode mismatch");
+        return;
     }
+    $("#confirm-msg").text("Are you sure you want to update your security pin code?");
+    $("#confirm-ok").data("operation", "password");
+    $("#confirm-modal").modal();
+
 });
 
 $(document).on("click", "#reset", function(){
