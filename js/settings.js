@@ -34,7 +34,6 @@ $(document).on("change", "input[type='checkbox']", function(){
     hideAlert("success");
     hideAlert("danger");
     encryptCheck();
-    setAindex();
     if(this.checked)
         $("#confirm-msg").text($(this).attr("msg-on"));
     else
@@ -109,6 +108,8 @@ $(document).on("click", "#resetcode", function(){
 });
 
 $(document).on("click", "#confirm-ok", function(){
+    
+    setAindex();
     //console.log($(this).data("operation"));
     showAlert("success", "Operation success");
     $("#confirm-modal").modal('hide');
