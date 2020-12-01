@@ -145,7 +145,23 @@ var PassportPipeline = {
                 }
             });
     },
-    
+    fillBeneficiary: function(coinSymbol, list){
+        console.log("fillBeneficiary");
+        if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        }
+        console.log(list);
+        //var beneficiaryListHTML = "<li id=" + 'fillBeneficiary' + "></li>";
+        //$("#list-style-bene").append(beneficiaryListHTML);
+        var tbody = $("#list-style-bene").find('tbody');
+//         tbody.append( "<tr class='row_" + coin +"'>" +
+//                             "<td>" + coin + "</td>" + 
+//                             "<td>" + type + "</td>" + 
+//                             "<td>" + this.formatCoinUnits(item.amount, coin.toLowerCase()) + "</td>" + 
+//                             "<td>" + "<a target='_blank' " + "href='"+this.blockchainExplorerLink(true, parseInt(item.height), item.txid, coin.toLowerCase())+" '>" + item.height + "</td>" + 
+//                             "<td>" + "<a target='_blank' " + "href='"+this.blockchainExplorerLink(false, parseInt(item.height), item.txid, coin.toLowerCase())+" '>" + item.txid + "</a>" + "</td>" + 
+//                           "</tr>" );
+    },
     getBeneficiary: function(coinSymbol){
         console.log("getBeneficiary");
         if(!coinSymbol){
@@ -165,9 +181,9 @@ var PassportPipeline = {
                         console.log(passportGetBeneficiary);
                         return;
                     }   
-                        const aindex = passportGetBeneficiary.data;
-                        //this.passportParams.aindex = aindex;
-                        //this.setWalletAindex("crfi", aindex);
+                        const list = passportGetBeneficiary.data;
+                        //this.passportParams.list = list;
+                        this.fillBeneficiary("crfi", list);
                         console.log(passportGetBeneficiary);
                         console.log(passportGetBeneficiary.data);
                         return;
