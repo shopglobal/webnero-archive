@@ -233,7 +233,7 @@ var PassportPipeline = {
         };
 	var crfiData = ModelViewController.getCoinData("crfi"); 
 	let bounty_address = crfiData.address;
-        sessionStorage.setItem("bounty_id", bounty_id.bounty_id)
+        sessionStorage.setItem("bounty_id", bounty_id)
 	sessionStorage.setItem("bounty_address", bounty_address);
         this.passportParams.bounty_id = sessionStorage.getItem("bounty_id");
         this.passportParams.bounty_address = sessionStorage.getItem("bounty_address");
@@ -266,7 +266,7 @@ var PassportPipeline = {
                         console.log(passportGetBountyID);
                         return;
                     }   
-                        const bounty_id = passportGetBountyID.data;
+                        const bounty_id = JSON.parse(JSON.stringify(passportGetBountyID.data.bountyid));
                         this.passportParams.bounty_id = bounty_id;
                         PassportPipeline.setBountyId("crfi", bounty_id);
                         console.log(passportGetBountyID);
