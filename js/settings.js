@@ -17,7 +17,7 @@ $(document).ready(function() {
     // get foundling info 
     const promise = new Promise(function executor(resolve, reject) {
       // Fulfill the promise with value '42' after 100 ms.
-        PassportPipeline.getBountyId("crfi");
+        PassportPipeline.getBountyID("crfi");
         let bounty_id = PassportPipeline.hasBountyId("crfi");
       setTimeout(() => resolve(bounty_id), 1000);
     });
