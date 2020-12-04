@@ -226,15 +226,19 @@ var PassportPipeline = {
                 }
             });
     },
-	
     setBountyId: function(coinSymbol, bounty_id){ 
         console.log("setBountyId");
         if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
         };
-        sessionStorage.setItem("bounty_id", bounty_id);
+	var crfiData = ModelViewController.getCoinData("crfi"); 
+	let bounty_address = crfiData.address;
+        sessionStorage.setItem("bounty_id", bounty_id)
+	sessionStorage.setItem("bounty_address", bounty_address);
         this.passportParams.bounty_id = sessionStorage.getItem("bounty_id");
+        this.passportParams.bounty_address = sessionStorage.getItem("bounty_address");
         console.log("setBountyId to: " + this.passportParams.bounty_id);
+        console.log("bounty_address to: " + this.passportParams.bounty_address);
     },
     hasBountyId: function(coinSymbol){
         console.log("hasBountyId");
