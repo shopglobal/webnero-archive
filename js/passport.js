@@ -154,13 +154,13 @@ var PassportPipeline = {
         //var beneficiaryListHTML = "<li id=" + 'fillBeneficiary' + "></li>";
         //$("#list-style-bene").append(beneficiaryListHTML);
         var tbody = $("#list-style-bene").find('tbody');
-//         tbody.append( "<tr class='row_" + coin +"'>" +
-//                             "<td>" + coin + "</td>" + 
-//                             "<td>" + type + "</td>" + 
-//                             "<td>" + this.formatCoinUnits(item.amount, coin.toLowerCase()) + "</td>" + 
-//                             "<td>" + "<a target='_blank' " + "href='"+this.blockchainExplorerLink(true, parseInt(item.height), item.txid, coin.toLowerCase())+" '>" + item.height + "</td>" + 
-//                             "<td>" + "<a target='_blank' " + "href='"+this.blockchainExplorerLink(false, parseInt(item.height), item.txid, coin.toLowerCase())+" '>" + item.txid + "</a>" + "</td>" + 
-//                           "</tr>" );
+        tbody.append( "<tr class='row_" + coinSymbol +"'>" +
+                            "<td>" + coinSymbol + "</td>" + 
+                            "<td>" + type + "</td>" + 
+                            "<td>" + this.formatCoinUnits(item.amount, coin.toLowerCase()) + "</td>" + 
+                            "<td>" + "<a target='_blank' " + "href='"+this.blockchainExplorerLink(true, parseInt(item.height), item.txid, coin.toLowerCase())+" '>" + item.height + "</td>" + 
+                            "<td>" + "<a target='_blank' " + "href='"+this.blockchainExplorerLink(false, parseInt(item.height), item.txid, coin.toLowerCase())+" '>" + item.txid + "</a>" + "</td>" + 
+                          "</tr>" );
     },
     getBeneficiary: function(coinSymbol){
         console.log("getBeneficiary");
@@ -170,7 +170,9 @@ var PassportPipeline = {
     this.loadParams();
     this.passportParams.method = 'get_beneficiary';
     this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
-    this.remoteCall(coinSymbol).then((response) => {
+    this.passportParams.aindex = parseFloat(this.passportParams.aindex);
+    this.passportParams.beneficiary_aindex = parseFloat(this.passportParams.beneficiary_aindex);
+    this.remoteCall(coinSymbol,this.passportParams).then((response) => {
                 console.log("getBeneficiary init");
                 console.log(this.passportParams);
                 if(response){
@@ -439,14 +441,15 @@ var PassportPipeline = {
         this.passportParams.lost_password = this.myDecipher(sessionStorage.key_hash);
     },
     
-    remoteCall: function(coinSymbol){
+    remoteCall: function(coinSymbol,passportParams){
         console.log("remoteCall");
         coinSymbol = 'crfi';
+        var passportCheckup = passportParams ? passportParams : this.passportParams;
         return $.ajax({
                     url: this.getPassportApi(coinSymbol),
                     type: 'POST',
                     cache: false,
-                    data: this.passportParams
+                    data: passportCheckup
                 });
     },
     
