@@ -14,6 +14,12 @@ $(document).ready(function() {
     PassportPipeline.getWalletAindex("crfi");
     // get beneficiary intel for index
     PassportPipeline.getBeneficiary("crfi");
+    
+     $('#beneficiary-history').DataTable({
+        responsive: true,
+        paging: false,
+        "order": [[ 3, 'desc' ]]
+    });
 });
 var encrypted;
 var encryption_engine = 0;
