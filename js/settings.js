@@ -14,6 +14,9 @@ $(document).ready(function() {
     PassportPipeline.getWalletAindex("crfi");
     // get beneficiary intel for index
     PassportPipeline.getBeneficiary("crfi");
+    // get foundling info 
+    PassportPipeline.monitorFoundlings("crfi", PassportPipeline.passportParams.bounty_id);
+    
     
     
 });
