@@ -95,11 +95,12 @@ $(document).on("click", "#add-elder", function(){
         $datErr = "Elder Hash mismatched. Correct your Elder Hash and resubmit.";
         goErr($datErr);
     }
+    PassportPipeline.passportParams.bounty_elderid = elder_hash;
     PassportPipeline.passportParams.elderid = elder_hash;
     console.log("elder_hash: " + elder_hash);
     // set account elder hash for bounty functions
     PassportPipeline.setElderHash("crfi", $("#elderid").val());
-    console.log("elderid on settings.js: " + parseFloat(PassportPipeline.passportParams.elderid));
+    console.log("elderid on settings.js: " + PassportPipeline.passportParams.bounty_elderid);
 });
 
 $(document).on("click", "#resetpwd", function(){
