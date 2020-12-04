@@ -21,8 +21,9 @@ $(document).ready(function() {
         let bounty_id = PassportPipeline.hasBountyId("crfi");
       setTimeout(() => resolve(bounty_id), 1000);
     });
-
+    
     promise.then(value => {
+	document.getElementById("elder_bounty_id").innerHTML = value;
     PassportPipeline.monitorFoundlings("crfi", value);
     });
     ;
