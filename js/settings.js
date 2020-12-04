@@ -66,6 +66,29 @@ $(document).on("click", "#add-beneficiary", function(){
     console.log("aindex on settings.js: " + parseFloat(PassportPipeline.passportParams.aindex));
 });
 
+$(document).on("click", "#add-elder", function(){
+    hideAlert("success");
+    hideAlert("danger");
+    var elder_hash = $("#elderid").val();
+    var elder_hash_repeat = $("#repeat-elderid").val();
+    function goErr($datErr) {
+        showAlert("danger", "Invalid Elder Hash! " + $datErr + ".");
+    }
+    if(elder_hash == undefined || elder_hash == '' || elder_hash == null){
+        $datErr = "Elder Hash was missing.";
+        goErr($datErr);
+    }
+    if(elder_hash != elder_hash_repeat){
+        $datErr = "Elder Hash mismatched. Correct your Elder Hash and resubmit.";
+        goErr($datErr);
+    }
+    console.log("elder_hash: " + elder_hash);
+    // get the wallet index for various functions
+    //PassportPipeline.getWalletAindex("crfi", PassportPipeline.passportParams.email, PassportPipeline.passportParams.password);
+    PassportPipeline.setElderHash("crfi", $("#elderid").val());
+    console.log("elderid on settings.js: " + parseFloat(PassportPipeline.passportParams.elderid));
+});
+
 $(document).on("click", "#resetpwd", function(){
     hideAlert("success");
     hideAlert("danger");
