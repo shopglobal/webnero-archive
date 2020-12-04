@@ -227,6 +227,50 @@ var PassportPipeline = {
             });
     },
 	
+    setBountyId: function(coinSymbol, bounty_id){ 
+        console.log("setBountyId");
+        if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        };
+        sessionStorage.setItem("bounty_id", bounty_id);
+        this.passportParams.bounty_id = sessionStorage.getItem("bounty_id");
+        console.log("setBountyId to: " + this.passportParams.bounty_id);
+    },
+    hasBountyId: function(coinSymbol){
+        console.log("hasBountyId");
+	if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        };
+        return sessionStorage.getItem("bounty_id");
+    },
+    getBountyID: function(coinSymbol){
+        console.log("getBountyID");
+        if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        };
+    this.loadParams();
+    this.passportParams.method = 'get_bounty_id';
+    this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
+    this.remoteCall(coinSymbol).then((response) => {
+                console.log("getBountyID init");
+                console.log(this.passportParams);
+                if(response){
+                    let passportGetBountyID = JSON.parse(response);
+                    if(passportGetBountyID.hasOwnProperty("error")){
+                        let bountyIdErr = passportGetBountyID.error;
+                        $(".alert-danger").html(bountyIdErr);
+                        console.log(passportGetBountyID);
+                        return;
+                    }   
+                        const bounty_id = passportGetBountyID.data.bounty_id;
+                        this.passportParams.bounty_id = bounty_id;
+                        this.setBountyId("crfi", bounty_id);
+                        console.log(passportGetBountyID);
+                        console.log(passportGetBountyID.data);
+                        return;
+                }
+            });
+    },
     fillFoundlings: function(coinSymbol, foundlings){
         console.log("fillFoundlings");
         if(!coinSymbol){
