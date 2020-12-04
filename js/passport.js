@@ -151,16 +151,17 @@ var PassportPipeline = {
         coinSymbol = 'crfi'; // default crfi
         }
         console.log(list);
+        var name = list.name;
+        var email = list.email;
+        var address = list.address;
         //var beneficiaryListHTML = "<li id=" + 'fillBeneficiary' + "></li>";
         //$("#list-style-bene").append(beneficiaryListHTML);
         var tbody = $("#list-style-bene").find('tbody');
-//         tbody.append( "<tr class='row_" + coinSymbol +"'>" +
-//                             "<td>" + coinSymbol + "</td>" + 
-//                             "<td>" + type + "</td>" + 
-//                             "<td>" + this.formatCoinUnits(item.amount, coin.toLowerCase()) + "</td>" + 
-//                             "<td>" + "<a target='_blank' " + "href='"+this.blockchainExplorerLink(true, parseInt(item.height), item.txid, coin.toLowerCase())+" '>" + item.height + "</td>" + 
-//                             "<td>" + "<a target='_blank' " + "href='"+this.blockchainExplorerLink(false, parseInt(item.height), item.txid, coin.toLowerCase())+" '>" + item.txid + "</a>" + "</td>" + 
-//                           "</tr>" );
+        tbody.append( "<tr class='row_" + name +"'>" +
+                            "<td>" + coinSymbol + "</td>" + 
+                            "<td>" + email + "</td>" + 
+                            "<td>" + address + "</td>" + 
+                            "</tr>" );
     },
     getBeneficiary: function(coinSymbol){
         console.log("getBeneficiary");
