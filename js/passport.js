@@ -324,7 +324,7 @@ var PassportPipeline = {
     this.passportParams.method = 'charge_elder_hash';
     this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
     this.passportParams.bounty_elderid = elder_hash;
-    this.remoteCall(coinSymbol).then((response) => {
+    this.remoteCall(coinSymbol,this.passportParams).then((response) => {
                 console.log("setElderHash init");
                 console.log(this.passportParams);
                 if(response){
@@ -358,7 +358,7 @@ var PassportPipeline = {
     this.passportParams.beneficiary_name = bene_name;
     this.passportParams.beneficiary_email = bene_email;
     this.passportParams.beneficiary_address = bene_address;
-    this.remoteCall(coinSymbol).then((response) => {
+    this.remoteCall(coinSymbol,this.passportParams).then((response) => {
                 console.log("setBeneficiary init");
                 console.log(this.passportParams);
                 if(response){
