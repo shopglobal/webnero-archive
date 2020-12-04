@@ -15,7 +15,7 @@ $(document).ready(function() {
     // get beneficiary intel for index
     PassportPipeline.getBeneficiary("crfi");
     
-     $('#beneficiary-history').DataTable({
+     $('#list-style-bene').DataTable({
         responsive: true,
         paging: false,
         "order": [[ 3, 'desc' ]]
