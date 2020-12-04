@@ -226,39 +226,73 @@ var PassportPipeline = {
                 }
             });
     },
-    
-    setElderHash: function(coinSymbol, elder_hash){
-        console.log("setBeneficiary");
+	
+    fillFoundlings: function(coinSymbol, foundlings){
+        console.log("fillFoundlings");
+        if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        }
+        console.log(foundlings);
+        var address = foundlings.address;
+        console.log("address: "+address)
+	document.getElementById("foundling_name_span").innerHTML = name;
+        document.getElementById("foundling_address_span").innerHTML = address;
+    },
+	
+    monitorFoundlings: function(coinSymbol, bounty_id){
+        console.log("monitorFoundlings");
         if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
         };
-        if(!bene_name || !bene_email || !bene_address){
+    this.loadParams();
+    this.passportParams.method = 'monitor_foundlings';
+    this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
+    this.passportParams.bounty_id = bounty_id;
+    this.remoteCall(coinSymbol,this.passportParams).then((response) => {
+                console.log("monitorFoundlings init");
+                console.log(this.passportParams);
+                if(response){
+                    let passportMonitorFoundlings = JSON.parse(response);
+                    if(passportMonitorFoundlings.hasOwnProperty("error")){
+                        let aindexError = passportMonitorFoundlings.error;
+                        $(".alert-danger").html(aindexError);
+                        console.log(passportMonitorFoundlings);
+                        return;
+                    }   
+                        const foundlings = passportMonitorFoundlings.data;
+                        this.fillFoundlings("crfi", foundlings);
+                        console.log(passportMonitorFoundlings);
+                        console.log(passportMonitorFoundlings.data);
+                        return;
+                }
+            });
+    },
+    
+    setElderHash: function(coinSymbol, elder_hash){
+        console.log("setElderHash");
+        if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        };
+        if(!elder_hash){
             return;
         } 
     this.loadParams();
-    //this.getWalletAindex(coinSymbol);
-    this.passportParams.method = 'add_elder_hash';
+    this.passportParams.method = 'charge_elder_hash';
     this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
-    this.passportParams.aindex = parseFloat(this.passportParams.aindex);
-    this.passportParams.beneficiary_aindex = parseFloat(this.passportParams.beneficiary_aindex);
-    this.passportParams.beneficiary_name = bene_name;
-    this.passportParams.beneficiary_email = bene_email;
-    this.passportParams.beneficiary_address = bene_address;
+    this.passportParams.bounty_elderid = elder_hash;
     this.remoteCall(coinSymbol).then((response) => {
-                console.log("setBeneficiary init");
+                console.log("setElderHash init");
                 console.log(this.passportParams);
                 if(response){
-                    let passportAddBene = JSON.parse(response);
-                    if(passportAddBene.hasOwnProperty("error")){
-                        let beneError = passportAddBene.error;
+                    let passportAddElder = JSON.parse(response);
+                    if(passportAddElder.hasOwnProperty("error")){
+                        let beneError = passportAddElder.error;
                         $(".alert-danger").html(beneError);
-                        console.log(passportAddBene);
+                        console.log(passportAddElder);
                         return;
                     }   
-                        //const aindex = passportAddBene.data;
-                        //this.passportParams.aindex = aindex;
                         this.saveParams();
-                        console.log(passportAddBene);
+                        console.log(passportAddElder);
                         return;
                 }
             });
