@@ -15,7 +15,6 @@ $(document).ready(function() {
     // get beneficiary intel for index
     PassportPipeline.getBeneficiary("crfi");
     
-     $('#list-style-bene').DataTable();
 });
 var encrypted;
 var encryption_engine = 0;
