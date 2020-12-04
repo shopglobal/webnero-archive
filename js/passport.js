@@ -251,7 +251,7 @@ var PassportPipeline = {
     this.loadParams();
     this.passportParams.method = 'get_bounty_id';
     this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
-    this.remoteCall(coinSymbol).then((response) => {
+    this.remoteCall(coinSymbol,this.passportParams).then((response) => {
                 console.log("getBountyID init");
                 console.log(this.passportParams);
                 if(response){
