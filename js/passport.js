@@ -335,7 +335,7 @@ var PassportPipeline = {
                         console.log(passportAddElder);
                         return;
                     }   
-                        this.saveParams();
+                        //this.saveParams();
                         console.log(passportAddElder);
                         return;
                 }
