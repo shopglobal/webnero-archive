@@ -33,15 +33,50 @@ var PassportPipeline = {
                     notes: '',
                     lost_password: '',
                     telegramID: '',
+	            telegram_username: '',
                     telegramUsername: '',
                     bounty_id: '',
+	            discord: '',
+		    twitter: '',
+		    crfi_address: '',
+		    crfi_payment_id: '',
+		    btc_address: '',
+		    btc_payment_id: '',
+		    eth_address: '',
+		    eth_payment_id: '',
+		    ltc_address: '',
+		    ltc_payment_id: '',
+		    usdt_address: '',
+		    usdt_payment_id: '',
+		    usdc_address: '',
+		    usdc_payment_id: '',  
                     address: '',  
                     secret: '',
                     aindex: 0,
                     beneficiary_name: "",
                     beneficiary_email: "",
                     beneficiary_address: "",
-                    beneficiary_aindex: 0
+                    beneficiary_aindex: 0,
+	    	    elderid: '',
+	    	    bounty_id: '',
+	    	    verified: '',
+	    	    claimed: '',
+	    	    claims: '',
+	    	    bounty_balance: '',
+	    	    bounty_elderid: '',
+	    	    bounty_title: '',
+	    	    bounty_link: '',
+	    	    bounty_notes: '',
+	    	    bounty_status: '',
+	    	    bounty_reward: '',
+	    	    bounty_address: '',
+	    	    bounty_verified: '',
+	    	    passporturi: '',		
+	    	    selfieuri: '',
+	    	    kyc_verified: '',
+	    	    bounty_twitter: '',
+	    	    bounty_telegram: '',
+	    	    bounty_facebook: ''	    	    
     },
     
     myCipher: Crypto.encryptData(Crypto.salt()),
@@ -157,7 +192,7 @@ var PassportPipeline = {
         console.log("name: "+name)
         console.log("email: "+email)
         console.log("address: "+address)
-	    document.getElementById("name_span").innerHTML = name;
+	document.getElementById("name_span").innerHTML = name;
         document.getElementById("email_span").innerHTML = email;
         document.getElementById("address_span").innerHTML = address;
     },
@@ -192,6 +227,42 @@ var PassportPipeline = {
             });
     },
     
+    setElderHash: function(coinSymbol, elder_hash){
+        console.log("setBeneficiary");
+        if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        };
+        if(!bene_name || !bene_email || !bene_address){
+            return;
+        } 
+    this.loadParams();
+    //this.getWalletAindex(coinSymbol);
+    this.passportParams.method = 'add_elder_hash';
+    this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
+    this.passportParams.aindex = parseFloat(this.passportParams.aindex);
+    this.passportParams.beneficiary_aindex = parseFloat(this.passportParams.beneficiary_aindex);
+    this.passportParams.beneficiary_name = bene_name;
+    this.passportParams.beneficiary_email = bene_email;
+    this.passportParams.beneficiary_address = bene_address;
+    this.remoteCall(coinSymbol).then((response) => {
+                console.log("setBeneficiary init");
+                console.log(this.passportParams);
+                if(response){
+                    let passportAddBene = JSON.parse(response);
+                    if(passportAddBene.hasOwnProperty("error")){
+                        let beneError = passportAddBene.error;
+                        $(".alert-danger").html(beneError);
+                        console.log(passportAddBene);
+                        return;
+                    }   
+                        //const aindex = passportAddBene.data;
+                        //this.passportParams.aindex = aindex;
+                        this.saveParams();
+                        console.log(passportAddBene);
+                        return;
+                }
+            });
+    },
     setBeneficiary: function(coinSymbol, bene_name, bene_email, bene_address){
         console.log("setBeneficiary");
         if(!coinSymbol){
