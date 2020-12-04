@@ -162,6 +162,8 @@ var PassportPipeline = {
                             "<td>" + email + "</td>" + 
                             "<td>" + address + "</td>" + 
                             "</tr>" );
+        
+     $('#list-style-bene').DataTable();
     },
     getBeneficiary: function(coinSymbol){
         console.log("getBeneficiary");
