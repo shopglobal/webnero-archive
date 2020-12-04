@@ -7,11 +7,36 @@
         {% include "../templates/navigation.njk" %}
 
         <div id="page-wrapper">
+        
             <div class="row">
                 <div class="col-lg-6 col-lg-offset-3">
                     <div class="alert alert-danger" style="display: none">
                     </div>
                     <div class="alert alert-success" style="display: none">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-crfi panel-settings">
+                        <div class="panel-heading">
+                            Elder Candies Reward Hash  
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                            <input type='hidden' name='key' id='pass_key'>
+                                <div class="form-group col-lg-4">
+                                    <input id="elderid" class="form-control form-settings" placeholder="Enter Elder Hash" name="newpwd" type="password" autofocus>
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <input id="repeat-elderid" class="form-control form-settings" placeholder="Confirm Elder Hash" name="confirmpwd" type="password" value="">
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <button id="add-elder" class="btn btn-lg btn-login btn-block btn-primary">Apply</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
