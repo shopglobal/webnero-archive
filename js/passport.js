@@ -168,7 +168,7 @@ var PassportPipeline = {
         coinSymbol = 'crfi'; // default crfi
         };
     this.loadParams();
-    this.passportParams.method = 'add_beneficiary';
+    this.passportParams.method = 'get_beneficiary';
     this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
     this.remoteCall(coinSymbol).then((response) => {
                 console.log("getBeneficiary init");
