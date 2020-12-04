@@ -301,7 +301,7 @@ var PassportPipeline = {
         }
         console.log(foundlings);
         var address = sessionStorage.getItem("bounty_address");	
-	var bounty_id = foundlings.bounty_id;
+	var bounty_id = foundlings.bounty_elderid;
         console.log("address: "+address)
 	document.getElementById("foundling_bounty_id").innerHTML = bounty_id;
         document.getElementById("foundling_address_span").innerHTML = address;
