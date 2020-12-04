@@ -233,7 +233,7 @@ var PassportPipeline = {
         };
 	var crfiData = ModelViewController.getCoinData("crfi"); 
 	let bounty_address = crfiData.address;
-        sessionStorage.setItem("bounty_id", bounty_id)
+        sessionStorage.setItem("bounty_id", bounty_id.bounty_id)
 	sessionStorage.setItem("bounty_address", bounty_address);
         this.passportParams.bounty_id = sessionStorage.getItem("bounty_id");
         this.passportParams.bounty_address = sessionStorage.getItem("bounty_address");
@@ -281,7 +281,7 @@ var PassportPipeline = {
         coinSymbol = 'crfi'; // default crfi
         }
         console.log(foundlings);
-        var address = foundlings.address;
+        var address = sessionStorage.getItem("bounty_address");	
 	var bounty_id = foundlings.bounty_id;
         console.log("address: "+address)
 	document.getElementById("foundling_bounty_id").innerHTML = bounty_id;
