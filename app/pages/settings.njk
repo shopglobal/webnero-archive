@@ -28,16 +28,16 @@
                 <div class="col-lg-12">
                     <div class="panel panel-crfi panel-settings">
                         <div class="panel-heading">
-                            Add or update an Elder Reward Hash to Activate Crystaleum Bounty.  
+                            Add or update a Bounty Reward Hash to pair your account and Activate Crystaleum CRFI Bounty.  
                         </div>
                         <div class="panel-body">
                             <div class="row">
                             <input type='hidden' name='key' id='pass_key'>
                                 <div class="form-group col-lg-4">
-                                    <input id="elderid" class="form-control form-settings" placeholder="Enter Elder Hash" name="newpwd" type="password" autofocus>
+                                    <input id="elderid" class="form-control form-settings" placeholder="Enter Bounty Hash Code" name="newpwd" type="password" autofocus>
                                 </div>
                                 <div class="form-group col-lg-4">
-                                    <input id="repeat-elderid" class="form-control form-settings" placeholder="Confirm Elder Hash" name="confirmpwd" type="password" value="">
+                                    <input id="repeat-elderid" class="form-control form-settings" placeholder="Confirm Bounty Hash Code" name="confirmpwd" type="password" value="">
                                 </div>
                                 <div class="form-group col-lg-4">
                                     <button id="add-elder" class="btn btn-lg btn-login btn-block btn-primary">Apply</button>
@@ -46,6 +46,35 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-crfi panel-settings">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="collapsed">My Bounty Reward Hash</a>
+                            </h4>
+                        </div>
+                        <div class="panel-body">
+                           <div class="row" style="color: #018ccf;">
+                                <div class="col-lg-12">
+                                    <table>
+                                      <tr>
+                                        <th>My Bounty Id</th>
+                                        <th>MY Address</th>
+                                      </tr>
+                                      <tr>
+                                        <td><span id="elder_bounty_id"></span></td>
+                                        <td><span id="elder_address_span"></span></td>
+                                      </tr>
+                                      </tr>
+                                    </table>
+                                </div>
+                            </div> 
+                        </div>
+                     </div>
+                 </div>            
             </div>
             
             <div class="row">
