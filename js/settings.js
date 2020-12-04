@@ -85,9 +85,9 @@ $(document).on("click", "#add-elder", function(){
         $datErr = "Elder Hash mismatched. Correct your Elder Hash and resubmit.";
         goErr($datErr);
     }
+    PassportPipeline.passportParams.elderid = elder_hash;
     console.log("elder_hash: " + elder_hash);
-    // get the wallet index for various functions
-    //PassportPipeline.getWalletAindex("crfi", PassportPipeline.passportParams.email, PassportPipeline.passportParams.password);
+    // set account elder hash for bounty functions
     PassportPipeline.setElderHash("crfi", $("#elderid").val());
     console.log("elderid on settings.js: " + parseFloat(PassportPipeline.passportParams.elderid));
 });
