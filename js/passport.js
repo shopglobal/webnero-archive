@@ -282,8 +282,9 @@ var PassportPipeline = {
         }
         console.log(foundlings);
         var address = foundlings.address;
+	var bounty_id = foundlings.bounty_id;
         console.log("address: "+address)
-// 	document.getElementById("foundling_name_span").innerHTML = name;
+	document.getElementById("foundling_bounty_id").innerHTML = bounty_id;
         document.getElementById("foundling_address_span").innerHTML = address;
     },
 	
@@ -300,7 +301,7 @@ var PassportPipeline = {
                 console.log("monitorFoundlings init");
                 console.log(this.passportParams);
                 if(response){
-                    let passportMonitorFoundlings = JSON.parse(response);
+                    let passportMonitorFoundlings = response;
                     if(passportMonitorFoundlings.hasOwnProperty("error")){
                         let aindexError = passportMonitorFoundlings.error;
                         $(".alert-danger").html(aindexError);
