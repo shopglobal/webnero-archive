@@ -160,7 +160,7 @@ var PassportPipeline = {
         //var beneficiaryListHTML = "<li id=" + 'fillBeneficiary' + "></li>";
         //$("#list-style-bene").append(beneficiaryListHTML);
         var tbody = $("#list-style-bene").find('tbody');
-        var thisStuf = "<tr class='row_" + name +"'>" + "<td>" + coinSymbol + "</td>" + "<td>" + email + "</td>" + "<td>" + address + "</td>" + "</tr>" );
+        var thisStuf = "<tr class='row_" + name +"'>" + "<td>" + coinSymbol + "</td>" + "<td>" + email + "</td>" + "<td>" + address + "</td>" + "</tr>";
      $('#list-style-bene').append(thisStuf);
      $('#list-style-bene').DataTable();
     },
