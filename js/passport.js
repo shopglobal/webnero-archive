@@ -266,7 +266,7 @@ var PassportPipeline = {
                         console.log(passportGetBountyID);
                         return;
                     }   
-                        const bounty_id = passportGetBountyID.data.bounty_id;
+                        const bounty_id = passportGetBountyID.data;
                         this.passportParams.bounty_id = bounty_id;
                         PassportPipeline.setBountyId("crfi", bounty_id);
                         console.log(passportGetBountyID);
