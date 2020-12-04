@@ -157,12 +157,9 @@ var PassportPipeline = {
         console.log("name: "+name)
         console.log("email: "+email)
         console.log("address: "+address)
-        //var beneficiaryListHTML = "<li id=" + 'fillBeneficiary' + "></li>";
-        //$("#list-style-bene").append(beneficiaryListHTML);
-        var tbody = $("#list-style-bene").find('tbody');
-        var thisStuf = "<tr class='row_" + name +"'>" + "<td>" + coinSymbol + "</td>" + "<td>" + email + "</td>" + "<td>" + address + "</td>" + "</tr>";
-     $('#list-style-bene').append(thisStuf);
-     $('#list-style-bene').DataTable();
+        $('#name_span').append(name);
+        $('#email_span').append(email);
+        $('#address_span').append(address);
     },
     getBeneficiary: function(coinSymbol){
         console.log("getBeneficiary");
