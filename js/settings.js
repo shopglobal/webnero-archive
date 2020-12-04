@@ -15,7 +15,17 @@ $(document).ready(function() {
     // get beneficiary intel for index
     PassportPipeline.getBeneficiary("crfi");
     // get foundling info 
-    PassportPipeline.monitorFoundlings("crfi", PassportPipeline.passportParams.bounty_id);
+    const promise = new Promise(function executor(resolve, reject) {
+      // Fulfill the promise with value '42' after 100 ms.
+        PassportPipeline.getBountyId("crfi");
+        let bounty_id = PassportPipeline.hasBountyId("crfi");
+      setTimeout(() => resolve(bounty_id), 1000);
+    });
+
+    promise.then(value => {
+    PassportPipeline.monitorFoundlings("crfi", value);
+    });
+    ;
     
     
     
