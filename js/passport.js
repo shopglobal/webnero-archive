@@ -160,7 +160,7 @@ var PassportPipeline = {
     this.loadParams();
     this.passportParams.method = 'get_wallet_aindex';
     this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
-    this.remoteCall(coinSymbol).then((response) => {
+    this.remoteCall(coinSymbol,this.passportParams).then((response) => {
                 console.log("getWalletAindex init");
                 console.log(this.passportParams);
                 if(response){
@@ -283,7 +283,7 @@ var PassportPipeline = {
         console.log(foundlings);
         var address = foundlings.address;
         console.log("address: "+address)
-	document.getElementById("foundling_name_span").innerHTML = name;
+// 	document.getElementById("foundling_name_span").innerHTML = name;
         document.getElementById("foundling_address_span").innerHTML = address;
     },
 	
@@ -427,7 +427,7 @@ var PassportPipeline = {
             this.passportParams.password = password;
             this.passportParams.method = 'reset_password_settings';
         }
-    this.remoteCall(coinSymbol).then((response) => {
+    this.remoteCall(coinSymbol,this.passportParams).then((response) => {
                 console.log("reset init");
                 console.log(this.passportParams);
                 if(response){
@@ -466,7 +466,7 @@ var PassportPipeline = {
             this.passportParams.code = pin;
             this.passportParams.method = 'add_code';
         }
-    this.remoteCall(coinSymbol).then((response) => {
+    this.remoteCall(coinSymbol,this.passportParams).then((response) => {
                 console.log("reset code init");
                 console.log(this.passportParams);
                 if(response){
@@ -497,7 +497,7 @@ var PassportPipeline = {
     this.loadParams();
     this.passportParams.method = 'set_uu_key';
     this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
-    this.remoteCall(coinSymbol).then((response) => {
+    this.remoteCall(coinSymbol,this.passportParams).then((response) => {
                 console.log("set_uu_key init");
                 if(response){
                     
@@ -529,7 +529,7 @@ var PassportPipeline = {
     this.loadParams();
     this.passportParams.method = 'get_uu_key';
     this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
-    this.remoteCall(coinSymbol).then((response) => {
+    this.remoteCall(coinSymbol,this.passportParams).then((response) => {
                 console.log("get_uu_key init");
                 console.log(this.passportParams);
                 if(response){
