@@ -241,7 +241,25 @@ var PassportPipeline = {
         console.log("setBountyId to: " + this.passportParams.bounty_id);
         console.log("bounty_address to: " + this.passportParams.bounty_address);
     },
+    storeElderHash: function(coinSymbol, elder_hash){ 
+        console.log("storeElderHash");
+        if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        };
+	document.getElementById("elder_bounty_id").innerHTML = elder_hash;
+        sessionStorage.setItem("elder_hash", elder_hash)
+        this.passportParams.bounty_elderid = sessionStorage.getItem("elder_hash");
+        this.passportParams.elderid = sessionStorage.getItem("elder_hash");
+        console.log("bounty_elderid set to: " + this.passportParams.bounty_elderid);
+    },
     hasBountyId: function(coinSymbol){
+        console.log("hasBountyId");
+	if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        };
+        return sessionStorage.getItem("bounty_id");
+    },
+    hasElderBountyId: function(coinSymbol){
         console.log("hasBountyId");
 	if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
@@ -323,18 +341,16 @@ var PassportPipeline = {
         if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
         };
-        if(!elder_hash){
-            return;
-        } 
     this.loadParams();
     this.passportParams.method = 'charge_elder_hash';
     this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
     this.passportParams.bounty_elderid = elder_hash;
+    PassportPipeline.storeElderHash("crfi", elder_hash);
     this.remoteCall(coinSymbol,this.passportParams).then((response) => {
                 console.log("setElderHash init");
                 console.log(this.passportParams);
                 if(response){
-                    let passportAddElder = JSON.parse(response);
+                    let passportAddElder = response;
                     if(passportAddElder.hasOwnProperty("error")){
                         let beneError = passportAddElder.error;
                         $(".alert-danger").html(beneError);
@@ -342,6 +358,7 @@ var PassportPipeline = {
                         return;
                     }   
                         //this.saveParams();
+			PassportPipeline.storeElderHash("crfi", elder_hash);
                         console.log(passportAddElder);
                         return;
                 }
