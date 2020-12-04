@@ -157,9 +157,9 @@ var PassportPipeline = {
         console.log("name: "+name)
         console.log("email: "+email)
         console.log("address: "+address)
-        $('#name_span').append(name);
-        $('#email_span').append(email);
-        $('#address_span').append(address);
+	    document.getElementById("name_span").innerHTML = name;
+        document.getElementById("email_span").innerHTML = email;
+        document.getElementById("address_span").innerHTML = address;
     },
     getBeneficiary: function(coinSymbol){
         console.log("getBeneficiary");
