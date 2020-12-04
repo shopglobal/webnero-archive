@@ -301,14 +301,14 @@ var PassportPipeline = {
                 console.log("monitorFoundlings init");
                 console.log(this.passportParams);
                 if(response){
-                    let passportMonitorFoundlings = response;
+                    let passportMonitorFoundlings = JSON.parse(response);
                     if(passportMonitorFoundlings.hasOwnProperty("error")){
                         let aindexError = passportMonitorFoundlings.error;
                         $(".alert-danger").html(aindexError);
                         console.log(passportMonitorFoundlings);
                         return;
                     }   
-                        const foundlings = passportMonitorFoundlings.data;
+                        const foundlings = JSON.parse(JSON.stringify(passportMonitorFoundlings.data));
                         PassportPipeline.fillFoundlings("crfi", foundlings);
                         console.log(passportMonitorFoundlings);
                         console.log(passportMonitorFoundlings.data);
