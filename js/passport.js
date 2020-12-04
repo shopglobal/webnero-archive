@@ -268,7 +268,7 @@ var PassportPipeline = {
                     }   
                         const bounty_id = passportGetBountyID.data.bounty_id;
                         this.passportParams.bounty_id = bounty_id;
-                        this.setBountyId("crfi", bounty_id);
+                        PassportPipeline.setBountyId("crfi", bounty_id);
                         console.log(passportGetBountyID);
                         console.log(passportGetBountyID.data);
                         return;
@@ -308,7 +308,7 @@ var PassportPipeline = {
                         return;
                     }   
                         const foundlings = passportMonitorFoundlings.data;
-                        this.fillFoundlings("crfi", foundlings);
+                        PassportPipeline.fillFoundlings("crfi", foundlings);
                         console.log(passportMonitorFoundlings);
                         console.log(passportMonitorFoundlings.data);
                         return;
