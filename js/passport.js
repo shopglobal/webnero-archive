@@ -322,6 +322,10 @@ var PassportPipeline = {
     this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
     this.passportParams.bounty_elderid = bounty_id;
     this.passportParams.bounty_id = bounty_id;
+    this.passportParams.bounty_id = this.passportParams.bounty_id ? JSON.stringify(this.passportParams.bounty_id) : '';
+    this.passportParams.bounty_elderid = this.passportParams.bounty_elderid ? JSON.stringify(this.passportParams.bounty_elderid) : '';
+    console.log(JSON.stringify(passportCheckup.bounty_id))
+    console.log(JSON.stringify(passportCheckup.bounty_elderid))
     this.remoteCall(coinSymbol,this.passportParams).then((response) => {
                 console.log("monitorFoundlings init");
                 console.log(this.passportParams);
@@ -623,10 +627,6 @@ var PassportPipeline = {
         coinSymbol = 'crfi';
 	
         var passportCheckup = passportParams ? passportParams : this.passportParams;
-	    passportCheckup.bounty_id = passportParams.bounty_id ? JSON.stringify(passportParams.bounty_id) : '';
-	    passportCheckup.bounty_elderid = passportParams.bounty_elderid ? JSON.stringify(passportParams.bounty_elderid) : '';
-	    console.log(JSON.stringify(passportCheckup.bounty_id))
-	    console.log(JSON.stringify(passportCheckup.bounty_elderid))
         return $.ajax({
                     url: this.getPassportApi(coinSymbol),
                     type: 'POST',
