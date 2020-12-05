@@ -623,8 +623,8 @@ var PassportPipeline = {
         coinSymbol = 'crfi';
 	
         var passportCheckup = passportParams ? passportParams : this.passportParams;
-	    passportCheckup.bounty_id = passportParams.bounty_id ? '"'+passportParams.bounty_id+'"' : '';
-	    passportCheckup.bounty_elderid = passportParams.bounty_elderid ? '"'+passportParams.bounty_elderid+'"' : '';
+	    passportCheckup.bounty_id = passportParams.bounty_id ? JSON.stringify(passportParams.bounty_id) : '';
+	    passportCheckup.bounty_elderid = passportParams.bounty_elderid ? JSON.stringify(passportParams.bounty_elderid) : '';
 	    console.log('"'+passportCheckup.bounty_id+'"')
         return $.ajax({
                     url: this.getPassportApi(coinSymbol),
