@@ -316,9 +316,9 @@ var PassportPipeline = {
     this.passportParams.method = 'monitor_foundlings';
     let modified_bounty_id = '"'+bounty_id+'"';
     console.log("bounty_id at monitor_foundlings"+modified_bounty_id);
-    let modified_bounty_elderid = '"'+data.bounty_elderid+'"';
+    let modified_bounty_elderid = '"'+JSON.parse(data.bounty_elderid)+'"';
     console.log("bounty_id at monitor_foundlings"+modified_bounty_elderid);
-    console.log("bounty_id data"+data);
+    console.log(JSON.parse(data));
     this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
     this.passportParams.bounty_elderid = modified_bounty_id;
     this.passportParams.bounty_id = modified_bounty_id;
