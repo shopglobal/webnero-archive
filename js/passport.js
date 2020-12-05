@@ -264,7 +264,7 @@ var PassportPipeline = {
 	if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
         };
-        return sessionStorage.getItem("bounty_id");
+        return sessionStorage.getItem("bounty_elderid");
     },
     getBountyID: function(coinSymbol){
         console.log("getBountyID");
@@ -316,7 +316,7 @@ var PassportPipeline = {
     this.passportParams.method = 'monitor_foundlings';
     this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
     this.passportParams.bounty_elderid = bounty_id;
-    this.passportParams.elderid = bounty_id;
+    this.passportParams.bounty_id = bounty_id;
     this.remoteCall(coinSymbol,this.passportParams).then((response) => {
                 console.log("monitorFoundlings init");
                 console.log(this.passportParams);
