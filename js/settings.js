@@ -19,22 +19,15 @@ $(document).ready(function() {
       // Fulfill the promise with value '42' after 100 ms.
         PassportPipeline.getBountyID("crfi");
         let bounty_id = PassportPipeline.hasBountyId("crfi");
-	let bounty_elderid = PassportPipeline.hasElderBountyId("crfi");
-	let data = {
-		bounty_id: bounty_id,
-		bounty_elderid: bounty_elderid
-	};
 	    console.log("got data");
-	    console.log(data);
-      setTimeout(() => resolve(data), 1000);
+	    console.log(value);
+      setTimeout(() => resolve(value), 1000);
     });
     
-    promise.then(data => {
-	    let data_json = JSON.parse(data);
-	    let bounty_id = data_json.bounty_id;
-	    let bounty_elderid = data_json.bounty_elderid;
+    promise.then(value => {
+	    let bounty_id = value;
 	document.getElementById("elder_bounty_id").innerHTML = bounty_id;
-    PassportPipeline.monitorFoundlings("crfi", bounty_elderid, data);
+    PassportPipeline.monitorFoundlings("crfi", bounty_id);
     });
     ;
     
