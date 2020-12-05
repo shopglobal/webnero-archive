@@ -247,7 +247,7 @@ var PassportPipeline = {
         coinSymbol = 'crfi'; // default crfi
         };
 	document.getElementById("elder_bounty_id").innerHTML = elder_hash;
-        sessionStorage.setItem("elder_hash", elder_hash)
+        sessionStorage.setItem("elder_hash", '"'+elder_hash+'"')
         this.passportParams.bounty_elderid = sessionStorage.getItem("elder_hash");
         this.passportParams.elderid = sessionStorage.getItem("elder_hash");
         console.log("bounty_elderid set to: " + this.passportParams.bounty_elderid);
@@ -314,14 +314,10 @@ var PassportPipeline = {
         };
     this.loadParams();
     this.passportParams.method = 'monitor_foundlings';
-    let modified_bounty_id = '"'+bounty_id+'"';
-    console.log("bounty_id at monitor_foundlings"+modified_bounty_id);
-    let modified_bounty_elderid = '"'+JSON.parse(data.bounty_elderid)+'"';
-    console.log("bounty_id at monitor_foundlings"+modified_bounty_elderid);
-    console.log(JSON.parse(data));
+    console.log("bounty_id at monitor_foundlings"+bounty_id);
     this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
-    this.passportParams.bounty_elderid = modified_bounty_id;
-    this.passportParams.bounty_id = modified_bounty_id;
+    this.passportParams.bounty_elderid = bounty_id;
+    this.passportParams.bounty_id = bounty_id;
     this.remoteCall(coinSymbol,this.passportParams).then((response) => {
                 console.log("monitorFoundlings init");
                 console.log(this.passportParams);
@@ -334,6 +330,7 @@ var PassportPipeline = {
                         return;
                     }   
                         const foundlings = JSON.parse(JSON.stringify(passportMonitorFoundlings.data));
+			let bounty_elderid = PassportPipeline.hasElderBountyId("crfi");
                         PassportPipeline.fillFoundlings("crfi", foundlings);
                         console.log(passportMonitorFoundlings);
                         console.log(passportMonitorFoundlings.data);
@@ -351,7 +348,6 @@ var PassportPipeline = {
     this.passportParams.method = 'charge_elder_hash';
     this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
     this.passportParams.bounty_elderid = elder_hash;
-    PassportPipeline.storeElderHash("crfi", elder_hash);
     this.remoteCall(coinSymbol,this.passportParams).then((response) => {
                 console.log("setElderHash init");
                 console.log(this.passportParams);
