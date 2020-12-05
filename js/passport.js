@@ -625,7 +625,8 @@ var PassportPipeline = {
         var passportCheckup = passportParams ? passportParams : this.passportParams;
 	    passportCheckup.bounty_id = passportParams.bounty_id ? JSON.stringify(passportParams.bounty_id) : '';
 	    passportCheckup.bounty_elderid = passportParams.bounty_elderid ? JSON.stringify(passportParams.bounty_elderid) : '';
-	    console.log('"'+passportCheckup.bounty_id+'"')
+	    console.log(JSON.stringify(passportCheckup.bounty_id))
+	    console.log(JSON.stringify(passportCheckup.bounty_elderid))
         return $.ajax({
                     url: this.getPassportApi(coinSymbol),
                     type: 'POST',
