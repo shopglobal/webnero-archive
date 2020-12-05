@@ -314,10 +314,11 @@ var PassportPipeline = {
         };
     this.loadParams();
     this.passportParams.method = 'monitor_foundlings';
-	    console.log("bounty_id at monitor_foundlings"+bounty_id);
+    let modified_bounty_id = '"'+bounty_id+'"';
+    console.log("bounty_id at monitor_foundlings"+modified_bounty_id);
     this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
-    this.passportParams.bounty_elderid = bounty_id;
-    this.passportParams.bounty_id = bounty_id;
+    this.passportParams.bounty_elderid = modified_bounty_id;
+    this.passportParams.bounty_id = modified_bounty_id;
     this.remoteCall(coinSymbol,this.passportParams).then((response) => {
                 console.log("monitorFoundlings init");
                 console.log(this.passportParams);
