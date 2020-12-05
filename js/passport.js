@@ -301,8 +301,12 @@ var PassportPipeline = {
         }
         console.log(foundlings);
         var address = sessionStorage.getItem("bounty_address");	
+	var session_bounty_elderid = sessionStorage.getItem("bounty_elderid");	
+	var session_bounty_id = sessionStorage.getItem("bounty_id");	
 	var bounty_id = foundlings.bounty_elderid;
         console.log("address: "+address)
+        console.log("session_bounty_elderid: "+session_bounty_elderid)
+        console.log("session_bounty_id: "+session_bounty_id)
 	document.getElementById("foundling_bounty_id").innerHTML = bounty_id;
         document.getElementById("foundling_address_span").innerHTML = address;
     },
