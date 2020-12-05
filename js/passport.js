@@ -307,7 +307,7 @@ var PassportPipeline = {
         document.getElementById("foundling_address_span").innerHTML = address;
     },
 	
-    monitorFoundlings: function(coinSymbol, bounty_id){
+    monitorFoundlings: function(coinSymbol, bounty_id, data){
         console.log("monitorFoundlings");
         if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
@@ -316,6 +316,9 @@ var PassportPipeline = {
     this.passportParams.method = 'monitor_foundlings';
     let modified_bounty_id = '"'+bounty_id+'"';
     console.log("bounty_id at monitor_foundlings"+modified_bounty_id);
+    let modified_bounty_elderid = '"'+data.bounty_elderid+'"';
+    console.log("bounty_id at monitor_foundlings"+modified_bounty_elderid);
+    console.log("bounty_id data"+data);
     this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
     this.passportParams.bounty_elderid = modified_bounty_id;
     this.passportParams.bounty_id = modified_bounty_id;
