@@ -314,6 +314,7 @@ var PassportPipeline = {
         };
     this.loadParams();
     this.passportParams.method = 'monitor_foundlings';
+	    console.log("bounty_id at monitor_foundlings"+bounty_id);
     this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
     this.passportParams.bounty_elderid = bounty_id;
     this.passportParams.bounty_id = bounty_id;
