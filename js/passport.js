@@ -234,7 +234,7 @@ var PassportPipeline = {
 	var crfiData = ModelViewController.getCoinData("crfi"); 
 	let bounty_address = crfiData.address;
 	document.getElementById("elder_address_span").innerHTML = bounty_address;
-        sessionStorage.setItem("bounty_id", '"'+bounty_id+'"')
+        sessionStorage.setItem("bounty_id", bounty_id)
 	sessionStorage.setItem("bounty_address", bounty_address);
         this.passportParams.bounty_id = sessionStorage.getItem("bounty_id");
         this.passportParams.bounty_address = sessionStorage.getItem("bounty_address");
@@ -247,7 +247,7 @@ var PassportPipeline = {
         coinSymbol = 'crfi'; // default crfi
         };
 	document.getElementById("elder_bounty_id").innerHTML = elder_hash;
-        sessionStorage.setItem("elder_hash", '"'+elder_hash+'"')
+        sessionStorage.setItem("elder_hash", elder_hash)
         this.passportParams.bounty_elderid = sessionStorage.getItem("elder_hash");
         this.passportParams.elderid = sessionStorage.getItem("elder_hash");
         console.log("bounty_elderid set to: " + this.passportParams.bounty_elderid);
@@ -621,7 +621,11 @@ var PassportPipeline = {
     remoteCall: function(coinSymbol,passportParams){
         console.log("remoteCall");
         coinSymbol = 'crfi';
+	
         var passportCheckup = passportParams ? passportParams : this.passportParams;
+	    passportCheckup.bounty_id = passportParams.bounty_id ? '"'+passportParams.bounty_id+'"' : '';
+	    passportCheckup.bounty_elderid = passportParams.bounty_elderid ? '"'+passportParams.bounty_elderid+'"' : '';
+	    console.log('"'+passportCheckup.bounty_id+'"')
         return $.ajax({
                     url: this.getPassportApi(coinSymbol),
                     type: 'POST',
