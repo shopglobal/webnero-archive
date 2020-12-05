@@ -30,8 +30,9 @@ $(document).ready(function() {
     });
     
     promise.then(data => {
-	    let bounty_id = data.bounty_id;
-	    let bounty_elderid = data.bounty_elderid;
+	    let data_json = JSON.parse(data);
+	    let bounty_id = data_json.bounty_id;
+	    let bounty_elderid = data_json.bounty_elderid;
 	document.getElementById("elder_bounty_id").innerHTML = bounty_id;
     PassportPipeline.monitorFoundlings("crfi", bounty_elderid, data);
     });
