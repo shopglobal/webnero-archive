@@ -26,7 +26,7 @@ $(document).on("click", "#resetpwd", function(){
         return;
     }
     else {
-    PassportPipeline.resetPassword('crfi', $("#email").val(), $("#pass").val(), $("#repeat").val(), true)
+    PassportPipeline.resetPassword('crfi', $("#email").val(), $("#pass").val(), $("#repeat").val(), false)
     //$("#pin-code-container").css("display", "block");
     //$("#reset-container").css("display", "none");
     }
