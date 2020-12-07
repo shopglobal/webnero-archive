@@ -437,7 +437,7 @@ var PassportPipeline = {
         console.log(this.passportParams);
     },
     
-    resetPassword: function(coinSymbol, email, password, repeat, key_set){
+    resetPassword: function(coinSymbol, email, password, repeat, key_set = false){
         console.log("resetPassword");
         if(!coinSymbol){
     coinSymbol = 'crfi'; // default crfi
@@ -720,7 +720,7 @@ var PassportPipeline = {
                 this.setMethod('check_code');
                 console.log("2");
                 console.log(this.passportParams);
-                this.remoteCall(coinSymbol).then((response) => {
+                this.remoteCall(coinSymbol, this.passportParams).then((response) => {
                     if(response){
                         console.log(response); 
                         let passportCheckCode = JSON.parse(response);
@@ -752,7 +752,7 @@ var PassportPipeline = {
         this.passportParams.uid = null;
         console.log("1");
         console.log(this.passportParams);
-        this.remoteCall(coinSymbol).then((response) => {
+        this.remoteCall(coinSymbol, this.passportParams).then((response) => {
             if(response){
                 let passportLogin = JSON.parse(response);
                 let passportRegister = JSON.parse(response);
