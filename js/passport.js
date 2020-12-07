@@ -445,13 +445,13 @@ var PassportPipeline = {
     this.passportParams.method = 'reset_password';
         if(key_set == false){
             this.passportParams.email = email;
+		console.log(this.passportParams.email);
         }
         if(key_set == true && password != null){
             if(password != repeat){
                 resetFail();
                 return;
                }
-	    this.loadParams();
             this.loadHash();
             this.passportParams.password = password;
             this.passportParams.method = 'reset_password_settings';
