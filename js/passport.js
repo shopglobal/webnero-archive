@@ -442,7 +442,6 @@ var PassportPipeline = {
         if(!coinSymbol){
     coinSymbol = 'crfi'; // default crfi
     };
-    this.loadParams();
     this.passportParams.method = 'reset_password';
         if(key_set == false){
             this.passportParams.email = email;
@@ -452,6 +451,7 @@ var PassportPipeline = {
                 resetFail();
                 return;
                }
+	    this.loadParams();
             this.loadHash();
             this.passportParams.password = password;
             this.passportParams.method = 'reset_password_settings';
