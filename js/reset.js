@@ -26,7 +26,7 @@ $(document).on("click", "#resetpwd", function(){
         return;
     }
     else {
-    PassportPipeline.resetPassword('crfi', $("#email").val(), $("#pass").val(), $("#repeat").val(), false)
+    PassportPipeline.resetPassword('crfi', $("#email").val(), $("#pass").val(), $("#repeat").val(), true)
     //$("#pin-code-container").css("display", "block");
     //$("#reset-container").css("display", "none");
     }
@@ -61,7 +61,7 @@ $(document).on("click", "#reset", function(){
         return;
     }
     else {
-    PassportPipeline.resetPassword('crfi', $("#email").val())
+    PassportPipeline.resetPassword('crfi', $("#email").val(), "", "", false)
     //$("#pin-code-container").css("display", "block");
     //$("#reset-container").css("display", "none");
     }
