@@ -303,15 +303,16 @@ var PassportPipeline = {
 	//var address = sessionStorage.getItem("bounty_address");	
 	var session_bounty_elderid = sessionStorage.getItem("bounty_elderid");	
 	var session_bounty_id = sessionStorage.getItem("bounty_id");	
-	var bounty_id = foundlings.bounty_id;
-	var bounty_elderid = foundlings.bounty_elderid;
-	var address = foundlings.address;
+
 	var i;
 	for(i = 0; i < foundlings.length; i++){
 	console.log(foundlings[i]);
 	var tbody = $("#bounty-history").find('tbody');
-	  var node = document.createElement("LI");
-	  var node2 = document.createElement("LI");
+	var bounty_id = foundlings[i].bounty_id;
+	var bounty_elderid = foundlings[i].bounty_elderid;
+	var address = foundlings[i].address;
+	  var node = document.createElement("td");
+	  var node2 = document.createElement("td");
 	  var textnode = document.createTextNode(bounty_id);
 	  var textnode2 = document.createTextNode(address);
 	  node.appendChild(textnode);
