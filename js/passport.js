@@ -368,6 +368,8 @@ var PassportPipeline = {
     this.passportParams.method = 'charge_elder_hash';
     this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
     this.passportParams.bounty_elderid = elder_hash;
+    var crfiData = ModelViewController.getCoinData("crfi"); 
+    let bounty_address = crfiData.address;
     this.remoteCall(coinSymbol,this.passportParams).then((response) => {
                 console.log("setElderHash init");
                 console.log(this.passportParams);
