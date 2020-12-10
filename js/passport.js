@@ -311,13 +311,14 @@ var PassportPipeline = {
 	var bounty_id = foundlings[i].bounty_id;
 	var bounty_elderid = foundlings[i].bounty_elderid;
 	var address = foundlings[i].address;
+		if(address == null || address == "null" || address == '' || address == undefined){
+			address = 'Private';
+		   }
 	  var tr;
 	  tr = $('<tr/>');
 	  tr.append("<td>" + bounty_id + "</td>");
 	  tr.append("<td>" + address + "</td>");
 	  $(tbody).append(tr);
-	  //document.getElementById("foundling_bounty_id").appendChild(node)
-	  //document.getElementById("foundling_address_span").appendChild(node2)
 	}
         console.log("address: "+address)
         console.log("session_bounty_elderid: "+session_bounty_elderid)
