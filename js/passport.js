@@ -316,9 +316,9 @@ var PassportPipeline = {
 	  var textnode = document.createTextNode(bounty_id);
 	  var textnode2 = document.createTextNode(address);
 	  node.appendChild(textnode);
-	  node.appendChild(textnode2);
+	  node2.appendChild(textnode2);
 	  document.getElementById("foundling_bounty_id").appendChild(node)
-	  document.getElementById("foundling_address_span").appendChild(node)
+	  document.getElementById("foundling_address_span").appendChild(node2)
 	}
         console.log("address: "+address)
         console.log("session_bounty_elderid: "+session_bounty_elderid)
