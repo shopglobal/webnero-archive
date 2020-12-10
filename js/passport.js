@@ -300,15 +300,28 @@ var PassportPipeline = {
         coinSymbol = 'crfi'; // default crfi
         }
         console.log(foundlings);
-        var address = sessionStorage.getItem("bounty_address");	
+	//var address = sessionStorage.getItem("bounty_address");	
 	var session_bounty_elderid = sessionStorage.getItem("bounty_elderid");	
 	var session_bounty_id = sessionStorage.getItem("bounty_id");	
-	var bounty_id = foundlings.bounty_elderid;
+	var bounty_id = foundlings.bounty_id;
+	var bounty_elderid = foundlings.bounty_elderid;
+	var address = foundlings.address;
+	var i;
+	for(i = 0; i < foundlings.length; i++){
+	console.log(foundlings[i]);
+	var tbody = $("#bounty-history").find('tbody');
+	  var node = document.createElement("LI");
+	  var node2 = document.createElement("LI");
+	  var textnode = document.createTextNode(bounty_id);
+	  var textnode2 = document.createTextNode(address);
+	  node.appendChild(textnode);
+	  node.appendChild(textnode2);
+	  document.getElementById("foundling_bounty_id").appendChild(node)
+	  document.getElementById("foundling_address_span").appendChild(node)
+	}
         console.log("address: "+address)
         console.log("session_bounty_elderid: "+session_bounty_elderid)
         console.log("session_bounty_id: "+session_bounty_id)
-	document.getElementById("foundling_bounty_id").innerHTML = bounty_id;
-        document.getElementById("foundling_address_span").innerHTML = address;
     },
 	
     monitorFoundlings: function(coinSymbol, bounty_id, data){
@@ -320,10 +333,8 @@ var PassportPipeline = {
     this.passportParams.method = 'monitor_foundlings';
     console.log("bounty_id at monitor_foundlings"+bounty_id);
     this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
-    console.log(JSON.stringify(this.passportParams.bounty_id))
-    console.log(JSON.stringify(this.passportParams.bounty_elderid))
-    this.passportParams.bounty_id = JSON.stringify(bounty_id);
-    this.passportParams.bounty_elderid = JSON.stringify(bounty_id);
+    this.passportParams.bounty_id = JSON.stringify(this.passportParams.bounty_id);
+    this.passportParams.bounty_elderid = JSON.stringify(this.passportParams.bounty_id);
     console.log(JSON.stringify(this.passportParams.bounty_id))
     console.log(JSON.stringify(this.passportParams.bounty_elderid))
     this.remoteCall(coinSymbol,this.passportParams).then((response) => {
@@ -337,8 +348,8 @@ var PassportPipeline = {
                         console.log(passportMonitorFoundlings);
                         return;
                     }   
-                        const foundlings = JSON.parse(JSON.stringify(passportMonitorFoundlings.data));
 			let bounty_elderid = PassportPipeline.hasElderBountyId("crfi");
+			var foundlings = passportMonitorFoundlings.data.foundlings;
                         PassportPipeline.fillFoundlings("crfi", foundlings);
                         console.log(passportMonitorFoundlings);
                         console.log(passportMonitorFoundlings.data);
