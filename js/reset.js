@@ -33,13 +33,12 @@ $(document).on("click", "#resetpwd", function(){
 });
 
 $(document).on("click", "#reset-code", function(){
-    
     hideAlert("success");
     hideAlert("danger");
     var newPin = $("#pin").val();
 
     if(!Utils.isValidCode(newPin)){
-        showAlert("danger", "Please correct your pin to consist of only 5 digits");
+        showAlert("danger", "Invalid code, please provide 5 digit");
         return;
     }
 
@@ -47,10 +46,9 @@ $(document).on("click", "#reset-code", function(){
         showAlert("danger", "Pincode mismatch");
         return;
     }
-    $("#confirm-msg").text("Are you sure you want to update your security pin code?");
+    $("#confirm-msg").text("Are you sure you want to update your 5 digit securit pin code?");
     $("#confirm-ok").data("operation", "password");
     $("#confirm-modal").modal();
-
 });
 
 $(document).on("click", "#reset", function(){
