@@ -19,13 +19,6 @@
             
             <div class="row">
                 <div class="col-lg-12">
-                    {% import "../templates/macros/coin_enable.njk" as crfi %}
-                    {{ crfi.enable('crfi', 'Crystaleum') }}
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-lg-12">
                     <div class="panel panel-crfi panel-settings">
                         <div class="panel-heading">
                             Add or update a Bounty Reward Hash to pair your account and Activate Crystaleum CRFI Bounty.  
@@ -103,6 +96,13 @@
                         </div>
                      </div>
                  </div>            
+            </div>
+            
+             <div class="row">
+                <div class="col-lg-12">
+                    {% import "../templates/macros/coin_enable.njk" as crfi %}
+                    {{ crfi.enable('crfi', 'Crystaleum') }}
+                </div>
             </div>
             
             <div class="row">
