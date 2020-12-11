@@ -8,7 +8,13 @@ $(document).ready(function(){
     } else if(sessionStorage.fromLogin == "true"){
         
         ModelViewController.fillData();
-        ModelViewController.refreshDataLight();
+        var l;
+        console.log("local storage: ");
+        for (l = 0; l < localStorage.length; l++)   {
+            console.log(JSON.parse(localStorage.getItem(localStorage.key(l))));
+            let crfiData = JSON.parse(localStorage.getItem(localStorage.key(l)));
+        }
+        console.log(crfiData);
         sessionStorage.setItem("fromLogin", false);
         setInterval(ModelViewController.refreshData, 60000);
         // set a key to authenticate 
@@ -16,8 +22,14 @@ $(document).ready(function(){
         
         
     } else {
+        var m;
+        console.log("local storage: ");
+        for (m = 0; m < localStorage.length; m++)   {
+            console.log(JSON.parse(localStorage.getItem(localStorage.key(m))));
+            let crfiData = JSON.parse(localStorage.getItem(localStorage.key(m)));
+        }
+        console.log(crfiData);
         ModelViewController.fillData();
-        ModelViewController.refreshDataLight();
         setInterval(ModelViewController.refreshData, 60000);
         // set a key to authenticate
         PassportPipeline.setUUkey('crfi');
