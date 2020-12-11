@@ -67,7 +67,7 @@ var ModelViewController = {
     //coins: { coin: ['crfi', 'etnx','etnxp','ltnx','gldx'] },
     coins: { coin: 'crfi' },
     setCoinData: function(coin, data){
-        return localStorage.setItem(coin+"Data", data);       
+        return localStorage.setItem("crystalID-"+coin+"Data", data);       
     },
     getCoinData: function(coin){
         if(!coin){
@@ -82,17 +82,17 @@ var ModelViewController = {
             }
             switch (coin) {
                 case 'crfi':
-                    return whichData("crfiData");
+                    return whichData("crystalID-crfiData");
                 case 'etnx':
-                    return whichData("etnxData");
+                    return whichData("crystalID-etnxData");
                 case 'etnxp':
-                    return whichData("etnxpData");
+                    return whichData("crystalID-etnxpData");
                 case 'etnxc':
-                    return whichData("etnxcData");
+                    return whichData("crystalID-etnxcData");
                 case 'ltnx':
-                    return whichData("ltnxData");
+                    return whichData("crystalID-ltnxData");
                 case 'gldx':
-                    return whichData("gldxData");
+                    return whichData("crystalID-gldxData");
                 default:
                     break;
             }; 
