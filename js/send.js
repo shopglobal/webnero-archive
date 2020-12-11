@@ -1,4 +1,7 @@
 $(document).ready(function(){
+    if(!PassportPipeline.hasValidSession()){ 
+        location.href = "login.html";
+    }
     ModelViewController.fillData();
     document.getElementById('crfi-send').click();
 });
