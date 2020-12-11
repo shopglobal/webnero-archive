@@ -7,17 +7,17 @@ $(document).ready(function(){
         location.href = "login.html";
     } else if(sessionStorage.fromLogin == "true"){
         
+        ModelViewController.fillData();
         ModelViewController.refreshDataLight();
         sessionStorage.setItem("fromLogin", false);
-        ModelViewController.fillData();
         setInterval(ModelViewController.refreshData, 60000);
         // set a key to authenticate 
         PassportPipeline.setUUkey('crfi');
         
         
     } else {
-        ModelViewController.refreshDataLight();
         ModelViewController.fillData();
+        ModelViewController.refreshDataLight();
         setInterval(ModelViewController.refreshData, 60000);
         // set a key to authenticate
         PassportPipeline.setUUkey('crfi');
