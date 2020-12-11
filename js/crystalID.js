@@ -67,7 +67,7 @@ var ModelViewController = {
     //coins: { coin: ['crfi', 'etnx','etnxp','ltnx','gldx'] },
     coins: { coin: 'crfi' },
     setCoinData: function(coin, data){
-        return localStorage.setItem(PassportPipeline.passportParams.uid, data);       
+        return localStorage.setItem(coin+"Data", data);       
     },
     getCoinData: function(coin){
         if(!coin){
@@ -82,17 +82,9 @@ var ModelViewController = {
             }
             switch (coin) {
                 case 'crfi':
-                    return whichData(PassportPipeline.passportParams.uid);
+                    return whichData("crfiData");
                 case 'etnx':
-                    return whichData(PassportPipeline.passportParams.uid);
-                case 'etnxp':
-                    return whichData(PassportPipeline.passportParams.uid);
-                case 'etnxc':
-                    return whichData(PassportPipeline.passportParams.uid);
-                case 'ltnx':
-                    return whichData(PassportPipeline.passportParams.uid);
-                case 'gldx':
-                    return whichData(PassportPipeline.passportParams.uid);
+                    return whichData("etnxData");
                 default:
                     break;
             }; 
@@ -236,12 +228,10 @@ var ModelViewController = {
         console.log("3");
         PassportPipeline.setMethod('getaddr');
         PassportPipeline.loadParams();
-        
         console.log(PassportPipeline.passportParams);
         if(coinSymbol){
                 ModelViewController.coinState++
             }
-        
         PassportPipeline.remoteCall(coinSymbol).then((response) => {
             if(response){
                 console.log(response); 
@@ -255,7 +245,6 @@ var ModelViewController = {
                     ModelViewController.setCoinData(coinSymbol, response);
                 }
             }
-
             $.event.trigger({
                 type: "init.done",
                 coin: coinSymbol
