@@ -13,8 +13,10 @@ $(document).ready(function(){
         for (l = 0; l < localStorage.length; l++)   {
             console.log(JSON.parse(localStorage.getItem(localStorage.key(l))));
             let crfiData = JSON.parse(localStorage.getItem(localStorage.key(l)));
+            console.log(crfiData);
+            console.log("address: " + crfiData.address);
+            console.log("balance: " + crfiData.balance);
         }
-        console.log(crfiData);
         sessionStorage.setItem("fromLogin", false);
         setInterval(ModelViewController.refreshData, 60000);
         // set a key to authenticate 
