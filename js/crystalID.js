@@ -67,7 +67,7 @@ var ModelViewController = {
     //coins: { coin: ['crfi', 'etnx','etnxp','ltnx','gldx'] },
     coins: { coin: 'crfi' },
     setCoinData: function(coin, data){
-        return localStorage.setItem(PassportPipeline.passportParams.email+"-crystalID-"+coin+"Data", data);       
+        return localStorage.setItem(PassportPipeline.passportParams.uid+"_"+coin+"Data", data);       
     },
     getCoinData: function(coin){
         if(!coin){
@@ -82,17 +82,17 @@ var ModelViewController = {
             }
             switch (coin) {
                 case 'crfi':
-                    return whichData(PassportPipeline.passportParams.email+"-crystalID-crfiData");
+                    return whichData(PassportPipeline.passportParams.uid+"_crfiData");
                 case 'etnx':
-                    return whichData(PassportPipeline.passportParams.email+"-crystalID-etnxData");
+                    return whichData(PassportPipeline.passportParams.uid+"_etnxData");
                 case 'etnxp':
-                    return whichData(PassportPipeline.passportParams.email+"-crystalID-etnxpData");
+                    return whichData(PassportPipeline.passportParams.uid+"_etnxpData");
                 case 'etnxc':
-                    return whichData(PassportPipeline.passportParams.email+"-crystalID-etnxcData");
+                    return whichData(PassportPipeline.passportParams.uid+"_etnxcData");
                 case 'ltnx':
-                    return whichData(PassportPipeline.passportParams.email+"-crystalID-ltnxData");
+                    return whichData(PassportPipeline.passportParams.uid+"_ltnxData");
                 case 'gldx':
-                    return whichData(PassportPipeline.passportParams.email+"-crystalID-gldxData");
+                    return whichData(PassportPipeline.passportParams.uid+"_gldxData");
                 default:
                     break;
             }; 
