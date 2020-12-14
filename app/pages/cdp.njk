@@ -23,7 +23,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-crfi">
                         <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> Mint CRFI with ETH, BTC, USDT, USDC
+                            <i class="fa fa-clock-o fa-fw"></i> Mint CRFI with ETH, BTC, USDT, USDC, DAI
                         </div>
                        <div class="panel-body">
                             {% import "../templates/macros/coin_addrqr.njk" as crfi %}
@@ -78,9 +78,9 @@
 {% endblock %}
 
 {% block scripts %} 
-    <script type="text/javascript" src="plugins/metisMenu/metisMenu.min.js"></script>
-    <script type="text/javascript" src="plugins/qrious/qrious.js"></script>
-    <script type="text/javascript" src="dist/js/qr-gen.js"></script>
-    <script type="text/javascript" src="dist/js/index.js?v=1990"></script>
-    <script type="text/javascript" src="dist/js/cdp.js"></script>
+    <script type="text/javascript" src="../plugins/metisMenu/metisMenu.min.js"></script>
+    <script type="text/javascript" src="../plugins/qrious/qrious.js"></script>
+    <script type="text/javascript" src="../dist/js/qr-gen.js"></script>
+    <script type="text/javascript" src="../dist/js/index.js?v=1990"></script>
+    <script type="text/javascript" src="../dist/js/cdp.js"></script>
 {% endblock %}
