@@ -13,9 +13,9 @@
                 <div class="login-panel panel panel-crfi">
                     <div class="panel-heading" style="text-align: center">
                         {% if (coin) %}
-                        <img height="250px" width="250px" src="img/{{coin}}.png" />
+                        <img height="250px" width="250px" src="../img/{{coin}}.png" />
                         {% else %}
-                        <img height="250px" width="250px" src="img/crfi.png" />
+                        <img height="250px" width="250px" src="../img/crfi.png" />
                         {% endif %}
                     </div>
                     <div class="panel-body">
@@ -59,6 +59,6 @@
 </div>
 {% endblock %}
 {% block scripts %} 
-    <script type="text/javascript" src="dist/js/login-utils.js?v=2027"></script>
-    <script type="text/javascript" src="dist/js/reset.js?v=2028"></script>
+    <script type="text/javascript" src="../dist/js/login-utils.js?v=2027"></script>
+    <script type="text/javascript" src="../dist/js/reset.js?v=2028"></script>
 {% endblock %}
