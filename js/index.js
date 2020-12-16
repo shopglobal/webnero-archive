@@ -11,8 +11,7 @@ $(document).ready(function(){
         var l;
         console.log("local storage: ");
         for (l = 0; l < localStorage.length; l++)   {
-            console.log(JSON.parse(localStorage.getItem(localStorage.key(l))));
-            let crfiData = JSON.parse(localStorage.getItem(localStorage.key(l)));
+            let crfiData = localStorage.getItem(localStorage.key(l);
             console.log(crfiData);
             console.log("address: " + crfiData.address);
             console.log("balance: " + crfiData.balance);
@@ -27,7 +26,6 @@ $(document).ready(function(){
         var m;
         console.log("local storage: ");
          for (m = 0; m < localStorage.length; m++)   {
-            console.log(JSON.parse(localStorage.getItem(localStorage.key(m))));
             let crfiData = JSON.parse(localStorage.getItem(localStorage.key(m)));
             console.log(crfiData);
             console.log("address: " + crfiData.address);
