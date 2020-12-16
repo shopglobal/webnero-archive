@@ -5,10 +5,11 @@
             <div class="col-xs-3">
                 <img height="70px" width="70px" src="../img/{{ coin }}.png" />
             </div>
+            <div class="col-xs-3" id="status-area"></div>
             {% block css %}
             <link rel="stylesheet" href="../css/card.css" />
             {% endblock %}
-            <div class="col-xs-9 text-right">
+            <div class="col-xs-6 text-right">
                 <div id="{{ coin }}-balance" class="huge align"></div>
                 <div class="align">CRFI Vault Balance</div>
             </div>
