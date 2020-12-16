@@ -9,6 +9,9 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-4 col-md-12 item">
+                  {% block css %}
+                  <link rel="stylesheet" href="../css/card_index.css" />
+                  {% endblock %}
                     {% import "../templates/macros/coin_card.njk" as crfi %}
                     {{ crfi.card('crfi') }}
                 </div>
