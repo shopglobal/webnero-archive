@@ -24,303 +24,274 @@ for (m = 0; m < sessionStorage.length; m++) {
 })();
 
 
-const LiquidButton = class LiquidButton {
-  constructor(svg) {
-    const options = svg.dataset;
-    this.id = this.constructor.id || (this.constructor.id = 1);
-    this.constructor.id++;
-    this.xmlns = 'http://www.w3.org/2000/svg';
-    this.tension = options.tension * 1 || 0.4;
-    this.width   = options.width   * 1 || 200;
-    this.height  = options.height  * 1 ||  50;
-    this.margin  = options.margin  ||  40;
-    this.hoverFactor = options.hoverFactor || -0.1;
-    this.gap     = options.gap     ||   5;
-    this.debug   = options.debug   || false;
-    this.forceFactor = options.forceFactor || 0.2;
-    this.color1 = options.color1 || '#36DFE7';
-    this.color2 = options.color2 || '#8F17E1';
-    this.color3 = options.color3 || '#BF09E6';
-    this.textColor = options.textColor || '#000000';
-    this.text = options.text    || 'Button';
-    this.svg = svg;
-    this.layers = [{
-      points: [],
-      viscosity: 0.5,
-      mouseForce: 100,
-      forceLimit: 2,
-    },{
-      points: [],
-      viscosity: 0.8,
-      mouseForce: 150,
-      forceLimit: 3,
-    }];
-    for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
-      const layer = this.layers[layerIndex];
-      layer.viscosity = options['layer-' + (layerIndex + 1) + 'Viscosity'] * 1 || layer.viscosity;
-      layer.mouseForce = options['layer-' + (layerIndex + 1) + 'MouseForce'] * 1 || layer.mouseForce;
-      layer.forceLimit = options['layer-' + (layerIndex + 1) + 'ForceLimit'] * 1 || layer.forceLimit;
-      layer.path = document.createElementNS(this.xmlns, 'path');
-      this.svg.appendChild(layer.path);
-    }
-    this.wrapperElement = options.wrapperElement || document.body;
-    if (!this.svg.parentElement) {
-      this.wrapperElement.append(this.svg);
-    }
+$(function() {
+const setupExamples = () => {
+  // -----------------
+  // with border -----
+  // -----------------
+  new NoiseButton({
+    element: document.querySelector(".noise_btn--border"),
+    polygon: "30, 0, 30, 0",
+    wavesPos: { x: 0, y: 0 },
+    borderWidth: 5,
+    borderColor: "0xFFFFFF",
+    backgroundAlpha: 1,
+    wavesAlpha: 0.8,
+    waves: "https://cdn.rawgit.com/av-dev/noise-button/930cbd38/Z3hB7It.png",
+    displacementMap:
+      "https://cdn.rawgit.com/av-dev/noise-button/930cbd38/displace-map.jpeg"
+  });
 
-    this.svgText = document.createElementNS(this.xmlns, 'text');
-    this.svgText.setAttribute('x', '50%');
-    this.svgText.setAttribute('y', '50%');
-    this.svgText.setAttribute('dy', ~~(this.height / 8) + 'px');
-    this.svgText.setAttribute('font-size', ~~(this.height / 3));
-    this.svgText.style.fontFamily = 'sans-serif';
-    this.svgText.setAttribute('text-anchor', 'middle');
-    this.svgText.setAttribute('pointer-events', 'none');
-    this.svg.appendChild(this.svgText);
+  // -----------------
+  // without border --
+  // -----------------
+  new NoiseButton({
+    element: document.querySelector(".noise_btn--bg"),
+    wavesPos: { x: 0, y: 0.3 },
+    polygon: "30, 0, 30, 0",
+    backgroundColor: "0xFFFFFF",
+    backgroundAlpha: 0
+  });
+};
 
-    this.svgDefs = document.createElementNS(this.xmlns, 'defs')
-    this.svg.appendChild(this.svgDefs);
+class NoiseButton extends PIXI.Application {
+  constructor(options) {
+    super({
+      autoStart: false,
+      autoResize: true,
+      transparent: true
+    });
 
-    this.touches = [];
-    this.noise = options.noise || 0;
-    document.body.addEventListener('touchstart', this.touchHandler);
-    document.body.addEventListener('touchmove', this.touchHandler);
-    document.body.addEventListener('touchend', this.clearHandler);
-    document.body.addEventListener('touchcancel', this.clearHandler);
-    this.svg.addEventListener('mousemove', this.mouseHandler);
-    this.svg.addEventListener('mouseout', this.clearHandler);
-    this.initOrigins();
-    this.animate();
+    this.options = Object.assign(
+      {
+        backgroundColor: 0x4875cc,
+        backgroundAlpha: 1,
+        polygon: "0, 0, 0, 0",
+        borderColor: 0x4875cc,
+        borderWidth: 0,
+        wavesAlpha: 1,
+        displacementScale: { x: 30, y: 50 },
+        displacementMap: "http://digitalfreepen.com/images/2017/whitenoise.png"
+      },
+      options
+    );
+
+    // example of the received polygon string
+    // '30, 0, 30, 0'
+    this.polygon = this.options.polygon
+      .replace(/\s/g, "")
+      .split(",")
+      .map(el => {
+        const number = el | 0;
+        return number > this.options.borderWidth
+          ? number - this.options.borderWidth / 2
+          : number;
+      });
+
+    this.offset = 20;
+    this.animate = false;
+    return this.createCanvas();
   }
 
-  get mouseHandler() {
-    return (e) => {
-      this.touches = [{
-        x: e.offsetX,
-        y: e.offsetY,
-        force: 1,
-      }];
+  async createCanvas() {
+    this.options.element.classList.add("noise-container");
+    this.view.classList.add("noise-canvas");
+    this.options.element.appendChild(this.view);
+
+    this.container = new PIXI.Container();
+    this.stage.addChild(this.container);
+
+    if(this.options.waves) {
+      const wavesTexture = await this.loadTexture(this.options.waves);
+      this.waves = new PIXI.Sprite(wavesTexture);
+    }
+    
+    this.noiseSprite = PIXI.Sprite.fromImage(this.options.displacementMap);
+
+    this.setSize();
+    this.addGraphics();
+    this.bindEvents();
+    this.render();
+    this.options.element.classList.add("canvas-ready");
+  }
+  static debounce(func, context, wait, immediate) {
+    let timeout;
+
+    return () => {
+      const args = arguments;
+
+      const later = () => {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+
+      const callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
     };
   }
+  addGraphics() {
+    this.container.addChild(this.getPolygon(true));
 
-  get touchHandler() {
-    return (e) => {
-      this.touches = [];
-      const rect = this.svg.getBoundingClientRect();
-      for (let touchIndex = 0; touchIndex < e.changedTouches.length; touchIndex++) {
-        const touch = e.changedTouches[touchIndex];
-        const x = touch.pageX - rect.left;
-        const y = touch.pageY - rect.top;
-        if (x > 0 && y > 0 && x < this.svgWidth && y < this.svgHeight) {
-          this.touches.push({x, y, force: touch.force || 1});
-        }
+    if (this.options.waves) this.drawWaves();
+
+    const rect = new PIXI.Graphics();
+    rect.beginFill(0, 0);
+    rect.drawRect(0, 0, this.width, this.width);
+
+    this.container.addChild(rect);
+    this.container.addChild(this.getPolygon());
+    this.setMask();
+    this.addFilter();
+  }
+
+  setMask() {
+    let mask = this.getPolygon();
+    this.stage.addChild(mask);
+    this.container.mask = mask;
+  }
+
+  drawWaves() {
+    this.waves.alpha = 1 - this.options.wavesAlpha;
+
+    this.waves.y = this.height * this.options.wavesPos.y;
+    this.container.addChild(this.waves);
+
+    this.waves.width = this.waves.height = this.width;
+  }
+
+  setSize() {
+    const parentWidth = this.options.element.offsetWidth;
+    const parentHeight = this.options.element.offsetHeight;
+
+    this.width = parentWidth + this.offset * 2;
+    this.height = parentHeight + this.offset * 2;
+
+    if (this.oldWidth !== this.width) {
+      this.renderer.resize(this.width, this.height);
+      this.oldWidth = this.width;
+      return true;
+    } else return false;
+  }
+
+  resize = NoiseButton.debounce(
+    async () => {
+      if (this.setSize()) {
+        this.container.removeChildren(0, this.container.children.length - 1);
+
+        this.addGraphics();
+        this.createTimeLine();
+        this.render();
       }
-      e.preventDefault();
-    };
-  }
+    },
+    this,
+    100
+  );
 
-  get clearHandler() {
-    return (e) => {
-      this.touches = [];
-    };
-  }
-
-  get raf() {
-    return this.__raf || (this.__raf = (
-      window.requestAnimationFrame ||
-      window.webkitRequestAnimationFrame ||
-      window.mozRequestAnimationFrame ||
-      function(callback){ setTimeout(callback, 10)}
-    ).bind(window));
-  }
-
-  distance(p1, p2) {
-    return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
-  }
-
-  update() {
-    for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
-      const layer = this.layers[layerIndex];
-      const points = layer.points;
-      for (let pointIndex = 0; pointIndex < points.length; pointIndex++) {
-        const point = points[pointIndex];
-        const dx = point.ox - point.x + (Math.random() - 0.5) * this.noise;
-        const dy = point.oy - point.y + (Math.random() - 0.5) * this.noise;
-        const d = Math.sqrt(dx * dx + dy * dy);
-        const f = d * this.forceFactor;
-        point.vx += f * ((dx / d) || 0);
-        point.vy += f * ((dy / d) || 0);
-        for (let touchIndex = 0; touchIndex < this.touches.length; touchIndex++) {
-          const touch = this.touches[touchIndex];
-          let mouseForce = layer.mouseForce;
-          if (
-            touch.x > this.margin &&
-            touch.x < this.margin + this.width &&
-            touch.y > this.margin &&
-            touch.y < this.margin + this.height
-          ) {
-            mouseForce *= -this.hoverFactor;
-          }
-          const mx = point.x - touch.x;
-          const my = point.y - touch.y;
-          const md = Math.sqrt(mx * mx + my * my);
-          const mf = Math.max(-layer.forceLimit, Math.min(layer.forceLimit, (mouseForce * touch.force) / md));
-          point.vx += mf * ((mx / md) || 0);
-          point.vy += mf * ((my / md) || 0);
-        }
-        point.vx *= layer.viscosity;
-        point.vy *= layer.viscosity;
-        point.x += point.vx;
-        point.y += point.vy;
-      }
-      for (let pointIndex = 0; pointIndex < points.length; pointIndex++) {
-        const prev = points[(pointIndex + points.length - 1) % points.length]; 
-        const point = points[pointIndex];
-        const next = points[(pointIndex + points.length + 1) % points.length];
-        const dPrev = this.distance(point, prev);
-        const dNext = this.distance(point, next);
-
-        const line = {
-          x: next.x - prev.x,
-          y: next.y - prev.y,
-        };
-        const dLine = Math.sqrt(line.x * line.x + line.y * line.y);
-
-        point.cPrev = {
-          x: point.x - (line.x / dLine) * dPrev * this.tension,
-          y: point.y - (line.y / dLine) * dPrev * this.tension,
-        };
-        point.cNext = {
-          x: point.x + (line.x / dLine) * dNext * this.tension,
-          y: point.y + (line.y / dLine) * dNext * this.tension,
-        };
-      }
-    }
-  }
-
-  animate() {
-    this.raf(() => {
-      this.update();
-      this.draw();
-      this.animate();
+  loadTexture(src) {
+    return new Promise(resolve => {
+      const loader = new PIXI.loaders.Loader();
+      loader.add("waves", src);
+      loader.load((loader, resources) => resolve(resources.waves.texture));
     });
   }
 
-  get svgWidth() {
-    return this.width + this.margin * 2;
+  addFilter() {
+    this.container.addChild(this.noiseSprite);
+
+    this.noiseFilter = new PIXI.filters.DisplacementFilter(this.noiseSprite);
+    this.container.filters = [this.noiseFilter];
+    this.noiseSprite.position.x = -this.width;
+    this.noiseSprite.width = this.width * 3;
+    this.noiseFilter.scale.x = 0;
+    this.noiseFilter.scale.y = 0;
   }
 
-  get svgHeight() {
-    return this.height + this.margin * 2;
+  createTimeLine() {
+    this.timeline = new TimelineMax({
+      onUpdate: this::this.render,
+      paused: true,
+      onStart: () => (this.animate = true),
+      onComplete: () => (this.animate = false)
+    })
+
+      .to(this.noiseFilter.scale, 0.2, {
+        x: this.options.displacementScale.x,
+        y: this.options.displacementScale.y
+      })
+
+      .fromTo(
+        this.noiseSprite,
+        0.5,
+        { x: -(this.noiseSprite.width * 0.66) },
+        { x: 0 },
+        "-=.2"
+      )
+
+      .to(this.noiseFilter.scale, 0.2, { x: 0, y: 0 }, "-=.2");
   }
 
-  draw() {
-    for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
-      const layer = this.layers[layerIndex];
-      if (layerIndex === 1) {
-        if (this.touches.length > 0) {
-          while (this.svgDefs.firstChild) {
-            this.svgDefs.removeChild(this.svgDefs.firstChild);
-          }
-          for (let touchIndex = 0; touchIndex < this.touches.length; touchIndex++) {
-            const touch = this.touches[touchIndex];
-            const gradient = document.createElementNS(this.xmlns, 'radialGradient');
-            gradient.id = 'liquid-gradient-' + this.id + '-' + touchIndex;
-            const start = document.createElementNS(this.xmlns, 'stop');
-            start.setAttribute('stop-color', this.color3);
-            start.setAttribute('offset', '0%');
-            const stop = document.createElementNS(this.xmlns, 'stop');
-            stop.setAttribute('stop-color', this.color2);
-            stop.setAttribute('offset', '100%');
-            gradient.appendChild(start);
-            gradient.appendChild(stop);
-            this.svgDefs.appendChild(gradient);
-            gradient.setAttribute('cx', touch.x / this.svgWidth);
-            gradient.setAttribute('cy', touch.y / this.svgHeight);
-            gradient.setAttribute('r', touch.force);
-            layer.path.style.fill = 'url(#' + gradient.id + ')';
-          }
-        } else {
-          layer.path.style.fill = this.color2;
-        }
-      } else {
-        layer.path.style.fill = this.color1;
+  play() {
+    if (!this.animate) this.timeline.play(0);
+  }
+
+  bindEvents() {
+    this.createTimeLine();
+    this.options.element.addEventListener("mouseenter", this::this.play);
+    window.addEventListener("resize", this::this.resize);
+  }
+
+  getPolygon(background) {
+    const points = this.polygon;
+    const graphics = new PIXI.Graphics();
+    const width = this.width - this.offset * 2 - this.options.borderWidth;
+    const height = this.height - this.offset * 2 - this.options.borderWidth;
+
+    graphics.position.x = this.offset + this.options.borderWidth / 2;
+    graphics.position.y = this.offset + this.options.borderWidth / 2;
+
+    const arrayLines = [
+      [0, points[0]],
+      [points[0], 0],
+      [width - points[1], 0],
+      [width, points[1]],
+      [width, height - points[2]],
+      [width - points[2], height],
+      [points[3], height],
+      [0, height - points[3]],
+      [0, points[0]]
+    ];
+
+    graphics.lineStyle(this.options.borderWidth, this.options.borderColor);
+
+    graphics.beginFill(
+      this.options.backgroundColor,
+      background ? 1 - this.options.backgroundAlpha : 0
+    );
+
+    for (let i = 0, prevCoords = []; i < arrayLines.length; i++) {
+      if (
+        prevCoords.length &&
+        prevCoords[0] === arrayLines[i][0] &&
+        prevCoords[1] === arrayLines[i][1]
+      )
+        continue;
+      if (i === 0) {
+        graphics.moveTo(arrayLines[i][0], arrayLines[i][1]);
+        prevCoords = arrayLines[i];
+        continue;
       }
-      const points = layer.points;
-      const commands = [];
-      commands.push('M', points[0].x, points[0].y);
-      for (let pointIndex = 1; pointIndex < points.length; pointIndex += 1) {
-        commands.push('C',
-          points[(pointIndex + 0) % points.length].cNext.x,
-          points[(pointIndex + 0) % points.length].cNext.y,
-          points[(pointIndex + 1) % points.length].cPrev.x,
-          points[(pointIndex + 1) % points.length].cPrev.y,
-          points[(pointIndex + 1) % points.length].x,
-          points[(pointIndex + 1) % points.length].y
-        );
-      }
-      commands.push('Z');
-      layer.path.setAttribute('d', commands.join(' '));
+
+      prevCoords = arrayLines[i];
+      graphics.lineTo(arrayLines[i][0], arrayLines[i][1]);
     }
-    this.svgText.textContent = this.text;
-    this.svgText.style.fill = this.textColor;
-  }
 
-  createPoint(x, y) {
-    return {
-      x: x,
-      y: y,
-      ox: x,
-      oy: y,
-      vx: 0,
-      vy: 0,
-    };
-  }
+    graphics.endFill();
 
-  initOrigins() {
-    this.svg.setAttribute('width', this.svgWidth);
-    this.svg.setAttribute('height', this.svgHeight);
-    for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
-      const layer = this.layers[layerIndex];
-      const points = [];
-      for (let x = ~~(this.height / 2); x < this.width - ~~(this.height / 2); x += this.gap) {
-        points.push(this.createPoint(
-          x + this.margin,
-          this.margin
-        ));
-      }
-      for (let alpha = ~~(this.height * 1.25); alpha >= 0; alpha -= this.gap) {
-        const angle = (Math.PI / ~~(this.height * 1.25)) * alpha;
-        points.push(this.createPoint(
-          Math.sin(angle) * this.height / 2 + this.margin + this.width - this.height / 2,
-          Math.cos(angle) * this.height / 2 + this.margin + this.height / 2
-        ));
-      }
-      for (let x = this.width - ~~(this.height / 2) - 1; x >= ~~(this.height / 2); x -= this.gap) {
-        points.push(this.createPoint(
-          x + this.margin,
-          this.margin + this.height
-        ));
-      }
-      for (let alpha = 0; alpha <= ~~(this.height * 1.25); alpha += this.gap) {
-        const angle = (Math.PI / ~~(this.height * 1.25)) * alpha;
-        points.push(this.createPoint(
-          (this.height - Math.sin(angle) * this.height / 2) + this.margin - this.height / 2,
-          Math.cos(angle) * this.height / 2 + this.margin + this.height / 2
-        ));
-      }
-      layer.points = points;
-    }
+    return graphics;
   }
 }
 
-
-const redraw = () => {
-  button.initOrigins();
-};
-
-const buttons = document.getElementsByClassName('liquid-button');
-for (let buttonIndex = 0; buttonIndex < buttons.length; buttonIndex++) {
-  const button = buttons[buttonIndex];
-  button.liquidButton = new LiquidButton(button);
-}
+setupExamples()
+});
