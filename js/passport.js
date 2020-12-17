@@ -162,9 +162,9 @@ var PassportPipeline = {
 	    			console.log("setBlockchainInfo init");
 				this.setBlockchainInfo("crfi", status, height, txcount, top_block_hash);
 				if(daemonStatus != "OK"){
-				    $("#daemon-status").css("background-color", "FireBrick");
+				    $("#daemon-status").css("color", "FireBrick");
 				} else {
-				    $("#daemon-status").css("background-color", "SpringGreen");
+				    $("#daemon-status").css("color", "SpringGreen");
 				}
 				return;
 			}
