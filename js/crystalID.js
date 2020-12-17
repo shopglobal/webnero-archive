@@ -2,6 +2,17 @@
 //collapses the sidebar on window resize.
 // Sets the min-height of #page-wrapper to window size
 $(function() {
+    let message;
+    function statusMessage(message){
+        ModelViewController.refreshDataLight();
+            $('#status-area').flash_message({
+            text: message,
+            how: 'html'
+            });
+    };
+    message = 'Folio Updated!';
+    setInterval( function() { statusMessage(message); }, 10000 );
+    
     $(window).bind("load resize", function() {
         var topOffset = 50;
         var width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
@@ -58,6 +69,7 @@ $.fn.flash_message = function(options) {
      });
   });
 };
+
 
 $(document).on("click", ".coin-selector", function(){
     if(!$(this).hasClass("btn-selected")){
