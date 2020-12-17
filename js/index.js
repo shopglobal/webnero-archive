@@ -7,7 +7,7 @@ $(document).ready(function(){
     function statusMessage(message){
             $('#status-area').flash_message({
             text: message,
-            how: 'append'
+            how: 'html'
             });
     };
 
