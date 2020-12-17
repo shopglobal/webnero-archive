@@ -126,14 +126,14 @@ var PassportPipeline = {
 //     },
     setBlockchainInfo: function(coinSymbol, status, height, txcount, top_block_hash){
         console.log("setBlockchainInfo");
-        sessionStorage.setItem("status", this.passportParams.status);
-            sessionStorage.setItem("top_block_hash", this.passportParams.top_block_hash);
-            sessionStorage.setItem("height", this.passportParams.height);
-            sessionStorage.setItem("txcount", this.passportParams.txcount);
+        sessionStorage.setItem("status", status);
+        sessionStorage.setItem("top_block_hash", top_block_hash);
+        sessionStorage.setItem("height", height);
+        sessionStorage.setItem("txcount", txcount);
         this.passportParams.status = sessionStorage.getItem("status");
-            this.passportParams.top_block_hash = sessionStorage.getItem("top_block_hash");
-            this.passportParams.height = sessionStorage.getItem("height");
-            this.passportParams.txcount = sessionStorage.getItem("txcount");
+        this.passportParams.top_block_hash = sessionStorage.getItem("top_block_hash");
+        this.passportParams.height = sessionStorage.getItem("height");
+        this.passportParams.txcount = sessionStorage.getItem("txcount");
         console.log("height: " + this.passportParams.height + " status: " + this.passportParams.status + " top_block_hash: " + this.passportParams.top_block_hash + " txcount: " + this.passportParams.txcount);
     },
 
@@ -155,12 +155,13 @@ var PassportPipeline = {
                 console.log(daemonStatus);
                 return;
                 }   
-                const status = daemonStatus.status;
-                const height = parseInt(daemonStatus.height);
-                const txcount = parseInt(daemonStatus.txcount);
-                const top_block_hash = daemonStatus.top_block_hash;
-                console.log(daemonStatus);
-                    console.log("setBlockchainInfo init");
+                const daemonData = daemonStatus.data;
+                const status = daemonData.status;
+                const height = parseInt(daemonData.height);
+                const txcount = parseInt(daemonData.txcount);
+                const top_block_hash = daemonData.top_block_hash;
+                console.log(daemonData);
+                console.log("setBlockchainInfo init");
                 this.setBlockchainInfo("crfi", status, height, txcount, top_block_hash);
                 if(daemonStatus != "OK"){
                     $("#daemon-status").css("color", "FireBrick");
