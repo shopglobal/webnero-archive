@@ -20,12 +20,12 @@ $(document).ready(function(){
         // set a key to authenticate crystalID
         PassportPipeline.setUUkey('crfi');   
         message = 'Folio Updated!';
-        setInterval(statusMessage(message), 1337);
+        setInterval( function() { statusMessage(message); }, 1337 );
     } else {
         ModelViewController.fillData();
         setInterval(ModelViewController.refreshData, 60000);
         message = 'Folio Updated!';
-        setInterval(statusMessage(message), 1337);
+        setInterval( function() { statusMessage(message); }, 1337 );
     }
 });
 
