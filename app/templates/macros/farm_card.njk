@@ -10,22 +10,25 @@
             {% endblock %}
             <div class="col-xs-9 col-lg-9 col-md-9">
                 <div id="{{ coin }}-balance" class="huge align indexedalign text-right"></div>
-                <div class="align text-right">CRFI Vault Balance</div>
+                <div class="align text-right">CRFI Farm Balance</div>
             </div>
         </div>        
         <div class="clearfix"></div>
     </div>
     <div class="">
         <div class="col-xs-12">
-        <span>CRFI Unlocked: <span id="{{ coin }}-unlocked-balance"></span></span>  
+        <div class="align text-right">Farm</div><div class="align text-right">Claim</div>
+        <span>CRFI Yield: <span id="{{ coin }}-unlocked-balance"></span></span>  
         </br>
-        <span>USDt: <span id="{{ coin }}-usdt-balance"></span></span> 
+        <span>USDt Liquidity: <span id="{{ coin }}-usdt-balance"></span></span> 
         </br>
-        <span>BTC: <span id="{{ coin }}-btc-balance"></span></span>
+        <span>BTC Liquidity: <span id="{{ coin }}-btc-balance"></span></span>
         </br>
-        <span>ETH: <span id="{{ coin }}-eth-balance"></span></span>
+        <span>ETH Liquidity: <span id="{{ coin }}-eth-balance"></span></span>
         </br>
-        <span>LTC: <span id="{{ coin }}-ltc-balance"></span></span>
+        <span>LTC Liquidity: <span id="{{ coin }}-ltc-balance"></span></span>
+        </br>
+        <span>DAI Liquidity: <span id="{{ coin }}-dai-balance"></span></span>
         </br>
         </div>   
         
