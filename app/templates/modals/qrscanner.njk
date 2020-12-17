@@ -1,0 +1,22 @@
+  <div class="modal fade" id="qr-modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="panel panel-crfi" style="margin-bottom: 0;">
+                <div class="panel-body" style="height: 200px">
+                    <div class="row" style="text-align: center;">
+                        <h1 id="confirm-header">Confirm</h1>
+                        <span id="confirm-msg"></span>
+                    </div>
+                    <div class="row" style="margin-top: 20px">
+                        <div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
+                        <canvas id="canvas" hidden></canvas>
+                        <div id="output" hidden>
+                          <div id="outputMessage">No QR code detected.</div>
+                          <div hidden><b>Data:</b> <span id="outputData"></span></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
