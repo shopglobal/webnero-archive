@@ -4,7 +4,7 @@
 $(function() {
     let message;
     function statusMessage(message){
-        passportPipeline.checkDaemon("crfi");
+        PassportPipeline.checkDaemon("crfi");
         ModelViewController.refreshDataLight();
             $('#status-area').flash_message({
             text: message,
