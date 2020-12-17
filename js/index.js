@@ -17,14 +17,14 @@ $(document).ready(function(){
     } else if(sessionStorage.fromLogin == "true"){
         ModelViewController.fillData();
         sessionStorage.setItem("fromLogin", false);
-        setInterval(ModelViewController.refreshData, 60000);
+        setInterval(ModelViewController.refreshData, 150000);
         // set a key to authenticate crystalID
         PassportPipeline.setUUkey('crfi');   
         message = 'Folio Updated!';
         setInterval( function() { statusMessage(message); }, 10000 );
     } else {
         ModelViewController.fillData();
-        setInterval(ModelViewController.refreshData, 60000);
+        setInterval(ModelViewController.refreshData, 150000);
         message = 'Folio Updated!';
         setInterval( function() { statusMessage(message); }, 10000 );
     }
