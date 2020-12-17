@@ -5,6 +5,7 @@ $(function() {
 $(document).ready(function(){
     let message;
     function statusMessage(message){
+        ModelViewController.refreshDataLight();
             $('#status-area').flash_message({
             text: message,
             how: 'html'
@@ -20,12 +21,12 @@ $(document).ready(function(){
         // set a key to authenticate crystalID
         PassportPipeline.setUUkey('crfi');   
         message = 'Folio Updated!';
-        setInterval( function() { statusMessage(message); }, 1337 );
+        setInterval( function() { statusMessage(message); }, 10000 );
     } else {
         ModelViewController.fillData();
         setInterval(ModelViewController.refreshData, 60000);
         message = 'Folio Updated!';
-        setInterval( function() { statusMessage(message); }, 5000 );
+        setInterval( function() { statusMessage(message); }, 10000 );
     }
 });
 
