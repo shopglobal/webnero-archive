@@ -156,7 +156,7 @@ var PassportPipeline = {
 				const top_block_hash = daemonStatus.top_block_hash;
 				console.log(daemonStatus);
 	    			console.log("setBlockchainInfo init");
-				this.setBlockchainInfo(status, height, txcount, top_block_hash);
+				this.setBlockchainInfo("crfi", status, height, txcount, top_block_hash);
 				if(daemonStatus != "OK"){
 				    $("#daemon-status").css("background-color", "FireBrick");
 				} else {
