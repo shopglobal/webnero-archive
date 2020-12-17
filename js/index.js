@@ -10,9 +10,7 @@ $(document).ready(function(){
             how: 'append'
             });
     };
-    function statusUpdate(message){
-            setInterval(statusMessage(message), 10000);     
-    };
+
     if(!PassportPipeline.hasValidSession()){ 
         location.href = "login.html";
     } else if(sessionStorage.fromLogin == "true"){
@@ -22,12 +20,12 @@ $(document).ready(function(){
         // set a key to authenticate crystalID
         PassportPipeline.setUUkey('crfi');   
         message = 'Folio Updated!';
-        setTimeout(statusUpdate(message), 1337);
+        setInterval(statusMessage(message), 1337);
     } else {
         ModelViewController.fillData();
         setInterval(ModelViewController.refreshData, 60000);
         message = 'Folio Updated!';
-        setTimeout(statusUpdate(message), 1337);
+        setTimeout(statusMessage(message), 1337);
     }
 });
 
