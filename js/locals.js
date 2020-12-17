@@ -23,9 +23,6 @@ for (m = 0; m < sessionStorage.length; m++) {
 }
 })();
 
-document.getElementsByClassName("liquid-button").addEventListener("click", function(event){
-  event.preventDefault();
-});
 
 const LiquidButton = class LiquidButton {
   constructor(svg) {
