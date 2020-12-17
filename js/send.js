@@ -1,9 +1,11 @@
 $(document).ready(function(){
+	
     if(!PassportPipeline.hasValidSession()){ 
         location.href = "login.html";
     }
-    ModelViewController.fillData();
-    document.getElementById('crfi-send').click();
+	let address_to_send = '';
+    	ModelViewController.fillData();
+    	document.getElementById('crfi-send').click();
 });
 
 
@@ -185,13 +187,18 @@ $(document).on("click", "#send", function(){
     }     
 });
 
-var video = document.createElement("video");
+    var video = document.createElement("video");
     var canvasElement = document.getElementById("canvas");
     var canvas = canvasElement.getContext("2d");
     var loadingMessage = document.getElementById("loadingMessage");
     var outputContainer = document.getElementById("output");
     var outputMessage = document.getElementById("outputMessage");
     var outputData = document.getElementById("outputData");
+    if(outputData != undefined){ 
+	    address_to_send = outputData;
+	    $("#receiver").html(address_to_send);
+	    $("#qr_modal").modal('hide');
+       };
 
     function drawLine(begin, end, color) {
       canvas.beginPath();
