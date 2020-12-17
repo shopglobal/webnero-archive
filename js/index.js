@@ -3,15 +3,6 @@ $(function() {
 });
 
 $(document).ready(function(){
-    let message;
-    function statusMessage(message){
-        ModelViewController.refreshDataLight();
-            $('#status-area').flash_message({
-            text: message,
-            how: 'html'
-            });
-    };
-
     if(!PassportPipeline.hasValidSession()){ 
         location.href = "login.html";
     } else if(sessionStorage.fromLogin == "true"){
