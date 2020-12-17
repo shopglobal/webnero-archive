@@ -7,6 +7,10 @@ var PassportPipeline = {
                     password: '',
                     code: '',
                     uid: '',
+		    height: 0,
+		    top_block_hash: '',
+		    status: '',
+	            txcount: 0,
                     unlocked_balance: 0, 
                     balance: 0,
                     crfi_address: "",
@@ -120,7 +124,50 @@ var PassportPipeline = {
 //         }
 //         console.log(monthDayDate);
 //     },
+    setBlockchainInfo: function(coinSymbol, status, height, txcount, top_block_hash){
+	    console.log("setBlockchainInfo");
+	    this.passportParams.status = status;
+            this.passportParams.top_block_hash = top_block_hash;
+            this.passportParams.height = height;
+            this.passportParams.txcount = txcount;
+	    console.log("height: " + height + " status: " + status + " top_block_hash: " + top_block_hash + " txcount: " + txcount);
+    },
+    checkDaemon: function(coinSymbol){
+	    console.log("checkDaemon");
+	    if(!coinSymbol){
+	    coinSymbol = 'crfi'; // default crfi
+	    };
+	    this.loadParams();
+	    this.passportParams.method = 'get_full_info';
+	    this.remoteCall(coinSymbol,this.passportParams).then((response) => {
+			console.log("checkDaemon init");
+			console.log(this.passportParams);
+			if(response){
+			    let daemonStatus = JSON.parse(response);
+			    if(daemonStatus.hasOwnProperty("error")){
+				let aindexError = daemonStatus.error;
+				$(".alert-danger").html(aindexError);
+				console.log(daemonStatus);
+				return;
+			    }   
+				const status = daemonStatus.status;
+				const height = parseInt(daemonStatus.height);
+				const txcount = parseInt(daemonStatus.txcount);
+				const top_block_hash = daemonStatus.top_block_hash;
+				console.log(daemonStatus);
+	    			console.log("setBlockchainInfo init");
+				this.setBlockchainInfo(status, height, txcount, top_block_hash);
+				if(daemonStatus != "OK"){
+				    $("#daemon-status").css("background-color", "FireBrick");
+				} else {
+				    $("#daemon-status").css("background-color", "SpringGreen");
+				}
+				return;
+			}
+		    });
 
+
+    },
     saveParams: function(){
         console.log("saveParams");
         // Store account in session
