@@ -1,87 +1,87 @@
 var PassportPipeline = {
 
-    passportParams: { 
-                    method: '',
-                    username: '',
-                    email: '',
-                    password: '',
-                    code: '',
-                    uid: '',
-		    height: 0,
-		    top_block_hash: '',
-		    status: '',
-	            txcount: 0,
-                    unlocked_balance: 0, 
-                    balance: 0,
-                    crfi_address: "",
-                    crfi_stake_reward_address: "",
-                    crfi_farming_reward_address: "",
-                    usdt_address: "",
-                    btc_address: "",
-                    eth_address: "",
-                    ltc_address: "",
-                    locked_blocks: 0,
-                    usdt_value: 0,
-                    btc_value: 0,
-                    eth_value: 0,
-                    ltc_value: 0,
-                    coinAPIurl: "",
-                    timestamp: '',
-                    date: '',
-                    name: '',
-                    addr: '',
-                    pid: '',
-                    receiver: '',
-                    txid: '',
-                    link: '',
-                    notes: '',
-                    lost_password: '',
-                    telegramID: '',
-	            telegram_username: '',
-                    telegramUsername: '',
-                    bounty_id: '',
-	            discord: '',
-		    twitter: '',
-		    crfi_address: '',
-		    crfi_payment_id: '',
-		    btc_address: '',
-		    btc_payment_id: '',
-		    eth_address: '',
-		    eth_payment_id: '',
-		    ltc_address: '',
-		    ltc_payment_id: '',
-		    usdt_address: '',
-		    usdt_payment_id: '',
-		    usdc_address: '',
-		    usdc_payment_id: '',  
-                    address: '',  
-                    secret: '',
-                    aindex: 0,
-                    beneficiary_name: "",
-                    beneficiary_email: "",
-                    beneficiary_address: "",
-                    beneficiary_aindex: 0,
-	    	    elderid: '',
-	    	    bounty_id: '',
-	    	    verified: '',
-	    	    claimed: '',
-	    	    claims: '',
-	    	    bounty_balance: '',
-	    	    bounty_elderid: '',
-	    	    bounty_title: '',
-	    	    bounty_link: '',
-	    	    bounty_notes: '',
-	    	    bounty_status: '',
-	    	    bounty_reward: '',
-	    	    bounty_address: '',
-	    	    bounty_verified: '',
-	    	    passporturi: '',		
-	    	    selfieuri: '',
-	    	    kyc_verified: '',
-	    	    bounty_twitter: '',
-	    	    bounty_telegram: '',
-	    	    bounty_facebook: ''	    	    
-    },
+    passportParams: {
+             method: '',
+             username: '',
+             email: '',
+             password: '',
+             code: '',
+             uid: '',
+             height: 0,
+             top_block_hash: '',
+             status: '',
+             txcount: 0,
+             unlocked_balance: 0,
+             balance: 0,
+             crfi_address: "",
+             crfi_stake_reward_address: "",
+             crfi_farming_reward_address: "",
+             usdt_address: "",
+             btc_address: "",
+             eth_address: "",
+             ltc_address: "",
+             locked_blocks: 0,
+             usdt_value: 0,
+             btc_value: 0,
+             eth_value: 0,
+             ltc_value: 0,
+             coinAPIurl: "",
+             timestamp: '',
+             date: '',
+             name: '',
+             addr: '',
+             pid: '',
+             receiver: '',
+             txid: '',
+             link: '',
+             notes: '',
+             lost_password: '',
+             telegramID: '',
+             telegram_username: '',
+             telegramUsername: '',
+             bounty_id: '',
+             discord: '',
+             twitter: '',
+             crfi_address: '',
+             crfi_payment_id: '',
+             btc_address: '',
+             btc_payment_id: '',
+             eth_address: '',
+             eth_payment_id: '',
+             ltc_address: '',
+             ltc_payment_id: '',
+             usdt_address: '',
+             usdt_payment_id: '',
+             usdc_address: '',
+             usdc_payment_id: '',
+             address: '',
+             secret: '',
+             aindex: 0,
+             beneficiary_name: "",
+             beneficiary_email: "",
+             beneficiary_address: "",
+             beneficiary_aindex: 0,
+             elderid: '',
+             bounty_id: '',
+             verified: '',
+             claimed: '',
+             claims: '',
+             bounty_balance: '',
+             bounty_elderid: '',
+             bounty_title: '',
+             bounty_link: '',
+             bounty_notes: '',
+             bounty_status: '',
+             bounty_reward: '',
+             bounty_address: '',
+             bounty_verified: '',
+             passporturi: '',
+             selfieuri: '',
+             kyc_verified: '',
+             bounty_twitter: '',
+             bounty_telegram: '',
+             bounty_facebook: ''
+ },
     
     myCipher: Crypto.encryptData(Crypto.salt()),
     myDecipher: Crypto.decryptData(Crypto.salt()),
@@ -125,52 +125,51 @@ var PassportPipeline = {
 //         console.log(monthDayDate);
 //     },
     setBlockchainInfo: function(coinSymbol, status, height, txcount, top_block_hash){
-	    console.log("setBlockchainInfo");
-	    sessionStorage.setItem("status", this.passportParams.status);
+        console.log("setBlockchainInfo");
+        sessionStorage.setItem("status", this.passportParams.status);
             sessionStorage.setItem("top_block_hash", this.passportParams.top_block_hash);
             sessionStorage.setItem("height", this.passportParams.height);
             sessionStorage.setItem("txcount", this.passportParams.txcount);
-	    this.passportParams.status = sessionStorage.getItem("status");
+        this.passportParams.status = sessionStorage.getItem("status");
             this.passportParams.top_block_hash = sessionStorage.getItem("top_block_hash");
             this.passportParams.height = sessionStorage.getItem("height");
             this.passportParams.txcount = sessionStorage.getItem("txcount");
-	    console.log("height: " + this.passportParams.height + " status: " + this.passportParams.status + " top_block_hash: " + this.passportParams.top_block_hash + " txcount: " + this.passportParams.txcount);
+        console.log("height: " + this.passportParams.height + " status: " + this.passportParams.status + " top_block_hash: " + this.passportParams.top_block_hash + " txcount: " + this.passportParams.txcount);
     },
+
     checkDaemon: function(coinSymbol){
-	    console.log("checkDaemon");
-	    if(!coinSymbol){
-	    coinSymbol = 'crfi'; // default crfi
-	    };
-	    this.loadParams();
-	    this.passportParams.method = 'get_full_info';
-	    this.remoteCall(coinSymbol,this.passportParams).then((response) => {
-			console.log("checkDaemon init");
-			console.log(this.passportParams);
-			if(response){
-			    let daemonStatus = JSON.parse(response);
-			    if(daemonStatus.hasOwnProperty("error")){
-				let aindexError = daemonStatus.error;
-				$(".alert-danger").html(aindexError);
-				console.log(daemonStatus);
-				return;
-			    }   
-				const status = daemonStatus.status;
-				const height = parseInt(daemonStatus.height);
-				const txcount = parseInt(daemonStatus.txcount);
-				const top_block_hash = daemonStatus.top_block_hash;
-				console.log(daemonStatus);
-	    			console.log("setBlockchainInfo init");
-				this.setBlockchainInfo("crfi", status, height, txcount, top_block_hash);
-				if(daemonStatus != "OK"){
-				    $("#daemon-status").css("color", "FireBrick");
-				} else {
-				    $("#daemon-status").css("color", "SpringGreen");
-				}
-				return;
-			}
-		    });
-
-
+        console.log("checkDaemon");
+        if(!coinSymbol){
+        coinSymbol = 'crfi'; // default crfi
+        };
+        this.loadParams();
+        this.passportParams.method = 'get_full_info';
+        this.remoteCall(coinSymbol,this.passportParams).then((response) => {
+            console.log("checkDaemon init");
+            console.log(this.passportParams);
+            if(response){
+                let daemonStatus = JSON.parse(response);
+                if(daemonStatus.hasOwnProperty("error")){
+                let aindexError = daemonStatus.error;
+                $(".alert-danger").html(aindexError);
+                console.log(daemonStatus);
+                return;
+                }   
+                const status = daemonStatus.status;
+                const height = parseInt(daemonStatus.height);
+                const txcount = parseInt(daemonStatus.txcount);
+                const top_block_hash = daemonStatus.top_block_hash;
+                console.log(daemonStatus);
+                    console.log("setBlockchainInfo init");
+                this.setBlockchainInfo("crfi", status, height, txcount, top_block_hash);
+                if(daemonStatus != "OK"){
+                    $("#daemon-status").css("color", "FireBrick");
+                } else {
+                    $("#daemon-status").css("color", "SpringGreen");
+                }
+                return;
+            }
+            });
     },
     saveParams: function(){
         console.log("saveParams");
@@ -243,7 +242,7 @@ var PassportPipeline = {
         console.log("name: "+name)
         console.log("email: "+email)
         console.log("address: "+address)
-	document.getElementById("name_span").innerHTML = name;
+    document.getElementById("name_span").innerHTML = name;
         document.getElementById("email_span").innerHTML = email;
         document.getElementById("address_span").innerHTML = address;
     },
@@ -282,11 +281,11 @@ var PassportPipeline = {
         if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
         };
-	var crfiData = ModelViewController.getCoinData("crfi"); 
-	let bounty_address = crfiData.address;
-	document.getElementById("elder_address_span").innerHTML = bounty_address;
+    var crfiData = ModelViewController.getCoinData("crfi"); 
+    let bounty_address = crfiData.address;
+    document.getElementById("elder_address_span").innerHTML = bounty_address;
         sessionStorage.setItem("bounty_id", bounty_id)
-	sessionStorage.setItem("bounty_address", bounty_address);
+    sessionStorage.setItem("bounty_address", bounty_address);
         this.passportParams.bounty_id = sessionStorage.getItem("bounty_id");
         this.passportParams.bounty_address = sessionStorage.getItem("bounty_address");
         console.log("setBountyId to: " + this.passportParams.bounty_id);
@@ -297,7 +296,7 @@ var PassportPipeline = {
         if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
         };
-	document.getElementById("elder_bounty_id").innerHTML = elder_hash;
+    document.getElementById("elder_bounty_id").innerHTML = elder_hash;
         sessionStorage.setItem("elder_hash", elder_hash)
         this.passportParams.bounty_elderid = sessionStorage.getItem("elder_hash");
         this.passportParams.elderid = sessionStorage.getItem("elder_hash");
@@ -305,14 +304,14 @@ var PassportPipeline = {
     },
     hasBountyId: function(coinSymbol){
         console.log("hasBountyId");
-	if(!coinSymbol){
+    if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
         };
         return sessionStorage.getItem("bounty_id");
     },
     hasElderBountyId: function(coinSymbol){
         console.log("hasBountyId");
-	if(!coinSymbol){
+    if(!coinSymbol){
         coinSymbol = 'crfi'; // default crfi
         };
         return sessionStorage.getItem("bounty_elderid");
@@ -351,31 +350,31 @@ var PassportPipeline = {
         coinSymbol = 'crfi'; // default crfi
         }
         console.log(foundlings);
-	var address = sessionStorage.getItem("bounty_address");	
-	var session_bounty_elderid = sessionStorage.getItem("bounty_elderid");	
-	var session_bounty_id = sessionStorage.getItem("bounty_id");	
+    var address = sessionStorage.getItem("bounty_address"); 
+    var session_bounty_elderid = sessionStorage.getItem("bounty_elderid");  
+    var session_bounty_id = sessionStorage.getItem("bounty_id");    
 
-	var i;
-	for(i = 0; i < foundlings.length; i++){
-	console.log(foundlings[i]);
-	var tbody = $("#bounty-history").find('tbody');
-	var bounty_id = foundlings[i].bounty_id;
-	var bounty_elderid = foundlings[i].bounty_elderid;
-	//var address = foundlings[i].address;
-		if(address == null || address == "null" || address == '' || address == undefined){
-			address = 'Private';
-		   }
-	  var tr;
-	  tr = $('<tr/>');
-	  tr.append("<td>" + bounty_id + "</td>");
-	  tr.append("<td>" + address + "</td>");
-	  $(tbody).append(tr);
-	}
+    var i;
+    for(i = 0; i < foundlings.length; i++){
+    console.log(foundlings[i]);
+    var tbody = $("#bounty-history").find('tbody');
+    var bounty_id = foundlings[i].bounty_id;
+    var bounty_elderid = foundlings[i].bounty_elderid;
+    //var address = foundlings[i].address;
+        if(address == null || address == "null" || address == '' || address == undefined){
+            address = 'Private';
+           }
+      var tr;
+      tr = $('<tr/>');
+      tr.append("<td>" + bounty_id + "</td>");
+      tr.append("<td>" + address + "</td>");
+      $(tbody).append(tr);
+    }
         console.log("address: "+address)
         console.log("session_bounty_elderid: "+session_bounty_elderid)
         console.log("session_bounty_id: "+session_bounty_id)
     },
-	
+    
     monitorFoundlings: function(coinSymbol, bounty_id, data){
         console.log("monitorFoundlings");
         if(!coinSymbol){
@@ -400,8 +399,8 @@ var PassportPipeline = {
                         console.log(passportMonitorFoundlings);
                         return;
                     }   
-			let bounty_elderid = PassportPipeline.hasElderBountyId("crfi");
-			var foundlings = passportMonitorFoundlings.data.foundlings;
+            let bounty_elderid = PassportPipeline.hasElderBountyId("crfi");
+            var foundlings = passportMonitorFoundlings.data.foundlings;
                         PassportPipeline.fillFoundlings("crfi", foundlings);
                         console.log(passportMonitorFoundlings);
                         console.log(passportMonitorFoundlings.data);
@@ -435,7 +434,7 @@ var PassportPipeline = {
                         return;
                     }   
                         //this.saveParams();
-			PassportPipeline.storeElderHash("crfi", elder_hash);
+            PassportPipeline.storeElderHash("crfi", elder_hash);
                         console.log(passportAddElder);
                         return;
                 }
@@ -512,7 +511,7 @@ var PassportPipeline = {
     this.passportParams.method = 'reset_password';
         if(key_set == false){
             this.passportParams.email = email;
-		console.log(this.passportParams.email);
+        console.log(this.passportParams.email);
         }
         if(key_set == true && password != null){
             if(password != repeat){
@@ -692,7 +691,7 @@ var PassportPipeline = {
     remoteCall: function(coinSymbol,passportParams){
         console.log("remoteCall");
         coinSymbol = 'crfi';
-	
+    
         var passportCheckup = passportParams ? passportParams : this.passportParams;
         return $.ajax({
                     url: this.getPassportApi(coinSymbol),
