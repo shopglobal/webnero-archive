@@ -23,7 +23,7 @@ for (m = 0; m < sessionStorage.length; m++) {
 }
 })();
 
-document.getElementByClassName("liquid-button").addEventListener("click", function(event){
+document.getElementsByClassName("liquid-button").addEventListener("click", function(event){
   event.preventDefault();
 });
 
