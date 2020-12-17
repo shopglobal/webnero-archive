@@ -1,16 +1,20 @@
     {% block css %}
       <link rel="stylesheet" href="../css/qrscan.css" />
     {% endblock %}
-            <div class="modal fade" id="qr-modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="panel panel-crfi" style="margin-bottom: 0;">
-                <div class="panel-body" style="height: 200px">
-                    <div class="row" style="text-align: center;">
-                        <h1 id="confirm-header">Confirm</h1>
-                        <span id="confirm-msg"></span>
-                    </div>
-                    <div class="row" style="margin-top: 20px">
+<!-- Modal HTML -->
+<div id="success_modal" class="modal fade">
+	<div class="modal-send modal-send-success">
+		<div class="modal-content">
+			<div class="modal-header justify-content-center">
+				<div class="icon-box">
+					<i class="material-icons">&#xE876;</i>
+				</div>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body text-center">
+				<h4>Send CRFI by Scanning a QR Code!</h4>	
+				<p id="transaction-success"></p>
+                        <div class="row" style="margin-top: 20px">
                         <div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
                         <canvas id="canvas" hidden></canvas>
                         <div id="output" hidden>
@@ -18,8 +22,8 @@
                           <div hidden><b>Data:</b> <span id="outputData"></span></div>
                       </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+				<a href="https://id.crystaleum.org/send.html"><button class="btn btn-success" data-dismiss="modal"><span>Scan (6s)</span> <i class="material-icons">&#xE5C8;</i></button></a>
+			</div>
+		</div>
+	</div>
+</div>   
