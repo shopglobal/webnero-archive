@@ -6,12 +6,19 @@ $(document).ready(function(){
     document.getElementById('crfi-send').click();
 });
 
+
+
 $(document).on("click", "#send-modal", function(){
     $('.form-group').removeClass("has-error");
 	cleanPinCode();
     if(checkMandatoryField("amount") && checkMandatoryField("receiver")){
 	    $("#send-code-modal").modal('show');
     }
+});
+
+$(document).on("click", "#scan-qr", function(){
+	$('.form-group').removeClass("has-error");
+	$("#qr_modal").modal('show');
 });
 
 function checkMandatoryField(id){
