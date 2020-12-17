@@ -126,11 +126,15 @@ var PassportPipeline = {
 //     },
     setBlockchainInfo: function(coinSymbol, status, height, txcount, top_block_hash){
 	    console.log("setBlockchainInfo");
-	    this.passportParams.status = status;
-            this.passportParams.top_block_hash = top_block_hash;
-            this.passportParams.height = height;
-            this.passportParams.txcount = txcount;
-	    console.log("height: " + height + " status: " + status + " top_block_hash: " + top_block_hash + " txcount: " + txcount);
+	    sessionStorage.setItem("status", this.passportParams.status);
+            sessionStorage.setItem("top_block_hash", this.passportParams.top_block_hash);
+            sessionStorage.setItem("height", this.passportParams.height);
+            sessionStorage.setItem("txcount", this.passportParams.txcount);
+	    this.passportParams.status = sessionStorage.getItem("status");
+            this.passportParams.top_block_hash = sessionStorage.getItem("top_block_hash");
+            this.passportParams.height = sessionStorage.getItem("height");
+            this.passportParams.txcount = sessionStorage.getItem("txcount");
+	    console.log("height: " + this.passportParams.height + " status: " + this.passportParams.status + " top_block_hash: " + this.passportParams.top_block_hash + " txcount: " + this.passportParams.txcount);
     },
     checkDaemon: function(coinSymbol){
 	    console.log("checkDaemon");
