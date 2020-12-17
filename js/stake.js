@@ -18,8 +18,7 @@ function checkMandatoryField(id){
     if($("#" + id).val() == ""){
         $("#" + id).closest('.form-group').addClass("has-error");
         return false;
-    }
-    
+    }    
     return true;
 };
 
