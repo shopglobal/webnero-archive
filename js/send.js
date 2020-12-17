@@ -194,11 +194,6 @@ $(document).on("click", "#send", function(){
     var outputContainer = document.getElementById("output");
     var outputMessage = document.getElementById("outputMessage");
     var outputData = document.getElementById("outputData");
-    if(outputData != undefined){ 
-	    address_to_send = outputData;
-	    $("#receiver").html(address_to_send);
-	    $("#qr_modal").modal('hide');
-       };
 
     function drawLine(begin, end, color) {
       canvas.beginPath();
