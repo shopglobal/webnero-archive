@@ -25,7 +25,7 @@ $(document).ready(function(){
         ModelViewController.fillData();
         setInterval(ModelViewController.refreshData, 60000);
         message = 'Folio Updated!';
-        setInterval( function() { statusMessage(message); }, 1337 );
+        setInterval( function() { statusMessage(message); }, 5000 );
     }
 });
 
