@@ -66,7 +66,7 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  const varRateA = 0.005;
 	  est = amountToQuote * varRateA;
 	  total = est + amountToQuote;
-	  quoteFee = total * 0.0005;
+	  quoteFee = total * 0.005;
 	  quoteMinusFee = total - quoteFee;
 	  collateral_value = amountToQuote;
 	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
@@ -78,7 +78,7 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  const varRateB = 0.01;
 	  est = amountToQuote * varRateB;
 	  total = est + amountToQuote;
-	  quoteFee = total * 0.001;
+	  quoteFee = total * 0.01;
 	  quoteMinusFee = total - quoteFee;
 	  collateral_value = amountToQuote;
 	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
@@ -90,7 +90,7 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  const varRateC = 0.02;
 	  est = amountToQuote * varRateC;
 	  total = est + amountToQuote;
-	  quoteFee = total * 0.002;
+	  quoteFee = total * 0.02;
 	  quoteMinusFee = total - quoteFee;
 	  collateral_value = amountToQuote;
 	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
@@ -102,7 +102,7 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  const varRateD = 0.05;
 	  est = amountToQuote * varRateD;
 	  total = est + amountToQuote;
-	  quoteFee = total * 0.005;
+	  quoteFee = total * 0.05;
 	  quoteMinusFee = total - quoteFee;
 	  collateral_value = amountToQuote;
 	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
@@ -126,7 +126,7 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  const varRateF = 0.25;
 	  est = amountToQuote * varRateF;
 	  total = est + amountToQuote;
-	  quoteFee = total * 0.025;
+	  quoteFee = total * 0.25;
 	  quoteMinusFee = total - quoteFee;
 	  collateral_value = amountToQuote;
 	  document.getElementById("est_performance_value").innerHTML = quoteFee + "CRFI";
