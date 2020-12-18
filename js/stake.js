@@ -70,7 +70,7 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  quoteMinusFee = total - performanceFee;
 	  collateral_value = amountToQuote;
 	  document.getElementById("est_performance_value").innerHTML = performanceFee + "CRFI";
-	  document.getElementById("quoted_value").innerHTML = varRateA * 100 + "%";
+	  document.getElementById("quoted_value").innerHTML = "10%";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
 	  document.getElementById("collateral_value").innerHTML = collateral_value + " CRFI";
@@ -83,7 +83,7 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  quoteMinusFee = total - performanceFee;
 	  collateral_value = amountToQuote;
 	  document.getElementById("est_performance_value").innerHTML = performanceFee + "CRFI";
-	  document.getElementById("quoted_value").innerHTML = varRateB * 100 + "%";
+	  document.getElementById("quoted_value").innerHTML = "20%";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
 	  document.getElementById("collateral_value").innerHTML = collateral_value + " CRFI";
@@ -96,7 +96,7 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  quoteMinusFee = total - performanceFee;
 	  collateral_value = amountToQuote;
 	  document.getElementById("est_performance_value").innerHTML = performanceFee + "CRFI";
-	  document.getElementById("quoted_value").innerHTML = varRateC * 100 + "%";
+	  document.getElementById("quoted_value").innerHTML = "33%";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
 	  document.getElementById("collateral_value").innerHTML = collateral_value + " CRFI";
@@ -109,7 +109,7 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  quoteMinusFee = total - performanceFee;
 	  collateral_value = amountToQuote;
 	  document.getElementById("est_performance_value").innerHTML = performanceFee + "CRFI";
-	  document.getElementById("quoted_value").innerHTML = varRateD * 100 + "%";
+	  document.getElementById("quoted_value").innerHTML = "38%";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
 	  document.getElementById("collateral_value").innerHTML = collateral_value + " CRFI";
@@ -122,7 +122,7 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  quoteMinusFee = total - performanceFee;
 	  collateral_value = amountToQuote;
 	  document.getElementById("est_performance_value").innerHTML = performanceFee + "CRFI";
-	  document.getElementById("quoted_value").innerHTML = varRateE * 100 + "%";
+	  document.getElementById("quoted_value").innerHTML = "40%";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
 	  document.getElementById("collateral_value").innerHTML = collateral_value + " CRFI";
@@ -135,7 +135,7 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  quoteMinusFee = total - performanceFee;
 	  collateral_value = amountToQuote;
 	  document.getElementById("est_performance_value").innerHTML = performanceFee + "CRFI";
-	  document.getElementById("quoted_value").innerHTML = varRateF * 100 + "%";
+	  document.getElementById("quoted_value").innerHTML = "50%";
 	  document.getElementById("est_reward_value").innerHTML = est + "CRFI";
 	  document.getElementById("est_return_value").innerHTML = quoteMinusFee + " CRFI";
 	  document.getElementById("collateral_value").innerHTML = collateral_value + " CRFI";
