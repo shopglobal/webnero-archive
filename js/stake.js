@@ -71,10 +71,12 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  collateral_value = amountToQuote - performanceFee;
 	  total = est + collateral_value;
 	  quoteMinusFee = total;
+	  gross = total + est;
+	  net = total;
 	  document.getElementById("est_performance_value").innerHTML = performanceFee.toFixed(12) + " CRFI";
-	  document.getElementById("quoted_value").innerHTML = "10%";
+	  document.getElementById("quoted_value").innerHTML = gross.toFixed(12) + " CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + " CRFI";
-	  document.getElementById("est_return_value").innerHTML = quoteMinusFee.toFixed(12) + " CRFI";
+	  document.getElementById("est_return_value").innerHTML = net.toFixed(12) + " CRFI";
 	  document.getElementById("collateral_value").innerHTML = collateral_value.toFixed(12) + " CRFI";
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
   } else if (parking_interval == 20.0) {
@@ -84,10 +86,12 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  collateral_value = amountToQuote - performanceFee;
 	  total = est + collateral_value;
 	  quoteMinusFee = total;
+	  gross = total + est;
+	  net = total;
 	  document.getElementById("est_performance_value").innerHTML = performanceFee.toFixed(12) + " CRFI";
-	  document.getElementById("quoted_value").innerHTML = "20%";
+	  document.getElementById("quoted_value").innerHTML = gross.toFixed(12) + " CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + " CRFI";
-	  document.getElementById("est_return_value").innerHTML = quoteMinusFee.toFixed(12) + " CRFI";
+	  document.getElementById("est_return_value").innerHTML = net.toFixed(12) + " CRFI";
 	  document.getElementById("collateral_value").innerHTML = collateral_value.toFixed(12) + " CRFI";
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
   } else if (parking_interval == 33.0) {
@@ -97,10 +101,12 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  collateral_value = amountToQuote - performanceFee;
 	  total = est + collateral_value;
 	  quoteMinusFee = total;
+	  gross = total + est;
+	  net = total;
 	  document.getElementById("est_performance_value").innerHTML = performanceFee.toFixed(12) + " CRFI";
-	  document.getElementById("quoted_value").innerHTML = "33%";
+	  document.getElementById("quoted_value").innerHTML = gross.toFixed(12) + " CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + " CRFI";
-	  document.getElementById("est_return_value").innerHTML = quoteMinusFee.toFixed(12) + " CRFI";
+	  document.getElementById("est_return_value").innerHTML = net.toFixed(12) + " CRFI";
 	  document.getElementById("collateral_value").innerHTML = collateral_value.toFixed(12) + " CRFI";
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
   } else if (parking_interval == 38.0) {
@@ -110,10 +116,12 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  collateral_value = amountToQuote - performanceFee;
 	  total = est + collateral_value;
 	  quoteMinusFee = total;
+	  gross = total + est;
+	  net = total;
 	  document.getElementById("est_performance_value").innerHTML = performanceFee.toFixed(12) + " CRFI";
-	  document.getElementById("quoted_value").innerHTML = "38%";
+	  document.getElementById("quoted_value").innerHTML = gross.toFixed(12) + " CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + " CRFI";
-	  document.getElementById("est_return_value").innerHTML = quoteMinusFee.toFixed(12) + " CRFI";
+	  document.getElementById("est_return_value").innerHTML = net.toFixed(12) + " CRFI";
 	  document.getElementById("collateral_value").innerHTML = collateral_value.toFixed(12) + " CRFI";
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
   } else if (parking_interval == 40.0) {
@@ -123,10 +131,12 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  collateral_value = amountToQuote - performanceFee;
 	  total = est + collateral_value;
 	  quoteMinusFee = total;
+	  gross = total + est;
+	  net = total;
 	  document.getElementById("est_performance_value").innerHTML = performanceFee.toFixed(12) + " CRFI";
-	  document.getElementById("quoted_value").innerHTML = "40%";
+	  document.getElementById("quoted_value").innerHTML = gross.toFixed(12) + " CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + " CRFI";
-	  document.getElementById("est_return_value").innerHTML = quoteMinusFee.toFixed(12) + " CRFI";
+	  document.getElementById("est_return_value").innerHTML = net.toFixed(12) + " CRFI";
 	  document.getElementById("collateral_value").innerHTML = collateral_value.toFixed(12) + " CRFI";
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
   } else if (parking_interval == 50.0) {
@@ -136,10 +146,12 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  collateral_value = amountToQuote - performanceFee;
 	  total = est + collateral_value;
 	  quoteMinusFee = total;
+	  gross = total + est;
+	  net = total;
 	  document.getElementById("est_performance_value").innerHTML = performanceFee.toFixed(12) + " CRFI";
-	  document.getElementById("quoted_value").innerHTML = "50%";
+	  document.getElementById("quoted_value").innerHTML = gross.toFixed(12) + " CRFI";
 	  document.getElementById("est_reward_value").innerHTML = est + " CRFI";
-	  document.getElementById("est_return_value").innerHTML = quoteMinusFee.toFixed(12) + " CRFI";
+	  document.getElementById("est_return_value").innerHTML = net.toFixed(12) + " CRFI";
 	  document.getElementById("collateral_value").innerHTML = collateral_value.toFixed(12) + " CRFI";
 	  console.log("amountToQuote: " + est + " interest with return of " + quoteMinusFee + " capital. Total of: " + total)
   }
