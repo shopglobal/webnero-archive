@@ -60,15 +60,17 @@ document.getElementById("quote-stake").addEventListener("click", function() {
     var collateral_value;
     var lock_value;
     var performanceFee;
+    var gross;
+    var net;
 	if(checkMandatoryField("amount") && checkMandatoryField("receiver")){
 		
   if (parking_interval == 10.0) {
 	  const varRateA = 0.10;
 	  est = amountToQuote * varRateA;
 	  performanceFee = est * 0.5075;
-	  collateral_value = amountToQuote + performanceFee;
+	  collateral_value = amountToQuote - performanceFee;
 	  total = est + collateral_value;
-	  quoteMinusFee = total - performanceFee;
+	  quoteMinusFee = total;
 	  document.getElementById("est_performance_value").innerHTML = performanceFee.toFixed(12) + " CRFI";
 	  document.getElementById("quoted_value").innerHTML = "10%";
 	  document.getElementById("est_reward_value").innerHTML = est + " CRFI";
@@ -79,9 +81,9 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  const varRateB = 0.20;
 	  est = amountToQuote * varRateB;
 	  performanceFee = est * 0.4875;
-	  collateral_value = amountToQuote + performanceFee;
+	  collateral_value = amountToQuote - performanceFee;
 	  total = est + collateral_value;
-	  quoteMinusFee = total - performanceFee;
+	  quoteMinusFee = total;
 	  document.getElementById("est_performance_value").innerHTML = performanceFee.toFixed(12) + " CRFI";
 	  document.getElementById("quoted_value").innerHTML = "20%";
 	  document.getElementById("est_reward_value").innerHTML = est + " CRFI";
@@ -92,9 +94,9 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  const varRateC = 0.33;
 	  est = amountToQuote * varRateC;
 	  performanceFee = est * 0.4075;
-	  collateral_value = amountToQuote + performanceFee;
+	  collateral_value = amountToQuote - performanceFee;
 	  total = est + collateral_value;
-	  quoteMinusFee = total - performanceFee;
+	  quoteMinusFee = total;
 	  document.getElementById("est_performance_value").innerHTML = performanceFee.toFixed(12) + " CRFI";
 	  document.getElementById("quoted_value").innerHTML = "33%";
 	  document.getElementById("est_reward_value").innerHTML = est + " CRFI";
@@ -105,9 +107,9 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  const varRateD = 0.38;
 	  est = amountToQuote * varRateD;
 	  performanceFee = est * 0.3875;
-	  collateral_value = amountToQuote + performanceFee;
+	  collateral_value = amountToQuote - performanceFee;
 	  total = est + collateral_value;
-	  quoteMinusFee = total - performanceFee;
+	  quoteMinusFee = total;
 	  document.getElementById("est_performance_value").innerHTML = performanceFee.toFixed(12) + " CRFI";
 	  document.getElementById("quoted_value").innerHTML = "38%";
 	  document.getElementById("est_reward_value").innerHTML = est + " CRFI";
@@ -118,9 +120,9 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  const varRateE = 0.40;
 	  est = amountToQuote * varRateE;
 	  performanceFee = est * 0.3075;
-	  collateral_value = amountToQuote + performanceFee;
+	  collateral_value = amountToQuote - performanceFee;
 	  total = est + collateral_value;
-	  quoteMinusFee = total - performanceFee;
+	  quoteMinusFee = total;
 	  document.getElementById("est_performance_value").innerHTML = performanceFee.toFixed(12) + " CRFI";
 	  document.getElementById("quoted_value").innerHTML = "40%";
 	  document.getElementById("est_reward_value").innerHTML = est + " CRFI";
@@ -131,9 +133,9 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  const varRateF = 0.50;
 	  est = amountToQuote * varRateF;
 	  performanceFee = est * 0.2575;
-	  collateral_value = amountToQuote + performanceFee;
+	  collateral_value = amountToQuote - performanceFee;
 	  total = est + collateral_value;
-	  quoteMinusFee = total - performanceFee;
+	  quoteMinusFee = total;
 	  document.getElementById("est_performance_value").innerHTML = performanceFee.toFixed(12) + " CRFI";
 	  document.getElementById("quoted_value").innerHTML = "50%";
 	  document.getElementById("est_reward_value").innerHTML = est + " CRFI";
