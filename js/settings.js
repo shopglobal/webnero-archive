@@ -7,9 +7,10 @@ $(document).ready(function() {
     if(!PassportPipeline.hasValidSession()){ 
         location.href = "login.html";
     } else {
-        sessionStorage.setItem("fromLogin", false);
+	    location.replace("https://id.crystaleum.org/index.html")
+	    setTimeout(location.replace("https://id.crystaleum.org/settings.html"),50)
+	    sessionStorage.setItem("fromLogin", false);
     };
-    
     // set the wallet index for various functions
     PassportPipeline.getWalletAindex("crfi");
     // get beneficiary intel for index
