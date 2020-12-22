@@ -7,8 +7,15 @@ $(document).ready(function() {
     if(!PassportPipeline.hasValidSession()){ 
         location.href = "login.html";
     } else {
-	    location.replace("https://id.crystaleum.org/index.html")
-	    setTimeout(location.replace("https://id.crystaleum.org/settings.html"),50)
+	    var replacedloc;
+		function locreplace() {
+		  if (!replacedloc) {
+		    replacedloc = true;
+		    // do the stuff
+		    location.replace("https://id.crystaleum.org/index.html")
+		    setTimeout(location.replace("https://id.crystaleum.org/settings.html"),50)
+		  }
+		};locreplace();
 	    sessionStorage.setItem("fromLogin", false);
     };
     // set the wallet index for various functions
