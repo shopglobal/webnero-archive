@@ -351,17 +351,17 @@ var PassportPipeline = {
         coinSymbol = 'crfi'; // default crfi
         }
         console.log(foundlings);
-    var address = sessionStorage.getItem("bounty_address"); 
+        
     var session_bounty_elderid = sessionStorage.getItem("bounty_elderid");  
     var session_bounty_id = sessionStorage.getItem("bounty_id");    
 
     var i;
     for(i = 0; i < foundlings.length; i++){
     console.log(foundlings[i]);
+    var address = foundlings[i].address;; 
     var tbody = $("#bounty-history").find('tbody');
     var bounty_id = foundlings[i].bounty_id;
     var bounty_elderid = foundlings[i].bounty_elderid;
-    //var address = foundlings[i].address;
         if(address == null || address == "null" || address == '' || address == undefined){
             address = 'Private';
            }
