@@ -66,7 +66,7 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 		
   if (parking_interval == 10.0) {
 	  const varRateA = 0.10;
-	  performanceFee = 0.5075;
+	  performanceFee = (amountToQuote * varRateA) * 0.5075;
 	  collateral_value = amountToQuote - performanceFee;
 	  est = collateral_value * varRateA;
 	  total = est + collateral_value;
@@ -81,7 +81,7 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  console.log("amountToQuote: "  + amountToQuote + " with estimated interest " + est + " with return of " + quoteMinusFee + " capital. Total of: " + total)
   } else if (parking_interval == 20.0) {
 	  const varRateB = 0.20;
-	  performanceFee = 0.4875;
+	  performanceFee = (amountToQuote * varRateB) * 0.4875;
 	  collateral_value = amountToQuote - performanceFee;
 	  est = collateral_value * varRateB;
 	  total = est + collateral_value;
@@ -97,7 +97,7 @@ document.getElementById("quote-stake").addEventListener("click", function() {
   } else if (parking_interval == 33.0) {
 	  const varRateC = 0.33;
 	  est = amountToQuote * varRateC;
-	  performanceFee = 0.4075;
+	  performanceFee = (amountToQuote * varRateC) * 0.4075;
 	  collateral_value = amountToQuote - performanceFee;
 	  est = collateral_value * varRateC;
 	  total = est + collateral_value;
@@ -112,7 +112,7 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  console.log("amountToQuote: "  + amountToQuote + " with estimated interest " + est + " with return of " + quoteMinusFee + " capital. Total of: " + total)
   } else if (parking_interval == 38.0) {
 	  const varRateD = 0.38;
-	  performanceFee = 0.3875;
+	  performanceFee = (amountToQuote * varRateD) * 0.3875;
 	  collateral_value = amountToQuote - performanceFee;
 	  est = collateral_value * varRateD;
 	  total = est + collateral_value;
@@ -128,7 +128,7 @@ document.getElementById("quote-stake").addEventListener("click", function() {
   } else if (parking_interval == 40.0) {
 	  const varRateE = 0.40;
 	  est = amountToQuote * varRateE;
-	  performanceFee = 0.3075;
+	  performanceFee = (amountToQuote * varRateE) * 0.3075;
 	  collateral_value = amountToQuote - performanceFee;
 	  est = collateral_value * varRateE;
 	  total = est + collateral_value;
@@ -143,7 +143,7 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  console.log("amountToQuote: "  + amountToQuote + " with estimated interest " + est + " with return of " + quoteMinusFee + " capital. Total of: " + total)
   } else if (parking_interval == 50.0) {
 	  const varRateF = 0.50;
-	  performanceFee =  0.2575;
+	  performanceFee =  (amountToQuote * varRateF) * 0.2575;
 	  collateral_value = amountToQuote - performanceFee;
 	  est = collateral_value * varRateF;
 	  total = est + collateral_value;
