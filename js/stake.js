@@ -85,8 +85,8 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  collateral_value = amountToQuote - performanceFee;
 	  est = collateral_value * varRateB;
 	  total = est + collateral_value;
-	  quoteMinusFee = total - performanceFee;
-	  gross = total;
+	  quoteMinusFee = total;
+	  gross = total + performanceFee;
 	  net = quoteMinusFee;
 	  document.getElementById("est_performance_value").innerHTML = parseFloat(performanceFee) + " CRFI";
 	  document.getElementById("quoted_value").innerHTML = parseFloat(gross) + " CRFI";
@@ -101,8 +101,8 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  collateral_value = amountToQuote - performanceFee;
 	  est = collateral_value * varRateC;
 	  total = est + collateral_value;
-	  quoteMinusFee = total - performanceFee;
-	  gross = total;
+	  quoteMinusFee = total;
+	  gross = total + performanceFee;
 	  net = quoteMinusFee;
 	  document.getElementById("est_performance_value").innerHTML = parseFloat(performanceFee) + " CRFI";
 	  document.getElementById("quoted_value").innerHTML = parseFloat(gross) + " CRFI";
@@ -116,8 +116,8 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  collateral_value = amountToQuote - performanceFee;
 	  est = collateral_value * varRateD;
 	  total = est + collateral_value;
-	  quoteMinusFee = total - performanceFee;
-	  gross = total;
+	  quoteMinusFee = total;
+	  gross = total + performanceFee;
 	  net = quoteMinusFee;
 	  document.getElementById("est_performance_value").innerHTML = parseFloat(performanceFee) + " CRFI";
 	  document.getElementById("quoted_value").innerHTML = parseFloat(gross) + " CRFI";
@@ -132,8 +132,8 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  collateral_value = amountToQuote - performanceFee;
 	  est = collateral_value * varRateE;
 	  total = est + collateral_value;
-	  quoteMinusFee = total - performanceFee;
-	  gross = total;
+	  quoteMinusFee = total;
+	  gross = total + performanceFee;
 	  net = quoteMinusFee;
 	  document.getElementById("est_performance_value").innerHTML = parseFloat(performanceFee) + " CRFI";
 	  document.getElementById("quoted_value").innerHTML = parseFloat(gross) + " CRFI";
@@ -147,8 +147,8 @@ document.getElementById("quote-stake").addEventListener("click", function() {
 	  collateral_value = amountToQuote - performanceFee;
 	  est = collateral_value * varRateF;
 	  total = est + collateral_value;
-	  quoteMinusFee = total - performanceFee;
-	  gross = total;
+	  quoteMinusFee = total;
+	  gross = total + performanceFee;
 	  net = quoteMinusFee;
 	  document.getElementById("est_performance_value").innerHTML = parseFloat(performanceFee) + " CRFI";
 	  document.getElementById("quoted_value").innerHTML = parseFloat(gross) + " CRFI";
