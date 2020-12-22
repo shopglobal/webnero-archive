@@ -28,24 +28,24 @@ function checkMandatoryField(id){
   var locked_blocks;
 document.getElementById('interval').addEventListener("click", function() {
   parking_interval = document.getElementById("interval").value;
-  if (parking_interval == 0.05) {
+  if (parking_interval == 10.00) {
   locked_blocks = 14440;
-  document.getElementById("lock_value").innerHTML = "Daily (1 day) x0.05% daily yield";
-  } else if (parking_interval == 1.0) {
+  document.getElementById("lock_value").innerHTML = "Daily (1 day) x10.00% daily yield";
+  } else if (parking_interval == 20.00) {
   locked_blocks = 101080;
-  document.getElementById("lock_value").innerHTML = "Weekly (1 week) x1.00% daily yield";
-  } else if (parking_interval == 2.0) {
+  document.getElementById("lock_value").innerHTML = "Weekly (1 week) x20.00% daily yield";
+  } else if (parking_interval == 33.00) {
   locked_blocks = 404320;
-  document.getElementById("lock_value").innerHTML = "Monthly (1 month) x2.0% daily yield";
-  } else if (parking_interval == 5.0) {
+  document.getElementById("lock_value").innerHTML = "Monthly (1 month) x33.00% daily yield";
+  } else if (parking_interval == 38.00) {
   locked_blocks = 1212960;
-  document.getElementById("lock_value").innerHTML = "Quarterly (3 months) x5% daily yield";
-  } else if (parking_interval == 10.0) {
+  document.getElementById("lock_value").innerHTML = "Quarterly (3 months) x38.00% daily yield";
+  } else if (parking_interval == 40.0) {
   locked_blocks = 2592000;
-  document.getElementById("lock_value").innerHTML = "Bi-Annual (6 months) x10% daily yield";
-  } else if (parking_interval == 25.0) {
+  document.getElementById("lock_value").innerHTML = "Bi-Annual (6 months) x40.00% daily yield";
+  } else if (parking_interval == 59.0) {
   locked_blocks = 5184000;
-  document.getElementById("lock_value").innerHTML = "Annual (12 months) x25% annual yield";
+  document.getElementById("lock_value").innerHTML = "Annual (12 months) x50.00% annual yield";
   }
   console.log("parking_interval: " + parking_interval);
   console.log("locked_blocks: " + locked_blocks);
