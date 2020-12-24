@@ -5,11 +5,13 @@ $(function() {
     let message;
     function statusMessage(message){
         PassportPipeline.checkDaemon("crfi");
+        if(sessionStorage.fromLogin == "true"){
         ModelViewController.refreshDataLight();
             $('#status-area').flash_message({
             text: message,
             how: 'html'
             });
+        }
     };
     message = 'Folio Updated!';
     setInterval( function() { statusMessage(message); }, 10000 );
