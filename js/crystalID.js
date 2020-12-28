@@ -14,10 +14,8 @@ $(function() {
             how: 'html'
         });     
     };
-    if(sessionStorage.fromLogin == "true"){
-        message = 'Folio Updated!';
-        setInterval( function() { statusMessage(message); }, 10000 );
-    };
+    message = 'Folio Updated!';
+    setInterval( function() { statusMessage(message); }, 10000 );
     
     $(window).bind("load resize", function() {
         var topOffset = 50;
@@ -270,9 +268,12 @@ var ModelViewController = {
         PassportPipeline.setMethod('getaddr');
         PassportPipeline.loadParams();
         console.log(PassportPipeline.passportParams);
-        if(coinSymbol){
-                ModelViewController.coinState++
+        if(!coinSymbol){
+            coinSymbol = 'crfi';
             }
+        console.log("coinstate pre++: " + ModelViewController.coinState);
+        ModelViewController.coinState++
+        console.log("coinstate post++: " + ModelViewController.coinState);
         PassportPipeline.remoteCall(coinSymbol).then((response) => {
             if(response){
                 console.log(response); 
