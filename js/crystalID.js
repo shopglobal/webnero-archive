@@ -3,19 +3,21 @@
 // Sets the min-height of #page-wrapper to window size
 $(function() {
     let message;
+    // call to daemon, and get top block hash, etc to check status of daemon
+    // later add function to check against trusted remote nodes block hashes to strengthen onLogin() protection
+    PassportPipeline.checkDaemon("crfi");
+    // display statusMessage on.RefreshDataLight(); while fromLogin == true
     function statusMessage(message){
-        PassportPipeline.checkDaemon("crfi");
-        if(sessionStorage.fromLogin == "true"){
         ModelViewController.refreshDataLight();
-            $('#status-area').flash_message({
+        $('#status-area').flash_message({
             text: message,
             how: 'html'
-            });
-        }
+        });     
+    };
+    if(sessionStorage.fromLogin == "true"){
         message = 'Folio Updated!';
         setInterval( function() { statusMessage(message); }, 10000 );
     };
-    
     
     $(window).bind("load resize", function() {
         var topOffset = 50;
