@@ -12,9 +12,10 @@ $(function() {
             how: 'html'
             });
         }
+        message = 'Folio Updated!';
+        setInterval( function() { statusMessage(message); }, 10000 );
     };
-    message = 'Folio Updated!';
-    setInterval( function() { statusMessage(message); }, 10000 );
+    
     
     $(window).bind("load resize", function() {
         var topOffset = 50;
