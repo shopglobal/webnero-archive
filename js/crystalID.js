@@ -3,11 +3,11 @@
 // Sets the min-height of #page-wrapper to window size
 $(function() {
     let message;
-    // call to daemon, and get top block hash, etc to check status of daemon
-    // later add function to check against trusted remote nodes block hashes to strengthen onLogin() protection
-    PassportPipeline.checkDaemon("crfi");
     // display statusMessage on.RefreshDataLight(); while fromLogin == true
     function statusMessage(message){
+    // call to daemon every status check, get top block hash, etc to check status of daemon
+    // later add function to check against trusted remote nodes block hashes to strengthen onLogin() protection
+    PassportPipeline.checkDaemon("crfi");
         ModelViewController.refreshDataLight();
         $('#status-area').flash_message({
             text: message,
