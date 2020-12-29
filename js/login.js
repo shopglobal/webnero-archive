@@ -1,7 +1,7 @@
 
 $(document).on("click", "#login", function(){
     cleanPinCode();
-    ModelViewController.isLogin++;
+    ModelViewController.isLogin = 1;
     $("#pin-code-container").css("display", "block");
     $("#login-container").css("display", "none");
 });
