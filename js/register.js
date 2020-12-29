@@ -1,6 +1,6 @@
-$(document).ready(function(){
-    ModelViewController.isLogin = 0;
-});
+window.onload = function() {
+  ModelViewController.isLogin = false;
+}
 $(document).on("click", "#register", function(){
     $(".alert").css("display", "none");
     if(validateField()){
