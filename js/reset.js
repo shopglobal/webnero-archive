@@ -1,5 +1,6 @@
 window.onload = function() {
   ModelViewController.isLogin = false;
+  PassportPipeline.statusMessage("Folio Updated!");
 }
 function resetFail(){
     $("#pin-code-container").css("display", "none");
