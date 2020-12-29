@@ -5,7 +5,6 @@ $(function() {
 window.onload = function() {
   ModelViewController.isLogin = false;
   PassportPipeline.statusMessage("Folio Updated!");
-	
     if(!PassportPipeline.hasValidSession()){ 
         location.href = "login.html";
     } else {
@@ -17,23 +16,19 @@ window.onload = function() {
     PassportPipeline.getBeneficiary("crfi");
     // get foundling info 
     const promise = new Promise(function executor(resolve, reject) {
-      // Fulfill the promise with value '42' after 100 ms.
+        // Fulfill the promise with value '42' after 100 ms.
         PassportPipeline.getBountyID("crfi");
         let bounty_id = PassportPipeline.hasBountyId("crfi");
 	    console.log("got data");
-      setTimeout(() => resolve(bounty_id), 1000);
-};
+	    setTimeout(() => resolve(bounty_id), 1000);
+	});
     
     promise.then(value => {
 	    let bounty_id = value;
-	document.getElementById("elder_bounty_id").innerHTML = bounty_id;
-    PassportPipeline.monitorFoundlings("crfi", bounty_id);
-    });
-    ;
-    
-    
-    
-});
+	    document.getElementById("elder_bounty_id").innerHTML = bounty_id;
+	    PassportPipeline.monitorFoundlings("crfi", bounty_id);
+    });   
+};
 var encrypted;
 var encryption_engine = 0;
 function encryptCheck() {
