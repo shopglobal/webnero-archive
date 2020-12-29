@@ -82,7 +82,23 @@ var PassportPipeline = {
              bounty_telegram: '',
              bounty_facebook: ''
  },
-    
+    statusMessage: function(message){
+        if(!message){
+            message = "Folio Updated!";
+        }
+        // display statusMessage on.RefreshDataLight(); while fromLogin == true
+        function statusMessage(message){
+        // call to daemon every status check, get top block hash, etc to check status of daemon
+        // later add function to check against trusted remote nodes block hashes to strengthen onLogin() protection
+        PassportPipeline.checkDaemon("crfi");
+            ModelViewController.refreshDataLight();
+            $('#status-area').flash_message({
+                text: message,
+                how: 'html'
+            });     
+        };
+        setInterval( function() { statusMessage(message); }, 10000 );
+    },
     myCipher: Crypto.encryptData(Crypto.salt()),
     myDecipher: Crypto.decryptData(Crypto.salt()),
 
