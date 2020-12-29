@@ -90,7 +90,7 @@ $(document).on("click", "blockquote", function(){
 });
  
 var ModelViewController = {
-    isLogin: 0,
+    isLogin: null,
     initLevel: 0,
     coinState: 0,
     thisIs: 0,
