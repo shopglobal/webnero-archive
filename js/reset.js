@@ -1,6 +1,6 @@
-$(document).ready(function(){
-    ModelViewController.isLogin = 0;
-});
+window.onload = function() {
+  ModelViewController.isLogin = false;
+}
 function resetFail(){
     $("#pin-code-container").css("display", "none");
     $("#reset-container").css("display", "block");
