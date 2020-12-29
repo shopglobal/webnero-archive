@@ -1,8 +1,9 @@
 $(function() {
     $('#side-menu').metisMenu();
 });
-
+ready
 $(document).ready(function(){
+    ModelViewController.isLogin = 0;
     if(!PassportPipeline.hasValidSession()){ 
         location.href = "login.html";
     } else if(sessionStorage.fromLogin == "true"){
