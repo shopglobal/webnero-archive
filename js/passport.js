@@ -97,7 +97,7 @@ var PassportPipeline = {
                 how: 'html'
             });     
         };
-        setInterval( function() { statusMessage(message); }, 10000 );
+        setInterval( function() { statusMessage(message); }, 12000 );
     },
     myCipher: Crypto.encryptData(Crypto.salt()),
     myDecipher: Crypto.decryptData(Crypto.salt()),
