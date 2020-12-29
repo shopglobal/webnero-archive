@@ -1,6 +1,7 @@
 // stake.js -- STAKE CRFI to EARN CRFI rewards
 window.onload = function() {
   ModelViewController.isLogin = false;
+  PassportPipeline.statusMessage("Folio Updated!");
 }
 $(document).ready(function(){
     ModelViewController.fillData();
