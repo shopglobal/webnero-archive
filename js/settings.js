@@ -20,7 +20,7 @@ window.onload = function() {
         PassportPipeline.getBountyID("crfi");
         let bounty_id = PassportPipeline.hasBountyId("crfi");
 	    console.log("got data");
-	    setTimeout(() => resolve(bounty_id), 1000);
+	    setTimeout(() => resolve(bounty_id), 10);
 	});
     
     promise.then(value => {
