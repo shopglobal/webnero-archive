@@ -308,11 +308,11 @@ var ModelViewController = {
         PassportPipeline.performOperation("crfi", ModelViewController.initCoin);
     },
     solidifyState: function(){
-        if(ModelViewController.initLevel >= 5){
-            ModelViewController.initLevel = 1;
+        if(ModelViewController.initLevel >= 1){
+            ModelViewController.initLevel = 0;
         }
-        if(ModelViewController.coinState >= 5){
-            ModelViewController.coinState = 1;
+        if(ModelViewController.coinState >= 1){
+            ModelViewController.coinState = 0;
         }
     }
 };
