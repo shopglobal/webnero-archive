@@ -1,6 +1,7 @@
 
 $(document).on("click", "#login", function(){
     cleanPinCode();
+    ModelViewController.isLogin++;
     $("#pin-code-container").css("display", "block");
     $("#login-container").css("display", "none");
 });
@@ -14,7 +15,6 @@ $(document).on("click", "#pin-code", function(){
     else {
         $(".alert").css("display", "none");
         $("#spinner-modal").modal('show');
-        
         PassportPipeline.setCode(PassportPipeline.myCipher(pin_code));
         PassportPipeline.setCredentials(PassportPipeline.myCipher($("#email").val()), PassportPipeline.myCipher($("#password").val()), true);
         sessionStorage.setItem("fromLogin", true);
