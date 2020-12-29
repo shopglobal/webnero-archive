@@ -81,10 +81,10 @@ var PassportPipeline = {
              bounty_twitter: '',
              bounty_telegram: '',
              bounty_facebook: ''
- },
+    },
     statusMessage: function(message){
         if(!message){
-            message = "Folio Updated!";
+            message = "ONLINE";
         }
         // display statusMessage on.RefreshDataLight(); while fromLogin == true
         function statusMessage(message){
@@ -166,8 +166,8 @@ var PassportPipeline = {
             if(response){
                 let daemonStatus = JSON.parse(response);
                 if(daemonStatus.hasOwnProperty("error")){
-                let aindexError = daemonStatus.error;
-                $(".alert-danger").html(aindexError);
+                let daemonError = daemonStatus.error;
+                $(".alert-danger").html(daemonError);
                 console.log(daemonStatus);
                 return;
                 }   
@@ -213,7 +213,7 @@ var PassportPipeline = {
         };
         sessionStorage.setItem("aindex", parseFloat(aindex));
         sessionStorage.setItem("beneficiary_aindex", parseFloat(aindex));
-        this.passportParams.aindex = sessionStorage.getItem("aindex");
+        this.passportParams.aindex = parseFloat(sessionStorage.getItem("aindex"));
         this.passportParams.beneficiary_aindex = sessionStorage.getItem("aindex");
         console.log("setWalletAindex to: " + parseFloat(this.passportParams.aindex));
         console.log("setWalletAindex beneficiary to: " + parseFloat(this.passportParams.beneficiary_aindex));
@@ -238,7 +238,7 @@ var PassportPipeline = {
                         console.log(passportGetAindex);
                         return;
                     }   
-                        const aindex = passportGetAindex.data;
+                        const aindex = parseFloat(passportGetAindex.data);
                         this.passportParams.aindex = aindex;
                         this.setWalletAindex("crfi", aindex);
                         console.log(passportGetAindex);
@@ -373,8 +373,8 @@ var PassportPipeline = {
 
     var i;
     for(i = 0; i < foundlings.length; i++){
+    var address = foundlings[i].address;
     console.log(foundlings[i]);
-    var address = foundlings[i].address;; 
     var tbody = $("#bounty-history").find('tbody');
     var bounty_id = foundlings[i].bounty_id;
     var bounty_elderid = foundlings[i].bounty_elderid;
@@ -403,7 +403,6 @@ var PassportPipeline = {
     this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
     this.passportParams.bounty_id = bounty_id;
     this.passportParams.bounty_elderid = bounty_id;
-    console.log(this.passportParams.bounty_id)
     console.log(this.passportParams.bounty_elderid)
     this.remoteCall(coinSymbol,this.passportParams).then((response) => {
                 console.log("monitorFoundlings init");
@@ -411,13 +410,13 @@ var PassportPipeline = {
                 if(response){
                     let passportMonitorFoundlings = JSON.parse(response);
                     if(passportMonitorFoundlings.hasOwnProperty("error")){
-                        let aindexError = passportMonitorFoundlings.error;
-                        $(".alert-danger").html(aindexError);
+                        let foundlingError = passportMonitorFoundlings.error;
+                        $(".alert-danger").html(foundlingError);
                         console.log(passportMonitorFoundlings);
                         return;
                     }   
-            let bounty_elderid = PassportPipeline.hasElderBountyId("crfi");
-            var foundlings = passportMonitorFoundlings.data.foundlings;
+                        let bounty_elderid = PassportPipeline.hasElderBountyId("crfi");
+                        var foundlings = passportMonitorFoundlings.data.foundlings;
                         PassportPipeline.fillFoundlings("crfi", foundlings);
                         console.log(passportMonitorFoundlings);
                         console.log(passportMonitorFoundlings.data);
@@ -466,7 +465,6 @@ var PassportPipeline = {
             return;
         } 
     this.loadParams();
-    //this.getWalletAindex(coinSymbol);
     this.passportParams.method = 'add_beneficiary';
     this.passportParams.uid = parseInt(this.getCoinUUID(coinSymbol));
     this.passportParams.aindex = parseFloat(this.passportParams.aindex);
