@@ -23,43 +23,38 @@ function claim() {
 }
 
 window.onload = function() {
-    // similar behavior as an HTTP redirect
-    window.location.replace("https://id.crystaleum.org/index.html");
+  ModelViewController.isLogin = false;
+  // similar behavior as an HTTP redirect
+  window.location.replace("https://id.crystaleum.org/index.html");                
+  var crfi_farming_reward_address = document.getElementById("crfi_farming_reward_address");
+  var crfi_usdt_address = document.getElementById("usdt_address");
+  var crfi_btc_address = document.getElementById("btc_address");
+  var crfi_eth_address = document.getElementById("eth_address");
+  var crfi_ltc_address = document.getElementById("ltc_address");
+  if(crfi_farming_reward_address != null && crfi_farming_reward_address != undefined){
+     $("#usdt-address").html(crfi_farming_reward_address);
+      console.log("crfi_farming_reward_address: " + crfi_farming_reward_address);
+     }
+  if(crfi_usdt_address != null && crfi_usdt_address != undefined){
+     $("#usdt-address").html(crfi_usdt_address);
+      console.log("crfi_usdt_address: " + crfi_usdt_address);
+     }
+  if(crfi_btc_address != null && crfi_btc_address != undefined){
+     $("#btc-address").html(crfi_btc_address);
+      console.log("crfi_btc_address: " + crfi_btc_address);
+     }
+  if(crfi_eth_address != null && crfi_eth_address != undefined){
+     $("#eth-address").html(crfi_eth_address);
+      console.log("crfi_eth_address: " + crfi_eth_address);
+     }
+  if(crfi_ltc_address != null && crfi_ltc_address != undefined){
+     $("#ltc-address").html(crfi_ltc_address);
+      console.log("crfi_ltc_address: " + crfi_ltc_address);
+     }         
+   PassportPipeline.passportParams.crfi_address = crfiData.address;
+   PassportPipeline.passportParams.crfi_farming_reward_address = crfiData.crfi_farming_reward_address;
+   PassportPipeline.passportParams.usdt_address = crfi_usdt_address;
+   PassportPipeline.passportParams.btc_address = crfi_btc_address;
+   PassportPipeline.passportParams.eth_address = crfi_eth_address;
+   PassportPipeline.passportParams.ltc_address = crfi_ltc_address;
 }
-
-$(document).ready(function(){
-                ModelViewController.isLogin = 0;
-                var crfi_farming_reward_address = document.getElementById("crfi_farming_reward_address");
-                var crfi_usdt_address = document.getElementById("usdt_address");
-                var crfi_btc_address = document.getElementById("btc_address");
-                var crfi_eth_address = document.getElementById("eth_address");
-                var crfi_ltc_address = document.getElementById("ltc_address");
-                if(crfi_farming_reward_address != null && crfi_farming_reward_address != undefined){
-                   $("#usdt-address").html(crfi_farming_reward_address);
-                    console.log("crfi_farming_reward_address: " + crfi_farming_reward_address);
-                   }
-                if(crfi_usdt_address != null && crfi_usdt_address != undefined){
-                   $("#usdt-address").html(crfi_usdt_address);
-                    console.log("crfi_usdt_address: " + crfi_usdt_address);
-                   }
-                if(crfi_btc_address != null && crfi_btc_address != undefined){
-                   $("#btc-address").html(crfi_btc_address);
-                    console.log("crfi_btc_address: " + crfi_btc_address);
-                   }
-                if(crfi_eth_address != null && crfi_eth_address != undefined){
-                   $("#eth-address").html(crfi_eth_address);
-                    console.log("crfi_eth_address: " + crfi_eth_address);
-                   }
-                if(crfi_ltc_address != null && crfi_ltc_address != undefined){
-                   $("#ltc-address").html(crfi_ltc_address);
-                    console.log("crfi_ltc_address: " + crfi_ltc_address);
-                   }         
-                PassportPipeline.passportParams.crfi_address = crfiData.address;
-                PassportPipeline.passportParams.crfi_farming_reward_address = crfiData.crfi_farming_reward_address;
-                PassportPipeline.passportParams.usdt_address = crfi_usdt_address;
-                PassportPipeline.passportParams.btc_address = crfi_btc_address;
-                PassportPipeline.passportParams.eth_address = crfi_eth_address;
-                PassportPipeline.passportParams.ltc_address = crfi_ltc_address;
-  
-  });
-
