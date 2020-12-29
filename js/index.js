@@ -4,6 +4,7 @@ $(function() {
 
 window.onload = function() {
   ModelViewController.isLogin = false;
+  PassportPipeline.statusMessage("Folio Updated!");
 }
 $(document).ready(function(){
     if(!PassportPipeline.hasValidSession()){ 
