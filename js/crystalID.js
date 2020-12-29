@@ -271,8 +271,12 @@ var ModelViewController = {
         if(!coinSymbol){
             coinSymbol = 'crfi';
             }
+        
+        console.log("initLevel pre++: " + ModelViewController.coinState);
         console.log("coinstate pre++: " + ModelViewController.coinState);
-        ModelViewController.coinState++
+        ModelViewController.initLevel++;
+        ModelViewController.coinState++;
+        console.log("initLevel post++: " + ModelViewController.coinState);
         console.log("coinstate post++: " + ModelViewController.coinState);
         PassportPipeline.remoteCall(coinSymbol).then((response) => {
             if(response){
@@ -322,6 +326,7 @@ var ModelViewController = {
 $(document).on("init.done", function(e){
     console.log(e.type + " - " + e.coin);
     ModelViewController.initLevel++;
+    console.log("initLevel post++: " + ModelViewController.initLevel++);
     // ModelViewController.initLevel == 1 means crfi loaded proper
     if(ModelViewController.initLevel >= 1){
         $("#spinner-modal").modal('hide');
