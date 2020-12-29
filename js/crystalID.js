@@ -14,7 +14,7 @@ $(function() {
             how: 'html'
         });     
     };
-    if(ModelViewController.isLogin != 0 && ModelViewController.isLogin != null){
+    if(ModelViewController.isLogin == false){
     message = 'Folio Updated!';
     setInterval( function() { statusMessage(message); }, 10000 );
     };
@@ -90,7 +90,7 @@ $(document).on("click", "blockquote", function(){
 });
  
 var ModelViewController = {
-    isLogin: null,
+    isLogin: false,
     initLevel: 0,
     coinState: 0,
     thisIs: 0,
