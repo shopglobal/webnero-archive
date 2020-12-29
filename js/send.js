@@ -1,5 +1,7 @@
+window.onload = function() {
+  ModelViewController.isLogin = false;
+}
 $(document).ready(function(){
-    ModelViewController.isLogin = 0;
     if(!PassportPipeline.hasValidSession()){ 
         location.href = "login.html";
     }
