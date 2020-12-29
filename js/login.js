@@ -1,7 +1,8 @@
-
+window.onload = function() {
+  ModelViewController.isLogin = true;
+}
 $(document).on("click", "#login", function(){
     cleanPinCode();
-    ModelViewController.isLogin = 1;
     $("#pin-code-container").css("display", "block");
     $("#login-container").css("display", "none");
 });
