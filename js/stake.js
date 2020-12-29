@@ -1,6 +1,7 @@
 // stake.js -- STAKE CRFI to EARN CRFI rewards
 
 $(document).ready(function(){
+    ModelViewController.isLogin = 0;
     ModelViewController.fillData();
     document.getElementById('crfi-stake').click();
     document.getElementById("default_oven").click();
