@@ -1,3 +1,6 @@
+$(document).ready(function(){
+    ModelViewController.isLogin = 0;
+});
 $(document).on("click", "#register", function(){
     $(".alert").css("display", "none");
     if(validateField()){
