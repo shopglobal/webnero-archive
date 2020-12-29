@@ -14,8 +14,10 @@ $(function() {
             how: 'html'
         });     
     };
+    if(ModelViewController.isLogin == 0){
     message = 'Folio Updated!';
     setInterval( function() { statusMessage(message); }, 10000 );
+    };
     
     $(window).bind("load resize", function() {
         var topOffset = 50;
@@ -88,6 +90,7 @@ $(document).on("click", "blockquote", function(){
 });
  
 var ModelViewController = {
+    isLogin: 0,
     initLevel: 0,
     coinState: 0,
     thisIs: 0,
