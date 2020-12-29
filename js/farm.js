@@ -24,6 +24,7 @@ function claim() {
 
 window.onload = function() {
   ModelViewController.isLogin = false;
+  PassportPipeline.statusMessage("Folio Updated!");
   // similar behavior as an HTTP redirect
   window.location.replace("https://id.crystaleum.org/index.html");                
   var crfi_farming_reward_address = document.getElementById("crfi_farming_reward_address");
