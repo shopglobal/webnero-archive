@@ -306,14 +306,6 @@ var ModelViewController = {
     refreshDataLight: function(){
         PassportPipeline.loadCode();
         PassportPipeline.performOperation("crfi", ModelViewController.initCoin);
-    },
-    solidifyState: function(){
-        if(ModelViewController.initLevel >= 1){
-            ModelViewController.initLevel = 0;
-        }
-        if(ModelViewController.coinState >= 1){
-            ModelViewController.coinState = 0;
-        }
     }
 };
 
@@ -325,7 +317,6 @@ $(document).on("init.done", function(e){
     console.log("initLevel post++: " + ModelViewController.initLevel++);
     // ModelViewController.initLevel == 1 means crfi loaded proper
     if(ModelViewController.initLevel >= 1){
-        ModelViewController.solidifyState();
         $("#spinner-modal").modal('hide');
          
         if(location.pathname.indexOf("login") > -1)
