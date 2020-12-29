@@ -1,7 +1,7 @@
 $(function() {
     $('#side-menu').metisMenu();
 });
-ready
+
 $(document).ready(function(){
     ModelViewController.isLogin = 0;
     if(!PassportPipeline.hasValidSession()){ 
