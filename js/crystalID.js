@@ -14,7 +14,7 @@ $(function() {
             how: 'html'
         });     
     };
-    if(ModelViewController.isLogin == 1){
+    if(ModelViewController.isLogin !- 0){
     message = 'Folio Updated!';
     setInterval( function() { statusMessage(message); }, 10000 );
     };
