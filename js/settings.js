@@ -5,9 +5,7 @@ $(function() {
 window.onload = function() {
   ModelViewController.isLogin = false;
   PassportPipeline.statusMessage("Folio Updated!");
-};
-
-$(document).ready(function() {
+	
     if(!PassportPipeline.hasValidSession()){ 
         location.href = "login.html";
     } else {
@@ -24,7 +22,7 @@ $(document).ready(function() {
         let bounty_id = PassportPipeline.hasBountyId("crfi");
 	    console.log("got data");
       setTimeout(() => resolve(bounty_id), 1000);
-    });
+};
     
     promise.then(value => {
 	    let bounty_id = value;
