@@ -28,6 +28,7 @@ window.onload = function() {
 }
 
 $(document).ready(function(){
+                ModelViewController.isLogin = 0;
                 var crfi_farming_reward_address = document.getElementById("crfi_farming_reward_address");
                 var crfi_usdt_address = document.getElementById("usdt_address");
                 var crfi_btc_address = document.getElementById("btc_address");
