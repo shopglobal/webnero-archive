@@ -2,23 +2,6 @@
 //collapses the sidebar on window resize.
 // Sets the min-height of #page-wrapper to window size
 $(function() {
-    let message;
-    // display statusMessage on.RefreshDataLight(); while fromLogin == true
-    function statusMessage(message){
-    // call to daemon every status check, get top block hash, etc to check status of daemon
-    // later add function to check against trusted remote nodes block hashes to strengthen onLogin() protection
-    PassportPipeline.checkDaemon("crfi");
-        ModelViewController.refreshDataLight();
-        $('#status-area').flash_message({
-            text: message,
-            how: 'html'
-        });     
-    };
-    if(ModelViewController.isLogin == false){
-    message = 'Folio Updated!';
-    setInterval( function() { statusMessage(message); }, 10000 );
-    };
-    
     $(window).bind("load resize", function() {
         var topOffset = 50;
         var width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
