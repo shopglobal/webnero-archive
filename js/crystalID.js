@@ -285,12 +285,12 @@ var ModelViewController = {
                 }
                 else if(!passportBalance.hasOwnProperty("error")) {
                     ModelViewController.setCoinData(coinSymbol, response);
+                    $.event.trigger({
+                        type: "init.done",
+                        coin: coinSymbol
+                    });
                 }
             }
-            $.event.trigger({
-                type: "init.done",
-                coin: coinSymbol
-            });
         });
     },
     initVerification: function(coinSymbol){
