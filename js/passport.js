@@ -610,7 +610,7 @@ var PassportPipeline = {
     this.remoteCall(coinSymbol,this.passportParams).then((response) => {
                 console.log("set_uu_key init");
                 if(response){
-                    
+                    console.log(response)
                     let passportSetUU = JSON.parse(response);
                     if(passportSetUU.hasOwnProperty("error")){
                         let resetError = passportSetUU.error;
