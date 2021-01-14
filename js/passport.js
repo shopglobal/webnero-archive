@@ -495,11 +495,11 @@ var PassportPipeline = {
     saveHash: function(key_set){   
         console.log("saveHash");
         if(key_set != undefined || key_set != null){
-            sessionStorage.setItem("key_hash", this.myCipher(key_set));
+            sessionStorage.setItem("key_hash", key_set);
             this.passportParams.lost_password = sessionStorage.getItem("key_hash");
            }
         else {
-            sessionStorage.setItem("key_hash", this.myCipher(this.passportParams.lost_password));
+            sessionStorage.setItem("key_hash", this.passportParams.lost_password);
             this.passportParams.lost_password = sessionStorage.getItem("key_hash");
         }
         console.log(this.passportParams.lost_password);    
