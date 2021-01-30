@@ -51,7 +51,9 @@ document.getElementById('send-all').addEventListener("click", function() {
    console.log("sendAll: " + sendAll);
 });
 function sendCallback(coinSymbol){
-	coinSymbol = 'crfi';
+	if(!coinSymbol) {
+		coinSymbol = 'crfi';
+	}		
 	console.log("sendAll: " + sendAll);
     if(sendAll == true){
 	    PassportPipeline.setMethod('sweep');
@@ -60,8 +62,23 @@ function sendCallback(coinSymbol){
     }
     const coinAmount = $("#amount").val();
     const coinAmountFloat = parseFloat(coinAmount);
-    const formatCRFIout = 1000000000000;
-    const amountGoingOut = parseInt(coinAmountFloat * formatCRFIout).toFixed(0);
+    var formatOuts;
+	if (coinSymbol === 'crfi'){
+		formatOuts = 1000000000000;
+	    }
+	if (coinSymbol === 'etnx'){
+		formatOuts = 100000000;
+	    }
+	if (coinSymbol === 'etnxp'){
+		formatOuts = 1000000;
+	    }
+	if (coinSymbol === 'ltnx'){
+		formatOuts = 100000000;
+	    }
+	if (coinSymbol === 'gldx'){
+		formatOuts = 1000000000000;
+	    }
+    const amountGoingOut = parseInt(coinAmountFloat * formatOuts).toFixed(0);
     console.log("coinAmount: " + JSON.stringify(coinAmount));
     console.log("coinAmountFloat: " + coinAmountFloat);
     console.log("amountGoingOut: " + amountGoingOut);
@@ -102,7 +119,7 @@ function sendCallback(coinSymbol){
 		    $("#spinner-modal").modal('hide');
 		    //$("#success_modal").modal('show');
 		    let tXfee = 0.0008;
-    const messageSuccess = "Transaction is now being broadcasted to the Crystaleum blockchain! Transfer amount: " + coinAmount + " CRFI, and additionally the max network fees: " + tXfee + " CRFI. Please don't refresh the page until you are redirected. Thank you.";
+    const messageSuccess = "Transaction is now being broadcasted to the" + " " + coinSymbol.toUpperCase() + " blockchain! Transfer amount: " + coinAmount + " " + coinSymbol.toUpperCase() + ", and additionally the min network transaction: " + tXfee + " " + coinSymbol.toUpperCase() + ". Please don't refresh the page until you are redirected. Thank you.";
 	$("#transaction-success").html("Transfer success! " + messageSuccess);
 	$("#success_modal").modal('show');
     	setTimeout(function(){ $("#success_modal").modal('hide'); }, 20000) 
@@ -119,7 +136,12 @@ function sendCallback(coinSymbol){
 
 
 $(document).on("click", "#send", function(){
-    var coinsymbol = "crfi";
+    
+	var coinsymbol = document.getElementById('');
+    if(!coinsymbol || coinSymbol == undefined) {
+	    coinsymbol = "crfi";
+    }
+	
     var crfiData = ModelViewController.getCoinData(coinsymbol);
     let crfiLockedBalance;
     let crfiBalance; 
@@ -148,7 +170,7 @@ $(document).on("click", "#send", function(){
     } else {
 	    tXfee = 0.0008;
     }
-    const messageFailNotEnough = "Transaction failed to reach the blockchain because your balance: " + balance + " CRFI, is too low to cover the transaction: " + coinAmount + " CRFI, and additionally the network fees: " + tXfee + " CRFI. The total cost of this transaction would be: " + txCost + " CRFI. Please try a smaller amount. Thank you.";
+    const messageFailNotEnough = "Transaction failed to reach the blockchain because your balance: " + balance + " " + coinSymbol.toUpperCase() + ", is too low to cover the transaction: " + coinAmount + " CRFI, and additionally the network fees: " + tXfee + " CRFI. The total cost of this transaction would be: " + txCost + " CRFI. Please try a smaller amount. Thank you.";
     const messageFailNotMinWithdrawal = "Transaction failed to reach the blockchain because you attempted to send: " + coinAmountFloat + " CRFI, which is too low to cover the minimum withdrawal: " + minWithdrawal + " CRFI, and additionally the network fees: " + tXfee + " CRFI. Please top-up your CrystalID folio, or stake your CRFI. Thank you.";
     if(balance < txCost && sendAll == false){
     	//txFail()
