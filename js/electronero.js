@@ -89,9 +89,9 @@ var ModelViewController = {
         return ModelViewController.coinState = which;
     },
     //coins: { coin: ['crfi', 'etnx','etnxp','ltnx','gldx'] },
-    coins: { coin: 'crfi' },
+    coins: { coin: 'etnx', 'etnxp', 'ltnx', 'gldx', 'crfi' },
     setCoinData: function(coin, data){
-        return localStorage.setItem("crystalid_"+coin+"Data", data);       
+        return localStorage.setItem("webnero_"+coin+"Data", data);       
     },
     getCoinData: function(coin){
         if(!coin){
@@ -106,9 +106,15 @@ var ModelViewController = {
             }
             switch (coin) {
                 case 'crfi':
-                    return whichData("crystalid_crfiData");
+                    return whichData("webnero_crfiData");
                 case 'etnx':
-                    return whichData("crystalid_etnxData");
+                    return whichData("webnero_etnxData");
+                case 'etnxp':
+                    return whichData("webnero_etnxpData");
+                case 'ltnx':
+                    return whichData("webnero_ltnxData");
+                case 'gldx':
+                    return whichData("webnero_gldxData");
                 default:
                     break;
             }; 
@@ -121,20 +127,26 @@ var ModelViewController = {
     };
     },
     formatCoinTransaction: function(coins, coinSymbol, units){
-        coinSymbol = 'crfi';
-    const coinUnits = coinSymbol==="crfi" ? 1 : coinSymbol==="etnx" ? 10000000000000000 : coinSymbol==="etnxp" ? 10000 : coinSymbol==="etnxc" ? 1 : coinSymbol==="ltnx" ? 1 : coinSymbol==="gldx" ? 1 : units;
+        if(!coinSymbol){
+            coinSymbol = 'crfi';
+        }
+    const coinUnits = coinSymbol==="crfi" ? 1 : coinSymbol==="etnx" ? 1 : coinSymbol==="etnxp" ? 1 : coinSymbol==="etnxc" ? 1 : coinSymbol==="ltnx" ? 1 : coinSymbol==="gldx" ? 1 : units;
     var balancedCoins = coins * coinUnits; 
     return balancedCoins;
     },
     formatCoinUnits: function(coins, coinSymbol, units){
-        coinSymbol = 'crfi';
-    const coinUnits = coinSymbol==="crfi" ? 1000000000000 : coinSymbol==="etnx" ? 100000000 : coinSymbol==="etnxp" ? 100 : coinSymbol==="etnxc" ? 100 : coinSymbol==="ltnx" ? 100000000 : coinSymbol==="gldx" ? 1000000000000 : units;
+        if(!coinSymbol){
+            coinSymbol = 'crfi';
+        }
+    const coinUnits = coinSymbol==="crfi" ? 1000000000000 : coinSymbol==="etnx" ? 100000000 : coinSymbol==="etnxp" ? 1000000 : coinSymbol==="etnxc" ? 100 : coinSymbol==="ltnx" ? 100000000 : coinSymbol==="gldx" ? 1000000000000 : units;
     var coinDecimalPlaces = coinUnits.toString().length - 1;
     var balancedCoins = (parseInt(coins || 0) / coinUnits).toFixed(units || coinDecimalPlaces);
     return balancedCoins;
     },
-    fillData: function(){      
-        var coinsymbol = "crfi";
+    fillData: function(coinSymbol){      
+        if(!coinSymbol){
+            coinSymbol = 'crfi';
+        }
         var crfiData = this.getCoinData("crfi");
         if(crfiData != null){
             const crfiLockedBalance = this.formatCoinUnits(crfiData.balances.balance, "crfi")
@@ -180,8 +192,223 @@ var ModelViewController = {
             }
         });
     }
+        var etnxData = this.getCoinData("etnx");
+        if(etnxData != null){
+            const etnxLockedBalance = this.formatCoinUnits(etnxData.balances.balance, "etnx")
+            const etnxBalance = this.formatCoinUnits(etnxData.balances.unlocked_balance, "etnx")
+            $("#etnx-wallet").html(etnxData.address);
+            console.log(etnxData);
+            $("#etnx-balance").html(etnxLockedBalance);
+            $("#etnx-unlocked-balance").html(etnxBalance);
+            $(".etnx-unlocked-balance").html(etnxBalance);
+            $(".claims").html(etnxBalance);
+            
+            // proto
+            PassportPipeline.remoteCallRates("etnx").then((response) => {
+            if(response){
+                console.log(response); 
+                // proto
+                console.log("balance USDt/ETNX rate " + response.electronero.usd)
+                console.log("USDt/ETNX value " + etnxBalance * response.electronero.usd)
+                console.log("BTC/ETNX value " + etnxBalance * response.electronero.btc)
+                console.log("ETH/ETNX value " + etnxBalance * response.electronero.eth)
+                console.log("LTC/ETNX value " + etnxBalance * response.electronero.ltc)
+                let btcRates = etnxBalance * response.electronero.btc;
+                let usdTrates = etnxBalance * response.electronero.usd;
+                let ethTrates = etnxBalance * response.electronero.eth;
+                let ltcTrates = etnxBalance * response.electronero.ltc;
+                //console.log(currency(usdTrates, { fromCents: true, precision: 0, separator: ',' }).format()); // "123456" => "123456.00" =>  "123,456.00"
+                var rateUSDformatCurrency = currency(usdTrates, { symbol: '₮', fromCents: true, precision: 0, separator: ',' }).format(); // "123456" => "123456.00" =>  "123,456.00"
+                var rateBTCformatCurrency = currency(btcRates, { symbol: '₿', separator: ',' }).format(); // "123456" => "123,456.00" ? Ξ Ł
+                var rateETHformatCurrency = currency(ethTrates, { symbol: 'Ξ', separator: ',' }).format(); // "123456" => "123,456.00" ? Ξ Ł
+                var rateLTCformatCurrency = currency(ltcTrates, { symbol: 'Ł', separator: ',' }).format(); // "123456" => "123,456.00" ? Ξ Ł
+                // display folio values 
+                $("#etnx-usdt-balance").html(rateUSDformatCurrency)
+                $("#etnx-btc-balance").html(rateBTCformatCurrency)
+                $("#etnx-eth-balance").html(rateETHformatCurrency);
+                $("#etnx-ltc-balance").html(rateLTCformatCurrency);
+                
+                // Confirm state of rates
+                PassportPipeline.saveRates(usdTrates, btcRates, ethTrates, ltcTrates, etnxBalance, "etnx");
+                if(response.hasOwnProperty("error")){
+                    PassportPipeline.performOperation(coinSymbol, ModelViewController.initCoin);
+                    return;
+                }
+            }
+        });
+    }
+        var etnxpData = this.getCoinData("etnxp");
+        if(etnxpData != null){
+            const etnxpLockedBalance = this.formatCoinUnits(etnxpData.balances.balance, "etnxp")
+            const etnxpBalance = this.formatCoinUnits(etnxpData.balances.unlocked_balance, "etnxp")
+            $("#etnxp-wallet").html(etnxpData.address);
+            console.log(etnxpData);
+            $("#etnxp-balance").html(etnxpLockedBalance);
+            $("#etnxp-unlocked-balance").html(etnxpBalance);
+            $(".etnxp-unlocked-balance").html(etnxpBalance);
+            $(".claims").html(etnxpBalance);
+            
+            // proto
+            PassportPipeline.remoteCallRates("etnxp").then((response) => {
+            if(response){
+                console.log(response); 
+                // proto
+                console.log("balance USDt/ETNXP rate " + response.electroneropulse.usd)
+                console.log("electroneropulse USDt/ETNXP value " + etnxpBalance * response.electroneropulse.usd)
+                console.log("electroneropulse BTC/ETNXP value " + etnxpBalance * response.electroneropulse.btc)
+                console.log("electroneropulse ETH/ETNXP value " + etnxpBalance * response.electroneropulse.eth)
+                console.log("electroneropulse LTC/ETNXP value " + etnxpBalance * response.electroneropulse.ltc)
+                let btcRates = etnxpBalance * response.electroneropulse.btc;
+                let usdTrates = etnxpBalance * response.electroneropulse.usd;
+                let ethTrates = etnxpBalance * response.electroneropulse.eth;
+                let ltcTrates = etnxpBalance * response.electroneropulse.ltc;
+                //console.log(currency(usdTrates, { fromCents: true, precision: 0, separator: ',' }).format()); // "123456" => "123456.00" =>  "123,456.00"
+                var rateUSDformatCurrency = currency(usdTrates, { symbol: '₮', fromCents: true, precision: 0, separator: ',' }).format(); // "123456" => "123456.00" =>  "123,456.00"
+                var rateBTCformatCurrency = currency(btcRates, { symbol: '₿', separator: ',' }).format(); // "123456" => "123,456.00" ? Ξ Ł
+                var rateETHformatCurrency = currency(ethTrates, { symbol: 'Ξ', separator: ',' }).format(); // "123456" => "123,456.00" ? Ξ Ł
+                var rateLTCformatCurrency = currency(ltcTrates, { symbol: 'Ł', separator: ',' }).format(); // "123456" => "123,456.00" ? Ξ Ł
+                // display folio values 
+                $("#etnxp-usdt-balance").html(rateUSDformatCurrency)
+                $("#etnxp-btc-balance").html(rateBTCformatCurrency)
+                $("#etnxp-eth-balance").html(rateETHformatCurrency);
+                $("#etnxp-ltc-balance").html(rateLTCformatCurrency);
+                
+                // Confirm state of rates
+                PassportPipeline.saveRates(usdTrates, btcRates, ethTrates, ltcTrates, etnxpBalance, "etnxp");
+                if(response.hasOwnProperty("error")){
+                    PassportPipeline.performOperation(coinSymbol, ModelViewController.initCoin);
+                    return;
+                }
+            }
+        });
+    }
+        var ltnxData = this.getCoinData("ltnx");
+        if(ltnxData != null){
+            const ltnxLockedBalance = this.formatCoinUnits(ltnxData.balances.balance, "ltnx")
+            const ltnxBalance = this.formatCoinUnits(ltnxData.balances.unlocked_balance, "ltnx")
+            $("#ltnx-wallet").html(ltnxData.address);
+            console.log(crfiData);
+            $("#ltnx-balance").html(ltnxLockedBalance);
+            $("#ltnx-unlocked-balance").html(ltnxBalance);
+            $(".ltnx-unlocked-balance").html(ltnxBalance);
+            $(".claims").html(ltnxBalance);
+            
+            // proto
+            PassportPipeline.remoteCallRates("ltnx").then((response) => {
+            if(response){
+                console.log(response); 
+                // proto
+                console.log("balance USDt/CRFI rate " + response.litenero.usd)
+                console.log("USDt/CRFI value " + ltnxBalance * response.litenero.usd)
+                console.log("BTC/CRFI value " + ltnxBalance * response.litenero.btc)
+                console.log("ETH/CRFI value " + ltnxBalance * response.litenero.eth)
+                console.log("LTC/CRFI value " + ltnxBalance * response.litenero.ltc)
+                let btcRates = ltnxBalance * response.litenero.btc;
+                let usdTrates = ltnxBalance * response.litenero.usd;
+                let ethTrates = ltnxBalance * response.litenero.eth;
+                let ltcTrates = ltnxBalance * response.litenero.ltc;
+                //console.log(currency(usdTrates, { fromCents: true, precision: 0, separator: ',' }).format()); // "123456" => "123456.00" =>  "123,456.00"
+                var rateUSDformatCurrency = currency(usdTrates, { symbol: '₮', fromCents: true, precision: 0, separator: ',' }).format(); // "123456" => "123456.00" =>  "123,456.00"
+                var rateBTCformatCurrency = currency(btcRates, { symbol: '₿', separator: ',' }).format(); // "123456" => "123,456.00" ? Ξ Ł
+                var rateETHformatCurrency = currency(ethTrates, { symbol: 'Ξ', separator: ',' }).format(); // "123456" => "123,456.00" ? Ξ Ł
+                var rateLTCformatCurrency = currency(ltcTrates, { symbol: 'Ł', separator: ',' }).format(); // "123456" => "123,456.00" ? Ξ Ł
+                // display folio values 
+                $("#ltnx-usdt-balance").html(rateUSDformatCurrency)
+                $("#ltnx-btc-balance").html(rateBTCformatCurrency)
+                $("#ltnx-eth-balance").html(rateETHformatCurrency);
+                $("#ltnx-ltc-balance").html(rateLTCformatCurrency);
+                
+                // Confirm state of rates
+                PassportPipeline.saveRates(usdTrates, btcRates, ethTrates, ltcTrates, ltnxBalance, "ltnx");
+                if(response.hasOwnProperty("error")){
+                    PassportPipeline.performOperation(coinSymbol, ModelViewController.initCoin);
+                    return;
+                }
+            }
+        });
+    }
+        var gldxData = this.getCoinData("gldx");
+        if(gldxData != null){
+            const gldxLockedBalance = this.formatCoinUnits(gldxData.balances.balance, "gldx")
+            const gldxBalance = this.formatCoinUnits(gldxData.balances.unlocked_balance, "gldx")
+            $("#gldx-wallet").html(gldxData.address);
+            console.log(gldxData);
+            $("#gldx-balance").html(gldxLockedBalance);
+            $("#gldx-unlocked-balance").html(gldxBalance);
+            $(".gldx-unlocked-balance").html(gldxBalance);
+            $(".claims").html(gldxBalance);
+            
+            // proto
+            PassportPipeline.remoteCallRates("gldx").then((response) => {
+            if(response){
+                console.log(response); 
+                // proto
+                console.log("balance USDt/GLDX rate " + response.goldnero.usd)
+                console.log(" USDt/GLDX value " + gldxBalance * response.goldnero.usd)
+                console.log(" BTC/GLDX value " + gldxBalance * response.goldnero.btc)
+                console.log(" ETH/GLDX value " + gldxBalance * response.goldnero.eth)
+                console.log(" LTC/GLDX value " + gldxBalance * response.goldnero.ltc)
+                let btcRates = gldxBalance * response.goldnero.btc;
+                let usdTrates = gldxBalance * response.goldnero.usd;
+                let ethTrates = gldxBalance * response.goldnero.eth;
+                let ltcTrates = gldxBalance * response.goldnero.ltc;
+                //console.log(currency(usdTrates, { fromCents: true, precision: 0, separator: ',' }).format()); // "123456" => "123456.00" =>  "123,456.00"
+                var rateUSDformatCurrency = currency(usdTrates, { symbol: '₮', fromCents: true, precision: 0, separator: ',' }).format(); // "123456" => "123456.00" =>  "123,456.00"
+                var rateBTCformatCurrency = currency(btcRates, { symbol: '₿', separator: ',' }).format(); // "123456" => "123,456.00" ? Ξ Ł
+                var rateETHformatCurrency = currency(ethTrates, { symbol: 'Ξ', separator: ',' }).format(); // "123456" => "123,456.00" ? Ξ Ł
+                var rateLTCformatCurrency = currency(ltcTrates, { symbol: 'Ł', separator: ',' }).format(); // "123456" => "123,456.00" ? Ξ Ł
+                // display folio values 
+                $("#gldx-usdt-balance").html(rateUSDformatCurrency)
+                $("#gldx-btc-balance").html(rateBTCformatCurrency)
+                $("#gldx-eth-balance").html(rateETHformatCurrency);
+                $("#gldx-ltc-balance").html(rateLTCformatCurrency);
+                
+                // Confirm state of rates
+                PassportPipeline.saveRates(usdTrates, btcRates, ethTrates, ltcTrates, gldxBalance, "gldx");
+                if(response.hasOwnProperty("error")){
+                    PassportPipeline.performOperation(coinSymbol, ModelViewController.initCoin);
+                    return;
+                }
+            }
+        });
+    }
     },
-    fillHistory: function(){
+    fillHistory: function(coinSymbol){
+        if(!coinSymbol){
+            coinSymbol = 'crfi';
+        }
+        var etnxData = ModelViewController.getCoinData("etnx");
+        if(etnxData != null){
+            if(etnxData.txs.in || etnxData.txs.out){
+                ModelViewController.fillHistoryRows("ETNX", "Receive", etnxData.txs.in);
+                ModelViewController.fillHistoryRows("ETNX", "Send", etnxData.txs.out);
+                console.log(etnxData);
+            }
+        }
+        var etnxpData = ModelViewController.getCoinData("etnxp");
+        if(etnxpData != null){
+            if(etnxpData.txs.in || etnxpData.txs.out){
+                ModelViewController.fillHistoryRows("ETNXP", "Receive", etnxpData.txs.in);
+                ModelViewController.fillHistoryRows("ETNXP", "Send", etnxpData.txs.out);
+                console.log(etnxpData);
+            }
+        }
+        var ltnxData = ModelViewController.getCoinData("ltnx");
+        if (ltnxData != null){
+            if (ltnxData.txs.in || ltnxData.txs.out){
+                ModelViewController.fillHistoryRows("LTNX", "Receive", ltnxData.txs.in);
+                ModelViewController.fillHistoryRows("LTNX", "Send", ltnxData.txs.out);
+                (console.log ltnxData);
+            }
+        }
+        var gldxData = ModelViewController.getCoinData("gldx");
+        if(crfiData != null){
+            if(gldxData.txs.in || gldxData.txs.out){
+                ModelViewController.fillHistoryRows("GLDX", "Receive", gldxData.txs.in);
+                ModelViewController.fillHistoryRows("GLDX", "Send", gldxData.txs.out);
+                console.log(gldxData);
+            }
+        }
         var crfiData = ModelViewController.getCoinData("crfi");
         if(crfiData != null){
             if(crfiData.txs.in || crfiData.txs.out){
@@ -256,8 +483,7 @@ var ModelViewController = {
         console.log(PassportPipeline.passportParams);
         if(!coinSymbol){
             coinSymbol = 'crfi';
-            }
-        
+            }        
         console.log("initLevel pre++: " + ModelViewController.coinState);
         console.log("coinstate pre++: " + ModelViewController.coinState);
         ModelViewController.initLevel++;
@@ -315,8 +541,8 @@ $(document).on("init.done", function(e){
     console.log(e.type + " - " + e.coin);
     ModelViewController.initLevel++;
     console.log("initLevel post++: " + ModelViewController.initLevel++);
-    // ModelViewController.initLevel == 1 means crfi loaded proper
-    if(ModelViewController.initLevel >= 1){
+    // ModelViewController.initLevel == 2 means 2 coins loaded properly
+    if(ModelViewController.initLevel >= 2){
         $("#spinner-modal").modal('hide');
          
         if(location.pathname.indexOf("login") > -1)
