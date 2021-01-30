@@ -4,20 +4,20 @@
 // Global Styles
 
 body {
-    background-color: @gray-light;
+    background-color: @gray-lightest;
 }
 
 // Wrappers
 
 #wrapper {
     width: 100%;
-    background-color: @crfi-primary;
+    background-color: @blue-logic;
 }
 
 #page-wrapper {
     padding: 0 15px;
     min-height: 568px;
-    background-color: @crfi-primary;
+    background-color: @blue-logic;
 }
 
 @media(min-width:768px) {
@@ -44,7 +44,7 @@ body {
 
 .navbar-default {
     background-color: @blue-logic;
-    border: 0;
+    border-color: yellow;
     .navbar-brand{
         color: @blue-label;
     }
@@ -128,17 +128,13 @@ body {
 }
 
 .sidebar ul li {
-    border-bottom: 1px solid yellow;
-    &.side-menu-first {
-        border-top: 1px solid yellow;
-    }
+    border-bottom: 1px solid darken(yellow, 6.5%);
     a {
         &.active {
             background-color: @gray-lighter;
         }
     }
 }
-
 
 .sidebar .arrow {
     float: right;
@@ -202,7 +198,7 @@ blockquote {
 }
 
 .btn-primary.btn-outline {
-    color: @crfi-purple;
+    color: @brand-primary;
 }
 
 .btn-success.btn-outline {
@@ -227,10 +223,6 @@ blockquote {
 .btn-warning.btn-outline:hover,
 .btn-danger.btn-outline:hover {
     color: white;
-}
-
-.indexedalign {
-    text-align: justify;
 }
 
 .btn-login {
@@ -335,7 +327,7 @@ table.dataTable thead .sorting:after {
 }
 
 .table-striped>tbody>tr:nth-of-type(odd) {
-    background-color: white
+    background-color: @blue-label
 }
 
 .row_ETNX {
@@ -344,14 +336,6 @@ table.dataTable thead .sorting:after {
 
 .row_ETNXP {
     color: #59b857;
-}
-
-.row_LTNX {
-    color: gray;
-}
-
-.row_GLDX {
-    color: yellow;
 }
 
 .table-bordered {
@@ -407,25 +391,8 @@ table.dataTable thead .sorting:after {
 
 // Custom Colored Panels
 
-.huge{
-  font-size: 40px;
-  @media @phone {
-    font-size: 16px;
-  }
-  @media @tablet {   
-    font-size: 20px;
-  }
-  @media @desktop {
-    font-size: 30px;
-  }
-  @media @large {
-    font-size: 30px;
-  }
-}
-
-#status-area .flash_message {
-    padding: 5px;
-    color: green;
+.huge {
+    font-size: 40px;
 }
 
 .panel-etnx {
@@ -448,30 +415,6 @@ table.dataTable thead .sorting:after {
     }
 }
 
-.panel-crfi {
-    border-color: @crfi-primary;
-    border-width: 2px;
-    > .panel-heading {
-        border-color: @crfi-pink;
-        color: white;
-        background-color: @crfi-primary;
-    }
-    .panel-body  {
-        border-color: @crfi-pink;
-        color: white;
-        background-color: @crfi-primary;
-    }
-    > .panel-footer {
-        border-color: @crfi-pink;
-        color: white;
-        background-color: @crfi-primary;
-    }
-}
-
-.panel-etnxp {
-    &:extend(.panel-green all);
-}
-
 .panel-ltnx {
     border-color: grey;
     border-width: 2px;
@@ -490,10 +433,6 @@ table.dataTable thead .sorting:after {
         color: white;
         background-color: @blue-logic;
     }
-}
-
-.panel-gldx {
-    &:extend(.panel-etnx all);
 }
 
 .panel-settings {
@@ -521,26 +460,6 @@ table.dataTable thead .sorting:after {
     }
     > .panel-footer {
         border-color: @blue-logic;
-        color: white;
-        background-color: @panel-gray;
-    }
-}
-
-.panel-crfi-gray {
-    border-color: @crfi-primary;
-    border-width: 2px;
-    > .panel-heading {
-        border-color: @crfi-primary;
-        color: white;
-        background-color: @panel-gray;
-    }
-    > .panel-body  {
-        border-color: @crfi-primary;
-        color: white;
-        background-color: @panel-gray;
-    }
-    > .panel-footer {
-        border-color: @crfi-primary;
         color: white;
         background-color: @panel-gray;
     }
