@@ -129,6 +129,9 @@ body {
 
 .sidebar ul li {
     border-bottom: 1px solid darken(yellow, 6.5%);
+    &.side-menu-first {	
+        border-top: 1px solid yellow;	
+    }
     a {
         &.active {
             background-color: @gray-lighter;
@@ -334,10 +337,21 @@ table.dataTable thead .sorting:after {
     color: yellow;
 }
 
+.row_CRFI {
+    color: red;
+}
+
 .row_ETNXP {
     color: #59b857;
 }
 
+.row_LTNX {	
+    color: gray;	
+}	
+
+.row_GLDX {	
+    color: yellow;	
+}
 .table-bordered {
     border-color: yellow;
 }
@@ -385,6 +399,10 @@ table.dataTable thead .sorting:after {
     background-color: #eee !important;
 }
 
+.indexedalign {	
+    text-align: justify;	
+}
+
 .show-grid {
     margin: 15px 0;
 }
@@ -392,7 +410,25 @@ table.dataTable thead .sorting:after {
 // Custom Colored Panels
 
 .huge {
-    font-size: 40px;
+    font-size: 40px; 
+  @media @phone {	
+    font-size: 16px;	
+  }	
+  @media @tablet {   	
+    font-size: 20px;	
+  }	
+  @media @desktop {	
+    font-size: 30px;	
+  }	
+  @media @large {	
+    font-size: 30px;	
+  }	
+}	
+
+#status-area .flash_message {	
+    padding: 5px;	
+    color: green;	
+}
 }
 
 .panel-etnx {
@@ -415,6 +451,46 @@ table.dataTable thead .sorting:after {
     }
 }
 
+.panel-etnxp {
+    border-color: yellow;
+    border-width: 2px;
+    > .panel-heading {
+        border-color: yellow;
+        color: white;
+        background-color: @blue-logic;
+    }
+    .panel-body  {
+        border-color: yellow;
+        color: white;
+        background-color: @blue-logic;
+    }
+    > .panel-footer {
+        border-color: yellow;
+        color: white;
+        background-color: @blue-logic;
+    }
+}
+
+.panel-crfi {	
+    border-color: @crfi-primary;	
+    border-width: 2px;	
+    > .panel-heading {	
+        border-color: @crfi-pink;	
+        color: white;	
+        background-color: @crfi-primary;	
+    }	
+    .panel-body  {	
+        border-color: @crfi-pink;	
+        color: white;	
+        background-color: @crfi-primary;	
+    }	
+    > .panel-footer {	
+        border-color: @crfi-pink;	
+        color: white;	
+        background-color: @crfi-primary;	
+    }	
+}
+
 .panel-ltnx {
     border-color: grey;
     border-width: 2px;
@@ -430,6 +506,46 @@ table.dataTable thead .sorting:after {
     }
     > .panel-footer {
         border-color: grey;
+        color: white;
+        background-color: @blue-logic;
+    }
+}
+
+.panel-crfi-gray {	
+    border-color: @crfi-primary;	
+    border-width: 2px;	
+    > .panel-heading {	
+        border-color: @crfi-primary;	
+        color: white;	
+        background-color: @panel-gray;	
+    }	
+    > .panel-body  {	
+        border-color: @crfi-primary;	
+        color: white;	
+        background-color: @panel-gray;	
+    }	
+    > .panel-footer {	
+        border-color: @crfi-primary;	
+        color: white;	
+        background-color: @panel-gray;	
+    }	
+}
+
+.panel-gldx {
+    border-color: yellow;
+    border-width: 2px;
+    > .panel-heading {
+        border-color: yellow;
+        color: white;
+        background-color: @blue-logic;
+    }
+    .panel-body  {
+        border-color: yellow;
+        color: white;
+        background-color: @blue-logic;
+    }
+    > .panel-footer {
+        border-color: yellow;
         color: white;
         background-color: @blue-logic;
     }
