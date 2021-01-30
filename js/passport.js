@@ -16,6 +16,28 @@ var PassportPipeline = {
              crfi_address: "",
              crfi_stake_reward_address: "",
              crfi_farming_reward_address: "",
+             crfi_unlocked_balance: 0,
+             crfi_balance: 0,
+             etnx_address: "",
+             etnx_stake_reward_address: "",
+             etnx_farming_reward_address: "",
+             etnx_unlocked_balance: 0,
+             etnx_balance: 0,
+             etnxp_address: "",
+             etnxp_stake_reward_address: "",
+             etnxp_farming_reward_address: "",
+             etnxp_unlocked_balance: 0,
+             etnxp_balance: 0,
+             ltnx_address: "",
+             ltnx_stake_reward_address: "",
+             ltnx_farming_reward_address: "",
+             ltnx_unlocked_balance: 0,
+             ltnx_balance: 0,
+             gldx_address: "",
+             gldx_stake_reward_address: "",
+             gldx_farming_reward_address: "",
+             gldx_unlocked_balance: 0,
+             gldx_balance: 0,
              usdt_address: "",
              btc_address: "",
              eth_address: "",
@@ -44,6 +66,14 @@ var PassportPipeline = {
              twitter: '',
              crfi_address: '',
              crfi_payment_id: '',
+             etnx_address: '',
+             etnx_payment_id: '',
+             etnxp_address: '',
+             etnxp_payment_id: '',
+             ltnx_address: '',
+             ltnx_payment_id: '',
+             gldx_address: '',
+             gldx_payment_id: '',
              btc_address: '',
              btc_payment_id: '',
              eth_address: '',
@@ -108,7 +138,6 @@ var PassportPipeline = {
     etnxcApi: 'https://pulse.electronero.org/etnxc-api/api.php',
     ltnxApi: 'https://pulse.electronero.org/ltnx-api/api.php',
     gldxApi: 'https://pulse.electronero.org/gldx-api/api.php',
-
     crfiExpl: 'oracle.crystaleum.org',
     etnxExpl: 'blockexplorer.electronero.org',
     etnxpExpl: 'blockexplorer.electroneropulse.org',
@@ -117,7 +146,11 @@ var PassportPipeline = {
     gldxExpl: 'blockexplorer.goldnero.org',
 //     initRatesDates: null,
 //     oraceleRatesApiNodeA: 'https://api.coingecko.com/api/v3/coins/crystaleum/history?date='+initRatesDates+'&localization=en',
-    exRatesApi: 'https://api.coingecko.com/api/v3/simple/price?ids=crystaleum&vs_currencies=btc%2Cusd%2Ceth%2Cltc',
+    exRatesApiCRFI: 'https://api.coingecko.com/api/v3/simple/price?ids=crystaleum&vs_currencies=btc%2Cusd%2Ceth%2Cltc',
+    exRatesApiETNX: 'https://api.coingecko.com/api/v3/simple/price?ids=electronero&vs_currencies=btc%2Cusd%2Ceth%2Cltc',
+    exRatesApiETNXP: 'https://api.coingecko.com/api/v3/simple/price?ids=electronero-pulsevs_currencies=btc%2Cusd%2Ceth%2Cltc',
+    exRatesApiLTNX: 'https://api.coingecko.com/api/v3/simple/price?ids=litnero&vs_currencies=btc%2Cusd%2Ceth%2Cltc',
+    exRatesApiGLDX: 'https://api.coingecko.com/api/v3/simple/price?ids=goldnero&vs_currencies=btc%2Cusd%2Ceth%2Cltc',
 //     callDateTime: function(){
 //       var d = new Date();
 //       var a = d.getDate()
@@ -259,7 +292,7 @@ var PassportPipeline = {
         console.log("name: "+name)
         console.log("email: "+email)
         console.log("address: "+address)
-    document.getElementById("name_span").innerHTML = name;
+        document.getElementById("name_span").innerHTML = name;
         document.getElementById("email_span").innerHTML = email;
         document.getElementById("address_span").innerHTML = address;
     },
@@ -826,7 +859,9 @@ var PassportPipeline = {
     },
     registerOperation: function(coinSymbol, operationCallback){
         console.log("registerOpteration");
-        coinSymbol = 'crfi';
+        if(!coinSymbol) {
+            coinSymbol = 'crfi';
+        }
         this.loadParams();
         
         this.passportParams.method = 'register';
