@@ -88,8 +88,7 @@ var ModelViewController = {
         }
         return ModelViewController.coinState = which;
     },
-    //coins: { coin: ['crfi', 'etnx','etnxp','ltnx','gldx'] },
-    coins: { coin: 'etnx', 'etnxp', 'ltnx', 'gldx', 'crfi' },
+    coins: { coin: ['crfi', 'etnx','etnxp','ltnx','gldx'] },
     setCoinData: function(coin, data){
         return localStorage.setItem("webnero_"+coin+"Data", data);       
     },
