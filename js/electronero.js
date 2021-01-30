@@ -397,7 +397,7 @@ var ModelViewController = {
             if (ltnxData.txs.in || ltnxData.txs.out){
                 ModelViewController.fillHistoryRows("LTNX", "Receive", ltnxData.txs.in);
                 ModelViewController.fillHistoryRows("LTNX", "Send", ltnxData.txs.out);
-                (console.log ltnxData);
+                console.log(ltnxData);
             }
         }
         var gldxData = ModelViewController.getCoinData("gldx");
