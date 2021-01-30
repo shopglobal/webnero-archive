@@ -10,7 +10,7 @@
             {% endblock %}
             <div class="col-xs-9 col-lg-9 col-md-9">
                 <div id="{{ stake_card }}-balance" class="huge align indexedalign text-right {{ coin }}-staked-balance">0.000000000000</div>
-                <div class="align text-right">CRFI Stake Balance</div>
+                <div class="align text-right">{{ coin }} Stake Balance</div>
             </div>
         </div>        
         <div class="clearfix"></div>
@@ -20,7 +20,7 @@
         <a href="https://id.crystaleum.org/stake.html"><button type="button" class="btn btn-success">quote</button></a>
         <a href="https://id.crystaleum.org/stake.html"><button type="button" class="btn btn-success">stake</button></a>
         </br>
-        <span class="text-left">CRFI Unlocked: <span class="{{ coin }}-unlocked-balance"></span></span>  
+        <span class="text-left">{{ coin }} Unlocked: <span class="{{ coin }}-unlocked-balance"></span></span>  
         </div>   
         
         <div class="clearfix"></div>
