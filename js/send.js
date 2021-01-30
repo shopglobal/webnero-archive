@@ -41,16 +41,86 @@ document.getElementById('send-all').addEventListener("click", function() {
 	} else {
 		sendAll = true;
 	}
-    var coinsymbol = 'crfi';
-    var crfiData = ModelViewController.getCoinData(coinsymbol);
-    var crfiBalance = ModelViewController.formatCoinUnits(crfiData.balances.unlocked_balance, coinsymbol);
+	var coin_selected = $(".btn-selected").attr("id");
+	var coinSymbol;
+	switch(coin_selected){
+		case 'crfi-send':
+		coinSymbol = 'crfi';
+		case 'etnx-send':
+		coinSymbol = 'etnx';
+        	case 'etnxp-send':
+		coinSymbol = 'etnxp';
+		case 'ltnx-send':
+		coinSymbol = 'ltnx';
+        	case 'gldx-send':
+		coinSymbol = 'gldx';
+        default:
+            break;
+	    }
+    if(!coinSymbol || coinSymbol == undefined) {
+	    coinSymbol = 'crfi';
+    }
+	
+    var balance;
+	
+	if(coinSymbol == 'etnx') {
+    var etnxData = ModelViewController.getCoinData(coinSymbol);
+    var etnxBalance = ModelViewController.formatCoinUnits(etnxData.balances.unlocked_balance, coinSymbol);
+    PassportPipeline.passportParams.balance = etnxBalance; 
+    balance = etnxBalance;
+	}
+	
+	if(coinSymbol == 'etnxp') {
+    var etnxpData = ModelViewController.getCoinData(coinSymbol);
+    var etnxpBalance = ModelViewController.formatCoinUnits(etnxpData.balances.unlocked_balance, coinSymbol);
+    PassportPipeline.passportParams.balance = etnxpBalance; 
+    balance = etnxpBalance;
+	}
+	
+	if(coinSymbol == 'ltnx') {
+    var ltnxData = ModelViewController.getCoinData(coinSymbol);
+    var ltnxBalance = ModelViewController.formatCoinUnits(ltnxData.balances.unlocked_balance, coinSymbol);
+    PassportPipeline.passportParams.balance = ltnxBalance; 
+    balance = ltnxBalance;
+	}
+	
+	if(coinSymbol == 'gldx') {
+    var gldxData = ModelViewController.getCoinData(coinSymbol);
+    var gldxBalance = ModelViewController.formatCoinUnits(gldxData.balances.unlocked_balance, coinSymbol);
+    PassportPipeline.passportParams.balance = gldxBalance; 
+    balance = gldxBalance;
+	}
+	
+	if(coinSymbol == 'crfi') {
+    var crfiData = ModelViewController.getCoinData(coinSymbol);
+    var crfiBalance = ModelViewController.formatCoinUnits(crfiData.balances.unlocked_balance, coinSymbol);
     PassportPipeline.passportParams.balance = crfiBalance; 
-    var balance = crfiBalance;
+    balance = crfiBalance;
+	}
 	var input = $('#amount');
         input.val(balance)
    console.log("sendAll: " + sendAll);
 });
+
 function sendCallback(coinSymbol){
+	
+	var coin_selected = $(".btn-selected").attr("id");
+	var coinSymbol;
+	switch(coin_selected){
+		case 'crfi-send':
+		coinSymbol = 'crfi';
+		case 'etnx-send':
+		coinSymbol = 'etnx';
+        	case 'etnxp-send':
+		coinSymbol = 'etnxp';
+		case 'ltnx-send':
+		coinSymbol = 'ltnx';
+        	case 'gldx-send':
+		coinSymbol = 'gldx';
+        default:
+            break;
+	    }
+
 	if(!coinSymbol) {
 		coinSymbol = 'crfi';
 	}		
@@ -137,17 +207,32 @@ function sendCallback(coinSymbol){
 
 $(document).on("click", "#send", function(){
     
-	var coinsymbol = document.getElementById('');
-    if(!coinsymbol || coinSymbol == undefined) {
-	    coinsymbol = "crfi";
+	var coin_selected = $(".btn-selected").attr("id");
+	var coinSymbol;
+	switch(coin_selected){
+		case 'crfi-send':
+		coinSymbol = 'crfi';
+		case 'etnx-send':
+		coinSymbol = 'etnx';
+        	case 'etnxp-send':
+		coinSymbol = 'etnxp';
+		case 'ltnx-send':
+		coinSymbol = 'ltnx';
+        	case 'gldx-send':
+		coinSymbol = 'gldx';
+        default:
+            break;
+	    }
+    if(!coinSymbol || coinSymbol == undefined) {
+	    coinSymbol = "crfi";
     }
 	
-    var crfiData = ModelViewController.getCoinData(coinsymbol);
+    var crfiData = ModelViewController.getCoinData(coinSymbol);
     let crfiLockedBalance;
     let crfiBalance; 
     if(crfiData != null){
-    crfiLockedBalance = ModelViewController.formatCoinUnits(crfiData.balances.balance, coinsymbol);
-    crfiBalance = ModelViewController.formatCoinUnits(crfiData.balances.unlocked_balance, coinsymbol);
+    crfiLockedBalance = ModelViewController.formatCoinUnits(crfiData.balances.balance, coinSymbol);
+    crfiBalance = ModelViewController.formatCoinUnits(crfiData.balances.unlocked_balance, coinSymbol);
     PassportPipeline.passportParams.balance = crfiBalance; 
     };
     const coinAmount = $("#amount").val();
@@ -206,6 +291,14 @@ $(document).on("click", "#send", function(){
 	    switch(coin_selected){
 		case 'crfi-send':
             return PassportPipeline.performOperation("crfi", sendCallback);
+		case 'etnx-send':
+            return PassportPipeline.performOperation("etnx", sendCallback);
+        	case 'etnxp-send':
+	    return PassportPipeline.performOperation("etnxp", sendCallback);
+		case 'ltnx-send':
+            return PassportPipeline.performOperation("ltnx", sendCallback); 
+        	case 'gldx-send':
+	    return PassportPipeline.performOperation("gldx", sendCallback); 
         default:
             break;
 	    }
